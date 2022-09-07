@@ -7,8 +7,8 @@ const config = {
 	// for more information about preprocessors
 	preprocess: preprocess(),
 	kit: {
-		adapter: adapter({ pages: 'src/static', assets: 'src/static' }),
-		files: {}
+		adapter: adapter(),
+		outDir: 'build'
 	}
 };
 
