@@ -6,9 +6,9 @@ const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
 	preprocess: preprocess(),
-
 	kit: {
-		adapter: adapter()
+		adapter: adapter({ pages: 'src/static', assets: 'src/static' }),
+		files: {}
 	}
 };
 
