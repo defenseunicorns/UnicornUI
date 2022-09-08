@@ -92,11 +92,11 @@
 	}
 
 	.mdc-button.secondary {
-		@include mdc-button-ink-color($mdc-theme-secondary);
-		@include mdc-states(secondary);
+		@include mdc-button-ink-color(var(--mdc-theme-secondary, $mdc-theme-secondary));
+		@include mdc-button-ripple-states(var(--mdc-theme-secondary, $mdc-theme-secondary));
 	}
 	.mdc-button.raised.secondary,
 	.mdc-button.flat.secondary {
-		@include mdc-button-filled-accessible($mdc-theme-secondary);
+		@include mdc-button-filled-accessible(var(--mdc-theme-secondary, $mdc-theme-secondary));
 	}
 </style>

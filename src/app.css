@@ -1,0 +1,6 @@
+@import '@material/theme/dist/mdc.theme.css';
+
+:root {
+	--mdc-theme-primary: #4adede;
+	--mdc-theme-secondary: #787ff6;
+}
