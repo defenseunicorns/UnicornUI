@@ -97,10 +97,10 @@
 </section>
 <section class="variant">
 	<h1>Link</h1>
-	<pre>{`<Button href="/" color="secondary" />
-<Button href="/" variant="outlined" color="secondary" />
-<Button href="/" variant="raised" color="secondary" />
-<Button href="/" variant="flat" color="secondary" />`}</pre>
+	<pre>{`<Button href="/" />
+<Button href="/" variant="outlined" />
+<Button href="/" variant="raised" />
+<Button href="/" variant="flat" />`}</pre>
 	<div class="preview">
 		<Button href="/" />
 		<Button href="/" variant="outlined" />
