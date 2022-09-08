@@ -15,6 +15,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm ci
       - run: npm run build
+      - run: cd package
       - run: git config --global user.name "mike-winberry"
       - run: git config --global user.email "cole.winberry@github.com"
       - run: npm version ${{ github.event.release.tag_name }} --allow-same-version
