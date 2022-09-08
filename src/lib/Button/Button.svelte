@@ -1,22 +1,22 @@
 <script lang="ts">
-	import type { propReferrerPolicy, propRel, propTarget } from '../shared/types/LinkProps.types';
-	import type { propVariant, propColor, propDisabled, propShape } from './Button.types';
+	import type { LinkReferrerPolicy, LinkRel, LinkTarget } from '../shared/types/LinkProps.types';
+	import type { ButtonVariant, ButtonColor, ButtonShape } from './Button.types';
 	import { onMount, createEventDispatcher } from 'svelte';
 	import { MDCRipple } from '@material/ripple';
 
 	// Props
-	export let referrerpolicy: propReferrerPolicy | undefined = undefined;
-	export let target: propTarget | undefined = undefined;
+	export let referrerpolicy: LinkReferrerPolicy | undefined = undefined;
+	export let target: LinkTarget | undefined = undefined;
 	export let download: string | undefined = undefined;
 	export let hreflang: string | undefined = undefined;
 	export let media: string | undefined = undefined;
 	export let href: string | undefined = undefined;
 	export let ping: string | undefined = undefined;
-	export let rel: propRel | undefined = undefined;
-	export let disabled: propDisabled = false;
-	export let variant: propVariant = 'text';
-	export let color: propColor = 'primary';
-	export let shape: propShape = 'square';
+	export let rel: LinkRel | undefined = undefined;
+	export let disabled = false;
+	export let variant: ButtonVariant = 'text';
+	export let color: ButtonColor = 'primary';
+	export let shape: ButtonShape = 'square';
 	export let className = '';
 	export let id = '';
 

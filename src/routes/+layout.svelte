@@ -1,8 +1,8 @@
 <script lang="ts">
 	import '../app.css';
 	import 'material-symbols/';
-	import type { propColor, propVariant } from '$lib/Button/Button.types';
-	import Button from '$lib/Button/Button.svelte';
+	import type { ButtonColor, ButtonVariant } from '$lib';
+	import { Button } from '$lib';
 	import { afterUpdate } from 'svelte';
 
 	let path = '';
@@ -16,9 +16,7 @@
 	function getVariant(
 		pathname: string,
 		currentPath: string
-	): { variant: propVariant; color: propColor } {
-		console.log(pathname);
-		console.log(currentPath);
+	): { variant: ButtonVariant; color: ButtonColor } {
 		return pathname === currentPath
 			? { variant: 'raised', color: 'secondary' }
 			: { variant: 'outlined', color: 'primary' };

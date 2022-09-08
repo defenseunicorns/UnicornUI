@@ -1,4 +1,3 @@
-export type propVariant = 'text' | 'outlined' | 'raised' | 'flat';
-export type propColor = 'primary' | 'secondary';
-export type propDisabled = boolean;
-export type propShape = 'rounded' | 'square';
+export type ButtonVariant = 'text' | 'outlined' | 'raised' | 'flat';
+export type ButtonColor = 'primary' | 'secondary';
+export type ButtonShape = 'rounded' | 'square';
