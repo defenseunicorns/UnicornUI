@@ -79,6 +79,7 @@
 	@import '@material/button/mdc-button';
 	.outlined {
 		@extend .mdc-button--outlined;
+		@include mdc-button-outline-color(var(--mdc-theme-primary, $mdc-theme-primary));
 	}
 	.raised {
 		@extend .mdc-button--raised;
@@ -91,9 +92,13 @@
 		@include mdc-button-shape-radius(100px);
 	}
 
-	.mdc-button.secondary {
+	.mdc-button.secondary,
+	.mdc-button.outlined.secondary {
 		@include mdc-button-ink-color(var(--mdc-theme-secondary, $mdc-theme-secondary));
 		@include mdc-button-ripple-states(var(--mdc-theme-secondary, $mdc-theme-secondary));
+	}
+	.mdc-button.outlined.secondary {
+		@include mdc-button-outline-color(var(--mdc-theme-secondary, $mdc-theme-secondary));
 	}
 	.mdc-button.raised.secondary,
 	.mdc-button.flat.secondary {
