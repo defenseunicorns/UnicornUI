@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '../app.css';
 	import 'material-symbols/';
-	import type { ButtonColor, ButtonVariant } from '$lib';
+	import type { ButtonColor, ButtonShape, ButtonVariant } from '$lib';
 	import { Button } from '$lib';
 	import { afterUpdate } from 'svelte';
 
@@ -16,10 +16,10 @@
 	function getVariant(
 		pathname: string,
 		currentPath: string
-	): { variant: ButtonVariant; color: ButtonColor } {
+	): { variant: ButtonVariant; color: ButtonColor; shape: ButtonShape } {
 		return pathname === currentPath
-			? { variant: 'raised', color: 'secondary' }
-			: { variant: 'outlined', color: 'primary' };
+			? { variant: 'raised', color: 'secondary', shape: 'squared' }
+			: { variant: 'outlined', color: 'primary', shape: 'squared' };
 	}
 </script>
 
@@ -28,6 +28,7 @@
 	<Button href="/" {...getVariant(path, '/')}>Home</Button>
 	<h2>Components</h2>
 	<Button href="/button" {...getVariant(path, '/button')}>Button</Button>
+	<Button href="/icon-button" {...getVariant(path, '/icon-button')}>Icon Button</Button>
 </section>
 <main>
 	<slot />
