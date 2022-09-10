@@ -16,15 +16,17 @@
 	export let disabled = false;
 	export let variant: ButtonVariant = 'text';
 	export let color: ButtonColor = 'primary';
-	export let shape: ButtonShape = 'square';
+	export let shape: ButtonShape = 'rounded';
 	export let className = '';
 	export let id = '';
 
+	// Local Vars
+	let buttonElement: HTMLButtonElement | HTMLAnchorElement;
+
 	// Lifecycle
 	onMount((): void => {
-		const el = document.querySelector('.mdc-button');
-		if (el) {
-			new MDCRipple(el);
+		if (buttonElement) {
+			new MDCRipple(buttonElement);
 		}
 	});
 
@@ -37,6 +39,7 @@
 
 {#if !href}
 	<button
+		bind:this={buttonElement}
 		class={`unicorn-button mdc-button ${variant} ${color} ${shape} ${className}`}
 		class:mdc-button--icon-leading={$$slots.leadingIcon}
 		class:mdc-button--icon-trailing={$$slots.trailingIcon}
@@ -52,10 +55,10 @@
 	</button>
 {:else}
 	<a
+		bind:this={buttonElement}
 		class={`unicorn-button mdc-button ${variant} ${color} ${shape} ${className}`}
 		class:mdc-button--icon-leading={$$slots.leadingIcon}
 		class:mdc-button--icon-trailing={$$slots.trailingIcon}
-		{shape}
 		{href}
 		{download}
 		{hreflang}

@@ -1,6 +1,7 @@
 <script>
 	import { Button } from '$lib';
 	import ButtonIcon from '$lib/Button/ButtonIcon.svelte';
+	import Variant from '../../website-components/Variant.svelte';
 	function onClick() {
 		alert('Clicked me');
 	}
@@ -134,19 +135,18 @@
 		<Button on:click={onClick} disabled={true} variant="flat" />
 	</div>
 </section>
-<section class="variant">
-	<pre>{`<Button shape="rounded" />
-<Button shape="rounded" variant="outlined" />
-<Button shape="rounded" variant="raised" />
-<Button shape="rounded" variant="flat" />`}</pre>
-	<h1>Rounded</h1>
-	<div class="preview">
-		<Button shape="rounded" />
-		<Button shape="rounded" variant="outlined" />
-		<Button shape="rounded" variant="raised" />
-		<Button shape="rounded" variant="flat" />
-	</div>
-</section>
+<Variant
+	title="Squared"
+	code={`<Button shape="squared" />
+<Button shape="squared" variant="outlined" />
+<Button shape="squared" variant="raised" />
+<Button shape="squared" variant="flat" />`}
+>
+	<Button shape="squared" />
+	<Button shape="squared" variant="outlined" />
+	<Button shape="squared" variant="raised" />
+	<Button shape="squared" variant="flat" /></Variant
+>
 
 <style>
 	section {
