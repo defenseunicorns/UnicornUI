@@ -8,8 +8,8 @@
 	$: contentVisibility = isOpen ? 'open' : 'shut';
 </script>
 
-<div class="accordian">
-	<div class="accordian-header">
+<div class="accordion">
+	<div class="accordion-header">
 		<IconButton
 			iconColor="primary"
 			toggledIconColor="primary"
@@ -22,18 +22,18 @@
 			<ExpandMore slot="icon" />
 			<ExpandLess slot="toggledIcon" />
 		</IconButton>
-		<div class="accordian-header-container">
+		<div class="accordion-header-container">
 			<slot name="headerContent" />
 		</div>
 	</div>
-	<div class="accordian-content {contentVisibility}">
+	<div class="accordion-content {contentVisibility}">
 		<slot name="content" />
 	</div>
 </div>
 
 <style lang="scss" global>
 	@import '@material/theme';
-	.accordian {
+	.accordion {
 		display: flex;
 		flex-direction: column;
 		flex-grow: 1;
@@ -43,7 +43,7 @@
 		box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(0, 0, 0, 0.14),
 			0px 1px 3px rgba(0, 0, 0, 0.12);
 	}
-	.accordian-header {
+	.accordion-header {
 		padding: 8px 12px;
 		justify-content: flex-start;
 		align-items: center;
@@ -53,14 +53,14 @@
 		flex-direction: row;
 		background-color: var(--mdc-theme-surface);
 	}
-	.accordian-content {
+	.accordion-content {
 		width: 100%;
 		padding: 8px 12px;
 	}
-	.accordian-content.shut {
+	.accordion-content.shut {
 		display: none;
 	}
-	.accordian .mdc-icon-button:hover i svg path {
+	.accordion .mdc-icon-button:hover i svg path {
 		fill: var(--mdc-theme-primary);
 	}
 </style>
