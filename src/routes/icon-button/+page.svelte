@@ -14,6 +14,41 @@
 
 <Variant
 	title="Icon Button"
+	code={`
+Props (with defaults):
+
+# Shared
+  id = '';
+  iconClass = '';
+  iconContent = '';
+  disabled = false;
+  iconColor: IconButtonColor = 'inherit';
+  
+# Button (when href is undefined)
+  on:click = undefined;
+  toggled = false;
+  toggleable = false;
+  toggledIconClass = '';
+  toggledIconContent = '';
+  toggledIconColor: IconButtonColor = 'inherit';
+
+# Link (when href is defined)
+  href: string | undefined = undefined;
+  ping: string | undefined = undefined;
+  rel: LinkRel | undefined = undefined;
+  media: string | undefined = undefined;
+  download: string | undefined = undefined;
+  hreflang: string | undefined = undefined;
+  target: LinkTarget | undefined = undefined;
+  referrerpolicy: LinkReferrerPolicy | undefined = undefined;
+
+Slots:
+  icon: optional;
+  toggleIcon: optional;
+`}
+/>
+<Variant
+	title="Icon Button Color Variants"
 	code={`	<IconButton iconClass="material-symbols-outlined" iconContent="settings" />
 <IconButton iconClass="material-symbols-outlined" iconContent="settings" iconColor="primary" />
 <IconButton iconClass="material-symbols-outlined" iconContent="settings" iconColor="secondary" />
