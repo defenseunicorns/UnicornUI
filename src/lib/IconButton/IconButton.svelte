@@ -124,4 +124,12 @@
 	.mdc-icon-button.secondary {
 		@include mdc-icon-button-ink-color(var(--mdc-theme-secondary, $mdc-theme-secondary));
 	}
+	.mdc-icon-button__icon {
+		display: flex;
+		align-content: center;
+	}
+	.mdc-icon-button--on .mdc-icon-button__icon--on {
+		display: flex !important;
+		align-content: center;
+	}
 </style>

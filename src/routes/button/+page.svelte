@@ -7,6 +7,36 @@
 	}
 </script>
 
+<Variant
+	title="Button"
+	code={`
+Props (with defaults):
+# Shared:
+  id = '';
+  className = '';
+  disabled = false;
+  color: ButtonColor = 'primary';
+  shape: ButtonShape = 'rounded';
+  variant: ButtonVariant = 'text';
+
+# Button (when href is undefined)
+  on:click;
+
+# Link (when href is defined)
+  href: string | undefined = undefined;
+  ping: string | undefined = undefined;
+  rel: LinkRel | undefined = undefined;
+  media: string | undefined = undefined;
+  download: string | undefined = undefined;
+  hreflang: string | undefined = undefined;
+  target: LinkTarget | undefined = undefined;
+  referrerpolicy: LinkReferrerPolicy | undefined = undefined;
+
+Slots:
+  leadingIcon: optional
+  trailingIcon: optional
+`}
+/>
 <section class="variant">
 	<h2>Text (default)</h2>
 	<pre>{`<Button on:click={onClick} />
