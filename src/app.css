@@ -2,5 +2,7 @@
 
 :root {
 	--mdc-theme-primary: #4adede;
+	--mdc-theme-on-primary: black;
 	--mdc-theme-secondary: #787ff6;
+	--mdc-theme-on-secondary: white;
 }

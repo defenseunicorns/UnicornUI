@@ -19,7 +19,7 @@
 	): { variant: ButtonVariant; color: ButtonColor; shape: ButtonShape } {
 		return pathname === currentPath
 			? { variant: 'raised', color: 'secondary', shape: 'squared' }
-			: { variant: 'outlined', color: 'primary', shape: 'squared' };
+			: { variant: 'flat', color: 'primary', shape: 'squared' };
 	}
 </script>
 
@@ -27,9 +27,11 @@
 	<h1 class="header">Unicorn UI</h1>
 	<Button href="/" {...getVariant(path, '/')}>Home</Button>
 	<h2>Components</h2>
-	<Button href="/button" {...getVariant(path, '/button')}>Button</Button>
-	<Button href="/icon-button" {...getVariant(path, '/icon-button')}>Icon Button</Button>
-	<Button href="/accordion" {...getVariant(path, '/accordion')}>Accordion</Button>
+	<div class="component-list">
+		<Button href="/button" {...getVariant(path, '/button')}>Button</Button>
+		<Button href="/icon-button" {...getVariant(path, '/icon-button')}>Icon Button</Button>
+		<Button href="/accordion" {...getVariant(path, '/accordion')}>Accordion</Button>
+	</div>
 </section>
 <main>
 	<slot />
@@ -44,5 +46,10 @@
 		flex-direction: column;
 		align-items: center;
 		gap: 18px;
+	}
+	.component-list {
+		display: flex;
+		gap: 10px;
+		flex-wrap: wrap;
 	}
 </style>

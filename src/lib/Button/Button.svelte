@@ -106,5 +106,6 @@
 	.mdc-button.raised.secondary,
 	.mdc-button.flat.secondary {
 		@include mdc-button-filled-accessible(var(--mdc-theme-secondary, $mdc-theme-secondary));
+		color: var(--mdc-theme-on-secondary) !important;
 	}
 </style>
