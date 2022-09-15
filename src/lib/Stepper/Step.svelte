@@ -9,11 +9,12 @@
 	export let iconContent = '';
 	export let variant: StepVariant = 'primary';
 	export let orientation: StepOrientation = 'vertical';
+	export let wrapperClass = '';
 
-	$: wrapperClass = `step step-${orientation} ${variant}`;
+	$: fullClass = `step step-${orientation} ${variant} ${wrapperClass}`;
 </script>
 
-<div class={wrapperClass}>
+<div class={fullClass}>
 	<slot name="step-icon">
 		{#if iconContent}
 			<StepIcon {variant} {disabled} {title}>{iconContent}</StepIcon>
@@ -30,9 +31,7 @@
 <style lang="scss">
 	.step {
 		display: flex;
-		width: fit-content;
 		align-items: center;
-		justify-content: center;
 	}
 	.step-vertical {
 		gap: 16px;
@@ -41,12 +40,12 @@
 	}
 	.step-horizontal {
 		gap: 8px;
+		align-items: flex-start;
 	}
 	.step .step-captions {
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
-		align-content: center;
+		width: fit-content;
 	}
 	.step.primary .step-captions span {
 		color: var(--mdc-theme-on-primary);

@@ -24,9 +24,9 @@
 </script>
 
 <section class="components">
-	<h1 class="header">Unicorn UI</h1>
+	<h1 class="header mdc-typography--headline4">Unicorn UI</h1>
 	<Button href="/" {...getVariant(path, '/')}>Home</Button>
-	<h2>Components</h2>
+	<h2 class="mdc-typography--headline5">Components</h2>
 	<div class="component-list">
 		<Button href="/button" {...getVariant(path, '/button')}>Button</Button>
 		<Button href="/icon-button" {...getVariant(path, '/icon-button')}>Icon Button</Button>

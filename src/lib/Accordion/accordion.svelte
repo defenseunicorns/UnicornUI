@@ -55,10 +55,7 @@
 	.accordion {
 		display: flex;
 		flex-direction: column;
-		flex-grow: 1;
 		width: 100%;
-		height: fit-content;
-		overflow: visible;
 		box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(0, 0, 0, 0.14),
 			0px 1px 3px rgba(0, 0, 0, 0.12);
 	}
@@ -73,6 +70,8 @@
 	}
 	.accordion-content {
 		padding: 8px 12px;
+		display: flex;
+		flex-direction: column;
 	}
 	.accordion-content.shut {
 		display: none;
