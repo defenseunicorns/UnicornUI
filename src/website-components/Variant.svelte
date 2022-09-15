@@ -12,24 +12,18 @@
 </section>
 
 <style>
-	section {
-		margin-top: 32px;
-		margin-bottom: 32px;
+	:global(section) {
+		padding: 32px;
+		box-sizing: border-box;
+		display: flex;
 	}
 	.preview {
 		display: flex;
+		width: 80%;
 		gap: 32px;
+		justify-content: center;
 	}
-	pre {
-		display: flex;
-		max-width: fit-content;
-		flex-direction: column;
-		color: cyan;
-		background-color: black;
-		padding: 16px;
-		box-sizing: border-box;
-		font-weight: 600;
-	}
+
 	.variant {
 		display: flex;
 		flex-direction: column;

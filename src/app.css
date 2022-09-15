@@ -11,3 +11,15 @@
 div {
 	box-sizing: border-box !important;
 }
+
+pre {
+	display: flex;
+	flex-direction: column;
+	color: cyan;
+	background-color: black;
+	padding: 16px;
+	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
+	font-size: var(--mdc-typography-body2-font-size);
+	line-height: var(--mdc-typography-body2-line-height);
+}

@@ -26,11 +26,11 @@ Slots:
 			contentClass="accordian-1-content"
 			isOpen={true}
 		>
-			<span slot="headerContent">Accordion</span>
-			<div slot="content">Default to open</div>
+			<span slot="headerContent" class="mdc-typography--headline6">Accordion</span>
+			<div slot="content" class="mdc-typography--body1">Default to open</div>
 		</Accordion>
 		<Accordion id="accordian-2" wrapperClass="myAccordian" contentClass="accordian-2-content">
-			<span slot="headerContent">Expand for example html</span>
+			<span slot="headerContent" class="mdc-typography--headline6">Expand for example html</span>
 			<div slot="content">
 				<pre>{`<Accordion 
   id="accordian-2" 
@@ -60,6 +60,7 @@ Slots:
 		width: 100%;
 	}
 	.accordian-1-content {
+		width: 100%;
 		background-color: var(--mdc-theme-secondary);
 		color: var(--mdc-theme-on-secondary);
 	}
@@ -68,7 +69,7 @@ Slots:
 		background-color: black;
 	}
 	.accordions {
-		min-width: 500px;
+		width: 100%;
 		display: flex;
 		flex-direction: column;
 		gap: 1px;
