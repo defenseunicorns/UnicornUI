@@ -65,6 +65,9 @@ Slots:
 		<Accordion>
 			<span slot="headerContent" class="mdc-typography--headline6">Stepper Horizontal</span>
 			<div slot="content">
+				<pre>
+					{`<Stepper orientation="horizontal" steps={[...steps]} />`}
+</pre>
 				<Stepper orientation="horizontal" steps={[...steps]} />
 			</div>
 		</Accordion>
