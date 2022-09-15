@@ -4,7 +4,7 @@
 </script>
 
 <section class="variant">
-	<h1>{title}</h1>
+	<h1 class="mdc-typography--headline4">{title}</h1>
 	<pre>{`${code.trim()}`}</pre>
 	<div class="preview">
 		<slot />
