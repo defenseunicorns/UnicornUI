@@ -32,6 +32,7 @@
 		<Button href="/icon-button" {...getVariant(path, '/icon-button')}>Icon Button</Button>
 		<Button href="/accordion" {...getVariant(path, '/accordion')}>Accordion</Button>
 		<Button href="/stepper" {...getVariant(path, '/stepper')}>Stepper</Button>
+		<Button href="/dialog" {...getVariant(path, '/dialog')}>Dialog</Button>
 	</div>
 </section>
 <main>
