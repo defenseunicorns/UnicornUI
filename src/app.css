@@ -1,3 +1,4 @@
+@import 'normalize.css/normalize.css';
 @import '@material/theme/dist/mdc.theme.min.css';
 @import '@material/typography/dist/mdc.typography.min.css';
 
@@ -8,8 +9,10 @@
 	--mdc-theme-on-secondary: white;
 }
 
-div {
-	box-sizing: border-box !important;
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
 }
 
 pre {

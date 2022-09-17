@@ -43,10 +43,13 @@
 	"type": "module",
 	"dependencies": {
 		"@material/button": "^14.0.0",
+		"@material/dialog": "^14.0.0",
 		"@material/icon-button": "^14.0.0",
+		"@material/list": "^14.0.0",
 		"@material/ripple": "^14.0.0",
 		"@material/theme": "^14.0.0",
 		"@material/typography": "^14.0.0",
-		"material-symbols": "^0.2.9"
+		"material-symbols": "^0.2.9",
+		"normalize.css": "^8.0.1"
 	}
 }
