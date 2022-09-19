@@ -16,7 +16,7 @@
 	export let disabled = false;
 	export let variant: ButtonVariant = 'text';
 	export let color: ButtonColor = 'primary';
-	export let shape: ButtonShape = 'rounded';
+	export let shape: ButtonShape = 'squared';
 	export let className = '';
 	export let id = '';
 
