@@ -16,7 +16,7 @@ Props (with defaults):
   className = '';
   disabled = false;
   color: ButtonColor = 'primary';
-  shape: ButtonShape = 'rounded';
+  shape: ButtonShape = 'squared';
   variant: ButtonVariant = 'text';
 
 # Button (when href is undefined)
@@ -36,10 +36,28 @@ Slots:
   leadingIcon: optional
   trailingIcon: optional
 `}
-/>
-<section class="variant">
-	<h2>Text (default)</h2>
-	<pre>{`<Button on:click={onClick} />
+>
+	<Button>Default</Button>
+	<Button variant="outlined" />
+	<Button variant="raised" />
+	<Button variant="flat" />
+	<Button variant="raised" shape="rounded">Raised Rounded</Button>
+</Variant>
+<Variant
+	title="Rounded"
+	code={`<Button shape="rounded" />
+<Button shape="rounded" variant="outlined" />
+<Button shape="rounded" variant="raised" />
+<Button shape="rounded" variant="flat" />`}
+>
+	<Button shape="rounded" />
+	<Button shape="rounded" variant="outlined" />
+	<Button shape="rounded" variant="raised" />
+	<Button shape="rounded" variant="flat" />
+</Variant>
+<Variant
+	title="Text (default)"
+	code={`<Button on:click={onClick} />
 
 <Button on:click={onClick}>
     <ButtonIcon slot="leadingIcon" className="material-symbols-outlined">bookmark</ButtonIcon>
@@ -49,18 +67,17 @@ Slots:
 <Button on:click={onClick}>
     <ButtonIcon slot="trailingIcon" className="material-symbols-outlined">bookmark</ButtonIcon>
 </Button>
-`}</pre>
-	<div class="preview">
-		<Button on:click={onClick} />
-		<Button on:click={onClick}>
-			<ButtonIcon slot="leadingIcon" className="material-symbols-outlined">bookmark</ButtonIcon>
-			custom
-		</Button>
-		<Button on:click={onClick}>
-			<ButtonIcon slot="trailingIcon" className="material-symbols-outlined">bookmark</ButtonIcon>
-		</Button>
-	</div>
-</section>
+`}
+>
+	<Button on:click={onClick} />
+	<Button on:click={onClick}>
+		<ButtonIcon slot="leadingIcon" className="material-symbols-outlined">bookmark</ButtonIcon>
+		custom
+	</Button>
+	<Button on:click={onClick}>
+		<ButtonIcon slot="trailingIcon" className="material-symbols-outlined">bookmark</ButtonIcon>
+	</Button>
+</Variant>
 <section class="variant">
 	<h1>Outlined</h1>
 	<pre>{`<Button on:click={onClick} variant="outlined" />
@@ -165,18 +182,6 @@ Slots:
 		<Button on:click={onClick} disabled={true} variant="flat" />
 	</div>
 </section>
-<Variant
-	title="Squared"
-	code={`<Button shape="squared" />
-<Button shape="squared" variant="outlined" />
-<Button shape="squared" variant="raised" />
-<Button shape="squared" variant="flat" />`}
->
-	<Button shape="squared" />
-	<Button shape="squared" variant="outlined" />
-	<Button shape="squared" variant="raised" />
-	<Button shape="squared" variant="flat" /></Variant
->
 
 <style>
 	section {
