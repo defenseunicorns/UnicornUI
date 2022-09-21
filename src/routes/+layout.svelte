@@ -33,6 +33,7 @@
 		<Button href="/accordion" {...getVariant(path, '/accordion')}>Accordion</Button>
 		<Button href="/stepper" {...getVariant(path, '/stepper')}>Stepper</Button>
 		<Button href="/dialog" {...getVariant(path, '/dialog')}>Dialog</Button>
+		<Button href="/checkbox" {...getVariant(path, '/checkbox')}>Checkbox</Button>
 	</div>
 </section>
 <main>

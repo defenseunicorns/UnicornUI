@@ -43,7 +43,9 @@
 	"type": "module",
 	"dependencies": {
 		"@material/button": "^14.0.0",
+		"@material/checkbox": "^14.0.0",
 		"@material/dialog": "^14.0.0",
+		"@material/form-field": "^14.0.0",
 		"@material/icon-button": "^14.0.0",
 		"@material/list": "^14.0.0",
 		"@material/ripple": "^14.0.0",
