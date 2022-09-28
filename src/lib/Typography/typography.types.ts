@@ -15,7 +15,7 @@ export type TypographyVariant =
 	| 'inherit';
 
 export type TypographyElement = {
-	this: string;
+	element: string;
 	class: string;
 };
 export type TypographyElements = {

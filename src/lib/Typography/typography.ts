@@ -18,18 +18,18 @@ function getVariantClass(variant: TypographyVariant): string {
 }
 
 export const typographyElementMapping: TypographyElements = {
-	h1: { this: 'h1', class: getVariantClass('h1') },
-	h2: { this: 'h2', class: getVariantClass('h2') },
-	h3: { this: 'h3', class: getVariantClass('h3') },
-	h4: { this: 'h4', class: getVariantClass('h4') },
-	h5: { this: 'h5', class: getVariantClass('h5') },
-	h6: { this: 'h6', class: getVariantClass('h6') },
-	body1: { this: 'p', class: getVariantClass('body1') },
-	body2: { this: 'p', class: getVariantClass('body2') },
-	subtitle1: { this: 'h6', class: getVariantClass('subtitle1') },
-	subtitle2: { this: 'h6', class: getVariantClass('subtitle2') },
-	overline: { this: 'span', class: getVariantClass('overline') },
-	caption: { this: 'span', class: getVariantClass('caption') },
-	inherit: { this: 'span', class: getVariantClass('inherit') },
-	button: { this: 'span', class: getVariantClass('button') }
+	h1: { element: 'h1', class: getVariantClass('h1') },
+	h2: { element: 'h2', class: getVariantClass('h2') },
+	h3: { element: 'h3', class: getVariantClass('h3') },
+	h4: { element: 'h4', class: getVariantClass('h4') },
+	h5: { element: 'h5', class: getVariantClass('h5') },
+	h6: { element: 'h6', class: getVariantClass('h6') },
+	body1: { element: 'p', class: getVariantClass('body1') },
+	body2: { element: 'p', class: getVariantClass('body2') },
+	subtitle1: { element: 'h6', class: getVariantClass('subtitle1') },
+	subtitle2: { element: 'h6', class: getVariantClass('subtitle2') },
+	overline: { element: 'span', class: getVariantClass('overline') },
+	caption: { element: 'span', class: getVariantClass('caption') },
+	inherit: { element: 'span', class: getVariantClass('inherit') },
+	button: { element: 'span', class: getVariantClass('button') }
 };

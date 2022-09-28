@@ -11,8 +11,12 @@ import IconButton from './IconButton/IconButton.svelte';
 import Typography from './Typography/typography.svelte';
 import DialogActions from './Dialog/DialogActions.svelte';
 
+import type {
+	TypographyVariant,
+	TypographyElement,
+	TypographyElements
+} from './Typography/typography.types';
 import type { IconButtonColor } from './IconButton/IconButton.types';
-import type { TypographyVariant } from './Typography/typography.types';
 import type { ButtonVariant, ButtonColor, ButtonShape } from './Button/Button.types';
 import type { StepVariant, StepOrientation, StepProps } from './Stepper/stepper.types';
 import type { LinkReferrerPolicy, LinkRel, LinkTarget } from './shared/types/LinkProps.types';
@@ -39,5 +43,7 @@ export {
 	IconButtonColor,
 	StepOrientation,
 	TypographyVariant,
+	TypographyElement,
+	TypographyElements,
 	LinkReferrerPolicy
 };

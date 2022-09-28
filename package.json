@@ -42,6 +42,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@fontsource/roboto": "^4.5.8",
 		"@material/button": "^14.0.0",
 		"@material/dialog": "^14.0.0",
 		"@material/icon-button": "^14.0.0",

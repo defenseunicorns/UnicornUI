@@ -1,9 +1,11 @@
-<script lang="ts" strictEvents>
+<script lang="ts">
 	import { typographyElementMapping } from './typography';
 	import type { TypographyVariant, TypographyElement } from './typography.types';
-	type T = $$Generic<EventTarget>;
-	// Vars
 
+	// Internal Types;
+	type T = $$Generic<EventTarget>;
+
+	// Vars
 	let variantElement: TypographyElement;
 
 	// Props
@@ -17,7 +19,7 @@
 
 	// Watch
 	$: variantElement = typographyElementMapping[variant];
-	$: component = element || variantElement.this;
+	$: component = element || variantElement.element;
 	$: $$restProps.class = `${variantElement.class} ${$$restProps.class || ''}`;
 </script>
 
