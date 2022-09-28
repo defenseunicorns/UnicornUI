@@ -4,6 +4,8 @@
 	import type { ButtonColor, ButtonShape, ButtonVariant } from '$lib';
 	import { Button } from '$lib';
 	import { afterUpdate } from 'svelte';
+	import Typography from '$lib/Typography/typography.svelte';
+	import '@fontsource/roboto';
 
 	let path = '';
 
@@ -24,15 +26,16 @@
 </script>
 
 <section class="components">
-	<h1 class="header mdc-typography--headline4">Unicorn UI</h1>
+	<Typography variant="h1">Unicorn UI</Typography>
 	<Button href="/" {...getVariant(path, '/')}>Home</Button>
-	<h2 class="mdc-typography--headline5">Components</h2>
+	<Typography variant="h2">Components</Typography>
 	<div class="component-list">
 		<Button href="/button" {...getVariant(path, '/button')}>Button</Button>
 		<Button href="/icon-button" {...getVariant(path, '/icon-button')}>Icon Button</Button>
 		<Button href="/accordion" {...getVariant(path, '/accordion')}>Accordion</Button>
 		<Button href="/stepper" {...getVariant(path, '/stepper')}>Stepper</Button>
 		<Button href="/dialog" {...getVariant(path, '/dialog')}>Dialog</Button>
+		<Button href="/typography" {...getVariant(path, '/typography')}>Typography</Button>
 	</div>
 </section>
 <main>

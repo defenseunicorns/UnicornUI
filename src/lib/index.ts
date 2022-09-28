@@ -8,8 +8,14 @@ import ButtonIcon from './Button/ButtonIcon.svelte';
 import Accordion from './Accordion/accordion.svelte';
 import DialogTitle from './Dialog/DialogTitle.svelte';
 import IconButton from './IconButton/IconButton.svelte';
+import Typography from './Typography/typography.svelte';
 import DialogActions from './Dialog/DialogActions.svelte';
 
+import type {
+	TypographyVariant,
+	TypographyElement,
+	TypographyElements
+} from './Typography/typography.types';
 import type { IconButtonColor } from './IconButton/IconButton.types';
 import type { ButtonVariant, ButtonColor, ButtonShape } from './Button/Button.types';
 import type { StepVariant, StepOrientation, StepProps } from './Stepper/stepper.types';
@@ -27,6 +33,7 @@ export {
 	ButtonIcon,
 	LinkTarget,
 	IconButton,
+	Typography,
 	DialogTitle,
 	ButtonColor,
 	ButtonShape,
@@ -35,5 +42,8 @@ export {
 	ButtonVariant,
 	IconButtonColor,
 	StepOrientation,
+	TypographyVariant,
+	TypographyElement,
+	TypographyElements,
 	LinkReferrerPolicy
 };

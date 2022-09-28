@@ -1,11 +1,13 @@
 <script lang="ts">
+	import Typography from '$lib/Typography/typography.svelte';
+
 	export let title = '';
 	export let code = '';
 </script>
 
 <section class="variant">
-	<h1 class="mdc-typography--headline4">{title}</h1>
-	<pre>{`${code.trim()}`}</pre>
+	<Typography variant="h4">{title}</Typography>
+	<Typography variant="body1" element="pre" class="variant-code">{`${code.trim()}`}</Typography>
 	<div class="preview">
 		<slot />
 	</div>
@@ -30,5 +32,13 @@
 		width: 100vw;
 		align-content: center;
 		align-items: center;
+	}
+
+	:global(.variant-code) {
+		display: flex;
+		flex-direction: column;
+		color: cyan;
+		background-color: black;
+		padding: 16px;
 	}
 </style>
