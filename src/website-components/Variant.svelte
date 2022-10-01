@@ -32,6 +32,7 @@
 		width: 100vw;
 		align-content: center;
 		align-items: center;
+		gap: 1rem;
 	}
 
 	:global(.variant-code) {

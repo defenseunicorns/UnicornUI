@@ -42,12 +42,14 @@ Slots:
 </Accordion>
 
 /* Style
-.myAccordian {
-  width: 100%;
-}
 .accordian-2-content {
   color: var(--mdc-theme-primary);
   background-color: black;
+}
+.accordian-2-content pre {
+	color: var(--mdc-theme-primary);
+	background-color: black;
+	padding: 8px;
 }
 */`}</pre>
 			</div>
@@ -56,17 +58,14 @@ Slots:
 </Variant>
 
 <style lang="scss" global>
-	.myAccordian {
-		width: 100%;
-	}
 	.accordian-1-content {
-		width: 100%;
 		background-color: var(--mdc-theme-secondary);
 		color: var(--mdc-theme-on-secondary);
 	}
-	.accordian-2-content {
+	.accordian-2-content pre {
 		color: var(--mdc-theme-primary);
 		background-color: black;
+		padding: 8px;
 	}
 	.accordions {
 		width: 100%;

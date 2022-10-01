@@ -54,22 +54,23 @@
 	@import '@material/theme';
 	.accordion {
 		display: flex;
+		flex-basis: content;
 		flex-direction: column;
-		width: 100%;
+		/* width: 100%; */
 		box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(0, 0, 0, 0.14),
 			0px 1px 3px rgba(0, 0, 0, 0.12);
 	}
 	.accordion-header-wrapper {
-		padding: 8px 12px;
+		padding: 1rem;
 		justify-content: flex-start;
 		align-items: center;
-		gap: 8px;
+		gap: 1rem;
 		display: flex;
 		flex-direction: row;
 		background-color: var(--mdc-theme-surface);
 	}
 	.accordion-content {
-		padding: 8px 12px;
+		padding: 1rem;
 		display: flex;
 		flex-direction: column;
 	}

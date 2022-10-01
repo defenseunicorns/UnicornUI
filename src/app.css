@@ -16,3 +16,7 @@
 *::after {
 	box-sizing: border-box;
 }
+
+pre {
+	margin: 0;
+}
