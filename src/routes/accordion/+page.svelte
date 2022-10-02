@@ -19,7 +19,7 @@ Slots:
   content (nested in .accordian-content)
 	`}
 >
-	<div class="accordions">
+	<div class="accordions" style="width: 100%">
 		<Accordion
 			id="accordian-1"
 			wrapperClass="myAccordian"
@@ -68,7 +68,6 @@ Slots:
 		padding: 8px;
 	}
 	.accordions {
-		width: 100%;
 		display: flex;
 		flex-direction: column;
 		gap: 1px;
