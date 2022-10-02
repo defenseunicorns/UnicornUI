@@ -5,7 +5,10 @@
 
 <Variant
 	title="Accordion"
-	code={`
+	code={`Theme (default): 
+  background-color: --mdc-theme-surface
+  color: --mdc-theme-on-surface
+
 Props (with defaults):
   id = '';
   isOpen = false;
