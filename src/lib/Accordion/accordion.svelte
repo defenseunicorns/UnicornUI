@@ -7,25 +7,20 @@
 	import IconButton from '$lib/IconButton/IconButton.svelte';
 	import ExpandLess from '$lib/shared/assets/svg/expand-less.svelte';
 	import ExpandMore from '$lib/shared/assets/svg/expand-more.svelte';
-	// Types
-	type ContentVisibility = 'open' | 'shut';
-
+	import { slide } from 'svelte/transition';
 	// Props
 	export let isOpen = false;
 	// .accordian
 	export let wrapperClass = '';
+	export let style = '';
 	export let id = '';
 	// .accordian-header
 	export let headerClass = '';
 	// .accordian-content
 	export let contentClass = '';
-
-	// Watch
-	let contentVisibility: ContentVisibility;
-	$: contentVisibility = isOpen ? 'open' : 'shut';
 </script>
 
-<div {id} class="accordion {wrapperClass}">
+<div {id} class="accordion {wrapperClass}" {style}>
 	<div class="accordion-header-wrapper">
 		<slot name="icon">
 			<IconButton
@@ -45,18 +40,18 @@
 			<slot name="headerContent" />
 		</div>
 	</div>
-	<div class="accordion-content {contentClass} {contentVisibility}">
-		<slot name="content" />
-	</div>
+	{#if isOpen}
+		<div transition:slide class="accordion-content {contentClass}">
+			<slot name="content" />
+		</div>
+	{/if}
 </div>
 
 <style lang="scss" scoped>
 	@import '@material/theme';
 	.accordion {
 		display: flex;
-		flex-basis: content;
 		flex-direction: column;
-		/* width: 100%; */
 		box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(0, 0, 0, 0.14),
 			0px 1px 3px rgba(0, 0, 0, 0.12);
 	}
@@ -73,9 +68,6 @@
 		padding: 1rem;
 		display: flex;
 		flex-direction: column;
-	}
-	.accordion-content.shut {
-		display: none;
 	}
 	:global(.accordion .mdc-icon-button:hover i svg path) {
 		fill: var(--mdc-theme-primary);
