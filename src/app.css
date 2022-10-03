@@ -8,6 +8,13 @@
 	--mdc-theme-secondary: #787ff6;
 	--mdc-theme-on-secondary: white;
 
+	/* body3 */
+	--mdc-typography-body3-font-style: normal;
+	--mdc-typography-body3-font-weight: 400;
+	--mdc-typography-body3-font-size: 0.875em;
+	--mdc-typography-body3-line-height: 143%;
+	--mdc-typography-body3-letter-spacing: 0.17px;
+
 	font-family: var(--mdc-typography-font-family);
 }
 
@@ -19,4 +26,14 @@
 
 pre {
 	margin: 0;
+}
+
+/* Custom Typography */
+.mdc-typography--body3 {
+	font-family: var(--mdc-typography-font-family);
+	font-style: var(--mdc-typography-body3-font-style);
+	font-weight: var(--mdc-typography-body3-font-weight);
+	font-size: var(--mdc-typography-body3-font-size);
+	line-height: var(--mdc-typography-body3-line-height);
+	letter-spacing: var(--mdc-typography-body3-letter-spacing);
 }

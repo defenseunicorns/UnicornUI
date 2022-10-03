@@ -1,6 +1,6 @@
 import type { TypographyElements, TypographyVariant } from './typography.types';
 
-function getVariantClass(variant: TypographyVariant): string {
+export function getVariantClass(variant: TypographyVariant): string {
 	let className = 'mdc-typography--';
 	switch (variant) {
 		case 'h1':

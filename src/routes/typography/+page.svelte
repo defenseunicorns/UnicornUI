@@ -61,6 +61,40 @@ Examples:
 		<Typography variant="button">button</Typography>
 	</div>
 </Variant>
+<Variant
+	title="Custom Typography"
+	code={`
+Requirements:
+- css class with the following pattern:
+  .mdc-typography--CUSTOM_TYPOGRAPHY {}
+
+Example: 
+<Typography variant="body3" element="div">Custom Typography</Typography>
+
+// app.css
+:root {
+  /* body3 */
+  --mdc-typography-body3-font-style: normal;
+  --mdc-typography-body3-font-weight: 400;
+  --mdc-typography-body3-font-size: 0.875em;
+  --mdc-typography-body3-line-height: 143%;
+  --mdc-typography-body3-letter-spacing: 0.17px;
+}
+/* Typography | Custom
+.mdc-typography--body3 {
+  font-family: var(--mdc-typography-font-family);
+  font-style: var(--mdc-typography-body3-font-style);
+  font-weight: var(--mdc-typography-body3-font-weight);
+  font-size: var(--mdc-typography-body3-font-size);
+  line-height: var(--mdc-typography-body3-line-height);
+  letter-spacing: var(--mdc-typography-body3-letter-spacing);
+}
+`}
+>
+	<div class="typography-examples">
+		<Typography variant="body3" element="div">Custom Typography</Typography>
+	</div>
+</Variant>
 
 <style lang="scss">
 	.typography-examples {
