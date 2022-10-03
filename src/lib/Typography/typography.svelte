@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { typographyElementMapping } from './typography';
+	import { getVariantClass, typographyElementMapping } from './typography';
 	import type { TypographyVariant, TypographyElement } from './typography.types';
 
 	// Internal Types;
@@ -18,7 +18,10 @@
 	}
 
 	// Watch
-	$: variantElement = typographyElementMapping[variant];
+	$: variantElement = typographyElementMapping[variant] || {
+		element: 'span',
+		class: getVariantClass(variant)
+	};
 	$: component = element || variantElement.element;
 	$: $$restProps.class = `${variantElement.class} ${$$restProps.class || ''}`;
 </script>

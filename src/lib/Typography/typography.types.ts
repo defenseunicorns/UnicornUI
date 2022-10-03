@@ -12,7 +12,8 @@ export type TypographyVariant =
 	| 'caption'
 	| 'button'
 	| 'overline'
-	| 'inherit';
+	| 'inherit'
+	| string;
 
 export type TypographyElement = {
 	element: string;
