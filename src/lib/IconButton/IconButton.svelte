@@ -18,6 +18,7 @@
 	export let toggleable = false;
 	export let disabled = false;
 	export let toggled = false;
+	export let className = '';
 	export let id = '';
 
 	export let iconColor: IconButtonColor = 'inherit';
@@ -57,7 +58,7 @@
 		on:click={onClick}
 		aria-pressed={toggleable ? showToggle : null}
 		class:mdc-icon-button--on={showToggle}
-		class="mdc-icon-button {currentColor}"
+		class="mdc-icon-button {currentColor} {className}"
 		{disabled}
 		{id}
 	>
@@ -78,7 +79,7 @@
 {:else}
 	<a
 		bind:this={mdcIconButtonTarget}
-		class="mdc-icon-button {currentColor}"
+		class="mdc-icon-button {currentColor} {className}"
 		{href}
 		{download}
 		{hreflang}
