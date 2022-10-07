@@ -19,6 +19,7 @@ Props (with defaults):
 
 # Shared
   id = '';
+  className = '';
   iconClass = '';
   iconContent = '';
   disabled = false;

@@ -1,11 +1,11 @@
 <script lang="ts">
 	import '../app.css';
 	import 'material-symbols/';
-	import type { ButtonColor, ButtonShape, ButtonVariant } from '$lib';
+	import '@fontsource/roboto';
 	import { Button } from '$lib';
 	import { afterUpdate } from 'svelte';
 	import Typography from '$lib/Typography/typography.svelte';
-	import '@fontsource/roboto';
+	import type { ButtonColor, ButtonShape, ButtonVariant } from '$lib';
 
 	let path = '';
 
