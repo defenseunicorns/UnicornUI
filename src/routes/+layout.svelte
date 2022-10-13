@@ -30,6 +30,7 @@
 	<Button href="/" {...getVariant(path, '/')}>Home</Button>
 	<Typography variant="h2">Components</Typography>
 	<div class="component-list">
+		<Button href="/box" {...getVariant(path, '/box')}>Box</Button>
 		<Button href="/button" {...getVariant(path, '/button')}>Button</Button>
 		<Button href="/icon-button" {...getVariant(path, '/icon-button')}>Icon Button</Button>
 		<Button href="/accordion" {...getVariant(path, '/accordion')}>Accordion</Button>
