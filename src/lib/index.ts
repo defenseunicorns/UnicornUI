@@ -1,4 +1,5 @@
 // Reexport your entry components here
+import Box from './Box/box.svelte';
 import Step from './Stepper/Step.svelte';
 import Button from './Button/Button.svelte';
 import Dialog from './Dialog/Dialog.svelte';
@@ -22,6 +23,7 @@ import type { StepVariant, StepOrientation, StepProps } from './Stepper/stepper.
 import type { LinkReferrerPolicy, LinkRel, LinkTarget } from './shared/types/LinkProps.types';
 
 export {
+	Box,
 	Step,
 	Button,
 	Dialog,
