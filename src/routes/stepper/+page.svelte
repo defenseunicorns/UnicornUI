@@ -71,7 +71,7 @@ Slots:
 				<Stepper orientation="horizontal" steps={[...steps]} />
 			</div>
 		</Accordion>
-		<Accordion wrapperClass="step-icon-accordian" contentClass="step-icon-accordian-content">
+		<Accordion class="step-icon-accordian" contentClass="step-icon-accordian-content">
 			<span slot="headerContent" class="mdc-typography--headline6">StepIcon</span>
 
 			<div slot="content">
