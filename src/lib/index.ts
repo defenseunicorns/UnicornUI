@@ -17,6 +17,7 @@ import type {
 	TypographyElement,
 	TypographyElements
 } from './Typography/typography.types';
+import type { BoxProps } from './Box/box.types';
 import type { IconButtonColor } from './IconButton/IconButton.types';
 import type { ButtonVariant, ButtonColor, ButtonShape } from './Button/Button.types';
 import type { StepVariant, StepOrientation, StepProps } from './Stepper/stepper.types';
@@ -29,6 +30,7 @@ export {
 	Dialog,
 	LinkRel,
 	Stepper,
+	BoxProps,
 	StepIcon,
 	Accordion,
 	StepProps,

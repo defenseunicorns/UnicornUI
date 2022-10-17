@@ -18,6 +18,8 @@ Props:
     ref: Element = undefined;
     // Add additional events supported by svelte.
     additionalEvents: string[] = [];
+    // Pass svelte internal "current_component" to allow simple event forwarding.
+    eventComponent: typeof current_component | undefined = undefined;
 
 Slots:
   unamed
