@@ -28,7 +28,7 @@
 	<div class="accordion-header-wrapper">
 		<slot name="icon">
 			<IconButton
-				className="accordion-toggle"
+				class="accordion-toggle"
 				iconColor="primary"
 				toggledIconColor="primary"
 				on:click={() => {

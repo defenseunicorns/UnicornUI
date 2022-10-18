@@ -19,7 +19,7 @@ import type {
 } from './Typography/typography.types';
 import type { BoxProps } from './Box/box.types';
 import type { AccordionProps } from './Accordion/accordion.types';
-import type { IconButtonColor } from './IconButton/IconButton.types';
+import type { IconButtonColor, IconButtonProps } from './IconButton/IconButton.types';
 import type { ButtonVariant, ButtonColor, ButtonShape } from './Button/Button.types';
 import type { StepVariant, StepOrientation, StepProps } from './Stepper/stepper.types';
 import type { LinkReferrerPolicy, LinkRel, LinkTarget } from './shared/types/LinkProps.types';
@@ -47,6 +47,7 @@ export {
 	ButtonVariant,
 	AccordionProps,
 	IconButtonColor,
+	IconButtonProps,
 	StepOrientation,
 	TypographyVariant,
 	TypographyElement,
