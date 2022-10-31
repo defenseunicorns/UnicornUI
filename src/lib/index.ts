@@ -20,7 +20,7 @@ import type {
 import type { BoxProps } from './Box/box.types';
 import type { AccordionProps } from './Accordion/accordion.types';
 import type { IconButtonColor, IconButtonProps } from './IconButton/IconButton.types';
-import type { ButtonVariant, ButtonColor, ButtonShape } from './Button/Button.types';
+import type { ButtonVariant, ButtonColor, ButtonShape, ButtonProps } from './Button/Button.types';
 import type { StepVariant, StepOrientation, StepProps } from './Stepper/stepper.types';
 import type { LinkReferrerPolicy, LinkRel, LinkTarget } from './shared/types/LinkProps.types';
 
@@ -42,6 +42,7 @@ export {
 	DialogTitle,
 	ButtonColor,
 	ButtonShape,
+	ButtonProps,
 	StepVariant,
 	DialogActions,
 	ButtonVariant,
