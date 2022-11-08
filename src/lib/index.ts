@@ -15,12 +15,22 @@ import DialogActions from './Dialog/DialogActions.svelte';
 import type {
 	TypographyVariant,
 	TypographyElement,
-	TypographyElements
+	TypographyElements,
+	TypographyProps
 } from './Typography/typography.types';
-import type { IconButtonColor } from './IconButton/IconButton.types';
-import type { ButtonVariant, ButtonColor, ButtonShape } from './Button/Button.types';
+import type { BoxProps } from './Box/box.types';
+import type { AccordionProps } from './Accordion/accordion.types';
+import type { DialogActionsProps, DialogTitleProps } from './Dialog/Dialog.types';
+import type { IconButtonColor, IconButtonProps } from './IconButton/IconButton.types';
 import type { StepVariant, StepOrientation, StepProps } from './Stepper/stepper.types';
 import type { LinkReferrerPolicy, LinkRel, LinkTarget } from './shared/types/LinkProps.types';
+import type {
+	ButtonVariant,
+	ButtonColor,
+	ButtonShape,
+	ButtonProps,
+	ButtonIconProps
+} from './Button/Button.types';
 
 export {
 	Box,
@@ -29,6 +39,7 @@ export {
 	Dialog,
 	LinkRel,
 	Stepper,
+	BoxProps,
 	StepIcon,
 	Accordion,
 	StepProps,
@@ -39,13 +50,20 @@ export {
 	DialogTitle,
 	ButtonColor,
 	ButtonShape,
+	ButtonProps,
 	StepVariant,
 	DialogActions,
 	ButtonVariant,
+	AccordionProps,
 	IconButtonColor,
+	IconButtonProps,
 	StepOrientation,
+	TypographyProps,
+	ButtonIconProps,
+	DialogTitleProps,
 	TypographyVariant,
 	TypographyElement,
 	TypographyElements,
+	DialogActionsProps,
 	LinkReferrerPolicy
 };

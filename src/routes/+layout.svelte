@@ -51,11 +51,11 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 18px;
+		gap: 32px;
 	}
 	.component-list {
 		display: flex;
-		gap: 10px;
+		gap: 12px;
 		flex-wrap: wrap;
 	}
 </style>

@@ -1,24 +1,16 @@
 <script lang="ts">
-	import type { LinkReferrerPolicy, LinkRel, LinkTarget } from '../shared/types/LinkProps.types';
-	import type { ButtonVariant, ButtonColor, ButtonShape } from './Button.types';
-	import { onMount, createEventDispatcher } from 'svelte';
+	import { onMount } from 'svelte';
+	import Box from '$lib/Box/box.svelte';
 	import { MDCRipple } from '@material/ripple';
+	import { current_component } from 'svelte/internal';
+	import type { ButtonVariant, ButtonColor, ButtonShape, ButtonProps } from './Button.types';
 
 	// Props
-	export let referrerpolicy: LinkReferrerPolicy | undefined = undefined;
-	export let target: LinkTarget | undefined = undefined;
-	export let download: string | undefined = undefined;
-	export let hreflang: string | undefined = undefined;
-	export let media: string | undefined = undefined;
-	export let href: string | undefined = undefined;
-	export let ping: string | undefined = undefined;
-	export let rel: LinkRel | undefined = undefined;
-	export let disabled = false;
-	export let variant: ButtonVariant = 'text';
 	export let color: ButtonColor = 'primary';
 	export let shape: ButtonShape = 'squared';
-	export let className = '';
-	export let id = '';
+	export let variant: ButtonVariant = 'text';
+
+	type $$Props = ButtonProps;
 
 	// Local Vars
 	let buttonElement: HTMLButtonElement | HTMLAnchorElement;
@@ -30,53 +22,33 @@
 		}
 	});
 
-	// Events
-	const dispatch = createEventDispatcher();
-	function onClick(event: Event) {
-		dispatch('click', event);
+	function getIconClass(): string {
+		let classes: string[] = [];
+		if ($$slots.leadingIcon) {
+			classes.push('mdc-button--icon-leading');
+		}
+		if ($$slots.trailingIcon) {
+			classes.push('mdc-button--icon-leading');
+		}
+		return classes.join(' ');
 	}
 </script>
 
-{#if !href}
-	<button
-		bind:this={buttonElement}
-		class={`unicorn-button mdc-button ${variant} ${color} ${shape} ${className}`}
-		class:mdc-button--icon-leading={$$slots.leadingIcon}
-		class:mdc-button--icon-trailing={$$slots.trailingIcon}
-		{disabled}
-		{id}
-		on:click={onClick}
-	>
-		<span class="mdc-button__ripple" />
-		<span class="mdc-button__focus-ring" />
-		<slot name="leadingIcon" />
-		<span class="mdc-button__label"><slot>{`${variant} button`}</slot></span>
-		<slot name="trailingIcon" />
-	</button>
-{:else}
-	<a
-		bind:this={buttonElement}
-		class={`unicorn-button mdc-button ${variant} ${color} ${shape} ${className}`}
-		class:mdc-button--icon-leading={$$slots.leadingIcon}
-		class:mdc-button--icon-trailing={$$slots.trailingIcon}
-		{href}
-		{download}
-		{hreflang}
-		{media}
-		{ping}
-		{referrerpolicy}
-		{rel}
-		{target}
-		{disabled}
-		{id}
-	>
-		<span class="mdc-button__ripple" />
-		<span class="mdc-button__focus-ring" />
-		<slot name="leadingIcon" />
-		<span class="mdc-button__label"><slot>{`${variant} button`}</slot></span>
-		<slot name="trailingIcon" />
-	</a>
-{/if}
+<Box
+	{...$$restProps}
+	bind:ref={buttonElement}
+	eventComponent={current_component}
+	element={$$restProps.href ? 'a' : 'button'}
+	class={`button mdc-button ${getIconClass()} ${variant} ${color} ${shape} ${
+		$$restProps.class || ''
+	}`}
+>
+	<span class="button-ripple mdc-button__ripple" />
+	<span class="button-focus-ring mdc-button__focus-ring" />
+	<slot name="leadingIcon" />
+	<span class="button-label mdc-button__label"><slot>{`${variant} button`}</slot></span>
+	<slot name="trailingIcon" />
+</Box>
 
 <style lang="scss" global>
 	@import '@material/button/mdc-button';

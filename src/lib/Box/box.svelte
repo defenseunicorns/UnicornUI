@@ -1,19 +1,21 @@
 <script lang="ts">
 	import { current_component } from 'svelte/internal';
 	import { eventHandler } from '../shared/utils/eventHandler';
+	import type { BoxProps } from './box.types';
 
+	// Svelte does generics
 	type T = $$Generic<EventTarget>;
+
+	// Props
 	export let element = 'div';
-	export let ref: HTMLElement | undefined = undefined;
 	export let additionalEvents: string[] = [];
+	export let ref: HTMLElement | undefined = undefined;
+	export let eventComponent: typeof current_component | undefined = undefined;
 
-	interface $$Props extends svelte.JSX.HTMLAttributes<T> {
-		element?: string;
-		ref?: HTMLElement;
-		additionalEvents?: string[];
-	}
+	type $$Props = BoxProps<T>;
 
-	$: handleEvents = eventHandler(current_component, additionalEvents);
+	// Watch
+	$: handleEvents = eventHandler(eventComponent || current_component, additionalEvents);
 </script>
 
 <svelte:element

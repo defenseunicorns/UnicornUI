@@ -1,35 +1,26 @@
 <script lang="ts">
-	import type { LinkReferrerPolicy, LinkRel, LinkTarget } from '$lib/shared/types/LinkProps.types';
-	import type { IconButtonColor } from './IconButton.types';
-	import { createEventDispatcher, onMount } from 'svelte';
+	import { onMount } from 'svelte';
+	import Box from '$lib/Box/box.svelte';
 	import { MDCRipple } from '@material/ripple';
+	import { current_component } from 'svelte/internal';
+	import type { IconButtonColor, IconButtonProps } from './IconButton.types';
 
 	// Props
-	// Anchor Props for Link
-	export let referrerpolicy: LinkReferrerPolicy | undefined = undefined;
-	export let target: LinkTarget | undefined = undefined;
-	export let download: string | undefined = undefined;
-	export let hreflang: string | undefined = undefined;
-	export let media: string | undefined = undefined;
-	export let href: string | undefined = undefined;
-	export let ping: string | undefined = undefined;
-	export let rel: LinkRel | undefined = undefined;
-
 	export let toggleable = false;
-	export let disabled = false;
 	export let toggled = false;
-	export let className = '';
-	export let id = '';
 
-	export let iconColor: IconButtonColor = 'inherit';
-	export let iconContent = '';
 	export let iconClass = '';
+	export let iconContent = '';
+	export let iconColor: IconButtonColor = 'inherit';
 
-	export let toggledIconColor: IconButtonColor = 'inherit';
-	export let toggledIconContent = '';
 	export let toggledIconClass = '';
+	export let toggledIconContent = '';
+	export let toggledIconColor: IconButtonColor = 'inherit';
+
+	type $$Props = IconButtonProps;
 
 	// Vars
+	let disabled = false;
 	let mdcIconButtonTarget: HTMLButtonElement | HTMLAnchorElement;
 
 	// Lifecycle
@@ -38,86 +29,61 @@
 			const iconButtonRipple = new MDCRipple(mdcIconButtonTarget);
 			iconButtonRipple.unbounded = true;
 		}
+		disabled = $$restProps.disabled;
 	});
 
 	// Watch
 	$: showToggle = toggleable && toggled;
 	$: toggledColor = showToggle ? toggledIconColor : iconColor;
 	$: currentColor = disabled ? '' : toggledColor;
+	$: ariaPressed = toggleable ? showToggle : null;
+	$: constructContainerClass = (): string => {
+		let classes: string[] = [];
+		if (showToggle) classes.push('mdc-icon-button--on');
+		if ($$restProps.class) classes.push($$restProps.class);
 
-	// Events
-	const dispatch = createEventDispatcher();
-	function onClick(event: Event) {
-		dispatch('click', event);
-	}
+		return classes.join(' ');
+	};
 </script>
 
-{#if !href}
-	<button
-		bind:this={mdcIconButtonTarget}
-		on:click={onClick}
-		aria-pressed={toggleable ? showToggle : null}
-		class:mdc-icon-button--on={showToggle}
-		class="mdc-icon-button {currentColor} {className}"
-		{disabled}
-		{id}
+<Box
+	{...$$restProps}
+	bind:ref={mdcIconButtonTarget}
+	element={$$restProps.href ? 'a' : 'button'}
+	eventComponent={current_component}
+	aria-pressed={ariaPressed}
+	class="icon-button mdc-icon-button {currentColor} {constructContainerClass()}"
+>
+	<div class="mdc-icon-button__ripple" />
+	<span class="mdc-icon-button__focus-ring" />
+	<i
+		class={`icon-button-icon mdc-icon-button__icon mdc-icon-button__icon--on ${
+			toggledIconClass || iconClass
+		}`}
 	>
-		<div class="mdc-icon-button__ripple" />
-		<span class="mdc-icon-button__focus-ring" />
-		<i class={`mdc-icon-button__icon mdc-icon-button__icon--on ${toggledIconClass || iconClass}`}>
-			<slot name="toggledIcon">
-				{toggledIconContent || iconContent}
-			</slot>
-		</i>
-		<i class={`mdc-icon-button__icon ${iconClass}`}>
-			<slot name="icon">
-				{iconContent}
-			</slot>
-		</i>
-		<div class="mdc-icon-button__touch" />
-	</button>
-{:else}
-	<a
-		bind:this={mdcIconButtonTarget}
-		class="mdc-icon-button {currentColor} {className}"
-		{href}
-		{download}
-		{hreflang}
-		{media}
-		{ping}
-		{referrerpolicy}
-		{rel}
-		{target}
-		{disabled}
-		{id}
-	>
-		<div class="mdc-icon-button__ripple" />
-		<span class="mdc-icon-button__focus-ring" />
-		<i class={`mdc-icon-button__icon mdc-icon-button__icon--on ${toggledIconClass || iconClass}`}>
-			<slot name="toggledIcon">
-				{toggledIconContent || iconContent}
-			</slot>
-		</i>
-		<i class={`mdc-icon-button__icon ${iconClass}`}>
-			<slot name="icon">
-				{iconContent}
-			</slot>
-		</i>
-		<div class="mdc-icon-button__touch" />
-	</a>
-{/if}
+		<slot name="toggledIcon">
+			{toggledIconContent || iconContent}
+		</slot>
+	</i>
+	<i class={`icon-button-icon mdc-icon-button__icon ${iconClass}`}>
+		<slot name="icon">
+			{iconContent}
+		</slot>
+	</i>
+	<div class="mdc-icon-button__touch" />
+</Box>
 
-<style lang="scss">
+<style lang="scss" global>
 	@import '@material/icon-button/mdc-icon-button';
 
 	.mdc-icon-button {
-		border-radius: 100% !important;
-		display: flex !important;
-		height: 40px !important;
 		width: 40px !important;
+		height: 40px !important;
 		padding: 8px !important;
-		justify-content: center !important;
+		display: flex !important;
+		border-radius: 100% !important;
 		align-items: center !important;
+		justify-content: center !important;
 	}
 	.mdc-icon-button.primary {
 		@include mdc-icon-button-ink-color(var(--mdc-theme-primary, $mdc-theme-primary));

@@ -15,37 +15,28 @@
 <Variant
 	title="Icon Button"
 	code={`
-Props (with defaults):
+Props (extends HTMLButtonElement | HTMLAnchorElement):
 
-# Shared
-  id = '';
-  className = '';
-  iconClass = '';
-  iconContent = '';
-  disabled = false;
+  toggleable: boolean = false;
+  toggled: boolean = false;
+
+  iconClass: string;
+  iconContent: string;
   iconColor: IconButtonColor = 'inherit';
-  
-# Button (when href is undefined)
-  on:click = undefined;
-  toggled = false;
-  toggleable = false;
-  toggledIconClass = '';
-  toggledIconContent = '';
-  toggledIconColor: IconButtonColor = 'inherit';
 
-# Link (when href is defined)
-  href: string | undefined = undefined;
-  ping: string | undefined = undefined;
-  rel: LinkRel | undefined = undefined;
-  media: string | undefined = undefined;
-  download: string | undefined = undefined;
-  hreflang: string | undefined = undefined;
-  target: LinkTarget | undefined = undefined;
-  referrerpolicy: LinkReferrerPolicy | undefined = undefined;
+  toggledIconClass: string;
+  toggledIconContent: string;
+  toggledIconColor: IconButtonColor = 'inherit';
 
 Slots:
   icon: optional;
   toggleIcon: optional;
+
+Wrapping Component:
+  href is defined:
+	HTMLAnchorElement
+  default:
+	HTMLButtonElement
 `}
 />
 <Variant

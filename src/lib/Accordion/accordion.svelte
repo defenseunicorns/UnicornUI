@@ -4,27 +4,31 @@
 	 * headerContent - parent .accordian-content
 	 * content - parent .accordian-content
 	 */
+	import Box from '$lib/Box/box.svelte';
+	import { slide } from 'svelte/transition';
+	import { current_component } from 'svelte/internal';
+	import type { AccordionProps } from './accordion.types';
 	import IconButton from '$lib/IconButton/IconButton.svelte';
 	import ExpandLess from '$lib/shared/assets/svg/expand-less.svelte';
 	import ExpandMore from '$lib/shared/assets/svg/expand-more.svelte';
-	import { slide } from 'svelte/transition';
+
 	// Props
 	export let isOpen = false;
-	// .accordian
-	export let wrapperClass = '';
-	export let style = '';
-	export let id = '';
-	// .accordian-header
 	export let headerClass = '';
-	// .accordian-content
 	export let contentClass = '';
+
+	type $$Props = AccordionProps;
 </script>
 
-<div {id} class="accordion {wrapperClass}" {style}>
+<Box
+	{...$$restProps}
+	class={`accordion ${$$restProps.class || ''}`}
+	eventComponent={current_component}
+>
 	<div class="accordion-header-wrapper">
 		<slot name="icon">
 			<IconButton
-				className="accordion-toggle"
+				class="accordion-toggle"
 				iconColor="primary"
 				toggledIconColor="primary"
 				on:click={() => {
@@ -46,7 +50,7 @@
 			<slot name="content" />
 		</div>
 	{/if}
-</div>
+</Box>
 
 <style lang="scss" scoped>
 	@import '@material/theme';

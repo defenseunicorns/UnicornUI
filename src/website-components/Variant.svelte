@@ -6,7 +6,7 @@
 </script>
 
 <section class="variant">
-	<Typography variant="h4">{title}</Typography>
+	<Typography variant="h3">{title}</Typography>
 	<Typography variant="body1" element="pre" class="variant-code">{`${code.trim()}`}</Typography>
 	<div class="preview">
 		<slot />
@@ -32,7 +32,7 @@
 		width: 100vw;
 		align-content: center;
 		align-items: center;
-		gap: 1rem;
+		gap: 2rem;
 	}
 
 	:global(.variant-code) {

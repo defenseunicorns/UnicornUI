@@ -1,6 +1,6 @@
 import { bubble, listen, current_component } from 'svelte/internal';
 // Taken from https://github.com/hperrin/svelte-material-ui/blob/273ded17c978ece3dd87f32a58dd9839e5c61325/components/forwardEvents.js
-export function eventHandler(component: typeof current_component, additionalEvents: string[]) {
+export function eventHandler(component: typeof current_component, additionalEvents: string[] = []) {
 	const events = [
 		'focus',
 		'blur',
