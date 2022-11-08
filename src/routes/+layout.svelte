@@ -44,9 +44,6 @@
 </main>
 
 <style lang="scss">
-	.header {
-		margin: 0;
-	}
 	.components {
 		display: flex;
 		flex-direction: column;

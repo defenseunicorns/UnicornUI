@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Box from '$lib/Box/box.svelte';
 	import { onMount } from 'svelte';
 
 	// vars
@@ -37,7 +38,7 @@
 			</div>
 		</div>
 	</div>
-	<div on:click={toggleDialog} class="mdc-dialog__scrim" />
+	<Box on:click={toggleDialog} class="mdc-dialog__scrim" />
 </div>
 
 <style lang="scss" global>
