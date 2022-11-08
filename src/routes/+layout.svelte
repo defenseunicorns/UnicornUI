@@ -5,7 +5,7 @@
 	import { Button } from '$lib';
 	import { afterUpdate } from 'svelte';
 	import Typography from '$lib/Typography/typography.svelte';
-	import type { ButtonColor, ButtonShape, ButtonVariant } from '$lib';
+	import type { ButtonColor, ButtonShape, ButtonVariant } from '$lib/index.d';
 
 	let path = '';
 
@@ -44,9 +44,6 @@
 </main>
 
 <style lang="scss">
-	.header {
-		margin: 0;
-	}
 	.components {
 		display: flex;
 		flex-direction: column;
