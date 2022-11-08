@@ -43,22 +43,22 @@ Slots:
 	code={`<Button on:click={onClick} />
 
 <Button on:click={onClick}>
-    <ButtonIcon slot="leadingIcon" className="material-symbols-outlined">bookmark</ButtonIcon>
+    <ButtonIcon slot="leadingIcon" class="material-symbols-outlined">bookmark</ButtonIcon>
     custom
 </Button>
 
 <Button on:click={onClick}>
-    <ButtonIcon slot="trailingIcon" className="material-symbols-outlined">bookmark</ButtonIcon>
+    <ButtonIcon slot="trailingIcon" class="material-symbols-outlined">bookmark</ButtonIcon>
 </Button>
 `}
 >
 	<Button on:click={onClick} />
 	<Button on:click={onClick}>
-		<ButtonIcon slot="leadingIcon" className="material-symbols-outlined">bookmark</ButtonIcon>
+		<ButtonIcon slot="leadingIcon" class="material-symbols-outlined">bookmark</ButtonIcon>
 		custom
 	</Button>
 	<Button on:click={onClick}>
-		<ButtonIcon slot="trailingIcon" className="material-symbols-outlined">bookmark</ButtonIcon>
+		<ButtonIcon slot="trailingIcon" class="material-symbols-outlined">bookmark</ButtonIcon>
 	</Button>
 </Variant>
 <Variant
@@ -66,22 +66,22 @@ Slots:
 	code={`<Button on:click={onClick} variant="outlined" />
 
 <Button on:click={onClick} variant="outlined">
-    <ButtonIcon slot="leadingIcon" className="material-symbols-outlined">bookmark</ButtonIcon>
+    <ButtonIcon slot="leadingIcon" class="material-symbols-outlined">bookmark</ButtonIcon>
     Custom Content
 </Button>
 
 <Button on:click={onClick} variant="outlined">
-    <ButtonIcon slot="trailingIcon" className="material-symbols-outlined">bookmark</ButtonIcon>
+    <ButtonIcon slot="trailingIcon" class="material-symbols-outlined">bookmark</ButtonIcon>
 </Button>`}
 >
 	<div class="preview">
 		<Button on:click={onClick} variant="outlined" />
 		<Button on:click={onClick} variant="outlined">
-			<ButtonIcon slot="leadingIcon" className="material-symbols-outlined">bookmark</ButtonIcon>
+			<ButtonIcon slot="leadingIcon" class="material-symbols-outlined">bookmark</ButtonIcon>
 			Custom Content
 		</Button>
 		<Button on:click={onClick} variant="outlined">
-			<ButtonIcon slot="trailingIcon" className="material-symbols-outlined">bookmark</ButtonIcon>
+			<ButtonIcon slot="trailingIcon" class="material-symbols-outlined">bookmark</ButtonIcon>
 		</Button>
 	</div>
 </Variant>
@@ -90,42 +90,42 @@ Slots:
 	code={`<Button on:click={onClick} variant="raised" />
 
 <Button on:click={onClick} variant="raised">
-    <ButtonIcon slot="leadingIcon" className="material-symbols-outlined">bookmark</ButtonIcon>
+    <ButtonIcon slot="leadingIcon" class="material-symbols-outlined">bookmark</ButtonIcon>
 </Button>
 
 <Button on:click={onClick} variant="raised">
-    <ButtonIcon slot="trailingIcon" className="material-symbols-outlined">bookmark</ButtonIcon>
+    <ButtonIcon slot="trailingIcon" class="material-symbols-outlined">bookmark</ButtonIcon>
 </Button>`}
 >
 	<div class="preview">
 		<Button on:click={onClick} variant="raised" />
 		<Button on:click={onClick} variant="raised">
-			<ButtonIcon slot="leadingIcon" className="material-symbols-outlined">bookmark</ButtonIcon>
+			<ButtonIcon slot="leadingIcon" class="material-symbols-outlined">bookmark</ButtonIcon>
 		</Button>
 		<Button on:click={onClick} variant="raised">
-			<ButtonIcon slot="trailingIcon" className="material-symbols-outlined">bookmark</ButtonIcon>
+			<ButtonIcon slot="trailingIcon" class="material-symbols-outlined">bookmark</ButtonIcon>
 		</Button>
 	</div>
 </Variant>
 <Variant
 	title="Flat"
 	code={`<Button on:click={onClick} variant="flat" />
-
+s
 <Button on:click={onClick} variant="flat">
-    <ButtonIcon slot="leadingIcon" className="material-symbols-outlined">bookmark</ButtonIcon>
+    <ButtonIcon slot="leadingIcon" class="material-symbols-outlined">bookmark</ButtonIcon>
 </Button>
 
 <Button on:click={onClick} variant="flat">
-    <ButtonIcon slot="trailingIcon" className="material-symbols-outlined">bookmark</ButtonIcon>
+    <ButtonIcon slot="trailingIcon" class="material-symbols-outlined">bookmark</ButtonIcon>
 </Button>`}
 >
 	<div class="preview">
 		<Button on:click={onClick} variant="flat" />
 		<Button on:click={onClick} variant="flat">
-			<ButtonIcon slot="leadingIcon" className="material-symbols-outlined">bookmark</ButtonIcon>
+			<ButtonIcon slot="leadingIcon" class="material-symbols-outlined">bookmark</ButtonIcon>
 		</Button>
 		<Button on:click={onClick} variant="flat">
-			<ButtonIcon slot="trailingIcon" className="material-symbols-outlined">bookmark</ButtonIcon>
+			<ButtonIcon slot="trailingIcon" class="material-symbols-outlined">bookmark</ButtonIcon>
 		</Button>
 	</div>
 </Variant>

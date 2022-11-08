@@ -24,7 +24,13 @@ import type { DialogActionsProps, DialogTitleProps } from './Dialog/Dialog.types
 import type { IconButtonColor, IconButtonProps } from './IconButton/IconButton.types';
 import type { StepVariant, StepOrientation, StepProps } from './Stepper/stepper.types';
 import type { LinkReferrerPolicy, LinkRel, LinkTarget } from './shared/types/LinkProps.types';
-import type { ButtonVariant, ButtonColor, ButtonShape, ButtonProps } from './Button/Button.types';
+import type {
+	ButtonVariant,
+	ButtonColor,
+	ButtonShape,
+	ButtonProps,
+	ButtonIconProps
+} from './Button/Button.types';
 
 export {
 	Box,
@@ -53,6 +59,7 @@ export {
 	IconButtonProps,
 	StepOrientation,
 	TypographyProps,
+	ButtonIconProps,
 	DialogTitleProps,
 	TypographyVariant,
 	TypographyElement,

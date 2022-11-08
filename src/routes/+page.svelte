@@ -7,7 +7,7 @@
 <Variant title="Installation" code={`npm i @defense-unicorns/unicorn-ui`}>
 	<Button href="https://github.com/defenseunicorns/UnicornUI" target="_blank" variant="raised"
 		>Github
-		<ButtonIcon slot="leadingIcon" className="material-symbols-outlined">open_in_new</ButtonIcon>
+		<ButtonIcon slot="leadingIcon" class="material-symbols-outlined">open_in_new</ButtonIcon>
 	</Button>
 </Variant>
 <Variant
