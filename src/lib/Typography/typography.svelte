@@ -15,16 +15,16 @@
 
 	type $$Props = TypographyProps<T>;
 
-	// Watch
-	$: variantElement = typographyElementMapping[variant] || {
+	variantElement = typographyElementMapping[variant] || {
 		element: 'span',
 		class: getVariantClass(variant)
 	};
-	$: component = $$props.element || variantElement.element;
-	$: $$restProps.class = `${variantElement.class} ${$$restProps.class || ''}`;
+	$$restProps.class = `${variantElement.class} ${$$restProps.class || ''}`;
 </script>
 
-<Box element={component} eventComponent={current_component} {...$$restProps}><slot /></Box>
+<Box element={variantElement.element} eventComponent={current_component} {...$$restProps}>
+	<slot />
+</Box>
 
 <style lang="scss">
 	@use '@material/typography/mdc-typography';

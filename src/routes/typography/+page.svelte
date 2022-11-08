@@ -92,6 +92,7 @@ Example:
 		width: max-content;
 		flex-direction: column;
 		text-align: center;
+		gap: 8px;
 	}
 	:global(.typography-examples *) {
 		margin: 8px 0px;
