@@ -1,13 +1,14 @@
 <script lang="ts">
 	import Box from '$lib/Box/box.svelte';
-	import type { BoxProps } from '$lib/Box/box.types';
 	import { current_component } from 'svelte/internal';
+	import type { DialogActionsProps } from './Dialog.types';
 
 	type T = $$Generic<EventTarget>;
-	// Props
+
+	// Default Props
 	export let element = 'div';
 
-	type $$Props = BoxProps<T>;
+	type $$Props = DialogActionsProps<T>;
 </script>
 
 <Box
