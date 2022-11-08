@@ -15,7 +15,8 @@ import DialogActions from './Dialog/DialogActions.svelte';
 import type {
 	TypographyVariant,
 	TypographyElement,
-	TypographyElements
+	TypographyElements,
+	TypographyProps
 } from './Typography/typography.types';
 import type { BoxProps } from './Box/box.types';
 import type { AccordionProps } from './Accordion/accordion.types';
@@ -50,6 +51,7 @@ export {
 	IconButtonColor,
 	IconButtonProps,
 	StepOrientation,
+	TypographyProps,
 	TypographyVariant,
 	TypographyElement,
 	TypographyElements,

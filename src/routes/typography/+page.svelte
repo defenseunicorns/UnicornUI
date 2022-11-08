@@ -8,20 +8,9 @@
 	code={`
 https://material.io/develop/web/guides/typography
 
-Props (with defaults):
+Props (extends BoxProps):
   variant: TypographyVariant = 'body1';
-  // Override default element mapping 
-  element: string | undefined = undefined;
   
-  // svelte handles generics
-  type T = $$Generic<EventTarget>;
-  
-  // Allows adding aria and default props on the element type provided. 
-  interface $$Props extends svelte.JSX.HTMLAttributes<T> {
-		variant?: TypographyVariant;
-		element?: string;
-  };
-
 Slots:
     default
 

@@ -1,3 +1,5 @@
+import type { BoxProps } from '$lib/Box/box.types';
+
 export type TypographyVariant =
 	| 'h1'
 	| 'h2'
@@ -22,3 +24,7 @@ export type TypographyElement = {
 export type TypographyElements = {
 	[key in TypographyVariant]: TypographyElement;
 };
+
+export interface TypographyProps<T extends EventTarget> extends BoxProps<T> {
+	variant?: TypographyVariant;
+}
