@@ -2,7 +2,7 @@
 	import Step from '$lib/Stepper/Step.svelte';
 	import StepIcon from '$lib/Stepper/StepIcon.svelte';
 	import Accordion from '$lib/Accordion/accordion.svelte';
-	import type { StepProps } from '$lib';
+	import type { StepProps } from '$lib/index.d';
 	import Variant from '../../website-components/Variant.svelte';
 	import Stepper from '$lib/Stepper/Stepper.svelte';
 	const steps: StepProps[] = [

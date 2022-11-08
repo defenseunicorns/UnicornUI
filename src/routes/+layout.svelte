@@ -5,7 +5,7 @@
 	import { Button } from '$lib';
 	import { afterUpdate } from 'svelte';
 	import Typography from '$lib/Typography/typography.svelte';
-	import type { ButtonColor, ButtonShape, ButtonVariant } from '$lib';
+	import type { ButtonColor, ButtonShape, ButtonVariant } from '$lib/index.d';
 
 	let path = '';
 
