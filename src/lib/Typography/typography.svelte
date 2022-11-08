@@ -19,7 +19,7 @@
 		element: 'span',
 		class: getVariantClass(variant)
 	};
-	$$restProps.class = `${variantElement.class} ${$$restProps.class || ''}`;
+	$: $$restProps.class = `${variantElement.class} ${$$restProps.class || ''}`;
 </script>
 
 <Box element={variantElement.element} eventComponent={current_component} {...$$restProps}>
