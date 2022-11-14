@@ -11,6 +11,7 @@ import DialogTitle from './Dialog/DialogTitle.svelte';
 import IconButton from './IconButton/IconButton.svelte';
 import Typography from './Typography/typography.svelte';
 import DialogActions from './Dialog/DialogActions.svelte';
+import AccordionGroup from './Accordion/accordion-group.svelte';
 
 export {
 	Box,
@@ -24,7 +25,8 @@ export {
 	IconButton,
 	Typography,
 	DialogTitle,
-	DialogActions
+	DialogActions,
+	AccordionGroup
 };
 
 // Re-export your types here.
@@ -42,7 +44,7 @@ export type {
 	TypographyProps
 } from './Typography/typography.types';
 export type { BoxProps } from './Box/box.types';
-export type { AccordionProps } from './Accordion/accordion.types';
 export type { DialogActionsProps, DialogTitleProps } from './Dialog/Dialog.types';
 export type { IconButtonColor, IconButtonProps } from './IconButton/IconButton.types';
 export type { StepVariant, StepOrientation, StepProps } from './Stepper/stepper.types';
+export type { AccordionProps, AccordionGroupProps } from './Accordion/accordion.types';

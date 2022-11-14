@@ -1,10 +1,11 @@
 <script lang="ts">
+	import type { StepProps } from '$lib';
 	import Step from '$lib/Stepper/Step.svelte';
+	import Stepper from '$lib/Stepper/Stepper.svelte';
 	import StepIcon from '$lib/Stepper/StepIcon.svelte';
 	import Accordion from '$lib/Accordion/accordion.svelte';
-	import type { StepProps } from '$lib';
 	import Variant from '../../website-components/Variant.svelte';
-	import Stepper from '$lib/Stepper/Stepper.svelte';
+	import AccordionGroup from '$lib/Accordion/accordion-group.svelte';
 	const steps: StepProps[] = [
 		{
 			title: 'Validate Configuration',
@@ -43,17 +44,17 @@ Slots:
  none
 `}
 >
-	<div style="width: 100%;gap: 2px; display: flex; flex-direction: column;">
+	<AccordionGroup>
 		<!--Sub Components-->
 		<Accordion>
 			<span slot="headerContent" class="mdc-typography--headline6">Stepper Vertical</span>
 			<div slot="content">
 				<pre>
-					{`<div
+				{`<div
   style="display: flex; justify-content: center; width: 50%; margin-left: auto; margin-right: auto;"
->
+  >
   <Stepper orientation="vertical" steps={[...steps]} />
-</div>`}
+  </div>`}
 </pre>
 				<div
 					style="display: flex; justify-content: center; width: 50%; margin-left: auto; margin-right: auto;"
@@ -66,8 +67,8 @@ Slots:
 			<span slot="headerContent" class="mdc-typography--headline6">Stepper Horizontal</span>
 			<div slot="content">
 				<pre>
-					{`<Stepper orientation="horizontal" steps={[...steps]} />`}
-</pre>
+			{`<Stepper orientation="horizontal" steps={[...steps]} />`}
+		</pre>
 				<Stepper orientation="horizontal" steps={[...steps]} />
 			</div>
 		</Accordion>
@@ -76,15 +77,15 @@ Slots:
 
 			<div slot="content">
 				<pre>
-{`Props (with defaults):
+			{`Props (with defaults):
   variant: StepVariant = 'primary';
   // Hover title (optional).
   title: string = '';
   
-Slots:
+  Slots:
   unnamed: (replaces default content)
   
-Examples:
+  Examples:
   <StepIcon />
   <StepIcon>2</StepIcon>
   <StepIcon disabled>3</StepIcon>
@@ -110,25 +111,25 @@ Examples:
 			<span slot="headerContent" class="mdc-typography--headline6">Step</span>
 			<div slot="content">
 				<pre>
-{`
+					{`
 Props (with defaults):
-  disabled = false;
-  title: string = '';
-  subtitle: string = '';
-  variant: StepVariant = 'primary';
-  iconContent = '';
-  orientation: StepOrientation = 'vertical';
+disabled = false;
+title: string = '';
+subtitle: string = '';
+variant: StepVariant = 'primary';
+iconContent = '';
+orientation: StepOrientation = 'vertical';
 
 Slots:
-  iconContent (replaces StepIcon default)
+iconContent (replaces StepIcon default)
 
 Examples:
-  <Step title="Vertical" subtitle="step" />
-  <Step 
-    title="Horizontal" 
-    subtitle="step" 
-    variant="success" 
-    orientation="horizontal" />
+<Step title="Vertical" subtitle="step" />
+<Step 
+title="Horizontal" 
+subtitle="step" 
+variant="success" 
+orientation="horizontal" />
 
 `.trim()}
                 </pre>
@@ -138,7 +139,7 @@ Examples:
 				</div>
 			</div>
 		</Accordion>
-	</div>
+	</AccordionGroup>
 </Variant>
 
 <style>

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Accordion } from '$lib';
+	import AccordionGroup from '$lib/Accordion/accordion-group.svelte';
 	import Variant from '../../website-components/Variant.svelte';
 </script>
 
@@ -20,7 +21,7 @@ Slots:
   content (nested in .accordian-content)
 	`}
 >
-	<div class="accordions" style="width: 100%">
+	<AccordionGroup style="width: 75%;">
 		<Accordion
 			id="accordian-1"
 			class="myAccordian"
@@ -37,15 +38,15 @@ Slots:
   id="accordian-2" 
   class="myAccordian" 
   contentClass="accordian-2-content"
->
+  >
   <span slot="headerContent">Expand for Example Code</span>
   <div slot="content">{...}</div>
-</Accordion>
-
-/* Style
+  </Accordion>
+  
+  /* Style
 .accordian-2-content {
-  color: var(--mdc-theme-primary);
-  background-color: black;
+	color: var(--mdc-theme-primary);
+	background-color: black;
 }
 .accordian-2-content pre {
 	color: var(--mdc-theme-primary);
@@ -55,7 +56,7 @@ Slots:
 */`}</pre>
 			</div>
 		</Accordion>
-	</div>
+	</AccordionGroup>
 </Variant>
 
 <style lang="scss" global>
@@ -67,10 +68,5 @@ Slots:
 		color: var(--mdc-theme-primary);
 		background-color: black;
 		padding: 8px;
-	}
-	.accordions {
-		display: flex;
-		flex-direction: column;
-		gap: 1px;
 	}
 </style>
