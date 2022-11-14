@@ -52,8 +52,7 @@
 	{/if}
 </Box>
 
-<style lang="scss" scoped>
-	@import '@material/theme';
+<style lang="scss" global>
 	.accordion {
 		display: flex;
 		flex-direction: column;
@@ -75,7 +74,7 @@
 		display: flex;
 		flex-direction: column;
 	}
-	:global(.accordion .mdc-icon-button:hover i svg path) {
+	.accordion .mdc-icon-button:hover i svg path {
 		fill: var(--mdc-theme-primary);
 	}
 </style>

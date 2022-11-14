@@ -38,7 +38,7 @@
 	:global(.variant-code) {
 		display: flex;
 		flex-direction: column;
-		color: cyan;
+		color: var(--mdc-theme-primary);
 		background-color: black;
 		padding: 16px;
 	}
