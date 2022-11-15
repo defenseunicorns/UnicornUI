@@ -12,9 +12,11 @@ import IconButton from './IconButton/IconButton.svelte';
 import Typography from './Typography/typography.svelte';
 import DialogActions from './Dialog/DialogActions.svelte';
 import AccordionGroup from './Accordion/accordion-group.svelte';
+import Chip from './Chip/chip.svelte';
 
 export {
 	Box,
+	Chip,
 	Step,
 	Button,
 	Dialog,
@@ -44,6 +46,7 @@ export type {
 	TypographyProps
 } from './Typography/typography.types';
 export type { BoxProps } from './Box/box.types';
+export type { ChipProps, ChipElement } from './Chip/chip.types';
 export type { DialogActionsProps, DialogTitleProps } from './Dialog/Dialog.types';
 export type { IconButtonColor, IconButtonProps } from './IconButton/IconButton.types';
 export type { StepVariant, StepOrientation, StepProps } from './Stepper/stepper.types';
