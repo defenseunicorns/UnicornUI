@@ -50,11 +50,13 @@ Slots:
 			<span slot="headerContent" class="mdc-typography--headline6">Stepper Vertical</span>
 			<div slot="content">
 				<pre class="variant-code">
-				{`<div
+				{`
+<div
   style="display: flex; justify-content: center; width: 50%; margin-left: auto; margin-right: auto;"
-  >
+>
   <Stepper orientation="vertical" steps={[...steps]} />
-  </div>`}
+</div>
+`}
 </pre>
 				<div
 					style="display: flex; justify-content: center; width: 50%; margin-left: auto; margin-right: auto;"

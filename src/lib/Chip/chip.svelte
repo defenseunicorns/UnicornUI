@@ -8,8 +8,12 @@
 	type $$Props = ChipProps<T>;
 </script>
 
-<span class="mdc-evolution-chip" role="row" id="c2">
-	<span class="mdc-evolution-chip__cell mdc-evolution-chip__cell--primary" role="gridcell">
+<span class="mdc-evolution-chip" role="row">
+	<span
+		class="mdc-evolution-chip__cell mdc-evolution-chip--with-primary-graphic mdc-evolution-chip__cell--primary"
+		role="gridcell"
+	>
+		<slot name="primary" />
 		<Box
 			element={$$restProps.href ? 'a' : 'button'}
 			eventComponent={current_component}
@@ -25,7 +29,7 @@
 			<Typography variant="body2"><slot /></Typography>
 		</Box>
 	</span>
-	<span class="mdc-evolution-chip__cell mdc-evolution-chip__cell--trailing" role="gridcell" />
+	<slot name="trailing" />
 </span>
 
 <style lang="scss" global>

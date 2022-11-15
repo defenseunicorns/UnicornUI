@@ -24,6 +24,7 @@
 		width: 80%;
 		gap: 32px;
 		justify-content: center;
+		flex-wrap: wrap;
 	}
 
 	.variant {
@@ -41,5 +42,10 @@
 		color: var(--mdc-theme-primary);
 		background-color: black;
 		padding: 16px;
+		white-space: pre-wrap; /* css-3 */
+		white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+		white-space: -pre-wrap; /* Opera 4-6 */
+		white-space: -o-pre-wrap; /* Opera 7 */
+		word-wrap: normal;
 	}
 </style>
