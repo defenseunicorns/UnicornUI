@@ -1,14 +1,23 @@
 <script lang="ts">
 	import Box from '$lib/Box/box.svelte';
 	import Typography from '$lib/Typography/typography.svelte';
-	import { current_component } from 'svelte/internal';
+	import { MDCRipple } from '@material/ripple';
+	import { current_component, onMount } from 'svelte/internal';
 	import type { ChipColor, ChipProps, ChipVariant } from './chip.types';
+
+	let buttonElement: HTMLButtonElement | HTMLAnchorElement;
 
 	type T = $$Generic<EventTarget>;
 	type $$Props = ChipProps<T>;
 
 	export let variant: ChipVariant = 'filled';
 	export let color: ChipColor = 'inherit';
+
+	onMount((): void => {
+		if (buttonElement) {
+			new MDCRipple(buttonElement);
+		}
+	});
 </script>
 
 <span class="chip-wrapper chip-{variant}-{color}" role="row">
@@ -18,6 +27,7 @@
 	>
 		<slot name="primary" />
 		<Box
+			bind:ref={buttonElement}
 			element={$$restProps.href ? 'a' : 'button'}
 			eventComponent={current_component}
 			tabindex={0}
@@ -36,7 +46,8 @@
 </span>
 
 <style lang="scss" global>
-	@use '@material/chips/styles';
+	@use '@material/chips' as chips;
+	@use '@material/chips/styles' as styles;
 	.chip-wrapper {
 		@extend .mdc-evolution-chip;
 	}
@@ -49,55 +60,67 @@
 	}
 	.chip-outlined-primary {
 		@extend .chip-outlined-inherit;
+		@include chips.ripple-color(var(--mdc-theme-primary));
 		color: var(--mdc-theme-primary);
 		border-color: var(--mdc-theme-primary);
 	}
 	.chip-filled-primary {
+		@include chips.ripple-color(var(--mdc-theme-on-primary));
 		background-color: var(--mdc-theme-primary);
 		color: var(--mdc-theme-on-primary);
 	}
 	.chip-outlined-secondary {
 		@extend .chip-outlined-inherit;
+		@include chips.ripple-color(var(--mdc-theme-secondary));
 		color: var(--mdc-theme-secondary);
 		border-color: var(--mdc-theme-secondary);
 	}
 	.chip-filled-secondary {
+		@include chips.ripple-color(var(--mdc-theme-on-secondary));
 		background-color: var(--mdc-theme-secondary);
 		color: var(--mdc-theme-on-secondary);
 	}
 	.chip-outlined-error {
 		@extend .chip-outlined-inherit;
+		@include chips.ripple-color(var(--mdc-theme-error, #d32f2f));
 		color: var(--mdc-theme-error, #d32f2f);
 		border-color: var(--mdc-theme-error, #d32f2f);
 	}
 	.chip-filled-error {
+		@include chips.ripple-color(var(--mdc-theme-on-error, white));
 		background-color: var(--mdc-theme-error, #d32f2f);
 		color: var(--mdc-theme-on-error, white);
 	}
 	.chip-outlined-warning {
 		@extend .chip-outlined-inherit;
+		@include chips.ripple-color(var(--mdc-theme-warning, #ed6c02));
 		color: var(--mdc-theme-warning, #ed6c02);
 		border-color: var(--mdc-theme-warning, #ed6c02);
 	}
 	.chip-filled-warning {
+		@include chips.ripple-color(var(--mdc-theme-on-warning, white));
 		background-color: var(--mdc-theme-warning, #ed6c02);
 		color: var(--mdc-theme-on-warning, white);
 	}
 	.chip-outlined-success {
 		@extend .chip-outlined-inherit;
+		@include chips.ripple-color(var(--mdc-theme-success, #2e7d32));
 		color: var(--mdc-theme-success, #2e7d32);
 		border-color: var(--mdc-theme-success, #2e7d32);
 	}
 	.chip-filled-success {
+		@include chips.ripple-color(var(--mdc-theme-on-success, white));
 		background-color: var(--mdc-theme-success, #2e7d32);
 		color: var(--mdc-theme-on-success, white);
 	}
 	.chip-outlined-info {
 		@extend .chip-outlined-inherit;
+		@include chips.ripple-color(var(--mdc-theme-info, #0288d1));
 		color: var(--mdc-theme-info, #0288d1);
 		border-color: var(--mdc-theme-info, #0288d1);
 	}
 	.chip-filled-info {
+		@include chips.ripple-color(var(--mdc-theme-on-info, white));
 		background-color: var(--mdc-theme-info, #0288d1);
 		color: var(--mdc-theme-on-info, white);
 	}

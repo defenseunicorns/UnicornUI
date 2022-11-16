@@ -34,7 +34,7 @@ Slots:
 				<pre class="variant-code">
 {`<Chip>Default Chip</Chip>
 <Chip href="/chip">Chip Link</Chip>
-<Chip clickable on:click={() => alert('clicked')}>Clickable Chip</Chip>
+<Chip clickable>Clickable Chip</Chip>
 <Chip>
   <ChipIcon slot="primary">
     <CheckCircle />
@@ -51,7 +51,7 @@ Slots:
 				<Box class="chip-example">
 					<Chip>Default Chip</Chip>
 					<Chip href="/chip">Chip Link</Chip>
-					<Chip clickable on:click={() => alert('clicked')}>Clickable Chip</Chip>
+					<Chip clickable>Clickable Chip</Chip>
 					<Chip>
 						<ChipIcon slot="primary">
 							<CheckCircle />
@@ -73,7 +73,7 @@ Slots:
 				<pre class="variant-code">
 {`<Chip variant="outlined">Default Outlined</Chip>
 <Chip variant="outlined" href="/chip">Outlined Link</Chip>
-<Chip variant="outlined" clickable on:click={() => alert('clicked')}>
+<Chip variant="outlined" clickable >
   Outlined Clickable
 </Chip>
 <Chip variant="outlined">
@@ -92,9 +92,7 @@ Slots:
 				<Box class="chip-example">
 					<Chip variant="outlined">Default Outlined</Chip>
 					<Chip variant="outlined" href="/chip">Outlined Link</Chip>
-					<Chip variant="outlined" clickable on:click={() => alert('clicked')}>
-						Outlined Clickable
-					</Chip>
+					<Chip variant="outlined" clickable>Outlined Clickable</Chip>
 					<Chip variant="outlined">
 						<ChipIcon slot="primary">
 							<CheckCircle />
