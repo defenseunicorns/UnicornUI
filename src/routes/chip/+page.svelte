@@ -148,6 +148,25 @@ Slots:
 				</Box>
 			</Box>
 		</Accordion>
+		<Accordion>
+			<Typography slot="headerContent" variant="h6">Color: "error"</Typography>
+			<Box slot="content">
+				<pre class="variant-code">
+{`<Chip variant="outlined" color="error">Error Outlined</Chip>
+<Chip color="error">Filled Error</Chip>
+<Chip variant="outlined" color="error" clickable>
+  Outlined Error Clickable
+</Chip>
+<Chip color="error" clickable>Filled Error Clickable</Chip>`}
+</pre>
+				<Box class="chip-example">
+					<Chip variant="outlined" color="error">Error Outlined</Chip>
+					<Chip color="error">Filled Error</Chip>
+					<Chip variant="outlined" color="error" clickable>Outlined Error Clickable</Chip>
+					<Chip color="error" clickable>Filled Error Clickable</Chip>
+				</Box>
+			</Box>
+		</Accordion>
 	</AccordionGroup>
 </Variant>
 

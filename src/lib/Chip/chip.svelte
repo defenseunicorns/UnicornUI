@@ -62,4 +62,13 @@
 		background-color: var(--mdc-theme-secondary);
 		color: var(--mdc-theme-on-secondary);
 	}
+	.chip-outlined-error {
+		@extend .chip-outlined-inherit;
+		color: var(--mdc-theme-error);
+		border-color: var(--mdc-theme-error);
+	}
+	.chip-filled-error {
+		background-color: var(--mdc-theme-error);
+		color: var(--mdc-theme-on-error);
+	}
 </style>
