@@ -10,6 +10,7 @@
 	title="Chip"
 	code={`
 Props (extends BoxProps):
+  variant?: 'filled' | 'outlined' = 'outlined';
   // Optional. Defining href sets a by default. 
   element?: 'a' | 'button'
   // Applies to 'button' element. Adds ripple and hover interactions.
