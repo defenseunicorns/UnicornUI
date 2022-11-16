@@ -42,6 +42,7 @@ Examples:
 	  <Delete />
 	</ChipIcon>
   </Chip>
+  <Chip variant="outlined">Outlined</Chip>
 `}
 >
 	<Chip>Default Chip</Chip>
@@ -65,4 +66,5 @@ Examples:
 			<Delete />
 		</ChipIcon>
 	</Chip>
+	<Chip variant="outlined">Outlined</Chip>
 </Variant>

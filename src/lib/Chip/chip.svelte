@@ -2,15 +2,17 @@
 	import Box from '$lib/Box/box.svelte';
 	import Typography from '$lib/Typography/typography.svelte';
 	import { current_component } from 'svelte/internal';
-	import type { ChipProps } from './chip.types';
+	import type { ChipProps, ChipVariant } from './chip.types';
 
 	type T = $$Generic<EventTarget>;
 	type $$Props = ChipProps<T>;
+
+	export let variant: ChipVariant = 'filled';
 </script>
 
-<span class="mdc-evolution-chip" role="row">
+<span class="mdc-evolution-chip chip-primary-{variant}" role="row">
 	<span
-		class="mdc-evolution-chip__cell mdc-evolution-chip--with-primary-graphic mdc-evolution-chip__cell--primary"
+		class=" mdc-evolution-chip__cell mdc-evolution-chip--with-primary-graphic mdc-evolution-chip__cell--primary"
 		role="gridcell"
 	>
 		<slot name="primary" />
@@ -19,7 +21,7 @@
 			eventComponent={current_component}
 			tabindex={0}
 			{...$$restProps}
-			class={`mdc-evolution-chip__action mdc-evolution-chip__action--primary ${
+			class={` mdc-evolution-chip__action mdc-evolution-chip__action--primary ${
 				$$restProps.class || ''
 			}`}
 			disabled={$$restProps.disabled == undefined ? !$$restProps.clickable : $$restProps.disabled}
@@ -34,4 +36,11 @@
 
 <style lang="scss" global>
 	@use '@material/chips/styles';
+	.chip-primary-outlined {
+		background-color: transparent;
+		color: inherit;
+		border-color: inherit;
+		border-width: 1px;
+		border-style: solid;
+	}
 </style>
