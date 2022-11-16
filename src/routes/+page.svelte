@@ -17,10 +17,17 @@
 * - Uses mdc theme css variables
 */
 :root {
-    --mdc-theme-primary: purple;
-    --mdc-theme-on-primary: white;
-    --mdc-theme-secondary: green;
-    --mdc-theme-on-secondary: white;
-    --mdc-theme-surface: white;
+	--mdc-theme-primary: #4adede;
+	--mdc-theme-on-primary: black;
+	--mdc-theme-secondary: #787ff6;
+	--mdc-theme-on-secondary: white;
+	--mdc-theme-success: #2e7d32;
+	--mdc-theme-on-success: white;
+	--mdc-theme-warning: #ed6c02;
+	--mdc-theme-on-warning: white;
+	--mdc-theme-info: #0288d1;
+	--mdc-theme-on-info: white;
+	--mdc-theme-error: #d32f2f;
+	--mdc-theme-on-error: white;
 }`}
 />

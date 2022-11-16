@@ -37,6 +37,7 @@
 		<Button href="/stepper" {...getVariant(path, '/stepper')}>Stepper</Button>
 		<Button href="/dialog" {...getVariant(path, '/dialog')}>Dialog</Button>
 		<Button href="/typography" {...getVariant(path, '/typography')}>Typography</Button>
+		<Button href="/chip" {...getVariant(path, '/chip')}>Chip</Button>
 	</div>
 </section>
 <main>
@@ -54,5 +55,8 @@
 		display: flex;
 		gap: 12px;
 		flex-wrap: wrap;
+	}
+	main {
+		padding-bottom: 32px;
 	}
 </style>

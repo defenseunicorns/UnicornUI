@@ -49,12 +49,14 @@ Slots:
 		<Accordion>
 			<span slot="headerContent" class="mdc-typography--headline6">Stepper Vertical</span>
 			<div slot="content">
-				<pre>
-				{`<div
+				<pre class="variant-code">
+				{`
+<div
   style="display: flex; justify-content: center; width: 50%; margin-left: auto; margin-right: auto;"
-  >
+>
   <Stepper orientation="vertical" steps={[...steps]} />
-  </div>`}
+</div>
+`}
 </pre>
 				<div
 					style="display: flex; justify-content: center; width: 50%; margin-left: auto; margin-right: auto;"
@@ -66,7 +68,7 @@ Slots:
 		<Accordion>
 			<span slot="headerContent" class="mdc-typography--headline6">Stepper Horizontal</span>
 			<div slot="content">
-				<pre>
+				<pre class="variant-code">
 			{`<Stepper orientation="horizontal" steps={[...steps]} />`}
 		</pre>
 				<Stepper orientation="horizontal" steps={[...steps]} />
@@ -76,7 +78,7 @@ Slots:
 			<span slot="headerContent" class="mdc-typography--headline6">StepIcon</span>
 
 			<div slot="content">
-				<pre>
+				<pre class="variant-code">
 			{`Props (with defaults):
   variant: StepVariant = 'primary';
   // Hover title (optional).
@@ -110,7 +112,7 @@ Slots:
 		<Accordion>
 			<span slot="headerContent" class="mdc-typography--headline6">Step</span>
 			<div slot="content">
-				<pre>
+				<pre class="variant-code">
 					{`
 Props (with defaults):
 disabled = false;
@@ -149,10 +151,5 @@ orientation="horizontal" />
 		display: flex;
 		justify-content: space-evenly;
 		align-items: center;
-	}
-	pre {
-		background: black;
-		color: var(--mdc-theme-primary);
-		padding: 16px;
 	}
 </style>

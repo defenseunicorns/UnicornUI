@@ -8,7 +8,12 @@
 	type $$Props = AccordionGroupProps<T>;
 </script>
 
-<Box element="div" eventComponent={current_component} {...$$restProps} class="accordion-group">
+<Box
+	element="div"
+	eventComponent={current_component}
+	{...$$restProps}
+	class="accordion-group {$$restProps.class || ''}"
+>
 	<slot />
 </Box>
 

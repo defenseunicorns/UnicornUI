@@ -12,13 +12,17 @@ import IconButton from './IconButton/IconButton.svelte';
 import Typography from './Typography/typography.svelte';
 import DialogActions from './Dialog/DialogActions.svelte';
 import AccordionGroup from './Accordion/accordion-group.svelte';
+import Chip from './Chip/chip.svelte';
+import ChipIcon from './Chip/chip-icon.svelte';
 
 export {
 	Box,
+	Chip,
 	Step,
 	Button,
 	Dialog,
 	Stepper,
+	ChipIcon,
 	StepIcon,
 	Accordion,
 	ButtonIcon,
@@ -30,6 +34,13 @@ export {
 };
 
 // Re-export your types here.
+export type {
+	ChipProps,
+	ChipElement,
+	ChipIconProps,
+	ChipVariant,
+	ChipColor
+} from './Chip/chip.types';
 export type {
 	ButtonVariant,
 	ButtonColor,

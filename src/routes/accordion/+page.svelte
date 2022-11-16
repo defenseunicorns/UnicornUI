@@ -21,7 +21,7 @@ Slots:
   content (nested in .accordian-content)
 	`}
 >
-	<AccordionGroup style="width: 75%;">
+	<AccordionGroup>
 		<Accordion
 			id="accordian-1"
 			class="myAccordian"
@@ -34,7 +34,7 @@ Slots:
 		<Accordion id="accordian-2" class="myAccordian" contentClass="accordian-2-content">
 			<span slot="headerContent" class="mdc-typography--headline6">Expand for example html</span>
 			<div slot="content">
-				<pre>{`<Accordion 
+				<pre class="variant-code">{`<Accordion 
   id="accordian-2" 
   class="myAccordian" 
   contentClass="accordian-2-content"
@@ -63,10 +63,5 @@ Slots:
 	.accordian-1-content {
 		background-color: var(--mdc-theme-secondary);
 		color: var(--mdc-theme-on-secondary);
-	}
-	.accordian-2-content pre {
-		color: var(--mdc-theme-primary);
-		background-color: black;
-		padding: 8px;
 	}
 </style>
