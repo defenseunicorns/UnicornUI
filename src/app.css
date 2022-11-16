@@ -7,7 +7,14 @@
 	--mdc-theme-on-primary: black;
 	--mdc-theme-secondary: #787ff6;
 	--mdc-theme-on-secondary: white;
-
+	--mdc-theme-success: #2e7d32;
+	--mdc-theme-on-success: white;
+	--mdc-theme-warning: #ed6c02;
+	--mdc-theme-on-warning: white;
+	--mdc-theme-info: #0288d1;
+	--mdc-theme-on-info: white;
+	--mdc-theme-error: #d32f2f;
+	--mdc-theme-on-error: white;
 	/* body3 */
 	--mdc-typography-body3-font-style: normal;
 	--mdc-typography-body3-font-weight: 400;

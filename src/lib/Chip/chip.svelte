@@ -64,11 +64,29 @@
 	}
 	.chip-outlined-error {
 		@extend .chip-outlined-inherit;
-		color: var(--mdc-theme-error);
-		border-color: var(--mdc-theme-error);
+		color: var(--mdc-theme-error, #d32f2f);
+		border-color: var(--mdc-theme-error, #d32f2f);
 	}
 	.chip-filled-error {
-		background-color: var(--mdc-theme-error);
-		color: var(--mdc-theme-on-error);
+		background-color: var(--mdc-theme-error, #d32f2f);
+		color: var(--mdc-theme-on-error, white);
+	}
+	.chip-outlined-warning {
+		@extend .chip-outlined-inherit;
+		color: var(--mdc-theme-warning, #ed6c02);
+		border-color: var(--mdc-theme-warning, #ed6c02);
+	}
+	.chip-filled-warning {
+		background-color: var(--mdc-theme-warning, #ed6c02);
+		color: var(--mdc-theme-on-warning, white);
+	}
+	.chip-outlined-success {
+		@extend .chip-outlined-inherit;
+		color: var(--mdc-theme-success, #2e7d32);
+		border-color: var(--mdc-theme-success, #2e7d32);
+	}
+	.chip-filled-success {
+		background-color: var(--mdc-theme-success, #2e7d32);
+		color: var(--mdc-theme-on-success, white);
 	}
 </style>

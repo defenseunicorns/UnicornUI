@@ -167,6 +167,44 @@ Slots:
 				</Box>
 			</Box>
 		</Accordion>
+		<Accordion>
+			<Typography slot="headerContent" variant="h6">Color: "warning"</Typography>
+			<Box slot="content">
+				<pre class="variant-code">
+{`<Chip variant="outlined" color="warning">Warning Outlined</Chip>
+<Chip color="warning">Filled Warning</Chip>
+<Chip variant="outlined" color="warning" clickable>
+  Outlined Warning Clickable
+</Chip>
+<Chip color="warning" clickable>Filled Warning Clickable</Chip>`}
+</pre>
+				<Box class="chip-example">
+					<Chip variant="outlined" color="warning">Warning Outlined</Chip>
+					<Chip color="warning">Filled Warning</Chip>
+					<Chip variant="outlined" color="warning" clickable>Outlined Warning Clickable</Chip>
+					<Chip color="warning" clickable>Filled Warning Clickable</Chip>
+				</Box>
+			</Box>
+		</Accordion>
+		<Accordion>
+			<Typography slot="headerContent" variant="h6">Color: "success"</Typography>
+			<Box slot="content">
+				<pre class="variant-code">
+{`<Chip variant="outlined" color="success">Success Outlined</Chip>
+<Chip color="success">Filled Success</Chip>
+<Chip variant="outlined" color="success" clickable>
+  Outlined Success Clickable
+</Chip>
+<Chip color="success" clickable>Filled Success Clickable</Chip>`}
+</pre>
+				<Box class="chip-example">
+					<Chip variant="outlined" color="success">Success Outlined</Chip>
+					<Chip color="success">Filled Success</Chip>
+					<Chip variant="outlined" color="success" clickable>Outlined Success Clickable</Chip>
+					<Chip color="success" clickable>Filled Success Clickable</Chip>
+				</Box>
+			</Box>
+		</Accordion>
 	</AccordionGroup>
 </Variant>
 
