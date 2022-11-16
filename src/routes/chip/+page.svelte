@@ -24,7 +24,7 @@ Props (extends BoxProps):
 Slots:
 	primary
 	unamed
-	leading
+	trailing
 `}
 >
 	<AccordionGroup>
