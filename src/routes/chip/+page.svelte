@@ -61,7 +61,7 @@ Slots:
 					<Chip>
 						Trailing Icon
 						<ChipIcon clickable slot="trailing">
-							<CheckCircle />
+							<Delete />
 						</ChipIcon>
 					</Chip>
 				</Box>
@@ -193,13 +193,26 @@ Slots:
 <Chip variant="outlined" color="success" clickable>
   Outlined Success Clickable
 </Chip>
-<Chip color="success" clickable>Filled Success Clickable</Chip>`}
+<Chip color="success" clickable>
+  <ChipIcon 
+    slot="primary"
+    style="fill: var(--mdc-theme-on-success)"
+  >
+    <CheckCircle />
+  </ChipIcon>
+  Filled Success Clickable
+</Chip>`}
 </pre>
 				<Box class="chip-example">
 					<Chip variant="outlined" color="success">Success Outlined</Chip>
 					<Chip color="success">Filled Success</Chip>
 					<Chip variant="outlined" color="success" clickable>Outlined Success Clickable</Chip>
-					<Chip color="success" clickable>Filled Success Clickable</Chip>
+					<Chip color="success" clickable>
+						<ChipIcon slot="primary" style="fill: var(--mdc-theme-on-success)">
+							<CheckCircle />
+						</ChipIcon>
+						Filled Success Clickable
+					</Chip>
 				</Box>
 			</Box>
 		</Accordion>
