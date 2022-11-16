@@ -11,9 +11,9 @@
 	export let color: ChipColor = 'inherit';
 </script>
 
-<span class="mdc-evolution-chip chip-{variant}-{color}" role="row">
+<span class="chip-wrapper chip-{variant}-{color}" role="row">
 	<span
-		class=" mdc-evolution-chip__cell mdc-evolution-chip--with-primary-graphic mdc-evolution-chip__cell--primary"
+		class="mdc-evolution-chip__cell mdc-evolution-chip--with-primary-graphic mdc-evolution-chip__cell--primary"
 		role="gridcell"
 	>
 		<slot name="primary" />
@@ -37,6 +37,9 @@
 
 <style lang="scss" global>
 	@use '@material/chips/styles';
+	.chip-wrapper {
+		@extend .mdc-evolution-chip;
+	}
 	.chip-outlined-inherit {
 		background-color: transparent;
 		color: inherit;
@@ -88,5 +91,14 @@
 	.chip-filled-success {
 		background-color: var(--mdc-theme-success, #2e7d32);
 		color: var(--mdc-theme-on-success, white);
+	}
+	.chip-outlined-info {
+		@extend .chip-outlined-inherit;
+		color: var(--mdc-theme-info, #0288d1);
+		border-color: var(--mdc-theme-info, #0288d1);
+	}
+	.chip-filled-info {
+		background-color: var(--mdc-theme-info, #0288d1);
+		color: var(--mdc-theme-on-info, white);
 	}
 </style>

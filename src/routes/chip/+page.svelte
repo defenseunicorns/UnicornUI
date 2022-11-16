@@ -205,6 +205,25 @@ Slots:
 				</Box>
 			</Box>
 		</Accordion>
+		<Accordion>
+			<Typography slot="headerContent" variant="h6">Color: "info"</Typography>
+			<Box slot="content">
+				<pre class="variant-code">
+{`<Chip variant="outlined" color="info">Info Outlined</Chip>
+<Chip color="info">Filled Info</Chip>
+<Chip variant="outlined" color="info" clickable>
+  Outlined Info Clickable
+</Chip>
+<Chip color="info" clickable>Filled Info Clickable</Chip>`}
+</pre>
+				<Box class="chip-example">
+					<Chip variant="outlined" color="info">Info Outlined</Chip>
+					<Chip color="info">Filled Info</Chip>
+					<Chip variant="outlined" color="info" clickable>Outlined Info Clickable</Chip>
+					<Chip color="info" clickable>Filled Info Clickable</Chip>
+				</Box>
+			</Box>
+		</Accordion>
 	</AccordionGroup>
 </Variant>
 

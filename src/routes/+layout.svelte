@@ -56,4 +56,7 @@
 		gap: 12px;
 		flex-wrap: wrap;
 	}
+	main {
+		padding-bottom: 32px;
+	}
 </style>

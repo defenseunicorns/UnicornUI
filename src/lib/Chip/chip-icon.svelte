@@ -7,7 +7,10 @@
 	let variant = $$props.slot;
 </script>
 
-<span class="mdc-evolution-chip__cell mdc-evolution-chip__cell--{variant}" role="gridcell">
+<span
+	class="chip-icon-wrapper mdc-evolution-chip__cell mdc-evolution-chip__cell--{variant}"
+	role="gridcell"
+>
 	<Box
 		element="button"
 		eventComponent={current_component}
