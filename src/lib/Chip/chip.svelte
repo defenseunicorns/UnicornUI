@@ -2,15 +2,16 @@
 	import Box from '$lib/Box/box.svelte';
 	import Typography from '$lib/Typography/typography.svelte';
 	import { current_component } from 'svelte/internal';
-	import type { ChipProps, ChipVariant } from './chip.types';
+	import type { ChipColor, ChipProps, ChipVariant } from './chip.types';
 
 	type T = $$Generic<EventTarget>;
 	type $$Props = ChipProps<T>;
 
 	export let variant: ChipVariant = 'filled';
+	export let color: ChipColor = 'inherit';
 </script>
 
-<span class="mdc-evolution-chip chip-primary-{variant}" role="row">
+<span class="mdc-evolution-chip chip-primary-{variant} chip-color-{color}" role="row">
 	<span
 		class=" mdc-evolution-chip__cell mdc-evolution-chip--with-primary-graphic mdc-evolution-chip__cell--primary"
 		role="gridcell"
@@ -42,5 +43,13 @@
 		border-color: inherit;
 		border-width: 1px;
 		border-style: solid;
+	}
+	.chip-primary-outlined.chip-color-primary {
+		color: var(--mdc-theme-primary);
+		border-color: var(--mdc-theme-primary);
+	}
+	.chip-primary-filled.chip-color-primary {
+		background-color: var(--mdc-theme-primary);
+		color: var(--mdc-theme-on-primary);
 	}
 </style>

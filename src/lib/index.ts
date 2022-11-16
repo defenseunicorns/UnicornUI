@@ -35,6 +35,13 @@ export {
 
 // Re-export your types here.
 export type {
+	ChipProps,
+	ChipElement,
+	ChipIconProps,
+	ChipVariant,
+	ChipColor
+} from './Chip/chip.types';
+export type {
 	ButtonVariant,
 	ButtonColor,
 	ButtonShape,
@@ -48,7 +55,6 @@ export type {
 	TypographyProps
 } from './Typography/typography.types';
 export type { BoxProps } from './Box/box.types';
-export type { ChipProps, ChipElement, ChipIconProps, ChipVariant } from './Chip/chip.types';
 export type { DialogActionsProps, DialogTitleProps } from './Dialog/Dialog.types';
 export type { IconButtonColor, IconButtonProps } from './IconButton/IconButton.types';
 export type { StepVariant, StepOrientation, StepProps } from './Stepper/stepper.types';

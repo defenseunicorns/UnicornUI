@@ -14,9 +14,10 @@
 	title="Chip"
 	code={`
 Props (extends BoxProps):
-  variant?: 'filled' | 'outlined' = 'outlined';
-  // Optional. Defining href sets a by default. 
-  element?: 'a' | 'button'
+  variant?: ChipVariant = 'outlined';
+  color?: ChipColor = 'inherit';
+  // Optional. Defining href sets "a" by default. 
+  element?: ChipElement = 'div';
   // Applies to 'button' element. Adds ripple and hover interactions.
   clickable?: boolean = false;
 
@@ -109,6 +110,25 @@ Slots:
 				</Box>
 			</Box>
 		</Accordion>
+		<Accordion>
+			<Typography slot="headerContent" variant="h6">Color: "primary"</Typography>
+			<Box slot="content">
+				<pre class="variant-code">
+{`<Chip variant="outlined" color="primary">Primary Outlined</Chip>
+<Chip color="primary">Filled Primary</Chip>
+<Chip variant="outlined" color="primary" clickable>
+  Outlined Primary Clickable
+</Chip>
+<Chip color="primary" clickable>Filled Primary Clickable</Chip>`}
+</pre>
+				<Box class="chip-example">
+					<Chip variant="outlined" color="primary">Primary Outlined</Chip>
+					<Chip color="primary">Filled Primary</Chip>
+					<Chip variant="outlined" color="primary" clickable>Outlined Primary Clickable</Chip>
+					<Chip color="primary" clickable>Filled Primary Clickable</Chip>
+				</Box>
+			</Box>
+		</Accordion>
 	</AccordionGroup>
 </Variant>
 
@@ -120,5 +140,6 @@ Slots:
 		gap: 32px;
 		justify-content: center;
 		align-content: center;
+		flex-wrap: wrap;
 	}
 </style>
