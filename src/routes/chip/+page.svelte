@@ -129,6 +129,25 @@ Slots:
 				</Box>
 			</Box>
 		</Accordion>
+		<Accordion>
+			<Typography slot="headerContent" variant="h6">Color: "secondary"</Typography>
+			<Box slot="content">
+				<pre class="variant-code">
+{`<Chip variant="outlined" color="secondary">Secondary Outlined</Chip>
+<Chip color="secondary">Filled Secondary</Chip>
+<Chip variant="outlined" color="secondary" clickable>
+  Outlined Secondary Clickable
+</Chip>
+<Chip color="secondary" clickable>Filled Secondary Clickable</Chip>`}
+</pre>
+				<Box class="chip-example">
+					<Chip variant="outlined" color="secondary">Secondary Outlined</Chip>
+					<Chip color="secondary">Filled Secondary</Chip>
+					<Chip variant="outlined" color="secondary" clickable>Outlined Secondary Clickable</Chip>
+					<Chip color="secondary" clickable>Filled Secondary Clickable</Chip>
+				</Box>
+			</Box>
+		</Accordion>
 	</AccordionGroup>
 </Variant>
 
