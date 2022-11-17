@@ -9,7 +9,7 @@ export type ChipColor =
 	| 'success'
 	| 'warning'
 	| 'info'
-	| 'inherit';
+	| 'default';
 export interface ChipProps<T extends EventTarget> extends BoxProps<T> {
 	clickable?: boolean;
 	element?: ChipElement;
