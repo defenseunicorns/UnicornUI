@@ -53,7 +53,7 @@
 	}
 	.chip-filled-default {
 		@include chips.ripple-color(var(--mdc-chip-filled-ripple-color, var(--mdc-chip-color, black)));
-		background-color: var(--mdc-chip-background-color, #e0e0e0);
+		background-color: var(--mdc-chip-background-color, #c7c9ca);
 		color: var(--mdc-chip-color, black);
 	}
 	.chip-outlined-default {

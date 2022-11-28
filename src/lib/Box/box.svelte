@@ -28,7 +28,7 @@
 	<slot />
 </svelte:element>
 
-<style>
+<style lang="scss">
 	.unstyled-box,
 	.unstyled-box::before,
 	.unstyled-box::after {
