@@ -48,22 +48,31 @@
 <style lang="scss" global>
 	@use '@material/chips' as chips;
 	@use '@material/chips/styles' as styles;
+	@import '../shared/theme/default-colors/colors.css';
 	.chip-wrapper {
 		@extend .mdc-evolution-chip;
 	}
 	.chip-filled-default {
-		@include chips.ripple-color(var(--mdc-chip-filled-ripple-color, var(--mdc-chip-color, black)));
-		background-color: var(--mdc-chip-background-color, #c7c9ca);
-		color: var(--mdc-chip-color, black);
+		@include chips.ripple-color(
+			var(
+				--mdc-chip-filled-ripple-color,
+				var(--mdc-chip-color, var(--uui-default-colors-on-default))
+			)
+		);
+		background-color: var(--mdc-chip-background-color, var(--uui-default-colors-default));
+		color: var(--mdc-chip-color, var(--uui-default-colors-on-default));
 	}
 	.chip-outlined-default {
 		@include chips.ripple-color(
-			var(--mdc-chip-outlined-ripple-color, var(--mdc-chip-background-color, black))
+			var(
+				--mdc-chip-outlined-ripple-color,
+				var(--mdc-chip-background-color, var(--uui-default-colors-on-default))
+			)
 		);
 
 		background-color: transparent;
-		color: var(--mdc-chip-background-color, black);
-		border-color: var(--mdc-chip-background-color, black);
+		color: var(--mdc-chip-background-color, var(--uuid-default-colors-on-default));
+		border-color: var(--mdc-chip-background-color, var(--uuid-default-colors-ondefault));
 		border-width: 1px;
 		border-style: solid;
 	}
@@ -91,46 +100,46 @@
 	}
 	.chip-outlined-error {
 		@extend .chip-outlined-default;
-		@include chips.ripple-color(var(--mdc-theme-error, #d32f2f));
-		color: var(--mdc-theme-error, #d32f2f);
-		border-color: var(--mdc-theme-error, #d32f2f);
+		@include chips.ripple-color(var(--mdc-theme-error, var(--uui-default-colors-error)));
+		color: var(--mdc-theme-error, var(--uui-default-colors-error));
+		border-color: var(--mdc-theme-error, var(--uui-default-colors-error));
 	}
 	.chip-filled-error {
-		@include chips.ripple-color(var(--mdc-theme-on-error, white));
-		background-color: var(--mdc-theme-error, #d32f2f);
-		color: var(--mdc-theme-on-error, white);
+		@include chips.ripple-color(var(--mdc-theme-on-error, var(--uui-default-colors-on-error)));
+		background-color: var(--mdc-theme-error, var(--uui-default-colors-error));
+		color: var(--mdc-theme-on-error, var(--uui-default-colors-on-error));
 	}
 	.chip-outlined-warning {
 		@extend .chip-outlined-default;
-		@include chips.ripple-color(var(--mdc-theme-warning, #ed6c02));
-		color: var(--mdc-theme-warning, #ed6c02);
-		border-color: var(--mdc-theme-warning, #ed6c02);
+		@include chips.ripple-color(var(--mdc-theme-warning, var(--uui-default-colors-warning)));
+		color: var(--mdc-theme-warning, var(--uui-default-colors-warning));
+		border-color: var(--mdc-theme-warning, var(--uui-default-colors-warning));
 	}
 	.chip-filled-warning {
-		@include chips.ripple-color(var(--mdc-theme-on-warning, white));
-		background-color: var(--mdc-theme-warning, #ed6c02);
-		color: var(--mdc-theme-on-warning, white);
+		@include chips.ripple-color(var(--mdc-theme-on-warning, --uui-default-colors-on-warning));
+		background-color: var(--mdc-theme-warning, --uui-default-colors-warning);
+		color: var(--mdc-theme-on-warning, --uui-default-colors-on-warning);
 	}
 	.chip-outlined-success {
 		@extend .chip-outlined-default;
-		@include chips.ripple-color(var(--mdc-theme-success, #2e7d32));
-		color: var(--mdc-theme-success, #2e7d32);
-		border-color: var(--mdc-theme-success, #2e7d32);
+		@include chips.ripple-color(var(--mdc-theme-success, var(--uui-default-colors-success)));
+		color: var(--mdc-theme-success, var(--uui-default-colors-success));
+		border-color: var(--mdc-theme-success, var(--uui-defualt-colors-success));
 	}
 	.chip-filled-success {
-		@include chips.ripple-color(var(--mdc-theme-on-success, white));
-		background-color: var(--mdc-theme-success, #2e7d32);
-		color: var(--mdc-theme-on-success, white);
+		@include chips.ripple-color(var(--mdc-theme-on-success, var(--uui-default-colors-on-success)));
+		background-color: var(--mdc-theme-success, var(--uui-default-colors-success));
+		color: var(--mdc-theme-on-success, var(--uui-default-colors-on-success));
 	}
 	.chip-outlined-info {
 		@extend .chip-outlined-default;
-		@include chips.ripple-color(var(--mdc-theme-info, #0288d1));
-		color: var(--mdc-theme-info, #0288d1);
-		border-color: var(--mdc-theme-info, #0288d1);
+		@include chips.ripple-color(var(--mdc-theme-info, var(--uui-default-colors-info)));
+		color: var(--mdc-theme-info, var(--uui-default-colors-info));
+		border-color: var(--mdc-theme-info, var(--uui-default-colors-info));
 	}
 	.chip-filled-info {
-		@include chips.ripple-color(var(--mdc-theme-on-info, white));
-		background-color: var(--mdc-theme-info, #0288d1);
-		color: var(--mdc-theme-on-info, white);
+		@include chips.ripple-color(var(--mdc-theme-on-info, var(--uui-default-colors-on-info)));
+		background-color: var(--mdc-theme-info, var(--uui-default-colors-info));
+		color: var(--mdc-theme-on-info, var(--uui-default-colors-on-info));
 	}
 </style>

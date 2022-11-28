@@ -1,0 +1,12 @@
+:root {
+	--uui-default-colors-success: #2e7d32;
+	--uui-default-colors-on-success: white;
+	--uui-default-colors-info: #0288d1;
+	--uui-default-colors-on-info: white;
+	--uui-default-colors-error: #b00020;
+	--uui-default-colors-on-error: white;
+	--uui-default-colors-warning: #ed6c02;
+	--uui-default-colors-on-warning: white;
+	--uui-default-colors-default: #c7c9ca;
+	--uui-default-colors-on-default: black;
+}
