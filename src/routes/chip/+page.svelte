@@ -14,10 +14,10 @@
 	title="Chip"
 	code={`
 Props (extends BoxProps):
-  variant?: ChipVariant = 'outlined';
-  color?: ChipColor = 'inherit';
+  variant?: ChipVariant = 'filled';
+  color?: ChipColor = 'default';
   // Optional. Defining href sets "a" by default. 
-  element?: ChipElement = 'div';
+  element?: ChipElement = 'button';
   // Applies to 'button' element. Adds ripple and hover interactions.
   clickable?: boolean = false;
 
@@ -25,6 +25,18 @@ Slots:
 	primary
 	unamed
 	trailing
+
+Theming (optional, color="default"):
+// "filled" background-color
+// "outlined" text, border, and ripple colors.
+--mdc-chip-background-color
+// "filled" text color
+--mdc-chip-color
+// "filled" ripple color
+--mdc-chip-filled-ripple-color
+// "outlined" ripple color
+--mdc-chip-outlined-ripple-color
+  
 `}
 >
 	<AccordionGroup>

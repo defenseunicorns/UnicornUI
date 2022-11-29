@@ -10,18 +10,19 @@ https://material.io/develop/web/guides/typography
 
 Props (extends BoxProps):
   variant: TypographyVariant = 'body1';
+  color: TextColors = 'inherit';
   
 Slots:
     default
 
 Examples:
   <Typography variant="h1">h1</Typography>
-  <Typography variant="h2">h2</Typography>
-  <Typography variant="h3">h3</Typography>
-  <Typography variant="h4">h4</Typography>
-  <Typography variant="h5">h5</Typography>
-  <Typography variant="h6">h6</Typography>
-  <Typography variant="body1">body1</Typography>
+  <Typography variant="h2" color="primary">h2</Typography>
+  <Typography variant="h3" color="secondary">h3</Typography>
+  <Typography variant="h4" color="info">h4</Typography>
+  <Typography variant="h5" color="success">h5</Typography>
+  <Typography variant="h6" color="warning">h6</Typography>
+  <Typography variant="body1" color="on-surface">body1</Typography>
   <Typography variant="body2">body2</Typography>
   <Typography variant="subtitle1">subtitle1</Typography>
   <Typography variant="subtitle2">subtitle2</Typography>
@@ -34,12 +35,12 @@ Examples:
 >
 	<div class="typography-examples">
 		<Typography variant="h1">h1</Typography>
-		<Typography variant="h2">h2</Typography>
-		<Typography variant="h3">h3</Typography>
-		<Typography variant="h4">h4</Typography>
-		<Typography variant="h5">h5</Typography>
-		<Typography variant="h6">h6</Typography>
-		<Typography variant="body1">body1</Typography>
+		<Typography variant="h2" color="primary">h2</Typography>
+		<Typography variant="h3" color="secondary">h3</Typography>
+		<Typography variant="h4" color="info">h4</Typography>
+		<Typography variant="h5" color="success">h5</Typography>
+		<Typography variant="h6" color="warning">h6</Typography>
+		<Typography variant="body1" color="on-surface">body1</Typography>
 		<Typography variant="body2">body2</Typography>
 		<Typography variant="subtitle1">subtitle1</Typography>
 		<Typography variant="subtitle2">subtitle2</Typography>

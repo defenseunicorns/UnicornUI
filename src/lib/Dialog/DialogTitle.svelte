@@ -7,7 +7,7 @@
 	type T = $$Generic<EventTarget>;
 
 	// Default Props
-	export let variant: TypographyVariant = 'h2';
+	export let variant: TypographyVariant = 'h6';
 
 	type $$Props = DialogTitleProps<T>;
 </script>

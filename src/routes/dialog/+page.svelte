@@ -4,6 +4,7 @@
 	import DialogTitle from '$lib/Dialog/DialogTitle.svelte';
 	import DialogActions from '$lib/Dialog/DialogActions.svelte';
 	import Variant from '../../website-components/Variant.svelte';
+	import Typography from '$lib/Typography/typography.svelte';
 
 	// Vars
 	let toggleDialog: () => void;
@@ -28,20 +29,20 @@ Helper Components:
 
 Example:
 <Dialog bind:toggleDialog>
-	<DialogTitle slot="title">Dialog Title</DialogTitle>
-	<span slot="content">Dialog Content</span>
-	<DialogActions slot="actions">
-		<Button shape="squared" on:click={toggleDialog}>Close</Button>
-	</DialogActions>
+  <DialogTitle slot="title">Dialog Title</DialogTitle>
+  <Typography slot="content">You opened a dialog!</Typography>
+  <DialogActions slot="actions">
+	<Button on:click={toggleDialog}>Close</Button>
+  </DialogActions>
 </Dialog>
-<Button variant="raised" shape="rounded" on:click={toggleDialog}>Open Dialog</Button>`}
+<Button variant="raised" color="secondary" on:click={toggleDialog}>Open Dialog</Button>`}
 >
 	<Dialog bind:toggleDialog>
 		<DialogTitle slot="title">Dialog Title</DialogTitle>
-		<span slot="content">{`You opened a dialog!`}</span>
+		<Typography slot="content">You opened a dialog!</Typography>
 		<DialogActions slot="actions">
-			<Button shape="squared" on:click={toggleDialog} color="secondary">Close</Button>
+			<Button on:click={toggleDialog}>Close</Button>
 		</DialogActions>
 	</Dialog>
-	<Button variant="raised" shape="rounded" on:click={toggleDialog}>Open Dialog</Button>
+	<Button variant="raised" color="secondary" on:click={toggleDialog}>Open Dialog</Button>
 </Variant>

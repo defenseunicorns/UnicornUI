@@ -49,5 +49,6 @@
 	.mdc-dialog__content {
 		max-height: 80vh;
 		overflow: scroll;
+		color: var(--mdc-theme-on-surface) !important;
 	}
 </style>

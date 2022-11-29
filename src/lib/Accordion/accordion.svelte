@@ -29,8 +29,6 @@
 		<slot name="icon">
 			<IconButton
 				class="accordion-toggle"
-				iconColor="primary"
-				toggledIconColor="primary"
 				on:click={() => {
 					isOpen = !isOpen;
 				}}
@@ -73,6 +71,9 @@
 		padding: 1rem;
 		display: flex;
 		flex-direction: column;
+	}
+	.accordion .mdc-icon-button i svg path {
+		fill: var(--mdc-theme-on-surface);
 	}
 	.accordion .mdc-icon-button:hover i svg path {
 		fill: var(--mdc-theme-primary);
