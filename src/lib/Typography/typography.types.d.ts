@@ -1,5 +1,5 @@
 import type { BoxProps } from '$lib/Box/box.types';
-import type { Colors, TextColors } from '$lib/shared/theme/default-colors/colors.types';
+import type { TextColors } from '$lib/shared/theme/default-colors/colors.types';
 
 export type TypographyVariant =
 	| 'h1'
