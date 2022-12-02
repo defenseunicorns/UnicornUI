@@ -1,29 +1,34 @@
-export type Palettes = Palette[];
+export type PreferredTheme = 'light' | 'dark' | undefined;
 
-export type PaletteField = string | BaseColors<BaseTextColors> | BaseColors<string>;
-export interface Palette extends BaseColors<string> {
-	on?: BaseColors<string>;
-	text?: BaseColors<BaseTextColors>;
+export type Palettes = Palette[];
+export type PaletteField = string | ColorFields<TextColorFields> | ColorFields<string>;
+export interface Palette extends ColorFields<string> {
+	on?: ColorFields<string>;
+	text?: ColorFields<TextColorFields>;
 	id: string;
 	[key: string]: PaletteField;
 }
 
-export type BaseColorType = string | BaseTextColors;
-export interface BaseColors<BaseColorType> {
-	primary?: BaseColorType;
-	secondary?: BaseColorType;
-	surface?: BaseColorType;
-	background?: BaseColorType;
-	success?: BaseColorType;
-	warning?: BaseColorType;
-	info?: BaseColorType;
-	error?: BaseColorType;
-	[key: string]: BaseColorType;
+export type ColorField = string | TextColorFields;
+export interface ColorFields<ColorField> {
+	primary?: ColorField;
+	secondary?: ColorField;
+	surface?: ColorField;
+	background?: ColorField;
+	success?: ColorField;
+	warning?: ColorField;
+	info?: ColorField;
+	error?: ColorField;
+	[key: string]: ColorField;
 }
 
-export interface BaseTextColors {
+export interface TextColorFields {
 	light?: string;
 	dark?: string;
 	background?: string;
+	[key: string]: string;
+}
+
+export interface ThemeVars {
 	[key: string]: string;
 }

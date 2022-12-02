@@ -10,11 +10,13 @@
 
 	const themeMap = createThemeStyle(themePalettes);
 	$: {
-		if (mounted) {
-			Object.entries(themeMap.get(theme) || {}).forEach((entry: [string, string]) => {
+		const currentTheme = themeMap.get(theme);
+		if (mounted && currentTheme) {
+			Object.entries(currentTheme).forEach((entry: [string, string]) => {
 				document.documentElement.style.setProperty(entry[0], entry[1]);
 				document.body.style.setProperty('background-color', `var(--mdc-theme-background)`);
 				document.body.style.setProperty('color', 'var(--mdc-theme-on-background)');
+				console.log(document.documentElement.style.getPropertyValue('prefers-color-scheme'));
 			});
 		}
 	}

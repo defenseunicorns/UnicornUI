@@ -1,18 +1,22 @@
-import type { BaseColors, BaseTextColors, PaletteField, Palette, Palettes } from './palette.types';
+import type {
+	ColorFields,
+	TextColorFields,
+	PaletteField,
+	Palette,
+	Palettes,
+	ThemeVars
+} from './palette.types';
 
-export function createThemeStyle(palettes: Palettes): Map<string, Record<string, string>> {
-	const paletteMap = new Map<string, Record<string, string>>();
+export function createThemeStyle(palettes: Palettes): Map<string, ThemeVars> {
+	const paletteMap = new Map<string, ThemeVars>();
 	palettes.forEach((palette: Palette) => {
 		paletteMap.set(palette.id, paletteToCssVars(palette));
 	});
 	return paletteMap;
 }
 
-export function paletteToCssVars(
-	palette: Palette,
-	prefix = '--mdc-theme-'
-): Record<string, string> {
-	let paletteCss: Record<string, string> = {};
+export function paletteToCssVars(palette: Palette, prefix = '--mdc-theme-'): ThemeVars {
+	let paletteCss: ThemeVars = {};
 	Object.entries(palette).forEach((value: [string, PaletteField]) => {
 		const [key, val] = value;
 		// Field type string
@@ -21,7 +25,7 @@ export function paletteToCssVars(
 			paletteCss[`${prefix}${key}`] = val;
 		}
 		// Field types BaseColors<string> | BaseColors<BaseTextColors>
-		else if (isBaseColorType(val)) {
+		else if (isColorFields(val)) {
 			paletteCss = { ...paletteCss, ...baseColorsToCssVars(val, `${prefix}${key}-`) };
 		}
 	});
@@ -29,11 +33,11 @@ export function paletteToCssVars(
 }
 
 export function baseColorsToCssVars(
-	baseColors: BaseColors<string | BaseTextColors>,
+	baseColors: ColorFields<string | TextColorFields>,
 	prefix: string
-): Record<string, string> {
-	let baseColorsCss: Record<string, string> = {};
-	if (isBaseTextColor(baseColors)) {
+): ThemeVars {
+	let baseColorsCss: ThemeVars = {};
+	if (isTextColorFields(baseColors)) {
 		baseColorsCss = { ...baseColorsCss, ...textPaletteToCssVars(baseColors) };
 	} else {
 		baseColorsCss = { ...baseColorsCss, ...paletteToCssVars(baseColors as Palette, prefix) };
@@ -42,11 +46,11 @@ export function baseColorsToCssVars(
 }
 
 export function textPaletteToCssVars(
-	palette: BaseColors<BaseTextColors>,
+	palette: ColorFields<TextColorFields>,
 	prefix = '--mdc-theme-text-'
-): Record<string, string> {
-	const paletteCss: Record<string, string> = {};
-	Object.entries(palette).forEach((value: [string, BaseTextColors]) => {
+): ThemeVars {
+	const paletteCss: ThemeVars = {};
+	Object.entries(palette).forEach((value: [string, TextColorFields]) => {
 		const [baseColorKey, baseTextColors] = value;
 		Object.entries(baseTextColors).forEach((baseTextColor: [string, string]) => {
 			const [textColorKey, textColorValue] = baseTextColor;
@@ -56,16 +60,18 @@ export function textPaletteToCssVars(
 	return paletteCss;
 }
 
-function isBaseColorType(
+function isColorFields(
 	object: Record<string, PaletteField>
-): object is BaseColors<string | BaseTextColors> {
+): object is ColorFields<string | TextColorFields> {
 	const objectValue = Object.values(object).at(0);
-	return objectValue !== undefined && (typeof objectValue === 'string' || isBaseTextColor(object));
+	return (
+		objectValue !== undefined && (typeof objectValue === 'string' || isTextColorFields(object))
+	);
 }
 
-export function isBaseTextColor(
+export function isTextColorFields(
 	object: Record<string, PaletteField>
-): object is BaseColors<BaseTextColors> {
+): object is ColorFields<TextColorFields> {
 	const objectValue = Object.values(object).at(0);
 	return (
 		objectValue !== undefined &&

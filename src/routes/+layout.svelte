@@ -2,8 +2,8 @@
 	import '../app.css';
 	import 'material-symbols/';
 	import '@fontsource/roboto';
-	import { Button } from '$lib';
-	import { afterUpdate } from 'svelte';
+	import { Button, getPreferredTheme } from '$lib';
+	import { afterUpdate, onMount } from 'svelte';
 	import Typography from '$lib/Typography/typography.svelte';
 	import type { ButtonColor, ButtonShape, ButtonVariant } from '$lib';
 	import Theme from '$lib/Theme/theme.svelte';
@@ -15,6 +15,13 @@
 
 	currentTheme.subscribe((value) => {
 		currentThemeVal = value;
+	});
+
+	onMount(() => {
+		const themePreferrence = getPreferredTheme(window);
+		if (themePreferrence) {
+			currentTheme.set(themePreferrence);
+		}
 	});
 
 	// Lifecycle

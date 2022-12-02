@@ -3,7 +3,7 @@ import {
 	textPaletteToCssVars
 } from '../../../../src/lib/shared/theme/palette/palette';
 
-describe('paletteToVars', () => {
+describe('paletteToCssVars', () => {
 	it('converts DefaultPalette values into a css string given a Palette Object', () => {
 		const paletteVars = paletteToCssVars({
 			id: 'test',
@@ -50,7 +50,7 @@ describe('paletteToVars', () => {
 	});
 });
 
-describe('textPaletteToCss', () => {
+describe('textPaletteToCssVars', () => {
 	it('converts a text palette to css variable', () => {
 		const textPaletteCssString = textPaletteToCssVars({
 			primary: {
