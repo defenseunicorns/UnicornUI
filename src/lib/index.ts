@@ -59,4 +59,10 @@ export type { DialogActionsProps, DialogTitleProps } from './Dialog/Dialog.types
 export type { IconButtonColor, IconButtonProps } from './IconButton/IconButton.types';
 export type { StepVariant, StepOrientation, StepProps } from './Stepper/stepper.types';
 export type { AccordionProps, AccordionGroupProps } from './Accordion/accordion.types';
-export type { ThemeColors, Palette, DefaultPalette, TextPalette } from './Theme/theme.types';
+export type {
+	ThemedPalette,
+	Palette,
+	BaseColorType,
+	BaseColors,
+	BaseTextColors
+} from './shared/theme/palette/palette.types';
