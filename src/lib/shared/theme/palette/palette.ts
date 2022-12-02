@@ -1,57 +1,59 @@
 import type { BaseColors, BaseTextColors, PaletteField, Palette, Palettes } from './palette.types';
 
-export function createThemeStyle(palettes: Palettes): Map<string, string> {
-	const paletteMap = new Map<string, string>();
+export function createThemeStyle(palettes: Palettes): Map<string, Record<string, string>> {
+	const paletteMap = new Map<string, Record<string, string>>();
 	palettes.forEach((palette: Palette) => {
-		paletteMap.set(palette.id, paletteToCss(palette));
+		paletteMap.set(palette.id, paletteToCssVars(palette));
 	});
 	return paletteMap;
 }
 
-export function paletteToCss(palette: Palette, prefix = '--mdc-theme-') {
-	let paletteCss = '';
+export function paletteToCssVars(
+	palette: Palette,
+	prefix = '--mdc-theme-'
+): Record<string, string> {
+	let paletteCss: Record<string, string> = {};
 	Object.entries(palette).forEach((value: [string, PaletteField]) => {
 		const [key, val] = value;
 		// Field type string
 		if (key === 'id') return;
 		if (typeof val === 'string') {
-			paletteCss += createVarString(`${prefix}${key}`, val);
+			paletteCss[`${prefix}${key}`] = val;
 		}
 		// Field types BaseColors<string> | BaseColors<BaseTextColors>
 		else if (isBaseColorType(val)) {
-			paletteCss += baseColorsToCss(val, `${prefix}${key}-`);
+			paletteCss = { ...paletteCss, ...baseColorsToCssVars(val, `${prefix}${key}-`) };
 		}
 	});
 	return paletteCss;
 }
 
-export function baseColorsToCss(baseColors: BaseColors<string | BaseTextColors>, prefix: string) {
-	let baseColorsCss = '';
+export function baseColorsToCssVars(
+	baseColors: BaseColors<string | BaseTextColors>,
+	prefix: string
+): Record<string, string> {
+	let baseColorsCss: Record<string, string> = {};
 	if (isBaseTextColor(baseColors)) {
-		baseColorsCss += textPaletteToCss(baseColors);
+		baseColorsCss = { ...baseColorsCss, ...textPaletteToCssVars(baseColors) };
 	} else {
-		baseColorsCss += paletteToCss(baseColors as Palette, prefix);
+		baseColorsCss = { ...baseColorsCss, ...paletteToCssVars(baseColors as Palette, prefix) };
 	}
 	return baseColorsCss;
 }
 
-export function textPaletteToCss(
+export function textPaletteToCssVars(
 	palette: BaseColors<BaseTextColors>,
 	prefix = '--mdc-theme-text-'
-) {
-	let paletteCss = '';
+): Record<string, string> {
+	const paletteCss: Record<string, string> = {};
 	Object.entries(palette).forEach((value: [string, BaseTextColors]) => {
 		const [baseColorKey, baseTextColors] = value;
 		Object.entries(baseTextColors).forEach((baseTextColor: [string, string]) => {
 			const [textColorKey, textColorValue] = baseTextColor;
-			paletteCss += createVarString(`${prefix}${baseColorKey}-on-${textColorKey}`, textColorValue);
+			paletteCss[`${prefix}${baseColorKey}-on-${textColorKey}`] = textColorValue;
 		});
 	});
 	return paletteCss;
-}
-
-export function createVarString(name: string, value: string) {
-	return `${name}: ${value};`;
 }
 
 function isBaseColorType(
