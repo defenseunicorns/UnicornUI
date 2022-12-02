@@ -1,20 +1,24 @@
-import type { BaseColors, BaseTextColors, Palette, ThemedPalette } from './palette.types';
+import type { BaseColors, BaseTextColors, PaletteField, Palette, Palettes } from './palette.types';
 
-export function themeColorsToCssString(themeColors: ThemedPalette) {
-	return {
-		light: paletteToCss(themeColors.light || {}),
-		dark: paletteToCss(themeColors.dark || {})
-	};
+export function createThemeStyle(palettes: Palettes): Map<string, string> {
+	const paletteMap = new Map<string, string>();
+	palettes.forEach((palette: Palette) => {
+		paletteMap.set(palette.id, paletteToCss(palette));
+	});
+	return paletteMap;
 }
 
 export function paletteToCss(palette: Palette, prefix = '--mdc-theme-') {
 	let paletteCss = '';
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	Object.entries(palette).forEach((value: [string, any]) => {
+	Object.entries(palette).forEach((value: [string, PaletteField]) => {
 		const [key, val] = value;
+		// Field type string
+		if (key === 'id') return;
 		if (typeof val === 'string') {
 			paletteCss += createVarString(`${prefix}${key}`, val);
-		} else if (isBaseColorType(val)) {
+		}
+		// Field types BaseColors<string> | BaseColors<BaseTextColors>
+		else if (isBaseColorType(val)) {
 			paletteCss += baseColorsToCss(val, `${prefix}${key}-`);
 		}
 	});
@@ -51,20 +55,18 @@ export function createVarString(name: string, value: string) {
 }
 
 function isBaseColorType(
-	// Disabling no-explicit-any because it makes no sense in a type check.
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	object: Record<string, any>
+	object: Record<string, PaletteField>
 ): object is BaseColors<string | BaseTextColors> {
 	const objectValue = Object.values(object).at(0);
 	return objectValue !== undefined && (typeof objectValue === 'string' || isBaseTextColor(object));
 }
 
-// Disabling no-explicit-any because it makes no sense in a type check.
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function isBaseTextColor(object: Record<string, any>): object is BaseColors<BaseTextColors> {
+export function isBaseTextColor(
+	object: Record<string, PaletteField>
+): object is BaseColors<BaseTextColors> {
 	const objectValue = Object.values(object).at(0);
 	return (
-		objectValue &&
+		objectValue !== undefined &&
 		typeof objectValue === 'object' &&
 		typeof Object.values(objectValue).at(0) === 'string'
 	);

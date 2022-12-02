@@ -14,6 +14,7 @@ describe('createVarString', () => {
 describe('paletteToCss', () => {
 	it('converts DefaultPalette values into a css string given a Palette Object', () => {
 		const paletteCssString = paletteToCss({
+			id: 'test',
 			primary: '#68c4ff',
 			secondary: '#787ff6'
 		});
@@ -22,6 +23,7 @@ describe('paletteToCss', () => {
 
 	it('converts on-values to the correct css variables', () => {
 		const paletteCssString = paletteToCss({
+			id: 'test',
 			on: {
 				primary: 'black',
 				secondary: 'white'
@@ -32,6 +34,7 @@ describe('paletteToCss', () => {
 
 	it('converts text-values to the correct css variables', () => {
 		const paletteCssString = paletteToCss({
+			id: 'test',
 			text: {
 				primary: {
 					dark: 'white',

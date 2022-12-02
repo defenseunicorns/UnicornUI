@@ -1,7 +1,8 @@
-import type { ThemedPalette } from '$lib';
+import type { Palettes } from '$lib/shared/theme/palette/palette.types';
 
-const palette: ThemedPalette = {
-	dark: {
+const palettes: Palettes = [
+	{
+		id: 'dark',
 		primary: '#68c4ff',
 		secondary: '#787ff6',
 		surface: '#244a8f',
@@ -48,7 +49,8 @@ const palette: ThemedPalette = {
 			}
 		}
 	},
-	light: {
+	{
+		id: 'light',
 		primary: '#68c4ff',
 		secondary: '#787ff6',
 		surface: '#244a8f',
@@ -95,6 +97,6 @@ const palette: ThemedPalette = {
 			}
 		}
 	}
-};
+];
 
-export default palette;
+export default palettes;

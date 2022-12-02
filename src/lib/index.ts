@@ -60,7 +60,7 @@ export type { IconButtonColor, IconButtonProps } from './IconButton/IconButton.t
 export type { StepVariant, StepOrientation, StepProps } from './Stepper/stepper.types';
 export type { AccordionProps, AccordionGroupProps } from './Accordion/accordion.types';
 export type {
-	ThemedPalette,
+	Palettes,
 	Palette,
 	BaseColorType,
 	BaseColors,

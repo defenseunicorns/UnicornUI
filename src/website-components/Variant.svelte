@@ -7,7 +7,9 @@
 
 <section class="variant">
 	<Typography variant="h3">{title}</Typography>
-	<Typography variant="body1" element="pre" class="variant-code">{`${code.trim()}`}</Typography>
+	<Typography variant="body1" element="pre" class="variant-code" color="primary"
+		>{`${code.trim()}`}</Typography
+	>
 	<div class="preview">
 		<slot />
 	</div>

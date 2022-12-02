@@ -1,12 +1,11 @@
-export interface ThemedPalette {
-	dark?: Palette;
-	light?: Palette;
-}
+export type Palettes = Palette[];
 
+export type PaletteField = string | BaseColors<BaseTextColors> | BaseColors<string>;
 export interface Palette extends BaseColors<string> {
 	on?: BaseColors<string>;
 	text?: BaseColors<BaseTextColors>;
-	[key: string]: string | BaseColors<BaseTextColors> | BaseColors<string>;
+	id: string;
+	[key: string]: PaletteField;
 }
 
 export type BaseColorType = string | BaseTextColors;

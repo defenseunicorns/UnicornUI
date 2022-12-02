@@ -1,9 +1,9 @@
 @import 'normalize.css/normalize.css';
-@import '@material/theme/dist/mdc.theme.min.css';
+/* @import '@material/theme/dist/mdc.theme.min.css'; */
 @import '@material/typography/dist/mdc.typography.min.css';
 
 :root {
-	--mdc-theme-primary: #68c4ff;
+	/* --mdc-theme-primary: #68c4ff;
 	--mdc-theme-on-primary: black;
 	--mdc-theme-secondary: #787ff6;
 	--mdc-theme-on-secondary: white;
@@ -38,7 +38,7 @@
 
 	--mdc-theme-text-icon-on-light: rgba(0, 0, 0, 0.38);
 	--mdc-theme-text-icon-on-dark: rgba(255, 255, 255, 0.5);
-	--mdc-theme-text-icon-on-background: rgba(0, 0, 0, 0.38);
+	--mdc-theme-text-icon-on-background: rgba(0, 0, 0, 0.38); */
 
 	/* body3 */
 	--mdc-typography-body3-font-style: normal;
@@ -58,11 +58,6 @@
 
 pre {
 	margin: 0;
-}
-
-body {
-	background-color: var(--mdc-theme-background);
-	color: var(--mdc-theme-on-background);
 }
 
 /* Custom Typography */
