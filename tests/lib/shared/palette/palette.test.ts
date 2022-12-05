@@ -6,7 +6,7 @@ import {
 describe('paletteToCssVars', () => {
 	it('converts DefaultPalette values into a css string given a Palette Object', () => {
 		const paletteVars = paletteToCssVars({
-			id: 'test',
+			name: 'test',
 			primary: '#68c4ff',
 			secondary: '#787ff6'
 		});
@@ -18,7 +18,7 @@ describe('paletteToCssVars', () => {
 
 	it('converts on-values to the correct css variables', () => {
 		const paletteVars = paletteToCssVars({
-			id: 'test',
+			name: 'test',
 			on: {
 				primary: 'black',
 				secondary: 'white'
@@ -32,7 +32,7 @@ describe('paletteToCssVars', () => {
 
 	it('converts text-values to the correct css variables', () => {
 		const paletteVars = paletteToCssVars({
-			id: 'test',
+			name: 'test',
 			text: {
 				primary: {
 					dark: 'white',

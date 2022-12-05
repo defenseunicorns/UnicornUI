@@ -11,7 +11,7 @@ const MDC_THEME_PREFIX = '--mdc-theme-';
 const MDC_THEME_TEXT_PREFIX = `${MDC_THEME_PREFIX}text-`;
 const THEME_NAME_KEY = 'name';
 
-export function createThemeStyle(palettes: Palettes): Map<string, ThemeVars> {
+export function createPaletteMap(palettes: Palettes): Map<string, ThemeVars> {
 	const paletteMap = new Map<string, ThemeVars>();
 	palettes.forEach((palette: Palette) => {
 		paletteMap.set(palette.name, paletteToCssVars(palette));

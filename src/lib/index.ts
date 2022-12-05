@@ -37,6 +37,7 @@ export {
 
 // Export Utility Functions here
 export { getPreferredTheme } from './shared/utils/theme-preference';
+export { createPaletteMap } from './shared/theme/palette/palette';
 
 // Re-export your types here.
 export type {

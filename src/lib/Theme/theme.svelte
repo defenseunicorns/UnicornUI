@@ -1,18 +1,20 @@
 <script lang="ts">
-	import { createThemeStyle } from '$lib/shared/theme/palette/palette';
-	import type { Palettes } from '$lib/shared/theme/palette/palette.types';
+	import { createPaletteMap } from '$lib/shared/theme/palette/palette';
+	import type { Palettes, ThemeVars } from '$lib/shared/theme/palette/palette.types';
 	import { onMount } from 'svelte';
 
 	let mounted = false;
 
-	export let themePalettes: Palettes = [{ name: 'default' }];
-	export let theme = 'default';
+	export let palettes: Palettes = [{ name: 'default' }];
+	export let theme = palettes[0].name || 'default';
 
-	const themeMap = createThemeStyle(themePalettes);
+	const paletteMap = createPaletteMap(palettes);
 	$: {
-		const currentTheme = themeMap.get(theme);
-		if (mounted && currentTheme) {
-			Object.entries(currentTheme).forEach((entry: [string, string]) => {
+		const currentPalette = paletteMap.get(theme);
+		const sharedPalette = paletteMap.get('shared') || {};
+		if (mounted && currentPalette) {
+			const themePalette: ThemeVars = { ...sharedPalette, ...currentPalette };
+			Object.entries(themePalette).forEach((entry: [string, string]) => {
 				document.documentElement.style.setProperty(entry[0], entry[1]);
 				document.body.style.setProperty('background-color', `var(--mdc-theme-background)`);
 				document.body.style.setProperty('color', 'var(--mdc-theme-on-background)');

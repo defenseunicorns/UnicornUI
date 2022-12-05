@@ -7,7 +7,7 @@
 	import Typography from '$lib/Typography/typography.svelte';
 	import type { ButtonColor, ButtonShape, ButtonVariant } from '$lib';
 	import Theme from '$lib/Theme/theme.svelte';
-	import palette from '../website-components/theme/palettes';
+	import palettes from '../website-components/theme/palettes';
 	import { currentTheme } from '../website-components/theme/theme-store';
 
 	let path = '';
@@ -40,7 +40,7 @@
 	}
 </script>
 
-<Theme themePalettes={palette} theme={currentThemeVal}>
+<Theme {palettes} theme={currentThemeVal}>
 	<section class="components">
 		<Typography variant="h1">Unicorn UI</Typography>
 		<Button href="/" {...getVariant(path, '/')}>Home</Button>
