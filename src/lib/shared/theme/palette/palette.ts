@@ -7,20 +7,24 @@ import type {
 	ThemeVars
 } from './palette.types';
 
+const MDC_THEME_PREFIX = '--mdc-theme-';
+const MDC_THEME_TEXT_PREFIX = `${MDC_THEME_PREFIX}text-`;
+const THEME_NAME_KEY = 'name';
+
 export function createThemeStyle(palettes: Palettes): Map<string, ThemeVars> {
 	const paletteMap = new Map<string, ThemeVars>();
 	palettes.forEach((palette: Palette) => {
-		paletteMap.set(palette.id, paletteToCssVars(palette));
+		paletteMap.set(palette.name, paletteToCssVars(palette));
 	});
 	return paletteMap;
 }
 
-export function paletteToCssVars(palette: Palette, prefix = '--mdc-theme-'): ThemeVars {
+export function paletteToCssVars(palette: Palette, prefix = MDC_THEME_PREFIX): ThemeVars {
 	let paletteCss: ThemeVars = {};
 	Object.entries(palette).forEach((value: [string, PaletteField]) => {
 		const [key, val] = value;
 		// Field type string
-		if (key === 'id') return;
+		if (key === THEME_NAME_KEY) return;
 		if (typeof val === 'string') {
 			paletteCss[`${prefix}${key}`] = val;
 		}
@@ -47,7 +51,7 @@ export function baseColorsToCssVars(
 
 export function textPaletteToCssVars(
 	palette: ColorFields<TextColorFields>,
-	prefix = '--mdc-theme-text-'
+	prefix = MDC_THEME_TEXT_PREFIX
 ): ThemeVars {
 	const paletteCss: ThemeVars = {};
 	Object.entries(palette).forEach((value: [string, TextColorFields]) => {

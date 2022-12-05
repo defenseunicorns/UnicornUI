@@ -5,7 +5,7 @@
 
 	let mounted = false;
 
-	export let themePalettes: Palettes = [{ id: 'default' }];
+	export let themePalettes: Palettes = [{ name: 'default' }];
 	export let theme = 'default';
 
 	const themeMap = createThemeStyle(themePalettes);

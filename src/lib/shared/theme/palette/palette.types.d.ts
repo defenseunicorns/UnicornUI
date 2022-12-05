@@ -1,11 +1,12 @@
 export type PreferredTheme = 'light' | 'dark' | undefined;
+export type CoreThemes = 'light' | 'dark' | 'shared' | string;
 
 export type Palettes = Palette[];
 export type PaletteField = string | ColorFields<TextColorFields> | ColorFields<string>;
 export interface Palette extends ColorFields<string> {
 	on?: ColorFields<string>;
 	text?: ColorFields<TextColorFields>;
-	id: string;
+	name: CoreThemes;
 	[key: string]: PaletteField;
 }
 

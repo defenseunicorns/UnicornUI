@@ -2,7 +2,7 @@ import type { Palettes } from '$lib/shared/theme/palette/palette.types';
 
 const palettes: Palettes = [
 	{
-		id: 'dark',
+		name: 'dark',
 		primary: '#68c4ff',
 		secondary: '#787ff6',
 		surface: '#244a8f',
@@ -50,7 +50,7 @@ const palettes: Palettes = [
 		}
 	},
 	{
-		id: 'light',
+		name: 'light',
 		primary: '#68c4ff',
 		secondary: '#787ff6',
 		surface: '#244a8f',
