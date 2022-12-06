@@ -1,9 +1,18 @@
 import {
 	createPaletteMap,
 	paletteToCssVars,
-	textPaletteToCssVars
+	camelBackToDash
 } from '../../../../src/lib/shared/theme/palette/palette';
 
+describe('camelBackToDash', () => {
+	it('inserts dashes before capital letters', () => {
+		expect(camelBackToDash('camelBackString')).toEqual('camel-back-string');
+	});
+
+	it('returns the dash separated string as lowercase.', () => {
+		expect(camelBackToDash('camelBackString')).toEqual('camel-back-string');
+	});
+});
 describe('createPaletteMap', () => {
 	it('creates a map with key (name) and value (ThemeVars) given Palettes', () => {
 		const paletteMap = createPaletteMap({
@@ -45,36 +54,41 @@ describe('paletteToCssVars', () => {
 		});
 	});
 
+	it('handles nested or camelBack fields', () => {
+		const paletteVars = paletteToCssVars({
+			onPrimary: 'black',
+			onSecondary: 'white',
+			text: {
+				primary: {
+					onDark: 'pink',
+					on: {
+						light: 'black'
+					}
+				},
+				secondaryOnDark: 'yellow'
+			}
+		});
+		expect(paletteVars).toStrictEqual({
+			'--mdc-theme-on-primary': 'black',
+			'--mdc-theme-on-secondary': 'white',
+			'--mdc-theme-text-primary-on-dark': 'pink',
+			'--mdc-theme-text-primary-on-light': 'black',
+			'--mdc-theme-text-secondary-on-dark': 'yellow'
+		});
+	});
+
 	it('converts text-values to the correct css variables', () => {
 		const paletteVars = paletteToCssVars({
 			text: {
 				primary: {
-					dark: 'white',
-					light: 'black',
-					background: 'white'
+					onDark: 'white',
+					onLight: 'black',
+					onBackground: 'white'
 				}
 			}
 		});
 
 		expect(paletteVars).toStrictEqual({
-			'--mdc-theme-text-primary-on-dark': 'white',
-			'--mdc-theme-text-primary-on-light': 'black',
-			'--mdc-theme-text-primary-on-background': 'white'
-		});
-	});
-});
-
-describe('textPaletteToCssVars', () => {
-	it('converts a text palette to css variable', () => {
-		const textPaletteCssString = textPaletteToCssVars({
-			primary: {
-				dark: 'white',
-				light: 'black',
-				background: 'white'
-			}
-		});
-
-		expect(textPaletteCssString).toStrictEqual({
 			'--mdc-theme-text-primary-on-dark': 'white',
 			'--mdc-theme-text-primary-on-light': 'black',
 			'--mdc-theme-text-primary-on-background': 'white'

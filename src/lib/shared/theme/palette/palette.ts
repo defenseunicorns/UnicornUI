@@ -1,14 +1,10 @@
-import type {
-	ColorFields,
-	TextColorFields,
-	PaletteField,
-	Palette,
-	Palettes,
-	ThemeVars
-} from './palette.types';
+import type { PaletteField, Palette, Palettes, ThemeVars } from './palette.types';
 
-const MDC_THEME_PREFIX = '--mdc-theme-';
-const MDC_THEME_TEXT_PREFIX = `${MDC_THEME_PREFIX}text-`;
+const MDC_THEME_PREFIX = '--mdc-theme';
+
+export function camelBackToDash(camelBack: string): string {
+	return camelBack.replaceAll(/[A-Z]/g, '-$&').trim().toLowerCase();
+}
 
 export function createPaletteMap(palettes: Palettes): Map<string, ThemeVars> {
 	const paletteMap = new Map<string, ThemeVars>();
@@ -22,62 +18,14 @@ export function paletteToCssVars(palette: Palette, prefix = MDC_THEME_PREFIX): T
 	let paletteCss: ThemeVars = {};
 	Object.entries(palette).forEach((value: [string, PaletteField]) => {
 		const [key, val] = value;
+		const newPrefix = `${prefix}-${camelBackToDash(key)}`;
 		// Field type string
 		if (typeof val === 'string') {
-			paletteCss[`${prefix}${key}`] = val;
-		}
-		// Field types BaseColors<string> | BaseColors<BaseTextColors>
-		else if (isColorFields(val)) {
-			paletteCss = { ...paletteCss, ...baseColorsToCssVars(val, `${prefix}${key}-`) };
+			paletteCss[newPrefix] = val;
+			// Field type palette recurse.
+		} else {
+			paletteCss = { ...paletteCss, ...paletteToCssVars(val, newPrefix) };
 		}
 	});
 	return paletteCss;
-}
-
-export function baseColorsToCssVars(
-	baseColors: ColorFields<string | TextColorFields>,
-	prefix: string
-): ThemeVars {
-	let baseColorsCss: ThemeVars = {};
-	if (isTextColorFields(baseColors)) {
-		baseColorsCss = { ...baseColorsCss, ...textPaletteToCssVars(baseColors) };
-	} else {
-		baseColorsCss = { ...baseColorsCss, ...paletteToCssVars(baseColors as Palette, prefix) };
-	}
-	return baseColorsCss;
-}
-
-export function textPaletteToCssVars(
-	palette: ColorFields<TextColorFields>,
-	prefix = MDC_THEME_TEXT_PREFIX
-): ThemeVars {
-	const paletteCss: ThemeVars = {};
-	Object.entries(palette).forEach((value: [string, TextColorFields]) => {
-		const [baseColorKey, baseTextColors] = value;
-		Object.entries(baseTextColors).forEach((baseTextColor: [string, string]) => {
-			const [textColorKey, textColorValue] = baseTextColor;
-			paletteCss[`${prefix}${baseColorKey}-on-${textColorKey}`] = textColorValue;
-		});
-	});
-	return paletteCss;
-}
-
-function isColorFields(
-	object: Record<string, PaletteField>
-): object is ColorFields<string | TextColorFields> {
-	const objectValue = Object.values(object).at(0);
-	return (
-		objectValue !== undefined && (typeof objectValue === 'string' || isTextColorFields(object))
-	);
-}
-
-export function isTextColorFields(
-	object: Record<string, PaletteField>
-): object is ColorFields<TextColorFields> {
-	const objectValue = Object.values(object).at(0);
-	return (
-		objectValue !== undefined &&
-		typeof objectValue === 'object' &&
-		typeof Object.values(objectValue).at(0) === 'string'
-	);
 }

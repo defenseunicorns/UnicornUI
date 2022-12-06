@@ -6,10 +6,10 @@ export interface Palettes {
 	shared?: Palette;
 	[key: string]: Palette;
 }
-export type PaletteField = string | ColorFields<TextColorFields> | ColorFields<string>;
-export interface Palette extends ColorFields<string> {
-	on?: ColorFields<string>;
-	text?: ColorFields<TextColorFields>;
+export type PaletteField = string | Palette;
+export interface Palette extends ColorFields<ColorField> {
+	on?: ColorFields<ColorField>;
+	text?: ColorFields<ColorField>;
 	[key: string]: PaletteField;
 }
 
@@ -27,10 +27,11 @@ export interface ColorFields<ColorField> {
 }
 
 export interface TextColorFields {
-	light?: string;
-	dark?: string;
-	background?: string;
-	[key: string]: string;
+	on?: PaletteField;
+	onLight?: string;
+	onDark?: string;
+	onBackground?: string;
+	[key: string]: PaletteField;
 }
 
 export interface ThemeVars {

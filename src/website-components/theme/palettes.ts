@@ -20,37 +20,35 @@ const palettes: Palettes = {
 		},
 		text: {
 			primary: {
-				dark: 'white',
-				light: 'rgb(0,0,0, 0.87)',
-				background: 'rgb(255, 255, 255, 0.87)'
+				onDark: 'white',
+				onLight: 'rgb(0,0,0, 0.87)',
+				onBackground: 'rgb(255, 255, 255, 0.87)'
 			},
 			secondary: {
-				light: 'rgb(0,0,0, 0.54)',
-				dark: 'rgba(255, 255, 255, 0.7)',
-				background: 'rgba(255, 255, 255, 0.7)'
+				onLight: 'rgb(0,0,0, 0.54)',
+				onDark: 'rgba(255, 255, 255, 0.7)',
+				onBackground: 'rgba(255, 255, 255, 0.7)'
 			},
 			hint: {
-				light: 'rgba(0, 0, 0, 0.38)',
-				dark: 'rgba(255, 255, 255, 0.5)',
-				background: 'rgba(255, 255, 255, 0.5)'
+				onLight: 'rgba(0, 0, 0, 0.38)',
+				onDark: 'rgba(255, 255, 255, 0.5)',
+				onBackground: 'rgba(255, 255, 255, 0.5)'
 			},
 			disabled: {
-				light: 'rgba(0, 0, 0, 0.38)',
-				dark: 'rgba(255, 255, 255, 0.5)',
-				background: 'rgba(255, 255, 255, 0.5)'
+				onLight: 'rgba(0, 0, 0, 0.38)',
+				onDark: 'rgba(255, 255, 255, 0.5)',
+				onBackground: 'rgba(255, 255, 255, 0.5)'
 			},
 			icon: {
-				light: 'rgba(0, 0, 0, 0.38)',
-				dark: 'rgba(255, 255, 255, 0.5)',
-				background: 'rgba(255, 255, 255, 0.5)'
+				onLight: 'rgba(0, 0, 0, 0.38)',
+				onDark: 'rgba(255, 255, 255, 0.5)',
+				onBackground: 'rgba(255, 255, 255, 0.5)'
 			}
 		}
 	},
 	dark: {
 		background: '#0a0e2e',
-		on: {
-			background: '#ffffff'
-		}
+		onBackground: '#ffffff'
 	},
 	light: {
 		background: '#ffffff',
