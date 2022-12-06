@@ -1,8 +1,7 @@
 import type { Palettes } from '$lib/shared/theme/palette/palette.types';
 
-const palettes: Palettes = [
-	{
-		name: 'shared',
+const palettes: Palettes = {
+	shared: {
 		primary: '#68c4ff',
 		secondary: '#787ff6',
 		surface: '#244a8f',
@@ -47,20 +46,20 @@ const palettes: Palettes = [
 			}
 		}
 	},
-	{
-		name: 'dark',
+	dark: {
 		background: '#0a0e2e',
 		on: {
 			background: '#ffffff'
 		}
 	},
-	{
-		name: 'light',
+	light: {
 		background: '#ffffff',
+		surface: '#ffffff',
 		on: {
-			background: 'black'
+			background: 'black',
+			surface: 'black'
 		}
 	}
-];
+};
 
 export default palettes;

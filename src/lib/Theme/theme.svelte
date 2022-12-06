@@ -5,8 +5,8 @@
 
 	let mounted = false;
 
-	export let palettes: Palettes = [{ name: 'default' }];
-	export let theme = palettes[0].name || 'default';
+	export let palettes: Palettes = { default: { name: 'default' } };
+	export let theme = Object.keys(palettes)[0];
 
 	const paletteMap = createPaletteMap(palettes);
 	$: {

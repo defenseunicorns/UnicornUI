@@ -1,12 +1,28 @@
 import {
+	createPaletteMap,
 	paletteToCssVars,
 	textPaletteToCssVars
 } from '../../../../src/lib/shared/theme/palette/palette';
 
+describe('createPaletteMap', () => {
+	it('creates a map with key (name) and value (ThemeVars) given Palettes', () => {
+		const paletteMap = createPaletteMap({
+			test: { primary: 'pink', on: { primary: 'black' } },
+			test2: { primary: 'purple', on: { primary: 'white' } }
+		});
+		expect(paletteMap.get('test')).toStrictEqual({
+			'--mdc-theme-primary': 'pink',
+			'--mdc-theme-on-primary': 'black'
+		});
+		expect(paletteMap.get('test2')).toStrictEqual({
+			'--mdc-theme-primary': 'purple',
+			'--mdc-theme-on-primary': 'white'
+		});
+	});
+});
 describe('paletteToCssVars', () => {
 	it('converts DefaultPalette values into a css string given a Palette Object', () => {
 		const paletteVars = paletteToCssVars({
-			name: 'test',
 			primary: '#68c4ff',
 			secondary: '#787ff6'
 		});
@@ -18,7 +34,6 @@ describe('paletteToCssVars', () => {
 
 	it('converts on-values to the correct css variables', () => {
 		const paletteVars = paletteToCssVars({
-			name: 'test',
 			on: {
 				primary: 'black',
 				secondary: 'white'
@@ -32,7 +47,6 @@ describe('paletteToCssVars', () => {
 
 	it('converts text-values to the correct css variables', () => {
 		const paletteVars = paletteToCssVars({
-			name: 'test',
 			text: {
 				primary: {
 					dark: 'white',

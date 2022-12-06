@@ -9,12 +9,11 @@ import type {
 
 const MDC_THEME_PREFIX = '--mdc-theme-';
 const MDC_THEME_TEXT_PREFIX = `${MDC_THEME_PREFIX}text-`;
-const THEME_NAME_KEY = 'name';
 
 export function createPaletteMap(palettes: Palettes): Map<string, ThemeVars> {
 	const paletteMap = new Map<string, ThemeVars>();
-	palettes.forEach((palette: Palette) => {
-		paletteMap.set(palette.name, paletteToCssVars(palette));
+	Object.entries(palettes).forEach(([key, palette]: [string, Palette]) => {
+		paletteMap.set(key, paletteToCssVars(palette));
 	});
 	return paletteMap;
 }
@@ -24,7 +23,6 @@ export function paletteToCssVars(palette: Palette, prefix = MDC_THEME_PREFIX): T
 	Object.entries(palette).forEach((value: [string, PaletteField]) => {
 		const [key, val] = value;
 		// Field type string
-		if (key === THEME_NAME_KEY) return;
 		if (typeof val === 'string') {
 			paletteCss[`${prefix}${key}`] = val;
 		}

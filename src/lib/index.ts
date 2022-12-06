@@ -66,7 +66,6 @@ export type {
 	ThemeVars,
 	ColorField,
 	ColorFields,
-	PreferredTheme,
 	TextColorFields
 } from './shared/theme/palette/palette.types';
 export type { BoxProps } from './Box/box.types';

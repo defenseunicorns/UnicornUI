@@ -51,4 +51,7 @@
 		overflow: scroll;
 		color: var(--mdc-theme-on-surface) !important;
 	}
+	.mdc-dialog__title {
+		color: var(--mdc-theme-on-surface) !important;
+	}
 </style>
