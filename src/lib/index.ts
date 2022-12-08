@@ -17,57 +17,58 @@ import DialogActions from './Dialog/DialogActions.svelte';
 import AccordionGroup from './Accordion/accordion-group.svelte';
 
 export {
-	Box,
-	Chip,
-	Step,
-	Theme,
-	Button,
-	Dialog,
-	Stepper,
-	ChipIcon,
-	StepIcon,
-	Accordion,
-	ButtonIcon,
-	IconButton,
-	Typography,
-	DialogTitle,
-	DialogActions,
-	AccordionGroup
+  Box,
+  Chip,
+  Step,
+  Theme,
+  Button,
+  Dialog,
+  Stepper,
+  ChipIcon,
+  StepIcon,
+  Accordion,
+  ButtonIcon,
+  IconButton,
+  Typography,
+  DialogTitle,
+  DialogActions,
+  AccordionGroup
 };
 
 // Export Utility Functions here
-export { getPreferredTheme } from './shared/utils/theme-preference';
 export { createPaletteMap } from './shared/theme/palette/palette';
+export { getPreferredTheme } from './shared/utils/getPreferredTheme';
+export { DefaultPalettes } from './shared/theme/palette/default-palettes';
 
 // Re-export your types here.
 export type {
-	ChipProps,
-	ChipElement,
-	ChipIconProps,
-	ChipVariant,
-	ChipColor
+  ChipProps,
+  ChipElement,
+  ChipIconProps,
+  ChipVariant,
+  ChipColor
 } from './Chip/chip.types';
 export type {
-	ButtonVariant,
-	ButtonColor,
-	ButtonShape,
-	ButtonProps,
-	ButtonIconProps
+  ButtonVariant,
+  ButtonColor,
+  ButtonShape,
+  ButtonProps,
+  ButtonIconProps
 } from './Button/Button.types';
 export type {
-	TypographyVariant,
-	TypographyElement,
-	TypographyElements,
-	TypographyProps
+  TypographyVariant,
+  TypographyElement,
+  TypographyElements,
+  TypographyProps
 } from './Typography/typography.types';
 export type {
-	Palette,
-	Palettes,
-	ThemeVars,
-	ColorField,
-	ColorFields,
-	PreferredTheme,
-	TextColorFields
+  Palette,
+  Palettes,
+  ThemeVars,
+  ColorField,
+  ColorFields,
+  PreferredTheme,
+  TextColorFields
 } from './shared/theme/palette/palette.types';
 export type { BoxProps } from './Box/box.types';
 export type { DialogActionsProps, DialogTitleProps } from './Dialog/Dialog.types';
