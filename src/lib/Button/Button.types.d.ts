@@ -5,10 +5,10 @@ export type ButtonColor = 'primary' | 'secondary';
 export type ButtonShape = 'rounded' | 'squared';
 
 export interface ButtonProps
-	extends svelte.JSX.HTMLAttributes<HTMLButtonElement | HTMLAnchorElement> {
-	color?: ButtonColor;
-	shape?: ButtonShape;
-	variant?: ButtonVariant;
+  extends svelte.JSX.HTMLAttributes<HTMLButtonElement | HTMLAnchorElement> {
+  color?: ButtonColor;
+  shape?: ButtonShape;
+  variant?: ButtonVariant;
 }
 
 export type ButtonIconProps<T extends EventTarget> = BoxProps<T>;

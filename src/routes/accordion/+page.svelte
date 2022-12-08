@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { Accordion } from '$lib';
-	import AccordionGroup from '$lib/Accordion/accordion-group.svelte';
-	import Variant from '../../website-components/Variant.svelte';
+  import { Accordion } from '$lib';
+  import AccordionGroup from '$lib/Accordion/accordion-group.svelte';
+  import Variant from '../../website-components/Variant.svelte';
 </script>
 
 <Variant
-	title="Accordion"
-	code={`Theme (default): 
+  title="Accordion"
+  code={`Theme (default): 
   background-color: --mdc-theme-surface
   color: --mdc-theme-on-surface
 
@@ -21,20 +21,20 @@ Slots:
   content (nested in .accordian-content)
 	`}
 >
-	<AccordionGroup>
-		<Accordion
-			id="accordian-1"
-			class="myAccordian"
-			contentClass="accordian-1-content"
-			isOpen={true}
-		>
-			<span slot="headerContent" class="mdc-typography--headline6">Accordion</span>
-			<div slot="content" class="mdc-typography--body1">Default to open</div>
-		</Accordion>
-		<Accordion id="accordian-2" class="myAccordian" contentClass="accordian-2-content">
-			<span slot="headerContent" class="mdc-typography--headline6">Expand for example html</span>
-			<div slot="content">
-				<pre class="variant-code">{`<Accordion 
+  <AccordionGroup>
+    <Accordion
+      id="accordian-1"
+      class="myAccordian"
+      contentClass="accordian-1-content"
+      isOpen={true}
+    >
+      <span slot="headerContent" class="mdc-typography--headline6">Accordion</span>
+      <div slot="content" class="mdc-typography--body1">Default to open</div>
+    </Accordion>
+    <Accordion id="accordian-2" class="myAccordian" contentClass="accordian-2-content">
+      <span slot="headerContent" class="mdc-typography--headline6">Expand for example html</span>
+      <div slot="content">
+        <pre class="variant-code">{`<Accordion 
   id="accordian-2" 
   class="myAccordian" 
   contentClass="accordian-2-content"
@@ -54,14 +54,14 @@ Slots:
 	padding: 8px;
 }
 */`}</pre>
-			</div>
-		</Accordion>
-	</AccordionGroup>
+      </div>
+    </Accordion>
+  </AccordionGroup>
 </Variant>
 
 <style lang="scss" global>
-	.accordian-1-content {
-		background-color: var(--mdc-theme-secondary);
-		color: var(--mdc-theme-on-secondary);
-	}
+  .accordian-1-content {
+    background-color: var(--mdc-theme-secondary);
+    color: var(--mdc-theme-on-secondary);
+  }
 </style>
