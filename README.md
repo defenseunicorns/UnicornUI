@@ -18,10 +18,10 @@ https://unicorn-ui.netlify.app/
  * - Uses mdc theme css variables
  */
 :root {
-	--mdc-theme-primary: purple;
-	--mdc-theme-on-primary: white;
-	--mdc-theme-secondary: green;
-	--mdc-theme-on-secondary: white;
+  --mdc-theme-primary: purple;
+  --mdc-theme-on-primary: white;
+  --mdc-theme-secondary: green;
+  --mdc-theme-on-secondary: white;
 }
 ```
 
@@ -30,15 +30,15 @@ https://unicorn-ui.netlify.app/
 ```html
 <--! example.svelte -->
 <script lang="ts">
-	import { Button } from '@defense-unicorns/unicorn-ui';
-	function onClick() {
-		alert('Clicked');
-	}
+  import { Button } from '@defense-unicorns/unicorn-ui';
+  function onClick() {
+    alert('Clicked');
+  }
 </script>
 <button on:click="{onClick}" shape="rounded" color="primary" variant="raised">
-	Primary Raised
+  Primary Raised
 </button>
 <button on:click="{onClick}" shape="rounded" color="secondary" variant="flat">
-	Secondary Flat
+  Secondary Flat
 </button>
 ```
