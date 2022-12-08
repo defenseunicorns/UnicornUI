@@ -54,7 +54,7 @@ Additional Notes:
         <VariantExample code={PREFERRED_THEME_EXAMPLE} />
       </Box>
     </Accordion>
-    <Accordion isOpen={true}>
+    <Accordion>
       <Typography slot="headerContent" variant="h6">Example: Theme Toggle</Typography>
       <Box slot="content">
         <VariantExample code={THEME_TOGGLE_EXAMPLE} />
