@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { createPaletteMap } from '$lib/shared/theme/palette/palette';
+  import { createPaletteMap } from '$lib/shared/theme/palette/palette.utils';
   import type { ThemeVars } from '$lib/shared/theme/palette/palette.types';
   import { DefaultPalettes } from '$lib/shared/theme/palette/default-palettes';
 
