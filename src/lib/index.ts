@@ -36,7 +36,7 @@ export {
 };
 
 // Export Utility Functions here
-export { createPaletteMap } from './shared/theme/palette/palette';
+export { createPaletteMap } from './shared/theme/palette/palette.utils';
 export { getPreferredTheme } from './shared/utils/getPreferredTheme';
 export { DefaultPalettes } from './shared/theme/palette/default-palettes';
 
