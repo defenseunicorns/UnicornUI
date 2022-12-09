@@ -2,7 +2,7 @@ import {
   createPaletteMap,
   paletteToCssVars,
   camelBackToDash
-} from '../../../../src/lib/shared/theme/palette/palette.utils';
+} from '../../../../../src/lib/shared/theme/palette/palette.utils';
 
 describe('camelBackToDash', () => {
   it('inserts dashes before capital letters', () => {
