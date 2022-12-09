@@ -1,4 +1,4 @@
-import type { PaletteField, Palette, Palettes, ThemeVars } from './palette.types';
+import type { Palette, Palettes, ThemeVars } from './palette.types';
 
 const MDC_THEME_PREFIX = '--mdc-theme';
 
@@ -16,7 +16,7 @@ export function createPaletteMap(palettes: Palettes): Map<string, ThemeVars> {
 
 export function paletteToCssVars(palette: Palette, prefix = MDC_THEME_PREFIX): ThemeVars {
   let paletteCss: ThemeVars = {};
-  Object.entries(palette).forEach((value: [string, PaletteField]) => {
+  Object.entries(palette).forEach((value: [string, Palette]) => {
     const [key, val] = value;
     const newPrefix = `${prefix}-${camelBackToDash(key)}`;
     // Field type string
