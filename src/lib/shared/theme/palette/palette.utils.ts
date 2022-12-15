@@ -1,10 +1,7 @@
+import { camelBackToDash } from '../camelBackToDash';
 import type { Palette, Palettes, ThemeVars } from './palette.types';
 
 const MDC_THEME_PREFIX = '--mdc-theme';
-
-export function camelBackToDash(camelBack: string): string {
-  return camelBack.replaceAll(/[A-Z]/g, '-$&').trim().toLowerCase();
-}
 
 export function createPaletteMap(palettes: Palettes): Map<string, ThemeVars> {
   const paletteMap = new Map<string, ThemeVars>();
