@@ -13,7 +13,9 @@
 <Variant
   title="Dialog"
   code={`Props (with defaults):
-  open: boolean = false
+  open: boolean = false;
+  // Set to false to prevent clickAway closing. 
+  clickAway: boolean = true;
 
 Slots: 
   title (use DialogTitle or add mdc-dialog__title class to wrapper)
