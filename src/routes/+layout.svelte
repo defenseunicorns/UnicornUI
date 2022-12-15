@@ -6,9 +6,10 @@
   import { afterUpdate, onMount } from 'svelte';
   import { Button, getPreferredTheme } from '$lib';
   import Typography from '$lib/Typography/typography.svelte';
+  import ThemeToggle from '../website-components/ThemeToggle.svelte';
   import type { ButtonColor, ButtonShape, ButtonVariant } from '$lib';
   import { currentTheme } from '../website-components/theme/theme-store';
-  import ThemeToggle from '../website-components/ThemeToggle.svelte';
+  import customTypography from '../website-components/theme/theme-typography';
 
   let path = '';
   let currentThemeVal: string;
@@ -40,7 +41,7 @@
   }
 </script>
 
-<Theme theme={currentThemeVal}>
+<Theme theme={currentThemeVal} typography={customTypography}>
   <section class="components">
     <Typography variant="h1">Unicorn UI</Typography>
     <Button href="/" {...getVariant(path, '/')}>Home</Button>

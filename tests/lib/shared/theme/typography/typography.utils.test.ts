@@ -1,11 +1,14 @@
 import type {
-  Typography,
+  TypographyTheme,
   TypographyConfig
 } from '../../../../../src/lib/shared/theme/typography-config/typography-config.types';
-import { createTypographyConfig } from '../../../../../src/lib/shared/theme/typography-config/typography-config.utils';
+import {
+  createTypographyConfig,
+  createStyleFromJSON
+} from '../../../../../src/lib/shared/theme/typography-config/typography-config.utils';
 
 let typographyConfig: TypographyConfig;
-const testTypography: Typography = {
+const testTypography: TypographyTheme = {
   h1: {
     fontFamily: 'roboto',
     fontSize: '6rem',
@@ -44,19 +47,33 @@ describe('createTypographyConfig', () => {
     ]);
   });
 
-  it('creates custom css classes from the given typography object', () => {
-    expect(Object.entries(typographyConfig.classes)[1]).toStrictEqual([
-      '.mdc-typography--custom-typography',
-      {
-        'font-family': 'var(--mdc-typography-custom-typography-font-family, roboto)',
-        'font-size': 'var(--mdc-typography-custom-typography-font-size, 6rem)',
-        'font-style': 'var(--mdc-typography-custom-typography-font-style, normal)',
-        'font-weight': 'var(--mdc-typography-custom-typography-font-weight, 300)',
-        'letter-spacing': 'var(--mdc-typography-custom-typography-letter-spacing, -.015625em)',
-        'line-height': 'var(--mdc-typography-custom-typography-line-height, 6rem)',
-        'text-decoration': 'var(--mdc-typography-custom-typography-text-decoration, inherit)',
-        'text-transform': 'var(--mdc-typography-custom-typography-text-transform, inherit)'
-      }
-    ]);
+  describe('Create TypographyConfig.classes', () => {
+    it('replaces "h" tags with headline to match mdc classes', () => {
+      expect(Object.keys(typographyConfig.classes)[0]).toBe('.mdc-typography--headline1');
+    });
+
+    it('creates custom css classes from the given typography object', () => {
+      expect(Object.entries(typographyConfig.classes)[1]).toStrictEqual([
+        '.mdc-typography--custom-typography',
+        {
+          'font-family': 'var(--mdc-typography-custom-typography-font-family, roboto)',
+          'font-size': 'var(--mdc-typography-custom-typography-font-size, 6rem)',
+          'font-style': 'var(--mdc-typography-custom-typography-font-style, normal)',
+          'font-weight': 'var(--mdc-typography-custom-typography-font-weight, 300)',
+          'letter-spacing': 'var(--mdc-typography-custom-typography-letter-spacing, -.015625em)',
+          'line-height': 'var(--mdc-typography-custom-typography-line-height, 6rem)',
+          'text-decoration': 'var(--mdc-typography-custom-typography-text-decoration, inherit)',
+          'text-transform': 'var(--mdc-typography-custom-typography-text-transform, inherit)'
+        }
+      ]);
+    });
+  });
+});
+
+describe('create typography css', () => {
+  it('creates a css class string from TypographyClasses', () => {
+    expect(
+      createStyleFromJSON({ '.mdc-typography--custom-typography': { 'font-size': '1.2px' } })
+    ).toBe('.mdc-typography--custom-typography{font-size:1.2px;}');
   });
 });

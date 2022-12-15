@@ -1,10 +1,17 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { createPaletteMap } from '$lib/shared/theme/palette/palette.utils';
+  import {
+    createStyleFromJSON,
+    addThemeStyleToHead,
+    createTypographyConfig
+  } from '$lib/shared/theme/typography-config/typography-config.utils';
   import type { ThemeVars } from '$lib/shared/theme/palette/palette.types';
+  import { createPaletteMap } from '$lib/shared/theme/palette/palette.utils';
   import { DefaultPalettes } from '$lib/shared/theme/palette/default-palettes';
+  import type { TypographyTheme } from '$lib/shared/theme/typography-config/typography-config.types';
 
   export let palettes = DefaultPalettes;
+  export let typography: TypographyTheme = {};
 
   // Check for light theme otherwise use dark
   // Shared is always applied even when its the only theme.
@@ -15,20 +22,24 @@
 
   // Convert palettes to map with key, themeVars.
   const paletteMap = createPaletteMap(palettes);
+  // Create Typography Config
+  const typographyConfig = createTypographyConfig(typography);
 
   // Watch theme and apply when changed.
   $: {
     // empty if theme not found (shared is always applied)
     const currentPalette = paletteMap.get(theme) || {};
     const sharedPalette = paletteMap.get('shared') || {};
+    const themeVars: ThemeVars = {
+      ...sharedPalette,
+      ...currentPalette,
+      ...typographyConfig.vars
+    };
+    const themeStyle = { ':root': themeVars, ...typographyConfig.classes };
 
     // Ensure we can access document.
     if (mounted) {
-      const themePalette: ThemeVars = { ...sharedPalette, ...currentPalette };
-      Object.entries(themePalette).forEach((entry: [string, string]) => {
-        // Add var to root.
-        document.documentElement.style.setProperty(entry[0], entry[1]);
-      });
+      addThemeStyleToHead(document, createStyleFromJSON(themeStyle));
       // Set the background and color properties from theme to body.
       document.body.style.setProperty('background-color', `var(--mdc-theme-background)`);
       document.body.style.setProperty('color', 'var(--mdc-theme-on-background)');
@@ -48,3 +59,7 @@
 {#if mounted}
   <slot />
 {/if}
+
+<style lang="scss" global>
+  @use '@material/typography/mdc-typography';
+</style>
