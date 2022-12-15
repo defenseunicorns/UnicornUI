@@ -1,31 +1,62 @@
-import type { Typography } from '../../../../../src/lib/shared/theme/typography-config/typography-config.types';
+import type {
+  Typography,
+  TypographyConfig
+} from '../../../../../src/lib/shared/theme/typography-config/typography-config.types';
 import { createTypographyConfig } from '../../../../../src/lib/shared/theme/typography-config/typography-config.utils';
+
+let typographyConfig: TypographyConfig;
+const testTypography: Typography = {
+  h1: {
+    fontFamily: 'roboto',
+    fontSize: '6rem',
+    fontStyle: 'normal',
+    fontWeight: '300',
+    letterSpacing: '-.015625em',
+    lineHeight: '6rem',
+    textDecoration: 'inherit',
+    textTransform: 'inherit'
+  },
+  customTypography: {
+    fontFamily: 'roboto',
+    fontSize: '6rem',
+    fontStyle: 'normal',
+    fontWeight: '300',
+    letterSpacing: '-.015625em',
+    lineHeight: '6rem',
+    textDecoration: 'inherit',
+    textTransform: 'inherit'
+  }
+};
+
+beforeAll(() => {
+  typographyConfig = createTypographyConfig(testTypography);
+});
 describe('createTypographyConfig', () => {
-  const testTypography: Typography = {
-    h1: {
-      fontFamily: 'roboto',
-      fontSize: '6rem',
-      fontStyle: 'normal',
-      fontWeight: '300',
-      letterSpacing: '-.015625em',
-      lineHeight: '6rem',
-      textDecoration: 'inherit',
-      textTransform: 'inherit'
-    },
-    customTypography: {
-      fontFamily: 'roboto',
-      fontSize: '6rem',
-      fontStyle: 'normal',
-      fontWeight: '300',
-      letterSpacing: '-.015625em',
-      lineHeight: '6rem',
-      textDecoration: 'inherit',
-      textTransform: 'inherit'
-    }
-  };
-  it('returns a TypgraphyConfig given a Typography object', () => {
-    const typographyConfig = createTypographyConfig(testTypography);
+  it('returns a TypographyConfig given a Typography object', () => {
     expect(typographyConfig.classes).toBeDefined();
     expect(typographyConfig.vars).toBeDefined();
+  });
+
+  it('creates mdc typography vars from the given Typography object', () => {
+    expect(Object.entries(typographyConfig.vars)[0]).toStrictEqual([
+      '--mdc-typography-h1-font-family',
+      'roboto'
+    ]);
+  });
+
+  it('creates custom css classes from the given typography object', () => {
+    expect(Object.entries(typographyConfig.classes)[1]).toStrictEqual([
+      '.mdc-typography--custom-typography',
+      {
+        'font-family': 'var(--mdc-typography-custom-typography-font-family, roboto)',
+        'font-size': 'var(--mdc-typography-custom-typography-font-size, 6rem)',
+        'font-style': 'var(--mdc-typography-custom-typography-font-style, normal)',
+        'font-weight': 'var(--mdc-typography-custom-typography-font-weight, 300)',
+        'letter-spacing': 'var(--mdc-typography-custom-typography-letter-spacing, -.015625em)',
+        'line-height': 'var(--mdc-typography-custom-typography-line-height, 6rem)',
+        'text-decoration': 'var(--mdc-typography-custom-typography-text-decoration, inherit)',
+        'text-transform': 'var(--mdc-typography-custom-typography-text-transform, inherit)'
+      }
+    ]);
   });
 });
