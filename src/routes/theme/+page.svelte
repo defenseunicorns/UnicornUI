@@ -23,9 +23,10 @@ Props:
     light?: Palette,
     dark?: Palette
   };
+
   // Tries light -> dark -> shared (in order if defined) then fallback to mdc defaults.
   theme?: string;
-
+  typography?: ThemeTypography
 Slots:
   unnamed
 

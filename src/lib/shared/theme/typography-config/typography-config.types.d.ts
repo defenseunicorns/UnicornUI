@@ -1,4 +1,4 @@
-export type TypographyTheme = TypographyPalette & { [key: string]: TypographyPaletteValues };
+export type ThemeTypography = TypographyPalette & { [key: string]: TypographyPaletteValues };
 
 export interface TypographyConfig {
   vars: TypographyVars;

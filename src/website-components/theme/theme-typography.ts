@@ -1,14 +1,21 @@
-import type { TypographyTheme } from '$lib/shared/theme/typography-config/typography-config.types';
+import type { ThemeTypography } from '$lib/shared/theme/typography-config/typography-config.types';
 
-const customTypography: TypographyTheme = {
+/*
+ * Custom typography variant example.
+ * ex:
+ * <Theme typography={{...baseTypography, ...customTypography}}>
+ *   <Typography element="div" variant="body3">Custom Typography</Typography>
+ * </Theme>
+ */
+const customTypography: ThemeTypography = {
   body3: {
-    fontFamily: 'cursive',
-    fontStyle: 'normal',
-    textTransform: 'uppercase',
     fontWeight: 'bold',
     fontSize: '.875em',
     lineHeight: '143%',
+    fontStyle: 'normal',
+    fontFamily: 'cursive',
     letterSpacing: '.17px',
+    textTransform: 'uppercase',
     textDecoration: 'underline wavy var(--mdc-theme-warning)'
   }
 };

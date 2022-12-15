@@ -1,7 +1,7 @@
 import type { TypographyVariant } from '../../../Typography/typography.types';
 import { camelBackToDash } from '../camelBackToDash';
 import type {
-  TypographyTheme,
+  ThemeTypography,
   TypographyConfig,
   TypographyPaletteValues,
   TypographyClasses
@@ -10,7 +10,7 @@ import type {
 const TYPOGRAPHY_PREFIX = 'mdc-typography';
 const TYPOGRAPHY_VARS_PREFIX = `--${TYPOGRAPHY_PREFIX}`;
 
-export function createTypographyConfig(typography: TypographyTheme): TypographyConfig {
+export function createTypographyConfig(typography: ThemeTypography): TypographyConfig {
   const typographyConfig: TypographyConfig = { vars: {}, classes: {} };
 
   Object.entries(typography).forEach(([key, val]: [string, TypographyPaletteValues]) => {
