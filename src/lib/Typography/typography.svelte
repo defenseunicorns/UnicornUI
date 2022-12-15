@@ -1,10 +1,11 @@
 <script lang="ts">
   import Box from '$lib/Box/box.svelte';
+  import { current_component } from 'svelte/internal';
+  import { typographyElementMapping } from './typography';
   import { themeColorBuilder } from '$lib/shared/theme/default-colors/colors';
   import type { TextColors } from '$lib/shared/theme/default-colors/colors.types';
-  import { current_component } from 'svelte/internal';
-  import { getVariantClass, typographyElementMapping } from './typography';
   import type { TypographyVariant, TypographyElement, TypographyProps } from './typography.types';
+  import { createTypographyVariantClass } from '$lib/shared/theme/typography-config/typography-config.utils';
 
   // Internal Types;
   type T = $$Generic<EventTarget>;
@@ -20,7 +21,7 @@
 
   variantElement = typographyElementMapping[variant] || {
     element: 'span',
-    class: getVariantClass(variant)
+    class: createTypographyVariantClass(variant)
   };
   $: $$restProps.class = `${variantElement.class} ${$$restProps.class || ''}`;
   $: $$restProps.style = `color: ${themeColorBuilder(color)}; ${$$restProps.style}`;
@@ -31,8 +32,6 @@
 </Box>
 
 <style lang="scss">
-  @use '@material/typography/mdc-typography';
-
   .mdc-typography--inherit {
     font-size: inherit;
     font-family: inherit;
