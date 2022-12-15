@@ -1,38 +1,54 @@
 export type PreferredTheme = 'light' | 'dark' | undefined;
 
-export interface Palettes {
+export type Palettes = {
   dark?: Palette;
   light?: Palette;
   shared?: Palette;
+} & {
   [key: string]: Palette;
-}
-export type PaletteField = string | Palette;
-export interface Palette extends ColorFields<ColorField> {
-  on?: ColorFields<ColorField>;
-  text?: ColorFields<ColorField>;
-  [key: string]: PaletteField;
-}
+};
 
-export type ColorField = string | TextColorFields;
-export interface ColorFields<ColorField> {
-  primary?: ColorField;
-  secondary?: ColorField;
-  surface?: ColorField;
-  background?: ColorField;
-  success?: ColorField;
-  warning?: ColorField;
-  info?: ColorField;
-  error?: ColorField;
-  [key: string]: ColorField;
-}
+export type Palette =
+  | string
+  | (BasePalette & {
+      on?: Palette;
+      text?: Palette;
+    } & { [key: string]: Palette });
 
-export interface TextColorFields {
-  on?: PaletteField;
-  onLight?: string;
-  onDark?: string;
-  onBackground?: string;
-  [key: string]: PaletteField;
-}
+export type BasePalette = (
+  | string
+  | { [key: string]: string }
+  | { [key: string]: BasePalette }
+  | { [key: string]: TextColor }
+) &
+  ColorFields;
+
+export type ColorFields =
+  | {
+      primary?: BasePalette;
+      secondary?: BasePalette;
+      surface?: BasePalette;
+      background?: BasePalette;
+      success?: BasePalette;
+      warning?: BasePalette;
+      info?: BasePalette;
+      error?: BasePalette;
+    }
+  | { [key: string]: TextColor };
+
+export type TextColor =
+  | ({
+      onLight?: string;
+      onDark?: string;
+      onBackground?: string;
+    } & { [key: string]: string })
+  | {
+      on: {
+        dark?: string;
+        light?: string;
+        background?: string;
+      } & { [key: string]: string };
+    };
 
 export interface ThemeVars {
   [key: string]: string;

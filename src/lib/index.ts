@@ -65,10 +65,8 @@ export type {
   Palette,
   Palettes,
   ThemeVars,
-  ColorField,
   ColorFields,
-  PreferredTheme,
-  TextColorFields
+  PreferredTheme
 } from './shared/theme/palette/palette.types';
 export type { BoxProps } from './Box/box.types';
 export type { DialogActionsProps, DialogTitleProps } from './Dialog/Dialog.types';

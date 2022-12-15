@@ -7,11 +7,12 @@
 
   // Props
   export let open = false;
+  export let clickAway = true;
 
   // Function
-  export function toggleDialog(): void {
+  export let toggleDialog = () => {
     open = !open;
-  }
+  };
   let documentRef: Document;
   // LifeCycle
   onMount(() => {
@@ -38,7 +39,11 @@
       </div>
     </div>
   </div>
-  <Box on:click={toggleDialog} class="mdc-dialog__scrim" />
+  {#if clickAway}
+    <Box on:click={toggleDialog} class="mdc-dialog__scrim" />
+  {:else}
+    <Box class="mdc-dialog__scrim" />
+  {/if}
 </div>
 
 <style lang="scss" global>
