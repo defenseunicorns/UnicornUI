@@ -1,5 +1,5 @@
 import type {
-  TypographyTheme,
+  ThemeTypography,
   TypographyConfig
 } from '../../../../../src/lib/shared/theme/typography-config/typography-config.types';
 import {
@@ -8,7 +8,7 @@ import {
 } from '../../../../../src/lib/shared/theme/typography-config/typography-config.utils';
 
 let typographyConfig: TypographyConfig;
-const testTypography: TypographyTheme = {
+const testTypography: ThemeTypography = {
   h1: {
     fontFamily: 'roboto',
     fontSize: '6rem',

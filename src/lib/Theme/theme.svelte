@@ -8,10 +8,10 @@
   import type { ThemeVars } from '$lib/shared/theme/palette/palette.types';
   import { createPaletteMap } from '$lib/shared/theme/palette/palette.utils';
   import { DefaultPalettes } from '$lib/shared/theme/palette/default-palettes';
-  import type { TypographyTheme } from '$lib/shared/theme/typography-config/typography-config.types';
+  import type { ThemeTypography } from '$lib/shared/theme/typography-config/typography-config.types';
 
   export let palettes = DefaultPalettes;
-  export let typography: TypographyTheme = {};
+  export let typography: ThemeTypography = {};
 
   // Check for light theme otherwise use dark
   // Shared is always applied even when its the only theme.
@@ -40,9 +40,10 @@
     // Ensure we can access document.
     if (mounted) {
       addThemeStyleToHead(document, createStyleFromJSON(themeStyle));
-      // Set the background and color properties from theme to body.
+      // Set the background, color, and font-family properties from theme to body.
       document.body.style.setProperty('background-color', `var(--mdc-theme-background)`);
       document.body.style.setProperty('color', 'var(--mdc-theme-on-background)');
+      document.body.style.setProperty('font-family', 'var(--mdc-typography-font-family)');
     }
   }
 
