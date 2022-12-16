@@ -8,6 +8,9 @@ import type { ThemeTypography } from '$lib/shared/theme/typography-config/typogr
  * </Theme>
  */
 const customTypography: ThemeTypography = {
+  global: {
+    fontFamily: 'roboto'
+  },
   body3: {
     fontWeight: 'bold',
     fontSize: '.875em',
