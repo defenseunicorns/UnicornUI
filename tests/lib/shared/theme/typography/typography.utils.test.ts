@@ -9,6 +9,7 @@ import {
 
 let typographyConfig: TypographyConfig;
 const testTypography: ThemeTypography = {
+  global: { fontFamily: 'roboto' },
   h1: {
     fontFamily: 'roboto',
     fontSize: '6rem',
@@ -41,7 +42,7 @@ describe('createTypographyConfig', () => {
   });
 
   it('creates mdc typography vars from the given Typography object', () => {
-    expect(Object.entries(typographyConfig.vars)[0]).toStrictEqual([
+    expect(Object.entries(typographyConfig.vars)[1]).toStrictEqual([
       '--mdc-typography-h1-font-family',
       'roboto'
     ]);
@@ -49,11 +50,11 @@ describe('createTypographyConfig', () => {
 
   describe('Create TypographyConfig.classes', () => {
     it('replaces "h" tags with headline to match mdc classes', () => {
-      expect(Object.keys(typographyConfig.classes)[0]).toBe('.mdc-typography--headline1');
+      expect(Object.keys(typographyConfig.classes)[1]).toBe('.mdc-typography--headline1');
     });
 
     it('creates custom css classes from the given typography object', () => {
-      expect(Object.entries(typographyConfig.classes)[1]).toStrictEqual([
+      expect(Object.entries(typographyConfig.classes)[2]).toStrictEqual([
         '.mdc-typography--custom-typography',
         {
           'font-family': 'var(--mdc-typography-custom-typography-font-family, roboto)',
