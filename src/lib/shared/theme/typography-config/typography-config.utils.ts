@@ -60,16 +60,21 @@ export function createTypographyVariantClass(variant: TypographyVariant): string
 }
 
 export function addThemeStyleToHead(document: Document, typographyCss: string) {
-  const ELEMENT_ID = 'uui-typography-classes';
+  const ELEMENT_ID = 'uui-theme-css';
   let style = document.getElementById(ELEMENT_ID);
   if (style) {
     style.innerHTML = typographyCss;
   } else {
     style = document.createElement('style');
     style.setAttribute('id', ELEMENT_ID);
+    style.setAttribute('type', 'text/css');
     style.innerHTML = typographyCss;
     document.getElementsByTagName('head')[0].appendChild(style);
   }
+}
+
+export function updateThemeStyle(themeStyle: TypographyClasses, document?: Document) {
+  document && addThemeStyleToHead(document, createStyleFromJSON(themeStyle));
 }
 
 export function createStyleFromJSON(classes: TypographyClasses): string {

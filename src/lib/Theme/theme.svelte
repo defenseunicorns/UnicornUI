@@ -1,55 +1,49 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import {
-    createStyleFromJSON,
-    addThemeStyleToHead,
-    createTypographyConfig
+    createTypographyConfig,
+    updateThemeStyle
   } from '$lib/shared/theme/typography-config/typography-config.utils';
-  import type { ThemeVars } from '$lib/shared/theme/palette/palette.types';
   import { createPaletteMap } from '$lib/shared/theme/palette/palette.utils';
   import { DefaultPalettes } from '$lib/shared/theme/palette/default-palettes';
   import type { ThemeTypography } from '$lib/shared/theme/typography-config/typography-config.types';
 
+  // Props
   export let palettes = DefaultPalettes;
   export let typography: ThemeTypography = {};
-
   // Check for light theme otherwise use dark
   // Shared is always applied even when its the only theme.
   export let theme = palettes['light'] ? 'light' : 'dark';
 
-  // Ensure theme applied before rendering children.
-  let mounted = false;
-
+  // Locals
+  // Used to ensure component is mounted.
+  let pageDocument: Document;
   // Convert palettes to map with key, themeVars.
   const paletteMap = createPaletteMap(palettes);
   // Create Typography Config
   const typographyConfig = createTypographyConfig(typography);
 
   // Watch theme and apply when changed.
-  $: {
-    // empty if theme not found (shared is always applied)
-    const currentPalette = paletteMap.get(theme) || {};
-    const sharedPalette = paletteMap.get('shared') || {};
-    const themeVars: ThemeVars = {
-      ...sharedPalette,
-      ...currentPalette,
-      ...typographyConfig.vars
-    };
-    const themeStyle = { ':root': themeVars, ...typographyConfig.classes };
-
-    // Ensure we can access document.
-    if (mounted) {
-      addThemeStyleToHead(document, createStyleFromJSON(themeStyle));
-      // Set the background, color, and font-family properties from theme to body.
-      document.body.style.setProperty('background-color', `var(--mdc-theme-background)`);
-      document.body.style.setProperty('color', 'var(--mdc-theme-on-background)');
-      document.body.style.setProperty('font-family', 'var(--mdc-typography-font-family)');
-    }
-  }
+  $: updateThemeStyle(
+    {
+      // Create vars in root.
+      ':root': {
+        // Apply shared palette first as base
+        ...(paletteMap.get('shared') || {}),
+        // Apply chosen theme palette
+        ...(paletteMap.get(theme) || {}),
+        // Apply the typography vars
+        ...typographyConfig.vars
+      },
+      // Expand the coinciding typography classes
+      ...typographyConfig.classes
+    },
+    pageDocument
+  );
 
   // Lifecycle
   onMount(() => {
-    mounted = true;
+    pageDocument = document;
   });
 </script>
 
@@ -57,10 +51,18 @@
 	Prevent children rendering until theme applied. 
 	This stops potential flash from default theme/root values 
 -->
-{#if mounted}
+{#if pageDocument}
   <slot />
 {/if}
 
 <style lang="scss" global>
   @use '@material/typography/mdc-typography';
+  @import '../shared/theme/default-colors/colors.css';
+  :root {
+    --mdc-typography-font-family: var(--mdc-typography-global-font-family, 'roboto', sans-serif);
+  }
+  body {
+    background-color: var(--mdc-theme-background);
+    color: var(--mdc-theme-on-background);
+  }
 </style>
