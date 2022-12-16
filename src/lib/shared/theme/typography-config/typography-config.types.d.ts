@@ -1,4 +1,6 @@
-export type ThemeTypography = TypographyPalette & { [key: string]: TypographyPaletteValues };
+export type ThemeTypography = TypographyPalette & {
+  [key: string]: TypographyPaletteValues;
+};
 
 export interface TypographyConfig {
   vars: TypographyVars;
@@ -13,6 +15,7 @@ export interface TypographyClasses {
 }
 
 export interface TypographyPalette {
+  global?: { fontFamily: string };
   h1?: TypographyPaletteValues;
   h2?: TypographyPaletteValues;
   h3?: TypographyPaletteValues;

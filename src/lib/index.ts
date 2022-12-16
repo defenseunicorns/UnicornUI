@@ -36,7 +36,6 @@ export {
 };
 
 // Export Utility Functions here
-export { createPaletteMap } from './shared/theme/palette/palette.utils';
 export { getPreferredTheme } from './shared/utils/getPreferredTheme';
 export { DefaultPalettes } from './shared/theme/palette/default-palettes';
 
@@ -69,6 +68,14 @@ export type {
   PreferredTheme
 } from './shared/theme/palette/palette.types';
 export type { BoxProps } from './Box/box.types';
+export type {
+  TypographyVars,
+  ThemeTypography,
+  TypographyConfig,
+  TypographyClasses,
+  TypographyPalette,
+  TypographyPaletteValues
+} from './shared/theme/typography-config/typography-config.types';
 export type { DialogActionsProps, DialogTitleProps } from './Dialog/Dialog.types';
 export type { IconButtonColor, IconButtonProps } from './IconButton/IconButton.types';
 export type { StepVariant, StepOrientation, StepProps } from './Stepper/stepper.types';
