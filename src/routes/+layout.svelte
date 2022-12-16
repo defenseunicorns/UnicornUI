@@ -1,6 +1,7 @@
 <script lang="ts">
   import '../app.css';
   import 'material-symbols/';
+  import '@fontsource/roboto/300.css';
   import '@fontsource/roboto';
   import Theme from '$lib/Theme/theme.svelte';
   import { afterUpdate, onMount } from 'svelte';
