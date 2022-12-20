@@ -1,3 +1,4 @@
+import UUI_TYPOGRAPHY from '$lib/shared/theme/typography-config/default-typography-config';
 import type { ThemeTypography } from '$lib/shared/theme/typography-config/typography-config.types';
 
 /*
@@ -8,13 +9,7 @@ import type { ThemeTypography } from '$lib/shared/theme/typography-config/typogr
  * </Theme>
  */
 const customTypography: ThemeTypography = {
-  global: {
-    fontFamily: 'Roboto'
-  },
-  h1: {
-    fontWeight: '300',
-    fontFamily: 'roboto'
-  },
+  ...UUI_TYPOGRAPHY,
   body3: {
     fontWeight: 'bold',
     fontSize: '.875em',
