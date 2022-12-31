@@ -71,6 +71,57 @@ Slots:
         <pre class="variant-code">
 			{`<Stepper orientation="horizontal" steps={[...steps]} />`}
 		</pre>
+        <Stepper
+          orientation="horizontal"
+          steps={[
+            {
+              title: 'Validate Configuration',
+              subtitle: 'Replace all package variables'
+            },
+            {
+              title: 'Deploy K3s & Initialize Cluster'
+            },
+            {
+              title: 'Deploy Zarf Injector'
+            }
+          ]}
+        />
+      </div>
+    </Accordion>
+    <Accordion>
+      <span slot="headerContent" class="mdc-typography--headline6"
+        >Stepper Horizontal More Steps</span
+      >
+      <div slot="content">
+        <pre class="variant-code">
+			{`<Stepper orientation="horizontal" steps={[...steps]} />`}
+		</pre>
+        <Stepper
+          orientation="horizontal"
+          steps={[
+            {
+              title: 'Validate Configuration',
+              subtitle: 'Replace all package variables'
+            },
+            {
+              title: 'Deploy K3s & Initialize Cluster'
+            },
+            {
+              title: 'Deploy Zarf Injector'
+            },
+            { title: 'Deploy Zarf Seed - Registry' }
+          ]}
+        />
+      </div>
+    </Accordion>
+    <Accordion>
+      <span slot="headerContent" class="mdc-typography--headline6"
+        >Stepper Horizontal -- Too Many Steps for Dividers</span
+      >
+      <div slot="content">
+        <pre class="variant-code">
+			{`<Stepper orientation="horizontal" steps={[...steps]} />`}
+		</pre>
         <Stepper orientation="horizontal" steps={[...steps]} />
       </div>
     </Accordion>

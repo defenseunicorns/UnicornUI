@@ -9,18 +9,15 @@
   export let orientation: StepOrientation = 'horizontal';
   export let verticalGap = '50px';
 
-  // vars
-  let stepOrientation: StepOrientation;
-
   // Watch
   $: stepperClass = `stepper stepper-${orientation}`;
-  $: stepOrientation = orientation === 'horizontal' ? 'vertical' : 'horizontal';
 </script>
 
 <ol class={stepperClass} style="--vertical-gap: {verticalGap}">
   {#each steps as step}
-    <li class="stepper-item">
-      <Step {...step} orientation={stepOrientation} />
+    <li class="stepper-item" >
+      <Step {...step} orientation="horizontal" />
+      <div class="divider-{orientation}"/>
     </li>
   {/each}
 </ol>
@@ -30,11 +27,11 @@
     display: flex;
     z-index: 0;
   }
+  
   .stepper-vertical {
     flex-direction: column;
   }
-  .stepper-item {
-    flex: 1;
+  .stepper-vertical .stepper-item {
     display: flex;
     flex-direction: column;
   }
@@ -42,27 +39,28 @@
     position: relative;
     padding-bottom: var(--vertical-gap);
   }
-  .stepper-vertical .stepper-item:not(:last-child):before {
-    content: '';
+  .stepper-vertical .stepper-item:not(:last-child) .divider-vertical {
     position: absolute;
-    left: 0;
+    transform: translate(12px, 12px);
+    left:0;
     top: 20px;
     bottom: 20px;
-    transform: translate(12px, 12px);
-    width: 2px;
-    background-color: #bdbdbd;
+    border-color: #bdbdbd;
+    border-left-style: solid;
+    border-left-width: 2px;
   }
 
-  .stepper-horizontal .stepper-item:not(:last-child):after {
-    content: '';
-    position: relative;
-    top: 12px;
-    height: 2px;
-    max-height: 2px;
-    left: calc(50% + 12px + 12px);
-    z-index: -1;
-    width: calc(100% - 24px - calc(24px));
-    order: -1;
-    background-color: #bdbdbd;
+  .stepper-horizontal .stepper-item {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+  }
+  .stepper-horizontal .stepper-item:not(:last-child) .divider-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+    border-color: #bdbdbd;
+    border-top-style: solid;
+    border-top-width: 2px;
+    margin: 8px;
   }
 </style>

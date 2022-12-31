@@ -33,11 +33,6 @@
     display: flex;
     align-items: center;
   }
-  .step-vertical {
-    gap: 16px;
-    flex-direction: column;
-    text-align: center;
-  }
   .step-horizontal {
     gap: 8px;
     align-items: flex-start;
