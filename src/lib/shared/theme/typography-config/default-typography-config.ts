@@ -39,29 +39,29 @@ const UUI_TYPOGRAPHY: ThemeTypography = {
     lineHeight: '160%',
     letterSpacing: '.15px'
   },
-  body1: {
-    fontSize: '16px',
-    fontWeight: '400',
-    lineHeight: '150%',
-    letterSpacing: '.15px'
-  },
-  body2: {
-    fontSize: '14px',
-    fontWeight: '400',
-    lineHeight: '143%',
-    letterSpacing: '.17px'
-  },
   subtitle1: {
     fontSize: '16px',
     fontWeight: '500',
-    lineHeight: '175%',
+    lineHeight: '150%',
     letterSpacing: '.15px'
   },
   subtitle2: {
     fontSize: '14px',
     fontWeight: '500',
-    lineHeight: '157%',
+    lineHeight: '140%',
     letterSpacing: '.1px'
+  },
+  body1: {
+    fontSize: '16px',
+    fontWeight: '400',
+    lineHeight: '120%',
+    letterSpacing: '.15px'
+  },
+  body2: {
+    fontSize: '14px',
+    fontWeight: '400',
+    lineHeight: '120%',
+    letterSpacing: '.17px'
   },
   caption: {
     fontSize: '12px',
@@ -77,10 +77,11 @@ const UUI_TYPOGRAPHY: ThemeTypography = {
     textTransform: 'uppercase'
   },
   button: {
+    fontSize: '14px',
     fontWeight: '500',
-    fontSize: '14',
-    textTransform: 'uppercase',
-    letterSpacing: '.4px'
+    lineHeight: '24px',
+    letterSpacing: '.4px',
+    textTransform: 'uppercase'
   }
 };
 
