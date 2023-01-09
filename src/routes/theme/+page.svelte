@@ -40,6 +40,10 @@ Additional Notes:
   - Should be applied to top level layout.
   - Should wrap all website components to prevent layout flash.
   - Acts purely as a wrapper and contains no html tags. 
+  - Palette and TypographyConfig values are accessible via css using vars following the mdc pattern (--mdc-theme, --mdc-typography, etc...)
+    examples: 
+      - color: var(--mdc-theme-text-primary-on-dark)
+      - font-size: var(--mdc-typography-h1-font-size)
 `}
 >
   <AccordionGroup>
