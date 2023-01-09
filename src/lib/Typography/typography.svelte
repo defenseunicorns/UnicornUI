@@ -2,7 +2,7 @@
   import Box from '$lib/Box/box.svelte';
   import { current_component } from 'svelte/internal';
   import { typographyElementMapping } from './typography';
-  import { themeColorBuilder } from '$lib/shared/theme/default-colors/colors';
+  import { makeThemeColor } from '$lib/shared/utils/makeThemeColor';
   import type { TextColors } from '$lib/shared/theme/default-colors/colors.types';
   import type { TypographyVariant, TypographyElement, TypographyProps } from './typography.types';
   import { createTypographyVariantClass } from '$lib/shared/theme/typography-config/typography-config.utils';
@@ -15,7 +15,7 @@
 
   // Props
   export let variant: TypographyVariant = 'body1';
-  export let color: TextColors = 'inherit';
+  export let color: TextColors = '';
 
   type $$Props = TypographyProps<T>;
 
@@ -24,7 +24,7 @@
     class: createTypographyVariantClass(variant)
   };
   $: $$restProps.class = `${variantElement.class} ${$$restProps.class || ''}`;
-  $: $$restProps.style = `color: ${themeColorBuilder(color)}; ${$$restProps.style}`;
+  $: $$restProps.style = `color: ${makeThemeColor(color)}; ${$$restProps.style}`;
 </script>
 
 <Box element={variantElement.element} eventComponent={current_component} {...$$restProps}>

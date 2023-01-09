@@ -1,6 +1,6 @@
 import type { ThemeTypography } from './typography-config.types';
 
-const UUI_TYPOGRAPHY: ThemeTypography = {
+const UUI_TYPOGRAPHY: ThemeTypography = Object.freeze({
   global: {
     fontFamily: 'Roboto'
   },
@@ -83,6 +83,6 @@ const UUI_TYPOGRAPHY: ThemeTypography = {
     letterSpacing: '.4px',
     textTransform: 'uppercase'
   }
-};
+});
 
 export default UUI_TYPOGRAPHY;
