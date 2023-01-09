@@ -4,7 +4,8 @@ import type {
 } from '../../../../../src/lib/shared/theme/typography-config/typography-config.types';
 import {
   createTypographyConfig,
-  createStyleFromJSON
+  makeStyles,
+  jsToCSS
 } from '../../../../../src/lib/shared/theme/typography-config/typography-config.utils';
 
 let typographyConfig: TypographyConfig;
@@ -71,10 +72,28 @@ describe('createTypographyConfig', () => {
   });
 });
 
-describe('create typography css', () => {
-  it('creates a css class string from TypographyClasses', () => {
-    expect(
-      createStyleFromJSON({ '.mdc-typography--custom-typography': { 'font-size': '1.2px' } })
-    ).toBe('.mdc-typography--custom-typography{font-size:1.2px;}');
+describe('makeStyles', () => {
+  it('creates a css class string from cssObject', () => {
+    expect(makeStyles({ '.mdc-typography--custom-typography': { 'font-size': '1.2px' } })).toBe(
+      '.mdc-typography--custom-typography{font-size:1.2px;}'
+    );
+  });
+
+  it('creates a css style from cssObject', () => {
+    expect(makeStyles({ 'body > h1': { color: 'pink', backgroundColor: 'red' } })).toBe(
+      'body > h1{color:pink;background-color:red;}'
+    );
+  });
+});
+
+describe('jsToCss', () => {
+  const js: Record<string, string> = {
+    fontSize: '16px',
+    color: 'pink',
+    backgroundColor: 'blue',
+    paddingLeft: '10px'
+  };
+  it('Converts js properties to a css string', () => {
+    expect(jsToCSS(js)).toBe('font-size:16px;color:pink;background-color:blue;padding-left:10px;');
   });
 });
