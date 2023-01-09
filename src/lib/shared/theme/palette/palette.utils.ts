@@ -1,4 +1,4 @@
-import { camelBackToDash } from '../camelBackToDash';
+import { camelBackToDash } from '../config/theme-config.utils';
 import type { Palette, Palettes, ThemeVars } from './palette.types';
 
 const MDC_THEME_PREFIX = '--mdc-theme';

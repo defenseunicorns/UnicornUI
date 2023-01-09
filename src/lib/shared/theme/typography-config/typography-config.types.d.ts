@@ -1,3 +1,5 @@
+import type { CssObject } from '../config/theme-config.types';
+
 export type ThemeTypography = TypographyPalette & {
   [key: string]: TypographyPaletteValues;
 };
@@ -9,9 +11,6 @@ export interface TypographyConfig {
 
 export interface TypographyVars {
   [key: string]: string;
-}
-export interface CssObject {
-  [key: string]: Record<string, string>;
 }
 
 export interface TypographyPalette {

@@ -1,12 +1,10 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import {
-    createTypographyConfig,
-    updateThemeStyle
-  } from '$lib/shared/theme/typography-config/typography-config.utils';
+  import { createTypographyConfig } from '$lib/shared/theme/typography-config/typography-config.utils';
   import { createPaletteMap } from '$lib/shared/theme/palette/palette.utils';
   import { DefaultPalettes } from '$lib/shared/theme/palette/default-palettes';
   import type { ThemeTypography } from '$lib/shared/theme/typography-config/typography-config.types';
+  import { updateThemeStyle } from '$lib/shared/theme/config/theme-config.utils';
 
   // Props
   export let palettes = DefaultPalettes;
