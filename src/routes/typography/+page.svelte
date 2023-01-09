@@ -11,7 +11,7 @@ https://material.io/develop/web/guides/typography
 
 Props (extends BoxProps):
   variant: TypographyVariant = 'body1';
-  color: TextColors = 'inherit';
+  color: TextColors = '';
   
 Slots:
     default

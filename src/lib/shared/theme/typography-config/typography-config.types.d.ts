@@ -40,4 +40,5 @@ export interface TypographyPaletteValues {
   letterSpacing?: string;
   textDecoration?: string;
   textTransform?: string;
+  color?: string;
 }
