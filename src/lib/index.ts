@@ -72,7 +72,7 @@ export type {
   TypographyVars,
   ThemeTypography,
   TypographyConfig,
-  TypographyClasses,
+  CssObject,
   TypographyPalette,
   TypographyPaletteValues
 } from './shared/theme/typography-config/typography-config.types';

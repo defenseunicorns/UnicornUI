@@ -4,13 +4,13 @@ export type ThemeTypography = TypographyPalette & {
 
 export interface TypographyConfig {
   vars: TypographyVars;
-  classes: TypographyClasses;
+  classes: CssObject;
 }
 
 export interface TypographyVars {
   [key: string]: string;
 }
-export interface TypographyClasses {
+export interface CssObject {
   [key: string]: Record<string, string>;
 }
 

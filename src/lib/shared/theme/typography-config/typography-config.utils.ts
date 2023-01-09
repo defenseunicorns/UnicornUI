@@ -4,7 +4,7 @@ import type {
   ThemeTypography,
   TypographyConfig,
   TypographyPaletteValues,
-  TypographyClasses
+  CssObject
 } from './typography-config.types';
 
 const TYPOGRAPHY_PREFIX = 'mdc-typography';
@@ -73,21 +73,21 @@ export function addThemeStyleToHead(document: Document, typographyCss: string) {
   }
 }
 
-export function updateThemeStyle(themeStyle: TypographyClasses, document?: Document) {
-  document && addThemeStyleToHead(document, createStyleFromJSON(themeStyle));
+export function updateThemeStyle(themeStyle: CssObject, document?: Document) {
+  document && addThemeStyleToHead(document, makeStyles(themeStyle));
 }
 
-export function createStyleFromJSON(classes: TypographyClasses): string {
+export function makeStyles(classes: CssObject): string {
   let css = '';
   Object.entries(classes).forEach(([key, val]: [string, Record<string, string>]) => {
-    const classProperties = jsonObjectToCSS(val);
+    const classProperties = jsToCSS(val);
     css += `${key}{${classProperties}}`;
   });
   return css;
 }
 
-export function jsonObjectToCSS(jsonObject: Record<string, string>) {
-  return Object.entries(jsonObject).reduce((prev: string, [key, val]: [string, string]) => {
+export function jsToCSS(js: Record<string, string>) {
+  return Object.entries(js).reduce((prev: string, [key, val]: [string, string]) => {
     return `${prev}${camelBackToDash(key)}:${val};`;
   }, '');
 }
