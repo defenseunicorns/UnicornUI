@@ -68,11 +68,11 @@ export type {
   PreferredTheme
 } from './shared/theme/palette/palette.types';
 export type { BoxProps } from './Box/box.types';
+export type { CssObject } from './shared/theme/config/theme-config.types';
 export type {
   TypographyVars,
   ThemeTypography,
   TypographyConfig,
-  CssObject,
   TypographyPalette,
   TypographyPaletteValues
 } from './shared/theme/typography-config/typography-config.types';

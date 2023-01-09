@@ -1,10 +1,9 @@
 import type { TypographyVariant } from '../../../Typography/typography.types';
-import { camelBackToDash } from '../camelBackToDash';
+import { camelBackToDash } from '../config/theme-config.utils';
 import type {
   ThemeTypography,
   TypographyConfig,
-  TypographyPaletteValues,
-  CssObject
+  TypographyPaletteValues
 } from './typography-config.types';
 
 const TYPOGRAPHY_PREFIX = 'mdc-typography';
@@ -57,37 +56,4 @@ export function createTypographyVariantClass(variant: TypographyVariant): string
       className += camelBackToDash(variant);
   }
   return className;
-}
-
-export function addThemeStyleToHead(document: Document, typographyCss: string) {
-  const ELEMENT_ID = 'uui-theme-css';
-  let style = document.getElementById(ELEMENT_ID);
-  if (style) {
-    style.innerHTML = typographyCss;
-  } else {
-    style = document.createElement('style');
-    style.setAttribute('id', ELEMENT_ID);
-    style.setAttribute('type', 'text/css');
-    style.innerHTML = typographyCss;
-    document.getElementsByTagName('head')[0].appendChild(style);
-  }
-}
-
-export function updateThemeStyle(themeStyle: CssObject, document?: Document) {
-  document && addThemeStyleToHead(document, makeStyles(themeStyle));
-}
-
-export function makeStyles(classes: CssObject): string {
-  let css = '';
-  Object.entries(classes).forEach(([key, val]: [string, Record<string, string>]) => {
-    const classProperties = jsToCSS(val);
-    css += `${key}{${classProperties}}`;
-  });
-  return css;
-}
-
-export function jsToCSS(js: Record<string, string>) {
-  return Object.entries(js).reduce((prev: string, [key, val]: [string, string]) => {
-    return `${prev}${camelBackToDash(key)}:${val};`;
-  }, '');
 }
