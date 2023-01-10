@@ -17,8 +17,7 @@ export type Palette = {
   warning?: PaletteField;
   info?: PaletteField;
   error?: PaletteField;
-  [key: string]: PaletteField;
-};
+} & { [key: string]: PaletteField };
 
 export type PaletteField = (
   | string
@@ -29,19 +28,21 @@ export type PaletteField = (
   Palette;
 
 export type TextColor =
-  | {
-      onLight?: string;
-      onDark?: string;
-      onBackground?: string;
-    }
-  | {
-      on?: {
-        dark?: string;
-        light?: string;
-        background?: string;
-      };
-    }
-  | ColorFields;
+  | (
+      | {
+          onLight?: string;
+          onDark?: string;
+          onBackground?: string;
+        }
+      | {
+          on?: {
+            dark?: string;
+            light?: string;
+            background?: string;
+          };
+        }
+    ) &
+      PaletteField;
 
 export interface ThemeVars {
   [key: string]: string;
