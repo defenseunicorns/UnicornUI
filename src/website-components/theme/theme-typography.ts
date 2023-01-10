@@ -1,4 +1,5 @@
-import type { ThemeTypography } from '$lib/shared/theme/typography-config/typography-config.types';
+import { UUI_TYPOGRAPHY } from '$lib';
+import type { ThemeTypography } from '$lib';
 
 /*
  * Custom typography variant example.
@@ -8,16 +9,17 @@ import type { ThemeTypography } from '$lib/shared/theme/typography-config/typogr
  * </Theme>
  */
 const customTypography: ThemeTypography = {
+  ...UUI_TYPOGRAPHY,
   body3: {
     fontWeight: 'bold',
-    fontSize: '.875em',
+    fontSize: 'var(--mdc-typography-h6-font-size)',
     lineHeight: '143%',
     fontStyle: 'normal',
     fontFamily: 'cursive',
     letterSpacing: '.17px',
     textTransform: 'uppercase',
     textDecoration: 'underline wavy var(--mdc-theme-warning)',
-    color: 'purple'
+    color: 'var(--mdc-theme-primary)'
   }
 };
 

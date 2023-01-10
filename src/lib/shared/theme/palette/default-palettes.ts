@@ -1,6 +1,4 @@
-import type { Palettes } from './palette.types';
-
-const UUI_PALETTES: Palettes = Object.freeze({
+export const UUI_PALETTES = {
   shared: {
     primary: '#68c4ff',
     secondary: '#787ff6',
@@ -58,6 +56,4 @@ const UUI_PALETTES: Palettes = Object.freeze({
       surface: '#000000'
     }
   }
-});
-
-export default UUI_PALETTES;
+};

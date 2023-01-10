@@ -15,8 +15,6 @@ import IconButton from './IconButton/IconButton.svelte';
 import Typography from './Typography/typography.svelte';
 import DialogActions from './Dialog/DialogActions.svelte';
 import AccordionGroup from './Accordion/accordion-group.svelte';
-import UUI_PALETTES from './shared/theme/palette/default-palettes';
-import UUI_TYPOGRAPHY from './shared/theme/typography-config/default-typography-config';
 
 export {
   Box,
@@ -33,15 +31,15 @@ export {
   IconButton,
   Typography,
   DialogTitle,
-  UUI_PALETTES,
   DialogActions,
-  AccordionGroup,
-  UUI_TYPOGRAPHY
+  AccordionGroup
 };
 
 // Export Utility Functions here
-export { getPreferredTheme } from './shared/utils/getPreferredTheme';
 export { makeThemeColor } from './shared/utils/makeThemeColor';
+export { getPreferredTheme } from './shared/utils/getPreferredTheme';
+export { UUI_PALETTES } from './shared/theme/palette/default-palettes';
+export { UUI_TYPOGRAPHY } from './shared/theme/typography-config/default-typography-config';
 
 // Re-export your types here.
 export type {
@@ -68,7 +66,6 @@ export type {
   Palette,
   Palettes,
   ThemeVars,
-  ColorFields,
   PreferredTheme
 } from './shared/theme/palette/palette.types';
 export type { BoxProps } from './Box/box.types';
