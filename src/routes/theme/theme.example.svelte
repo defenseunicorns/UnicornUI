@@ -21,6 +21,6 @@
 <style>
   /* Roboto normal (400) */
   @import '@fontsource/roboto';
-  @import '@fontsource/500';
-  @import '@fontsource/300';
+  @import '@fontsource/roboto/500';
+  @import '@fontsource/roboto/300';
 </style>
