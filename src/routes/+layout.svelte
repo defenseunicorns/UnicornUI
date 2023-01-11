@@ -1,14 +1,14 @@
 <script lang="ts">
   import '../app.css';
   import 'material-symbols/';
-  import '@fontsource/roboto';
   import Theme from '$lib/Theme/theme.svelte';
   import { afterUpdate, onMount } from 'svelte';
   import { Button, getPreferredTheme } from '$lib';
   import Typography from '$lib/Typography/typography.svelte';
+  import ThemeToggle from '../website-components/ThemeToggle.svelte';
   import type { ButtonColor, ButtonShape, ButtonVariant } from '$lib';
   import { currentTheme } from '../website-components/theme/theme-store';
-  import ThemeToggle from '../website-components/ThemeToggle.svelte';
+  import customTypography from '../website-components/theme/theme-typography';
 
   let path = '';
   let currentThemeVal: string;
@@ -40,7 +40,7 @@
   }
 </script>
 
-<Theme theme={currentThemeVal}>
+<Theme theme={currentThemeVal} typography={customTypography}>
   <section class="components">
     <Typography variant="h1">Unicorn UI</Typography>
     <Button href="/" {...getVariant(path, '/')}>Home</Button>
@@ -63,7 +63,10 @@
   </main>
 </Theme>
 
-<style lang="scss">
+<style>
+  @import '@fontsource/roboto';
+  @import '@fontsource/roboto/300';
+  @import '@fontsource/roboto/500';
   .components {
     display: flex;
     flex-direction: column;

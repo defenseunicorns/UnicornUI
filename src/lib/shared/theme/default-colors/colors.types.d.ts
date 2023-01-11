@@ -24,4 +24,5 @@ export type TextColors =
   | 'on-warning'
   | 'on-info'
   | 'on-surface'
-  | 'on-background';
+  | 'on-background'
+  | string;

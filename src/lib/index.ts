@@ -36,9 +36,10 @@ export {
 };
 
 // Export Utility Functions here
-export { createPaletteMap } from './shared/theme/palette/palette.utils';
+export { makeThemeColor } from './shared/utils/makeThemeColor';
 export { getPreferredTheme } from './shared/utils/getPreferredTheme';
-export { DefaultPalettes } from './shared/theme/palette/default-palettes';
+export { UUI_PALETTES } from './shared/theme/palette/default-palettes';
+export { UUI_TYPOGRAPHY } from './shared/theme/typography-config/default-typography-config';
 
 // Re-export your types here.
 export type {
@@ -65,10 +66,17 @@ export type {
   Palette,
   Palettes,
   ThemeVars,
-  ColorFields,
   PreferredTheme
 } from './shared/theme/palette/palette.types';
 export type { BoxProps } from './Box/box.types';
+export type { CssObject } from './shared/theme/config/theme-config.types';
+export type {
+  TypographyVars,
+  ThemeTypography,
+  TypographyConfig,
+  TypographyPalette,
+  TypographyPaletteValues
+} from './shared/theme/typography-config/typography-config.types';
 export type { DialogActionsProps, DialogTitleProps } from './Dialog/Dialog.types';
 export type { IconButtonColor, IconButtonProps } from './IconButton/IconButton.types';
 export type { StepVariant, StepOrientation, StepProps } from './Stepper/stepper.types';
