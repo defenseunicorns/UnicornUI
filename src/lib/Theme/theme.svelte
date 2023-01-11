@@ -1,43 +1,48 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { UUI_PALETTES } from '$lib/shared/theme/palette/default-palettes';
   import { createPaletteMap } from '$lib/shared/theme/palette/palette.utils';
-  import type { ThemeVars } from '$lib/shared/theme/palette/palette.types';
-  import { DefaultPalettes } from '$lib/shared/theme/palette/default-palettes';
+  import { updateThemeStyle } from '$lib/shared/theme/config/theme-config.utils';
+  import { UUI_TYPOGRAPHY } from '$lib/shared/theme/typography-config/default-typography-config';
+  import type { ThemeTypography } from '$lib/shared/theme/typography-config/typography-config.types';
+  import { createTypographyConfig } from '$lib/shared/theme/typography-config/typography-config.utils';
 
-  export let palettes = DefaultPalettes;
-
+  // Props
+  export let palettes = UUI_PALETTES;
+  export let typography: ThemeTypography = UUI_TYPOGRAPHY;
   // Check for light theme otherwise use dark
   // Shared is always applied even when its the only theme.
   export let theme = palettes['light'] ? 'light' : 'dark';
 
-  // Ensure theme applied before rendering children.
-  let mounted = false;
-
-  // Convert palettes to map with key, themeVars.
+  // Locals
+  // Used to ensure component is mounted.
+  let pageDocument: Document;
+  // Convert palettes to map with key, ThemeVars.
   const paletteMap = createPaletteMap(palettes);
+  // Create Typography Config
+  const typographyConfig = createTypographyConfig(typography);
 
   // Watch theme and apply when changed.
-  $: {
-    // empty if theme not found (shared is always applied)
-    const currentPalette = paletteMap.get(theme) || {};
-    const sharedPalette = paletteMap.get('shared') || {};
-
-    // Ensure we can access document.
-    if (mounted) {
-      const themePalette: ThemeVars = { ...sharedPalette, ...currentPalette };
-      Object.entries(themePalette).forEach((entry: [string, string]) => {
-        // Add var to root.
-        document.documentElement.style.setProperty(entry[0], entry[1]);
-      });
-      // Set the background and color properties from theme to body.
-      document.body.style.setProperty('background-color', `var(--mdc-theme-background)`);
-      document.body.style.setProperty('color', 'var(--mdc-theme-on-background)');
-    }
-  }
+  $: updateThemeStyle(
+    {
+      // Create vars in root.
+      ':root': {
+        // Apply shared palette first as base
+        ...(paletteMap.get('shared') || {}),
+        // Apply chosen theme palette
+        ...(paletteMap.get(theme) || {}),
+        // Apply the typography vars
+        ...typographyConfig.vars
+      },
+      // Expand the coinciding typography classes
+      ...typographyConfig.classes
+    },
+    pageDocument
+  );
 
   // Lifecycle
   onMount(() => {
-    mounted = true;
+    pageDocument = document;
   });
 </script>
 
@@ -45,6 +50,18 @@
 	Prevent children rendering until theme applied. 
 	This stops potential flash from default theme/root values 
 -->
-{#if mounted}
+{#if pageDocument}
   <slot />
 {/if}
+
+<style lang="scss" global>
+  @use '@material/typography/mdc-typography';
+  @import '../shared/theme/default-colors/colors.css';
+  :root {
+    --mdc-typography-font-family: var(--mdc-typography-global-font-family, 'Roboto, helvetica');
+  }
+  body {
+    background-color: var(--mdc-theme-background);
+    color: var(--mdc-theme-on-background);
+  }
+</style>

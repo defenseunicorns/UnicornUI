@@ -8,47 +8,41 @@ export type Palettes = {
   [key: string]: Palette;
 };
 
-export type Palette =
-  | string
-  | (BasePalette & {
-      on?: Palette;
-      text?: Palette;
-    } & { [key: string]: Palette });
+export type Palette = {
+  primary?: PaletteField;
+  secondary?: PaletteField;
+  surface?: PaletteField;
+  background?: PaletteField;
+  success?: PaletteField;
+  warning?: PaletteField;
+  info?: PaletteField;
+  error?: PaletteField;
+} & { [key: string]: PaletteField };
 
-export type BasePalette = (
+export type PaletteField = (
   | string
   | { [key: string]: string }
-  | { [key: string]: BasePalette }
+  | { [key: string]: PaletteField }
   | { [key: string]: TextColor }
 ) &
-  ColorFields;
-
-export type ColorFields =
-  | {
-      primary?: BasePalette;
-      secondary?: BasePalette;
-      surface?: BasePalette;
-      background?: BasePalette;
-      success?: BasePalette;
-      warning?: BasePalette;
-      info?: BasePalette;
-      error?: BasePalette;
-    }
-  | { [key: string]: TextColor };
+  Palette;
 
 export type TextColor =
-  | ({
-      onLight?: string;
-      onDark?: string;
-      onBackground?: string;
-    } & { [key: string]: string })
-  | {
-      on: {
-        dark?: string;
-        light?: string;
-        background?: string;
-      } & { [key: string]: string };
-    };
+  | (
+      | {
+          onLight?: string;
+          onDark?: string;
+          onBackground?: string;
+        }
+      | {
+          on?: {
+            dark?: string;
+            light?: string;
+            background?: string;
+          };
+        }
+    ) &
+      PaletteField;
 
 export interface ThemeVars {
   [key: string]: string;
