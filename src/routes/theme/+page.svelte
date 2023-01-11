@@ -36,7 +36,6 @@ Slots:
   unnamed
 
 Example:
-// routes/+layout.svelte
 <Theme theme={currentTheme} palettes={myCustomPalettes} typography={myCustomTypography}>
     {...TheRestOfTheWebsite}
 </Theme>
