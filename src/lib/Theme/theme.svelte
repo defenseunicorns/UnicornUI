@@ -6,6 +6,7 @@
   import { UUI_TYPOGRAPHY } from '$lib/shared/theme/typography-config/default-typography-config';
   import type { ThemeTypography } from '$lib/shared/theme/typography-config/typography-config.types';
   import { createTypographyConfig } from '$lib/shared/theme/typography-config/typography-config.utils';
+  import '$lib/shared/theme/default-colors/colors.css';
 
   // Props
   export let palettes = UUI_PALETTES;
@@ -56,9 +57,11 @@
 
 <style lang="scss" global>
   @use '@material/typography/mdc-typography';
-  @import '../shared/theme/default-colors/colors.css';
   :root {
-    --mdc-typography-font-family: var(--mdc-typography-global-font-family, 'Roboto, helvetica');
+    --mdc-typography-font-family: var(
+      --mdc-typography-global-font-family,
+      'Roboto, helvetica, sans-serif'
+    );
   }
   body {
     background-color: var(--mdc-theme-background);
