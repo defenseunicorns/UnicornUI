@@ -17,7 +17,7 @@
   // Locals
   // Used to ensure component is mounted.
   let pageDocument: Document;
-  // Convert palettes to map with key, themeVars.
+  // Convert palettes to map with key, ThemeVars.
   const paletteMap = createPaletteMap(palettes);
   // Create Typography Config
   const typographyConfig = createTypographyConfig(typography);
