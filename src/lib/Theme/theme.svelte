@@ -6,7 +6,7 @@
   import { UUI_TYPOGRAPHY } from '$lib/shared/theme/typography-config/default-typography-config';
   import type { ThemeTypography } from '$lib/shared/theme/typography-config/typography-config.types';
   import { createTypographyConfig } from '$lib/shared/theme/typography-config/typography-config.utils';
-  import '$lib/shared/theme/default-colors/colors.css';
+  import '../shared/theme/default-colors/colors.css';
 
   // Props
   export let palettes = UUI_PALETTES;
