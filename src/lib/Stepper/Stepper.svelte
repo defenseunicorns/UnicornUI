@@ -3,9 +3,7 @@
   import type { StepOrientation, StepProps } from './stepper.types';
 
   // Props
-  export let steps: StepProps[] = [
-    { title: 'Replace Defaults', subtitle: `I need Steps`, iconContent: '1' }
-  ];
+  export let steps: StepProps[] = [];
   export let orientation: StepOrientation = 'horizontal';
   export let verticalGap = '50px';
 
@@ -15,9 +13,9 @@
 
 <ol class={stepperClass} style="--vertical-gap: {verticalGap}">
   {#each steps as step}
-    <li class="stepper-item" >
+    <li class="stepper-item">
       <Step {...step} orientation="horizontal" />
-      <div class="divider-{orientation}"/>
+      <div class="divider-{orientation}" />
     </li>
   {/each}
 </ol>
@@ -27,7 +25,7 @@
     display: flex;
     z-index: 0;
   }
-  
+
   .stepper-vertical {
     flex-direction: column;
   }
@@ -42,7 +40,7 @@
   .stepper-vertical .stepper-item:not(:last-child) .divider-vertical {
     position: absolute;
     transform: translate(12px, 12px);
-    left:0;
+    left: 0;
     top: 20px;
     bottom: 20px;
     border-color: #bdbdbd;

@@ -8,7 +8,7 @@
   export let disabled = false;
   export let iconContent = '';
   export let variant: StepVariant = 'primary';
-  export let orientation: StepOrientation = 'vertical';
+  export let orientation: StepOrientation = 'horizontal';
   export let wrapperClass = '';
 
   $: fullClass = `step step-${orientation} ${variant} ${wrapperClass}`;
@@ -32,6 +32,11 @@
   .step {
     display: flex;
     align-items: center;
+  }
+  .step-vertical {
+    gap: 16px;
+    flex-direction: column;
+    text-align: center;
   }
   .step-horizontal {
     gap: 8px;
