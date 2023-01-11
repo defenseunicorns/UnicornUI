@@ -1,8 +1,6 @@
 import type { CssObject } from '../config/theme-config.types';
 
-export type ThemeTypography = TypographyPalette & {
-  [key: string]: TypographyPaletteValues;
-};
+export type ThemeTypography = TypographyPalette;
 
 export interface TypographyConfig {
   vars: TypographyVars;
@@ -29,6 +27,7 @@ export interface TypographyPalette {
   overline?: TypographyPaletteValues;
   inherit?: TypographyPaletteValues;
   button?: TypographyPaletteValues;
+  [key: string]: TypographyPaletteValues;
 }
 
 export interface TypographyPaletteValues {

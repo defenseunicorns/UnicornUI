@@ -3,7 +3,7 @@ import type { ThemeTypography } from '$lib';
 
 /*
  * Custom typography variant example.
- * ex:
+ * example:
  * <Theme typography={customTypography}>
  *   <Typography element="div" variant="body3">Custom Typography</Typography>
  * </Theme>

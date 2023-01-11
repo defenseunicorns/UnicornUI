@@ -1,6 +1,6 @@
 export const UUI_TYPOGRAPHY = {
   global: {
-    fontFamily: 'Roboto'
+    fontFamily: 'roboto, helvetica, sans-serif, arial'
   },
   h1: {
     fontSize: '96px',
