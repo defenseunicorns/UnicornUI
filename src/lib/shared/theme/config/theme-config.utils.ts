@@ -18,9 +18,9 @@ export function addThemeStyleToHead(document: Document, typographyCss: string) {
   }
 }
 
-export function makeStyles(classes: CssObject): string {
+export function makeStyles(cssObj: CssObject): string {
   let css = '';
-  Object.entries(classes).forEach(([key, val]: [string, Record<string, string>]) => {
+  Object.entries(cssObj).forEach(([key, val]: [string, Record<string, string>]) => {
     const classProperties = jsToCSS(val);
     css += `${key}{${classProperties}}`;
   });

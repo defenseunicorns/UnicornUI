@@ -58,7 +58,7 @@
   @use '@material/typography/mdc-typography';
   @import '../shared/theme/default-colors/colors.css';
   :root {
-    --mdc-typography-font-family: var(--mdc-typography-global-font-family, 'roboto', sans-serif);
+    --mdc-typography-font-family: var(--mdc-typography-global-font-family, 'Roboto, helvetica');
   }
   body {
     background-color: var(--mdc-theme-background);
