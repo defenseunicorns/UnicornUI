@@ -3,12 +3,13 @@
   import { UUI_PALETTES } from '$lib/shared/theme/palette/default-palettes';
   import { createPaletteMap } from '$lib/shared/theme/palette/palette.utils';
   import { updateThemeStyle } from '$lib/shared/theme/config/theme-config.utils';
+  import { UUI_TYPOGRAPHY } from '$lib/shared/theme/typography-config/default-typography-config';
   import type { ThemeTypography } from '$lib/shared/theme/typography-config/typography-config.types';
   import { createTypographyConfig } from '$lib/shared/theme/typography-config/typography-config.utils';
 
   // Props
   export let palettes = UUI_PALETTES;
-  export let typography: ThemeTypography = {};
+  export let typography: ThemeTypography = UUI_TYPOGRAPHY;
   // Check for light theme otherwise use dark
   // Shared is always applied even when its the only theme.
   export let theme = palettes['light'] ? 'light' : 'dark';
