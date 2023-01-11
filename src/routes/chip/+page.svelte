@@ -216,15 +216,15 @@ Theming (optional, color="default"):
 </Chip>`}
 </pre>
         <Box class="chip-example">
-          <Chip variant="outlined" color="success">Success Outlined</Chip>
-          <Chip color="success">Filled Success</Chip>
-          <Chip variant="outlined" color="success" clickable>Outlined Success Clickable</Chip>
-          <Chip color="success" clickable>
+          <Chip color="success">
             <ChipIcon slot="primary" style="fill: var(--mdc-theme-on-success)">
               <CheckCircle />
             </ChipIcon>
             Filled Success Clickable
           </Chip>
+          <Chip variant="outlined" color="success">Success Outlined</Chip>
+          <Chip color="success">Filled Success</Chip>
+          <Chip variant="outlined" color="success" clickable>Outlined Success Clickable</Chip>
         </Box>
       </Box>
     </Accordion>
@@ -252,12 +252,11 @@ Theming (optional, color="default"):
 
 <style lang="scss">
   :global(.chip-example) {
-    padding: 32px 0px;
-    width: 100%;
+    gap: 16px;
     display: flex;
-    gap: 32px;
-    justify-content: center;
-    align-content: center;
     flex-wrap: wrap;
+    padding-top: 32px;
+    align-content: center;
+    justify-content: center;
   }
 </style>

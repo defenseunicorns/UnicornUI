@@ -48,7 +48,6 @@
 <style lang="scss" global>
   @use '@material/chips' as chips;
   @use '@material/chips/styles' as styles;
-  @import '../shared/theme/default-colors/colors.css';
   .chip-wrapper {
     @extend .mdc-evolution-chip;
   }
@@ -124,7 +123,7 @@
     @extend .chip-outlined-default;
     @include chips.ripple-color(var(--mdc-theme-success, var(--uui-default-colors-success)));
     color: var(--mdc-theme-success, var(--uui-default-colors-success));
-    border-color: var(--mdc-theme-success, var(--uui-defualt-colors-success));
+    border-color: var(--mdc-theme-success, var(--uui-default-colors-success));
   }
   .chip-filled-success {
     @include chips.ripple-color(var(--mdc-theme-on-success, var(--uui-default-colors-on-success)));

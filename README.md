@@ -12,33 +12,14 @@ https://unicorn-ui.netlify.app/
 
 ### Theming
 
-```css
-/* 
- * app.css (or main css file for svelte) 
- * - Uses mdc theme css variables
- */
-:root {
-  --mdc-theme-primary: purple;
-  --mdc-theme-on-primary: white;
-  --mdc-theme-secondary: green;
-  --mdc-theme-on-secondary: white;
-}
-```
+- [Theme](https://unicorn-ui.netlify.app/theme)
+- [Typography](https://unicorn-ui.netlify.app/typography)
 
 ### Components
 
-```html
-<--! example.svelte -->
-<script lang="ts">
-  import { Button } from '@defense-unicorns/unicorn-ui';
-  function onClick() {
-    alert('Clicked');
-  }
-</script>
-<button on:click="{onClick}" shape="rounded" color="primary" variant="raised">
-  Primary Raised
-</button>
-<button on:click="{onClick}" shape="rounded" color="secondary" variant="flat">
-  Secondary Flat
-</button>
-```
+- [Box](https://unicorn-ui.netlify.app/box)
+- [Button](https://unicorn-ui.netlify.app/button)
+- [IconButton](https://unicorn-ui.netlify.app/icon-button)
+- [Accordion](https://unicorn-ui.netlify.app/Accordion)
+- [Dialog](https://unicorn-ui.netlify.app/dialog)
+- [Chip](https://unicorn-ui.netlify.app/chip)

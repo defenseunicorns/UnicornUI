@@ -1,18 +1,8 @@
 import {
   createPaletteMap,
-  paletteToCssVars,
-  camelBackToDash
-} from '../../../../src/lib/shared/theme/palette/palette.utils';
+  paletteToCssVars
+} from '../../../../../src/lib/shared/theme/palette/palette.utils';
 
-describe('camelBackToDash', () => {
-  it('inserts dashes before capital letters', () => {
-    expect(camelBackToDash('camelBackString')).toEqual('camel-back-string');
-  });
-
-  it('returns the dash separated string as lowercase.', () => {
-    expect(camelBackToDash('camelBackString')).toEqual('camel-back-string');
-  });
-});
 describe('createPaletteMap', () => {
   it('creates a map with key (name) and value (ThemeVars) given Palettes', () => {
     const paletteMap = createPaletteMap({
