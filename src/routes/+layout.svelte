@@ -63,10 +63,10 @@
   </main>
 </Theme>
 
-<style lang="scss">
-  @import '@fontsource/roboto/index.css';
-  @import '@fontsource/roboto/300.css';
-  @import '@fontsource/roboto/500.css';
+<style>
+  @import '@fontsource/roboto';
+  @import '@fontsource/roboto/300';
+  @import '@fontsource/roboto/500';
   .components {
     display: flex;
     flex-direction: column;
