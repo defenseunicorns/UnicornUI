@@ -6,8 +6,10 @@
     "website"
   ],
   "scripts": {
-    "dev": "npm run dev -w website",
+    "dev": "npm run check && npm run dev -w website",
     "package": "npm run build -w uui",
+    "build": "npm run build -w website",
+    "build:netlify": "npm run check && npm run build",
     "check": "npm run check --workspaces",
     "test:unit": "npm run test:unit --workspaces -- --passWithNoTests",
     "test:unit:uui": "npm run test:unit -w uui",
