@@ -9,7 +9,7 @@
     "dev": "npm run check --workspaces && npm run dev -w website",
     "package": "npm run build -w uui",
     "build": "npm run build -w website",
-    "build:netlify": "npm run check --workspaces && npm run build -w website && mv website/.netlify website/.svelte-kit website/build ./",
+    "build:netlify": "npm run check --workspaces && npm run build -w website && mv website/.svelte-kit website/build ./",
     "check": "npm run check --workspaces",
     "test:unit": "npm run test:unit --workspaces -- --passWithNoTests",
     "test:unit:uui": "npm run test:unit -w uui",
