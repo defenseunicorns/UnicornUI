@@ -6,7 +6,7 @@
     "website"
   ],
   "scripts": {
-    "dev": "npm run check --workspaces && npm run dev -w website",
+    "dev": "npm run dev -w website",
     "package": "npm run build -w uui",
     "build": "npm run build -w website",
     "check": "npm run check --workspaces",

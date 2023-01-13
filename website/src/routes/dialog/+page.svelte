@@ -5,7 +5,7 @@
     DialogTitle,
     DialogActions,
     Typography
-  } from '@defense-unicorns/unicorn-ui/src/lib';
+  } from '@uui';
   import Variant from '$lib/Variant.svelte';
 
   // Vars

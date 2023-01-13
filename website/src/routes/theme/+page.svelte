@@ -2,7 +2,7 @@
   import Variant from '$lib/Variant.svelte';
   import ThemeToggle from '$lib/ThemeToggle.svelte';
   import VariantExample from '$lib/VariantExample.svelte';
-  import { Box, Accordion, Typography, AccordionGroup } from '@defense-unicorns/unicorn-ui/src/lib';
+  import { Box, Accordion, Typography, AccordionGroup } from '@uui';
 
   import GENERATED_CSS_TEXT from './css-var.example.css?raw';
   import THEME_EXAMPLE_TEXT from './theme.example.svelte?raw';

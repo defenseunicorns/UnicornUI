@@ -1,5 +1,5 @@
-import { UUI_TYPOGRAPHY } from '@defense-unicorns/unicorn-ui/src/lib';
-import type { ThemeTypography } from '@defense-unicorns/unicorn-ui/src/lib';
+import { UUI_TYPOGRAPHY } from '@uui';
+import type { ThemeTypography } from '@uui';
 
 /*
  * Custom typography variant example.

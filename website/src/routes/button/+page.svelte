@@ -1,5 +1,5 @@
 <script>
-  import { Button, ButtonIcon } from '@defense-unicorns/unicorn-ui/src/lib';
+  import { Button, ButtonIcon } from '@uui';
   import Variant from '$lib/Variant.svelte';
   function onClick() {
     alert('Clicked me');

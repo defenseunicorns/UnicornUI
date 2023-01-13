@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Accordion, AccordionGroup } from '@defense-unicorns/unicorn-ui/src/lib';
+  import { Accordion, AccordionGroup } from '@uui';
   import Variant from '$lib/Variant.svelte';
 </script>
 

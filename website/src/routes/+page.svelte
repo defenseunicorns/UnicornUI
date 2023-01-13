@@ -1,6 +1,6 @@
 <script lang="ts">
   import Variant from '$lib/Variant.svelte';
-  import { Button, ButtonIcon } from '@defense-unicorns/unicorn-ui/src/lib';
+  import { Button, ButtonIcon } from '@uui';
 </script>
 
 <Variant title="Installation" code={`npm i @defense-unicorns/unicorn-ui`}>

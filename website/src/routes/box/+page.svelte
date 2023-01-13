@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Box } from '@defense-unicorns/unicorn-ui/src/lib';
+  import { Box } from '@uui';
   import Variant from '$lib/Variant.svelte';
   let hovering = false;
   $: hoverClass = hovering ? 'hover' : '';

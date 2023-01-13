@@ -10,12 +10,12 @@
     getPreferredTheme,
     Typography,
     Theme
-  } from '@defense-unicorns/unicorn-ui/src/lib';
+  } from '@uui';
   import type {
     ButtonColor,
     ButtonShape,
     ButtonVariant
-  } from '@defense-unicorns/unicorn-ui/src/lib';
+  } from '@uui';
 
   let path = '';
   let currentThemeVal: string;

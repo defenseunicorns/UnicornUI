@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button } from '@defense-unicorns/unicorn-ui/src/lib';
+  import { Button } from '@uui';
   import { currentTheme } from './theme/theme-store';
   let currentThemeValue: string;
   currentTheme.subscribe((val) => {

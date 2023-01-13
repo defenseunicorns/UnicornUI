@@ -9,7 +9,7 @@
     StepIcon,
     Accordion,
     AccordionGroup
-  } from '@defense-unicorns/unicorn-ui/src/lib';
+  } from '@uui';
 
   const steps: StepProps[] = [
     {

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Typography } from '@defense-unicorns/unicorn-ui/src/lib';
+  import { Typography } from '@uui';
   import VariantExample from './VariantExample.svelte';
 
   export let title = '';

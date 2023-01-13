@@ -3,7 +3,7 @@
     getPreferredTheme,
     Theme,
     type PreferredTheme
-  } from '@defense-unicorns/unicorn-ui/src/lib';
+  } from '@uui';
   import { onMount } from 'svelte';
 
   let theme: PreferredTheme;

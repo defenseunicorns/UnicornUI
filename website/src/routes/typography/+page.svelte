@@ -1,5 +1,5 @@
 <script>
-  import { Typography } from '@defense-unicorns/unicorn-ui/src/lib';
+  import { Typography } from '@uui';
   import Variant from '$lib/Variant.svelte';
   import CustomTypography from '$lib/theme/theme-typography?raw';
 </script>

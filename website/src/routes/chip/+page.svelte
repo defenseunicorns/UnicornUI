@@ -6,9 +6,9 @@
     ChipIcon,
     Chip,
     Typography
-  } from '@defense-unicorns/unicorn-ui/src/lib';
-  import CheckCircle from '@defense-unicorns/unicorn-ui/src/lib/shared/assets/svg/check-circle.svelte';
-  import Delete from '@defense-unicorns/unicorn-ui/src/lib/shared/assets/svg/delete.svelte';
+  } from '@uui';
+  import CheckCircle from '@uui/shared/assets/svg/check-circle.svelte';
+  import Delete from '@uui/shared/assets/svg/delete.svelte';
   import Variant from '$lib/Variant.svelte';
 </script>
 
