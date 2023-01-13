@@ -9,13 +9,13 @@
     "dev": "npm run check --workspaces && npm run dev -w website",
     "package": "npm run build -w uui",
     "build": "npm run build -w website",
-    "build:netlify": "npm run check --workspaces && npm run build -w website && mv website/.svelte-kit website/build ./",
     "check": "npm run check --workspaces",
     "test:unit": "npm run test:unit --workspaces -- --passWithNoTests",
     "test:unit:uui": "npm run test:unit -w uui",
     "test:unit:web": "npm run test:unit -w website",
     "lint": "npm run lint --workspaces",
     "format": "npm run format --workspaces",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postinstall": "npm run check"
   }
 }
