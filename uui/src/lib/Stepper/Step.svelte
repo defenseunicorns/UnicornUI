@@ -40,12 +40,10 @@
   }
   .step-horizontal {
     gap: 8px;
-    align-items: flex-start;
   }
   .step .step-captions {
     display: flex;
     flex-direction: column;
-    width: fit-content;
   }
   .step.primary .step-captions span {
     color: var(--mdc-theme-on-primary);
