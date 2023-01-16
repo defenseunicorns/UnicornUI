@@ -42,7 +42,7 @@
     left: 12px;
     top: 40%;
     bottom: 10%;
-    border-color: #bdbdbd;
+    border-color: var(--mdc-theme-on-primary);
     border-left-style: solid;
     border-left-width: 2px;
   }
@@ -56,7 +56,7 @@
   .stepper-horizontal .stepper-item:not(:last-child) .divider-horizontal {
     display: flex;
     flex: 1 1 auto;
-    border-color: #bdbdbd;
+    border-color: var(--mdc-theme-on-primary);
     border-top-style: solid;
     border-top-width: 2px;
     margin: 8px;
