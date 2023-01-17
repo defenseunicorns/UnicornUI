@@ -1,11 +1,5 @@
 <script lang="ts">
-  import {
-    Button,
-    Dialog,
-    DialogTitle,
-    DialogActions,
-    Typography
-  } from '@uui';
+  import { Button, Dialog, DialogTitle, DialogActions, Typography } from '@uui';
   import Variant from '$lib/Variant.svelte';
 
   // Vars

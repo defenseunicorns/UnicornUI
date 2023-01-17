@@ -1,12 +1,5 @@
 <script>
-  import {
-    Accordion,
-    AccordionGroup,
-    Box,
-    ChipIcon,
-    Chip,
-    Typography
-  } from '@uui';
+  import { Accordion, AccordionGroup, Box, ChipIcon, Chip, Typography } from '@uui';
   import CheckCircle from '@uui/shared/assets/svg/check-circle.svelte';
   import Delete from '@uui/shared/assets/svg/delete.svelte';
   import Variant from '$lib/Variant.svelte';
