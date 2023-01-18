@@ -1,6 +1,6 @@
 <script lang="ts">
   import Box from '../Box/box.svelte';
-  import { onMount } from 'svelte';
+  import { onDestroy, onMount } from 'svelte';
 
   // vars
   let scrollBehavior: string;
@@ -18,6 +18,9 @@
   onMount(() => {
     documentRef = document;
     scrollBehavior = documentRef.body.style.overflow;
+  });
+  onDestroy(() => {
+    document.body.style.overflow === scrollBehavior;
   });
 
   // Watch
