@@ -1,6 +1,13 @@
 .DS_Store
 node_modules
+website/node_modules
+uui/node_modules
 /build
+website/build
+uui/build
+uui/package
+uui/.svelte-kit
+website/.svelte-kit
 /.svelte-kit
 /package
 .env

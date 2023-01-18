@@ -1,5 +1,3 @@
 [build]
-  command = "npm run build:web"
+  base = 'website'
 
-[functions]
-  node_bundler = "esbuild" # temporary workaround for https://github.com/sveltejs/kit/issues/6462
