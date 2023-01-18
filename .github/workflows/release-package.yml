@@ -16,9 +16,10 @@ jobs:
       - run: npm ci
       - run: npm run package
       - run: |
+          cd uui
           git config --global user.name "mike-winberry"
           git config --global user.email "cole.winberry@github.com"
-          npm version ${{ github.event.release.tag_name }} --allow-same-version
+          npm version -w uui ${{ github.event.release.tag_name }} --allow-same-version
           npm publish -w uui --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
