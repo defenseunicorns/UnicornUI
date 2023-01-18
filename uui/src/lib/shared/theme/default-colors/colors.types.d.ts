@@ -15,7 +15,7 @@ export type Colors =
   | 'surface'
   | 'background';
 
-export type TextColors =
+export type ThemeColors =
   | Colors
   | 'on-primary'
   | 'on-secondary'

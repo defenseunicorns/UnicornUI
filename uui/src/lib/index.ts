@@ -79,5 +79,12 @@ export type {
 } from './shared/theme/typography-config/typography-config.types';
 export type { DialogActionsProps, DialogTitleProps } from './Dialog/Dialog.types';
 export type { IconButtonColor, IconButtonProps } from './IconButton/IconButton.types';
-export type { StepVariant, StepOrientation, StepProps } from './Stepper/stepper.types';
+export type {
+  StepVariant,
+  StepOrientation,
+  StepProps,
+  CustomStep,
+  CustomSteps
+} from './Stepper/stepper.types';
 export type { AccordionProps, AccordionGroupProps } from './Accordion/accordion.types';
+export type { ThemeColors } from './shared/theme/default-colors/colors.types';

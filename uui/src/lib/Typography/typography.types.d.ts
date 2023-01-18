@@ -1,5 +1,5 @@
 import type { BoxProps } from '../Box/box.types';
-import type { TextColors } from '../shared/theme/default-colors/colors.types';
+import type { ThemeColors } from '../shared/theme/default-colors/colors.types';
 
 export type TypographyVariant =
   | 'h1'
@@ -28,5 +28,5 @@ export type TypographyElements = {
 
 export interface TypographyProps<T extends EventTarget> extends BoxProps<T> {
   variant?: TypographyVariant;
-  color?: TextColors;
+  color?: ThemeColors;
 }

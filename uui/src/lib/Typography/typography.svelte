@@ -3,7 +3,7 @@
   import { current_component } from 'svelte/internal';
   import { typographyElementMapping } from './typography';
   import { makeThemeColor } from '../shared/utils/makeThemeColor';
-  import type { TextColors } from '../shared/theme/default-colors/colors.types';
+  import type { ThemeColors } from '../shared/theme/default-colors/colors.types';
   import type { TypographyVariant, TypographyElement, TypographyProps } from './typography.types';
   import { createTypographyVariantClass } from '../shared/theme/typography-config/typography-config.utils';
 
@@ -15,7 +15,7 @@
 
   // Props
   export let variant: TypographyVariant = 'body1';
-  export let color: TextColors = '';
+  export let color: ThemeColors = '';
 
   type $$Props = TypographyProps<T>;
 
