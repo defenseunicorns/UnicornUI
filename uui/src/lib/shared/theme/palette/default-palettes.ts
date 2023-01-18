@@ -7,7 +7,9 @@ export const UUI_PALETTES = {
     warning: '#ed6c02',
     info: '#0288d1',
     error: '#b00020',
+    disabled: '#EBEBE4',
     on: {
+      disabled: 'rgb(84, 84, 84)',
       primary: '#000000',
       secondary: '#FFFFFF',
       surface: '#FFFFFF',

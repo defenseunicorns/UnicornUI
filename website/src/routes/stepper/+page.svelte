@@ -1,6 +1,8 @@
 <script lang="ts">
   import Variant from '$lib/Variant.svelte';
   import VariantExample from '$lib/VariantExample.svelte';
+  import CustomStep from './custom-step.svelte';
+  import CUSTOM_STEP_TEXT from './custom-step.svelte?raw';
   import {
     Step,
     Typography,
@@ -10,6 +12,13 @@
     Accordion,
     AccordionGroup
   } from '@uui';
+  import { currentTheme } from '$lib/theme/theme-store';
+
+  let currentThemeVal: string;
+
+  currentTheme.subscribe((value) => {
+    currentThemeVal = value;
+  });
 
   const steps: StepProps[] = [
     {
@@ -40,9 +49,12 @@
 <Variant
   title="Stepper"
   code={`Props (with defaults):
-  steps: StepProps[] = [];
-  verticalGap: string = '50px';
-  orientation: StepOrientation = 'horizontal';
+  steps?: StepProps[] | CustomSteps[] = [];
+  verticalGap?: string = '50px';
+  orientation?: StepOrientation = 'horizontal';
+  // Overrides the divider color and sets the step color (can be overridden in provided step props). 
+  color?: ThemeColors = 'on-primary'
+  
 
 Slots:
  none
@@ -56,20 +68,25 @@ Notes:
     <Accordion>
       <Typography slot="headerContent" variant="h6">Stepper Vertical</Typography>
       <div slot="content">
-        <VariantExample code={`<Stepper orientation="vertical" steps={[...steps]} />`} />
+        <VariantExample
+          code={`<Stepper orientation="vertical" steps={[...steps]} color="on-surface" />`}
+        />
         <div
           style="display: flex; justify-content: center; width: 50%; margin-left: auto; margin-right: auto;"
         >
-          <Stepper orientation="vertical" steps={[...steps]} />
+          <Stepper orientation="vertical" steps={[...steps]} color="on-surface" />
         </div>
       </div>
     </Accordion>
     <Accordion>
       <Typography slot="headerContent" variant="h6">Stepper Horizontal</Typography>
       <div slot="content">
-        <VariantExample code={`<Stepper orientation="horizontal" steps={[...steps]} />`} />
+        <VariantExample
+          code={`<Stepper orientation="horizontal" steps={[...steps]} color="on-surface" />`}
+        />
         <Stepper
           orientation="horizontal"
+          color="on-surface"
           steps={[
             {
               title: 'Validate Configuration',
@@ -85,14 +102,43 @@ Notes:
         />
       </div>
     </Accordion>
+    <Accordion>
+      <Typography slot="headerContent" variant="h6">Stepper (Custom Steps)</Typography>
+      <div slot="content">
+        <VariantExample code={CUSTOM_STEP_TEXT} />
+        <br />
+        <VariantExample
+          code={`
+<Stepper
+  orientation="vertical"
+  color={currentThemeVal === 'dark' ? 'white' : 'error'}
+  steps={steps.map((s) => ({ props: s, element: CustomStep }))}
+/>
+`}
+        />
+        <div
+          style="display: flex; justify-content: center; width: 50%; margin-left: auto; margin-right: auto;"
+        >
+          <Stepper
+            orientation="vertical"
+            color={currentThemeVal === 'dark' ? 'white' : 'error'}
+            steps={steps.map((s) => ({ props: s, element: CustomStep }))}
+          />
+        </div>
+      </div>
+    </Accordion>
     <Accordion class="step-icon-accordian" contentClass="step-icon-accordian-content">
       <Typography slot="headerContent" variant="h6">StepIcon</Typography>
       <div slot="content">
         <VariantExample
           code={`Props (with defaults):
-  variant: StepVariant = 'primary';
+  variant?: StepVariant = 'primary';
   // Hover title (optional).
-  title: string = '';
+  title?: string = '';
+  // Overridable fill/content color
+  color?: ThemeColor = \`on-$\{variant}\`;
+  // Overridable background-color
+  backgroundColor?: ThemeColor = variant;
   
   Slots:
   unnamed: (replaces default content)
@@ -131,6 +177,8 @@ Props (with defaults):
   variant: StepVariant = 'primary';
   iconContent = '';
   orientation: StepOrientation = 'horizontal';
+  // Overrides the title & subtitle colors. 
+  color?: ThemeColor = \`on-$\{variant}\`
 
 Slots:
   iconContent (replaces StepIcon default)
@@ -141,13 +189,14 @@ Examples:
   title="Horizontal" 
   subtitle="step" 
   variant="success" 
+  color="on-surface"
   orientation="horizontal" />
 
 `}
         />
         <div class="step-icons">
           <Step title="Vertical" subtitle="step" orientation="vertical" />
-          <Step title="Horizontal" subtitle="step" variant="success" />
+          <Step title="Horizontal" subtitle="step" variant="success" color="on-surface" />
         </div>
       </div>
     </Accordion>

@@ -12,8 +12,8 @@ const config = {
   kit: {
     adapter: adapter(),
     alias: {
-      "@uui": '../node_modules/@defense-unicorns/unicorn-ui/src/lib',
-      "@uui/*": '../node_modules/@defense-unicorns/unicorn-ui/src/lib/*'
+      '@uui': '../node_modules/@defense-unicorns/unicorn-ui/src/lib',
+      '@uui/*': '../node_modules/@defense-unicorns/unicorn-ui/src/lib/*'
     }
   }
 };

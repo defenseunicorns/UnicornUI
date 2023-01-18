@@ -1,3 +1,6 @@
+import type { ComponentType, SvelteComponentTyped } from 'svelte/types/runtime/internal/dev';
+import type { ThemeColors } from '../shared/theme/default-colors/colors.types';
+
 export type StepVariant =
   | 'primary'
   | 'secondary'
@@ -16,4 +19,13 @@ export interface StepProps {
   orientation?: StepOrientation;
   iconContent?: string;
   variant?: StepVariant;
+  color?: ThemeColors;
 }
+
+export interface CustomStep {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  props: Record<string, any>;
+  element: ComponentType<SvelteComponentTyped>;
+}
+
+export type CustomSteps = CustomStep[];
