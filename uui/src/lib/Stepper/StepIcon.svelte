@@ -4,6 +4,8 @@
   import { makeThemeColor } from '../shared/utils/makeThemeColor';
   import Exclamation from '../shared/assets/svg/exclamation.svelte';
   import type { ThemeColors } from '../shared/theme/default-colors/colors.types';
+  import Typography from '../Typography/typography.svelte';
+  import { jsToCSS } from '../shared/theme/config/theme-config.utils';
 
   // Types
   type IconContent = typeof Exclamation | typeof Check;
@@ -37,9 +39,19 @@
   class={wrapperClass}
   style="--background-color: {makeThemeColor(backgroundColor)}; --color: {makeThemeColor(color)};"
 >
-  <slot>
-    <svelte:component this={innerIcon} />
-  </slot>
+  <Typography
+    variant="body2"
+    style={jsToCSS({
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      lineHeight: 'initial'
+    })}
+  >
+    <slot>
+      <svelte:component this={innerIcon} />
+    </slot>
+  </Typography>
 </div>
 
 <style lang="scss">

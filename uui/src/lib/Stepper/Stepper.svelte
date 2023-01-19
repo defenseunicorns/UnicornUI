@@ -3,6 +3,7 @@
   import { makeThemeColor } from '../shared/utils/makeThemeColor';
   import type { CustomSteps, CustomStep, StepOrientation, StepProps } from './stepper.types';
   import type { ThemeColors } from '../shared/theme/default-colors/colors.types';
+
   // Props
   export let steps: StepProps[] | CustomSteps = [];
   export let orientation: StepOrientation = 'horizontal';
@@ -43,18 +44,13 @@
     display: flex;
     flex-direction: column;
   }
-  .stepper-vertical .stepper-item:not(:last-child) {
-    position: relative;
-    padding-bottom: var(--vertical-gap);
-  }
   .stepper-vertical .stepper-item:not(:last-child) .divider-vertical {
-    position: absolute;
-    left: 12px;
-    top: 40%;
-    bottom: 10%;
-    border-color: var(--color);
-    border-left-style: solid;
-    border-left-width: 2px;
+    height: var(--vertical-gap);
+    width: 2px;
+    background-color: var(--color);
+    margin-left: 11px;
+    margin-top: 4px;
+    margin-bottom: 4px;
   }
 
   .stepper-horizontal .stepper-item {
