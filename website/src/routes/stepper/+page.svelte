@@ -185,7 +185,7 @@ Props (with defaults):
   color?: ThemeColor = \`on-$\{variant}\`
 
 Slots:
-  iconContent (replaces StepIcon default)
+  step-icon (replaces StepIcon default)
 
 Examples:
   <Step title="Vertical" subtitle="step" />
