@@ -48,14 +48,14 @@
 
 <Variant
   title="Stepper"
-  code={`Props (with defaults):
-  steps?: StepProps[] | CustomSteps[] = [];
-  verticalGap?: string = '50px';
-  orientation?: StepOrientation = 'horizontal';
+  code={`
+Props:
   // Overrides the divider color and sets the step color (can be overridden in provided step props). 
   color?: ThemeColors = 'on-primary'
+  verticalGap?: string = '50px';
+  steps?: StepProps[] | CustomSteps[] = [];
+  orientation?: StepOrientation = 'horizontal';
   
-
 Slots:
  none
 
@@ -131,10 +131,11 @@ Notes:
       <Typography slot="headerContent" variant="h6">StepIcon</Typography>
       <div slot="content">
         <VariantExample
-          code={`Props (with defaults):
-  variant?: StepVariant = 'primary';
+          code={`
+Props:
   // Hover title (optional).
-  title?: string = '';
+  title?: string = "";
+  variant?: StepVariant = 'primary';
   // Overridable fill/content color
   color?: ThemeColor = \`on-$\{variant}\`;
   // Overridable background-color
@@ -172,10 +173,10 @@ Notes:
           code={`
 Props (with defaults):
   disabled = false;
-  title: string = '';
-  subtitle: string = '';
+  title: string = "";
+  subtitle: string = "";
   variant: StepVariant = 'primary';
-  iconContent = '';
+  iconContent = "";
   orientation: StepOrientation = 'horizontal';
   // Overrides the title & subtitle colors. 
   color?: ThemeColor = \`on-$\{variant}\`
