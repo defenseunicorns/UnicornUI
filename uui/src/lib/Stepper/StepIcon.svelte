@@ -9,11 +9,11 @@
   type IconContent = typeof Exclamation | typeof Check;
 
   // Props
-  export let variant: StepVariant = 'primary';
   export let title = '';
   export let disabled = false;
-  export let backgroundColor: ThemeColors = variant;
+  export let variant: StepVariant = 'primary';
   export let color: ThemeColors = `on-${variant}`;
+  export let backgroundColor: ThemeColors = variant;
 
   // Functions
   function getStepContent(stepVariant: StepVariant): IconContent {
@@ -61,7 +61,7 @@
   .step-icon.disabled {
     color: var(--mdc-theme-on-disabled);
     background-color: var(--mdc-theme-disabled);
-    fill: var(--mdc-theme-disabled);
+    fill: var(--mdc-theme-on-disabled);
   }
   .step-icon.info {
     transform: rotate(0.5turn);

@@ -147,22 +147,25 @@ Props:
   Examples:
   <StepIcon />
   <StepIcon>2</StepIcon>
-  <StepIcon disabled>3</StepIcon>
   <StepIcon variant="secondary">4</StepIcon>
   <StepIcon variant="success" />
   <StepIcon variant="warning" />
   <StepIcon variant="error" />
-  <StepIcon variant="info" />`}
+  <StepIcon variant="info" />
+  <StepIcon disabled />
+  <StepIcon disabled>3</StepIcon>
+`}
         />
         <div class="step-icons">
           <StepIcon />
           <StepIcon>2</StepIcon>
-          <StepIcon disabled>3</StepIcon>
           <StepIcon variant="secondary">4</StepIcon>
           <StepIcon variant="success" />
           <StepIcon variant="warning" />
           <StepIcon variant="error" />
           <StepIcon variant="info" />
+          <StepIcon disabled />
+          <StepIcon disabled>3</StepIcon>
         </div>
       </div>
     </Accordion>
