@@ -42,7 +42,8 @@
   "dependencies": {
     "@defense-unicorns/unicorn-ui": "^0.0.1",
     "@fontsource/roboto": "^4.5.8",
+    "material-symbols": "^0.2.9",
     "normalize.css": "^8.0.1",
-    "material-symbols": "^0.2.9"
+    "svelte-markdown": "^0.2.3"
   }
 }
