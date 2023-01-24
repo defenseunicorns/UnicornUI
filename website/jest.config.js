@@ -9,5 +9,6 @@ export default {
       }
     ]
   },
+  modulePathIgnorePatterns: ['/playwright-tests/'],
   moduleFileExtensions: ['js', 'ts', 'svelte']
 };
