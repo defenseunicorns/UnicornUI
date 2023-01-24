@@ -1,36 +1,51 @@
 import { test, expect, Page, Locator } from '@playwright/test';
 
-const testLink = async (linkLocator: Locator, page: Page): Promise<void> => {
-  const linkUrl = await linkLocator.getAttribute('href');
-  if (linkUrl!.includes('https://')) return;
-  const pageNav = page.waitForNavigation({ url: `**${linkUrl}` });
-  linkLocator.click();
-  await pageNav;
-  expect(page.url()).toContain(linkUrl);
-};
-
-const resetToHome = async (page: Page) => {
-  const pageNav = page.waitForNavigation({ url: `**/` });
-  page.getByText(/home/i).click();
-  await pageNav;
-};
-
 test.describe('unicorn ui website e2e tests', () => {
   test.beforeEach(async ({ page }) => {
+    page.on('pageerror', (err) => console.log(err.message));
     await page.goto('http://localhost:4173');
   });
 
   test('load home page', async ({ page }) => {
     expect(page.url()).toEqual('http://localhost:4173/');
-    expect(page.getByText('Unicorn UI')).toBeTruthy();
-    expect(page.getByText('Installation')).toBeTruthy();
-    expect(page.getByText(/github/i)).toBeTruthy();
+    await expect(page.getByText('Unicorn UI')).toBeVisible();
+    await expect(page.getByText('Installation')).toBeVisible();
+    await expect(page.getByText(/github/i)).toBeVisible();
   });
 
-  test('test links', async ({ page }) => {
+  test('test links for proper navigation and uui component rendering (catching non-relative imports)', async ({
+    context,
+    page
+  }) => {
     for (const link of await page.getByRole('link').all()) {
-      await testLink(link, page);
-      await resetToHome(page);
+      const pageForLink = await context.newPage();
+      await pageForLink.goto('http://localhost:4173');
+      if (!(await link.innerText()).includes('GITHUB')) {
+        const linkLocator = pageForLink.getByRole('link', {
+          name: new RegExp(`^${await link.innerText()}`, 'i')
+        });
+        await testLinkNav(linkLocator, pageForLink);
+        await testAccordions(pageForLink);
+      }
     }
   });
 });
+
+async function testLinkNav(linkLocator: Locator, page: Page) {
+  const linkUrl = await linkLocator.getAttribute('href');
+  await linkLocator.click();
+  await page.waitForURL(`**${linkUrl}`);
+  expect(page.url()).toContain(linkUrl);
+  expect(await page.getByRole('heading').allInnerTexts()).not.toContain('500');
+}
+
+async function testAccordions(page: Page) {
+  const accordions = await page.locator('.accordion').all();
+  if (accordions.length > 0) {
+    for (const acc of accordions) {
+      await acc.locator('.icon-button').click();
+      expect(await acc.locator('.accordion-content').innerHTML()).toBeDefined();
+      expect(await acc.locator('.accordion-content').innerText()).not.toContain('internal error');
+    }
+  }
+}
