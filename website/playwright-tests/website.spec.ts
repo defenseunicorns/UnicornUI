@@ -1,5 +1,5 @@
 import { test, expect, Page, Locator } from '@playwright/test';
-
+test.describe.configure({ mode: 'parallel' });
 test.describe('unicorn ui website e2e tests', () => {
   test.beforeEach(async ({ page }) => {
     page.on('pageerror', (err) => console.log(err.message));
@@ -17,6 +17,7 @@ test.describe('unicorn ui website e2e tests', () => {
     context,
     page
   }) => {
+    test.slow();
     for (const link of await page.getByRole('link').all()) {
       const pageForLink = await context.newPage();
       await pageForLink.goto('http://localhost:4173');

@@ -10,6 +10,7 @@
     "package": "npm run build -w uui",
     "build": "npm run build -w website",
     "check": "npm run check --workspaces",
+    "test": "npm run test:unit:uui && npm run test -w website",
     "test:unit": "npm run test:unit --workspaces -- --passWithNoTests",
     "test:unit:uui": "npm run test:unit -w uui",
     "test:unit:web": "npm run test:unit -w website",
