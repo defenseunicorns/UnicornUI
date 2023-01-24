@@ -34,6 +34,7 @@
 <style lang="scss" global>
   .stepper {
     display: flex;
+    padding-inline: 0;
     z-index: 0;
   }
 
@@ -58,6 +59,9 @@
     flex-direction: row;
     flex-grow: 1;
     align-items: center;
+  }
+  .stepper-horizontal .stepper-item:last-child {
+    flex-grow: 0;
   }
   .stepper-horizontal .stepper-item:not(:last-child) .divider-horizontal {
     display: flex;
