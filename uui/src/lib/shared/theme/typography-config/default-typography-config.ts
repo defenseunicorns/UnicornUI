@@ -80,5 +80,14 @@ export const UUI_TYPOGRAPHY = {
     lineHeight: '24px',
     letterSpacing: '.4px',
     textTransform: 'uppercase'
+  },
+  inherit: {
+    fontSize: 'inherit',
+    fontFamily: 'inherit',
+    lineHeight: 'inherit',
+    fontWeight: 'inherit',
+    fontStyle: 'inherit',
+    letterSpacing: 'inherit',
+    textDecoration: 'inherit'
   }
 };
