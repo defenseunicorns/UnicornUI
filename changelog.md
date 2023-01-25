@@ -1,3 +1,9 @@
+# v0.0.34
+
+## Development
+- Added issue templates
+- Created Contributor guide "CONTRIBUTORS.md"
+
 # v0.0.33
 
 ## Breaking Changes
