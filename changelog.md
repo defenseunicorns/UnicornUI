@@ -33,3 +33,5 @@
 - Playwright tests added to website to catch non-relative import build errors that get caught on render
 - Playwright tests added to pre-commit hooks
 - added running changelog
+- added typography "inherit" to default-typography-config
+- removed inherit class from Typography component.
