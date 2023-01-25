@@ -20,7 +20,7 @@
     scrollBehavior = documentRef.body.style.overflow;
   });
   onDestroy(() => {
-    document.body.style.overflow === scrollBehavior;
+    document.body.style.overflow = scrollBehavior;
   });
 
   // Watch
