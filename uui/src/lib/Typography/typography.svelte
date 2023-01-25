@@ -30,15 +30,3 @@
 <Box element={variantElement.element} eventComponent={current_component} {...$$restProps}>
   <slot />
 </Box>
-
-<style lang="scss">
-  .mdc-typography--inherit {
-    font-size: inherit;
-    font-family: inherit;
-    line-height: inherit;
-    font-weight: inherit;
-    font-style: inherit;
-    letter-spacing: inherit;
-    text-decoration: inherit;
-  }
-</style>

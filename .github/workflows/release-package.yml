@@ -18,7 +18,8 @@ jobs:
       - run: |
           git config --global user.name "mike-winberry"
           git config --global user.email "cole.winberry@github.com"
-          npm version -w uui ${{ github.event.release.tag_name }} --allow-same-version
-          npm publish -w uui --access public
+          cd uui/package
+          npm version ${{ github.event.release.tag_name }} --allow-same-version
+          npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
