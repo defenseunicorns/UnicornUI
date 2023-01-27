@@ -27,6 +27,12 @@
     }
   }
 
+  function setFocusStates() {
+    focused = 'focused';
+    notched = 'notched';
+    floating = 'floating';
+  }
+
   $: computedColor = makeThemeColor(color);
   $: computedHoverColor = makeThemeColor(hoverColor);
 </script>
@@ -34,28 +40,29 @@
 <svelte:window on:click={clickAway} />
 
 <div
-  class={`mdc-text-field text-field-${variant} ${focused}`}
+  class={`mdc-text-field text-field-${variant} ${focused} `}
   style="--color: {computedColor}; --hover-color: {computedHoverColor};"
 >
   <slot name="leadingIcon" />
   <input
     bind:this={input}
-    on:focus={() => {
-      focused = 'focused';
-      notched = 'notched';
-      floating = 'floating';
-    }}
+    on:focus={setFocusStates}
     type="text"
     class="mdc-text-field__input"
     aria-labelledby="textfield-label"
+    {...$$restProps}
   />
   <slot name="trailingIcon" />
   <span class={`mdc-notched-outline mdc-notched-outline--upgraded ${notched}`}>
     <span class="mdc-notched-outline__leading" />
     <span class="mdc-notched-outline__notch">
-      <label class={`mdc-floating-label ${floating}`} for="text-field-outlined" id="textfield-label"
-        >{label}</label
-      >
+      <label
+        class={`mdc-floating-label ${floating}`}
+        for="text-field-outlined"
+        id="textfield-label"
+        class:required={$$restProps.required}
+        >{label}
+      </label>
     </span>
     <span class="mdc-notched-outline__trailing" />
   </span>
@@ -67,9 +74,6 @@
   .text-field-outlined {
     @extend .mdc-text-field--outlined;
     @include mdc-text-field-outline-color(var(--color));
-
-    // Placeholder text non-focused
-    /* @include mdc-text-field-label-color('green'); */
 
     // Typed input text
     @include mdc-text-field-ink-color(var(--hover-color));
@@ -93,5 +97,8 @@
 
   .mdc-floating-label.floating {
     @extend .mdc-floating-label--float-above;
+  }
+  .required {
+    @extend .mdc-floating-label--required;
   }
 </style>
