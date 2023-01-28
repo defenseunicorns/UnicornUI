@@ -26,4 +26,4 @@ https://unicorn-ui.netlify.app/
 
 ## Contributing
 
-- See [CONTRIBUTORS](./CONTRIBUTORS.md)
+- See [CONTRIBUTING](./CONTRIBUTING.md)
