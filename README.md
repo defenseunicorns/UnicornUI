@@ -23,3 +23,7 @@ https://unicorn-ui.netlify.app/
 - [Accordion](https://unicorn-ui.netlify.app/Accordion)
 - [Dialog](https://unicorn-ui.netlify.app/dialog)
 - [Chip](https://unicorn-ui.netlify.app/chip)
+
+## Contributing
+
+- See [CONTRIBUTORS](./CONTRIBUTORS.md)
