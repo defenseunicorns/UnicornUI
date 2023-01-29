@@ -5,7 +5,7 @@
   import { makeThemeColor } from '../shared/utils/makeThemeColor';
   import type { ThemeColors } from '../shared/theme/default-colors/colors.types';
   import type { TypographyVariant, TypographyElement, TypographyProps } from './typography.types';
-  import { createTypographyVariantClass } from '../shared/theme/typography-config/typography-config.utils';
+  import { createMDCTypographyClassName } from '../shared/theme/typography-config/typography-config.utils';
 
   // Internal Types;
   type T = $$Generic<EventTarget>;
@@ -21,7 +21,7 @@
 
   variantElement = typographyElementMapping[variant] || {
     element: 'span',
-    class: createTypographyVariantClass(variant)
+    class: createMDCTypographyClassName(variant)
   };
   $: $$restProps.class = `${variantElement.class} ${$$restProps.class || ''}`;
   $: $$restProps.style = `color: ${makeThemeColor(color)}; ${$$restProps.style}`;
