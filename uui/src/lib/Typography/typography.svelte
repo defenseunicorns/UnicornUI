@@ -4,14 +4,13 @@
   import { typographyElementMapping } from './typography';
   import { makeThemeColor } from '../shared/utils/makeThemeColor';
   import type { ThemeColors } from '../shared/theme/default-colors/colors.types';
-  import type { TypographyVariant, TypographyElement, TypographyProps } from './typography.types';
-  import { createMDCTypographyClassName } from '../shared/theme/typography-config/typography-config.utils';
+  import type { TypographyVariant, TypographyProps } from './typography.types';
 
   // Internal Types;
   type T = $$Generic<EventTarget>;
 
   // Vars
-  let variantElement: TypographyElement;
+  let variantElement: string;
 
   // Props
   export let variant: TypographyVariant = 'body1';
@@ -19,14 +18,11 @@
 
   type $$Props = TypographyProps<T>;
 
-  variantElement = typographyElementMapping[variant] || {
-    element: 'span',
-    class: createMDCTypographyClassName(variant)
-  };
-  $: $$restProps.class = `${variantElement.class} ${$$restProps.class || ''}`;
+  variantElement = typographyElementMapping[variant] || 'span';
+  $: $$restProps.class = `${variant} ${$$restProps.class || ''}`;
   $: $$restProps.style = `color: ${makeThemeColor(color)}; ${$$restProps.style}`;
 </script>
 
-<Box element={variantElement.element} eventComponent={current_component} {...$$restProps}>
+<Box element={variantElement} eventComponent={current_component} {...$$restProps}>
   <slot />
 </Box>
