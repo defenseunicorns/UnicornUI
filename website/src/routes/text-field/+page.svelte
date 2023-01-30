@@ -23,7 +23,6 @@ Slots:
     variant="outlined"
     color="primary"
     helperText="helper text"
-    placeholder="test@test.com"
     characterCounter={true}
     maxlength={60}
   />

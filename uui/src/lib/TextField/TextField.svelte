@@ -21,6 +21,7 @@
   let notched = '';
   let floating = '';
   let charCount = '';
+  let notchWidth = '';
 
   // functions
   function clickAway(evt: any) {
@@ -39,11 +40,6 @@
     floating = 'floating';
   }
 
-  function calcNotchWidth() {
-    if (focused === 'focused') {
-    }
-  }
-
   onMount(() => {
     if ($$restProps.placeholder) {
       setFocusStates();
@@ -57,6 +53,14 @@
       charCount = `${inputRef.value.length} / ${$$restProps.maxlength}`;
     } else {
       charCount = inputRef.value.length.toString();
+    }
+  }
+
+  $: if (labelRef) {
+    if (focused === 'focused') {
+      notchWidth = `${labelRef.offsetWidth * 0.9}px`;
+    } else {
+      notchWidth = 'auto';
     }
   }
 </script>
@@ -81,7 +85,7 @@
     <slot name="trailingIcon" />
     <span class={`mdc-notched-outline mdc-notched-outline--upgraded ${notched}`}>
       <span class="mdc-notched-outline__leading" />
-      <span class="mdc-notched-outline__notch" style={'padding: 0;'}>
+      <span class="mdc-notched-outline__notch" style={`padding: 0; width: ${notchWidth}`}>
         <label
           bind:this={labelRef}
           class={`mdc-floating-label ${floating}`}
