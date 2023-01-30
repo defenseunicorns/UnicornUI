@@ -1,7 +1,11 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+echo "Running Prettier Formatting"
 npm run format
+echo "Running Lint"
 npm run lint
-npm run check
+echo "Running tests"
 npm run test
+echo "Ensure package builds"
+npm run package
