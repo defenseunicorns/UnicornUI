@@ -1,3 +1,14 @@
+# v0.0.34
+
+## Development
+
+- Added issue templates
+- Created internal Contributor guide "CONTRIBUTING.md"
+- Added Code owners
+- Update README with link to CONTRIBUTING
+
+---
+
 # v0.0.33
 
 ## Breaking Changes
