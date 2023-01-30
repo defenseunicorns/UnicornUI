@@ -50,23 +50,35 @@
    2. `git checkout paste-branch-name-here`
 10. Do the thing.
 
-### Important!
+## Commits
 
-- feel free to bug Cole in Gather or Slack at anytime.
-  - This is especially true if I look like I am in an "important" conversation.
-- The docs (website) should be updated in accordance with any changes to component behavior as part of issue prior to PR merging.
-- Create a draft PR after first commit.
-  - assign @mike-winberry (Cole) as reviewer.
 - Commit early and often.
   - If life happens another dev should be able tag in.
   - Fear of not finishing shouldn't stop you from contributing.
-  - Any help is more than no help.
-- Update the [changelog](./changelog.md)
+  - Partial contributions are better than no contributions.
 - Commits should be brief but thorough with the following convention:
   - Action (Update, create, fix, ...ect)
   - Project (uui || Website)
   - Target (text-field.svelte, text-field.types, text-field page, etc..)
   - quick summary
   - ex: "Update uui box.svelte to take in new prop. Update website box +page with new prop declaration".
+
+## Pull Requests
+
+- Create a draft PR after first commit.
+  - assign @mike-winberry (Cole) as reviewer.
+- PR should only be merged once.
+- Branch should be deleted after merge.
+  - If more work needs to be done, create a new issue and new pr.
+
+### Checklist for moving pr to review
+
+- [changelog](./changelog.md) updated.
+- The docs [website](./website/) should be updated to reflect changes.
+
+### Important!
+
+- feel free to bug Cole in Gather or Slack at anytime.
+  - This is especially true if I look like I am in an "important" conversation.
 - Look at existing work for patterns/conventions to maintain consistency.
 - Create issue with needs-input for convention updates, changes, suggestions.
