@@ -9,6 +9,7 @@
   export let label = 'test';
   export let hoverColor: ThemeColors = 'inherit';
   export let color: ThemeColors = 'inherit';
+  export let helperText = '';
 
   // locals
   let input: HTMLInputElement;
@@ -39,37 +40,55 @@
 
 <svelte:window on:click={clickAway} />
 
-<div
-  class={`mdc-text-field text-field-${variant} ${focused} `}
-  style="--color: {computedColor}; --hover-color: {computedHoverColor};"
->
-  <slot name="leadingIcon" />
-  <input
-    bind:this={input}
-    on:focus={setFocusStates}
-    type="text"
-    class="mdc-text-field__input"
-    aria-labelledby="textfield-label"
-    {...$$restProps}
-  />
-  <slot name="trailingIcon" />
-  <span class={`mdc-notched-outline mdc-notched-outline--upgraded ${notched}`}>
-    <span class="mdc-notched-outline__leading" />
-    <span class="mdc-notched-outline__notch">
-      <label
-        class={`mdc-floating-label ${floating}`}
-        for="text-field-outlined"
-        id="textfield-label"
-        class:required={$$restProps.required}
-        >{label}
-      </label>
+<div class="text-field">
+  <div
+    class={`mdc-text-field text-field-${variant} ${focused} `}
+    style="--color: {computedColor}; --hover-color: {computedHoverColor};"
+  >
+    <slot name="leadingIcon" />
+    <input
+      bind:this={input}
+      on:focus={setFocusStates}
+      type="text"
+      class="mdc-text-field__input"
+      aria-labelledby="textfield-label"
+      {...$$restProps}
+    />
+    <slot name="trailingIcon" />
+    <span class={`mdc-notched-outline mdc-notched-outline--upgraded ${notched}`}>
+      <span class="mdc-notched-outline__leading" />
+      <span class="mdc-notched-outline__notch">
+        <label
+          class={`mdc-floating-label ${floating}`}
+          for="text-field-outlined"
+          id="textfield-label"
+          class:required={$$restProps.required}
+          >{label}
+        </label>
+      </span>
+      <span class="mdc-notched-outline__trailing" />
     </span>
-    <span class="mdc-notched-outline__trailing" />
-  </span>
+  </div>
+  <div class="helper-line">
+    <span class="helper-text">{helperText}</span>
+  </div>
 </div>
 
 <style lang="scss">
   @import '@material/textfield/mdc-text-field';
+
+  .text-field {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .helper-line {
+    display: flex;
+    padding: 0 16px;
+    font-size: 12px;
+    height: 19px;
+    align-items: flex-end;
+  }
 
   .text-field-outlined {
     @extend .mdc-text-field--outlined;

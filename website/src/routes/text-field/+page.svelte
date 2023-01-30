@@ -8,22 +8,17 @@
   code={`
 Props (extends HTMLInputElement): 
   variant: TextFieldVariant = 'outlined';
-  helperText?: string = "Please fill out text field."
+  helperText?: string = "helper text"
   color: ThemeColors = "primary"
+  required?: boolean = true;
 
 Slots:
   leadingIcon: optional
   trailingIcon: optional
 `}
 >
-  <TextField variant="outlined" color="primary"/>
+  <TextField variant="outlined" color="primary" helperText="helper text" required />
 </Variant>
-<Variant title="Text Field Required" code={`
-  required: boolean = true
-`}>
-  <TextField variant="outlined" required/>
-</Variant>
-
 
 <style>
 </style>
