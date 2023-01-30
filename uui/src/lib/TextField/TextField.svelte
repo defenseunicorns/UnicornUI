@@ -67,7 +67,8 @@
 
 <div class="text-field-conainer">
   <div
-    class={`mdc-text-field text-field-${variant} ${focused} `}
+    class={`mdc-text-field text-field-${variant} ${focused}`}
+    class:mdc-text-field--disabled={$$restProps.disabled}
     style="--color: {computedColor}; --hover-color: {computedHoverColor};"
   >
     <slot name="leadingIcon" />
@@ -127,16 +128,25 @@
     color: var(--color) !important;
   }
 
-  .text-field-outlined {
-    @extend .mdc-text-field--outlined;
-    @include mdc-text-field-outline-color(var(--color));
-
+  .mdc-text-field {
     // Typed input text
     @include mdc-text-field-ink-color(var(--hover-color));
     @include mdc-text-field-hover-outline-color(var(--hover-color));
     @include mdc-text-field-placeholder-color(var(--color));
     @include mdc-text-field-focused-outline-color(var(--color));
     @include mdc-text-field-caret-color(var(--color));
+
+    //disabled
+    @include mdc-text-field-disabled-label-color(red);
+  }
+
+  .text-field-outlined {
+    @extend .mdc-text-field--outlined;
+    @include mdc-text-field-outline-color(var(--color));
+  }
+
+  .mdc-text-field--disabled .mdc-floating-label {
+    color: var(--mdc-theme-text-disabled-on-dark) !important;
   }
 
   .mdc-floating-label {

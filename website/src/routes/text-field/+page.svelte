@@ -40,7 +40,9 @@ Slots:
             helperText="helper text"
             characterCounter={true}
             maxlength={60}
-          />`}
+          />
+          <TextField disabled label="my label" variant="outlined" color="primary" />
+          `}
         </pre>
         <Box class="text-field-example">
           <TextField required label="my label" variant="outlined" color="primary" maxlength={60} />
@@ -60,6 +62,7 @@ Slots:
             characterCounter={true}
             maxlength={60}
           />
+          <TextField disabled label="my label" variant="outlined" color="primary" />
         </Box>
       </Box>
     </Accordion>
