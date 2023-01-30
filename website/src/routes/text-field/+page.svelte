@@ -19,7 +19,7 @@ Slots:
 `}
 >
   <TextField
-    required
+    label="my label"
     variant="outlined"
     color="primary"
     helperText="helper text"

@@ -14,7 +14,8 @@
   export let characterCounter = false;
 
   // locals
-  let input: HTMLInputElement;
+  let inputRef: HTMLInputElement;
+  let labelRef: HTMLLabelElement;
   let inputValue = '';
   let focused = '';
   let notched = '';
@@ -25,7 +26,7 @@
   function clickAway(evt: any) {
     if (document.activeElement !== evt.target && !$$restProps.placeholder) {
       focused = '';
-      if (input.value === '') {
+      if (inputRef.value === '') {
         notched = '';
         floating = '';
       }
@@ -38,6 +39,11 @@
     floating = 'floating';
   }
 
+  function calcNotchWidth() {
+    if (focused === 'focused') {
+    }
+  }
+
   onMount(() => {
     if ($$restProps.placeholder) {
       setFocusStates();
@@ -46,11 +52,11 @@
 
   $: computedColor = makeThemeColor(color);
   $: computedHoverColor = makeThemeColor(hoverColor);
-  $: if (input && characterCounter) {
+  $: if (inputRef && characterCounter) {
     if ($$restProps.maxlength) {
-      charCount = `${input.value.length} / ${$$restProps.maxlength}`;
+      charCount = `${inputRef.value.length} / ${$$restProps.maxlength}`;
     } else {
-      charCount = input.value.length.toString();
+      charCount = inputRef.value.length.toString();
     }
   }
 </script>
@@ -64,7 +70,7 @@
   >
     <slot name="leadingIcon" />
     <input
-      bind:this={input}
+      bind:this={inputRef}
       bind:value={inputValue}
       on:focus={setFocusStates}
       type="text"
@@ -75,8 +81,9 @@
     <slot name="trailingIcon" />
     <span class={`mdc-notched-outline mdc-notched-outline--upgraded ${notched}`}>
       <span class="mdc-notched-outline__leading" />
-      <span class="mdc-notched-outline__notch">
+      <span class="mdc-notched-outline__notch" style={'padding: 0;'}>
         <label
+          bind:this={labelRef}
           class={`mdc-floating-label ${floating}`}
           for="text-field-outlined"
           id="textfield-label"
