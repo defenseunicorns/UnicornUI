@@ -11,13 +11,22 @@ Props (extends HTMLInputElement):
   helperText?: string = "helper text"
   color: ThemeColors = "primary"
   required?: boolean = true;
+  characterCounter: boolean = true;
 
 Slots:
   leadingIcon: optional
   trailingIcon: optional
 `}
 >
-  <TextField variant="outlined" color="primary" helperText="helper text" required />
+  <TextField
+    required
+    variant="outlined"
+    color="primary"
+    helperText="helper text"
+    placeholder="test@test.com"
+    characterCounter={true}
+    maxlength={60}
+  />
 </Variant>
 
 <style>

@@ -8,4 +8,5 @@ export interface TextFieldProps extends svelte.JSX.HTMLAttributes<HTMLInputEleme
   color?: ThemeColors;
   // Needs better name
   hoverColor?: ThemeColors;
+  characterCounter?: boolean;
 }

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { makeThemeColor } from '../shared/utils/makeThemeColor';
   import type { ThemeColors } from '../shared/theme/default-colors/colors.types';
   import type { TextFieldProps, TextFieldVariant } from './TextField.types';
@@ -10,12 +11,15 @@
   export let hoverColor: ThemeColors = 'inherit';
   export let color: ThemeColors = 'inherit';
   export let helperText = '';
+  export let characterCounter = false;
 
   // locals
   let input: HTMLInputElement;
+  let inputValue = '';
   let focused = '';
   let notched = '';
   let floating = '';
+  let charCount = '';
 
   // functions
   function clickAway(evt: any) {
@@ -34,13 +38,26 @@
     floating = 'floating';
   }
 
+  onMount(() => {
+    if ($$restProps.placeholder) {
+      setFocusStates();
+    }
+  });
+
   $: computedColor = makeThemeColor(color);
   $: computedHoverColor = makeThemeColor(hoverColor);
+  $: if (input && characterCounter) {
+    if ($$restProps.maxlength) {
+      charCount = `${input.value.length} / ${$$restProps.maxlength}`;
+    } else {
+      charCount = input.value.length.toString();
+    }
+  }
 </script>
 
 <svelte:window on:click={clickAway} />
 
-<div class="text-field">
+<div class="text-field-conainer">
   <div
     class={`mdc-text-field text-field-${variant} ${focused} `}
     style="--color: {computedColor}; --hover-color: {computedHoverColor};"
@@ -48,6 +65,7 @@
     <slot name="leadingIcon" />
     <input
       bind:this={input}
+      bind:value={inputValue}
       on:focus={setFocusStates}
       type="text"
       class="mdc-text-field__input"
@@ -69,25 +87,34 @@
       <span class="mdc-notched-outline__trailing" />
     </span>
   </div>
-  <div class="helper-line">
-    <span class="helper-text">{helperText}</span>
+  <div class="mdc-text-field-helper-line">
+    <p
+      class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent mdc-text-field-helper-text--validation-msg"
+    >
+      {helperText}
+    </p>
+    <div class="mdc-text-field-character-counter">{charCount}</div>
   </div>
 </div>
 
 <style lang="scss">
   @import '@material/textfield/mdc-text-field';
 
-  .text-field {
+  .text-field-container {
     display: flex;
     flex-direction: column;
   }
 
-  .helper-line {
-    display: flex;
-    padding: 0 16px;
-    font-size: 12px;
-    height: 19px;
-    align-items: flex-end;
+  .required {
+    @extend .mdc-floating-label--required;
+  }
+
+  .mdc-text-field-helper-text {
+    color: var(--color) !important;
+  }
+
+  .mdc-text-field-character-counter {
+    color: var(--color) !important;
   }
 
   .text-field-outlined {
@@ -116,8 +143,5 @@
 
   .mdc-floating-label.floating {
     @extend .mdc-floating-label--float-above;
-  }
-  .required {
-    @extend .mdc-floating-label--required;
   }
 </style>
