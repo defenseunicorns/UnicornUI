@@ -1,6 +1,7 @@
 <script>
   import { TextField } from '@uui';
   import Variant from '$lib/Variant.svelte';
+  import { AccordionGroup, Accordion, Typography, Box } from '@uui';
 </script>
 
 <Variant
@@ -18,15 +19,60 @@ Slots:
   trailingIcon: optional
 `}
 >
-  <TextField
-    label="my label"
-    variant="outlined"
-    color="primary"
-    helperText="helper text"
-    characterCounter={true}
-    maxlength={60}
-  />
+  <AccordionGroup>
+    <Accordion>
+      <Typography slot="headerContent" variant="h6">Variant: "outlined"</Typography>
+      <Box slot="content">
+        <pre class="variant-code">
+          {`         <TextField required label="my label" variant="outlined" color="primary" maxlength={60} />
+          <TextField
+            label="my label"
+            variant="outlined"
+            color="primary"
+            helperText="helper text"
+            characterCounter={true}
+          />
+          <TextField
+            label="my label"
+            placeholder="placeholder"
+            variant="outlined"
+            color="primary"
+            helperText="helper text"
+            characterCounter={true}
+            maxlength={60}
+          />`}
+        </pre>
+        <Box class="text-field-example">
+          <TextField required label="my label" variant="outlined" color="primary" maxlength={60} />
+          <TextField
+            label="my label"
+            variant="outlined"
+            color="primary"
+            helperText="helper text"
+            characterCounter={true}
+          />
+          <TextField
+            label="my label"
+            placeholder="placeholder"
+            variant="outlined"
+            color="primary"
+            helperText="helper text"
+            characterCounter={true}
+            maxlength={60}
+          />
+        </Box>
+      </Box>
+    </Accordion>
+  </AccordionGroup>
 </Variant>
 
-<style>
+<style lang="scss">
+  :global(.text-field-example) {
+    gap: 16px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    padding-top: 1rem;
+    // width: 20%;
+  }
 </style>

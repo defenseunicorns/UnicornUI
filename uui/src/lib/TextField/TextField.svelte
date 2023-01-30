@@ -7,7 +7,7 @@
   //Props
   type $$Props = TextFieldProps;
   export let variant: TextFieldVariant = 'outlined';
-  export let label = 'test';
+  export let label = '';
   export let hoverColor: ThemeColors = 'inherit';
   export let color: ThemeColors = 'inherit';
   export let helperText = '';
@@ -51,8 +51,6 @@
   $: if (inputRef && characterCounter) {
     if ($$restProps.maxlength) {
       charCount = `${inputRef.value.length} / ${$$restProps.maxlength}`;
-    } else {
-      charCount = inputRef.value.length.toString();
     }
   }
 
@@ -114,6 +112,7 @@
   .text-field-container {
     display: flex;
     flex-direction: column;
+    width: auto;
   }
 
   .required {
