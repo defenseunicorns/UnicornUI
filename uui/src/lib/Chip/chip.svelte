@@ -1,7 +1,7 @@
 <script lang="ts">
   import Box from '../Box/box.svelte';
-  import Typography from '../Typography/typography.svelte';
   import { MDCRipple } from '@material/ripple';
+  import Typography from '../Typography/typography.svelte';
   import { current_component, onMount } from 'svelte/internal';
   import type { ChipColor, ChipProps, ChipVariant } from './chip.types';
 
@@ -51,27 +51,25 @@
   .chip-wrapper {
     @extend .mdc-evolution-chip;
   }
+
   .chip-filled-default {
     @include chips.ripple-color(
-      var(
-        --mdc-chip-filled-ripple-color,
-        var(--mdc-chip-color, var(--uui-default-colors-on-default))
-      )
+      var(--chip-filled-ripple-color, var(--chip-color, var(--uui-default-colors-on-default)))
     );
-    background-color: var(--mdc-chip-background-color, var(--uui-default-colors-default));
-    color: var(--mdc-chip-color, var(--uui-default-colors-on-default));
+    background-color: var(--chip-background-color, var(--uui-default-colors-default));
+    color: var(--chip-color, var(--uui-default-colors-on-default));
   }
   .chip-outlined-default {
     @include chips.ripple-color(
       var(
-        --mdc-chip-outlined-ripple-color,
-        var(--mdc-chip-background-color, var(--uui-default-colors-on-default))
+        --chip-outlined-ripple-color,
+        var(--chip-background-color, var(--uui-default-colors-on-default))
       )
     );
 
     background-color: transparent;
-    color: var(--mdc-chip-background-color, var(--uuid-default-colors-on-default));
-    border-color: var(--mdc-chip-background-color, var(--uuid-default-colors-ondefault));
+    color: var(--chip-background-color, var(--uuid-default-colors-on-default));
+    border-color: var(--chip-background-color, var(--uuid-default-colors-on-default));
     border-width: 1px;
     border-style: solid;
   }

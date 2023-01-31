@@ -58,13 +58,11 @@
 <style lang="scss" global>
   @import '@material/typography/mdc-typography';
   :root {
-    --mdc-typography-font-family: var(
-      --mdc-typography-global-font-family,
-      'Roboto, helvetica, sans-serif'
-    );
+    --mdc-typography-font-family: var(--global-font-family, 'Roboto, helvetica, sans-serif');
   }
   body {
-    background-color: var(--mdc-theme-background);
-    color: var(--mdc-theme-on-background);
+    font-family: var(--global-font-family);
+    background-color: var(--background);
+    color: var(--on-background);
   }
 </style>

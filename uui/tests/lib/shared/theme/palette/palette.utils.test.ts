@@ -10,12 +10,16 @@ describe('createPaletteMap', () => {
       test2: { primary: 'purple', on: { primary: 'white' } }
     });
     expect(paletteMap.get('test')).toStrictEqual({
-      '--mdc-theme-primary': 'pink',
-      '--mdc-theme-on-primary': 'black'
+      '--primary': 'pink',
+      '--mdc-theme-primary': 'var(--primary)',
+      '--on-primary': 'black',
+      '--mdc-theme-on-primary': 'var(--on-primary)'
     });
     expect(paletteMap.get('test2')).toStrictEqual({
-      '--mdc-theme-primary': 'purple',
-      '--mdc-theme-on-primary': 'white'
+      '--primary': 'purple',
+      '--mdc-theme-primary': 'var(--primary)',
+      '--on-primary': 'white',
+      '--mdc-theme-on-primary': 'var(--on-primary)'
     });
   });
 });
@@ -26,8 +30,10 @@ describe('paletteToCssVars', () => {
       secondary: '#787ff6'
     });
     expect(paletteVars).toStrictEqual({
-      '--mdc-theme-primary': '#68c4ff',
-      '--mdc-theme-secondary': '#787ff6'
+      '--primary': '#68c4ff',
+      '--mdc-theme-primary': 'var(--primary)',
+      '--secondary': '#787ff6',
+      '--mdc-theme-secondary': 'var(--secondary)'
     });
   });
 
@@ -39,8 +45,10 @@ describe('paletteToCssVars', () => {
       }
     });
     expect(paletteVars).toStrictEqual({
-      '--mdc-theme-on-primary': 'black',
-      '--mdc-theme-on-secondary': 'white'
+      '--on-primary': 'black',
+      '--mdc-theme-on-primary': 'var(--on-primary)',
+      '--on-secondary': 'white',
+      '--mdc-theme-on-secondary': 'var(--on-secondary)'
     });
   });
 
@@ -59,11 +67,16 @@ describe('paletteToCssVars', () => {
       }
     });
     expect(paletteVars).toStrictEqual({
-      '--mdc-theme-on-primary': 'black',
-      '--mdc-theme-on-secondary': 'white',
-      '--mdc-theme-text-primary-on-dark': 'pink',
-      '--mdc-theme-text-primary-on-light': 'black',
-      '--mdc-theme-text-secondary-on-dark': 'yellow'
+      '--on-primary': 'black',
+      '--mdc-theme-on-primary': 'var(--on-primary)',
+      '--on-secondary': 'white',
+      '--mdc-theme-on-secondary': 'var(--on-secondary)',
+      '--text-primary-on-dark': 'pink',
+      '--mdc-theme-text-primary-on-dark': 'var(--text-primary-on-dark)',
+      '--text-primary-on-light': 'black',
+      '--mdc-theme-text-primary-on-light': 'var(--text-primary-on-light)',
+      '--text-secondary-on-dark': 'yellow',
+      '--mdc-theme-text-secondary-on-dark': 'var(--text-secondary-on-dark)'
     });
   });
 
@@ -79,9 +92,12 @@ describe('paletteToCssVars', () => {
     });
 
     expect(paletteVars).toStrictEqual({
-      '--mdc-theme-text-primary-on-dark': 'white',
-      '--mdc-theme-text-primary-on-light': 'black',
-      '--mdc-theme-text-primary-on-background': 'white'
+      '--text-primary-on-dark': 'white',
+      '--mdc-theme-text-primary-on-dark': 'var(--text-primary-on-dark)',
+      '--text-primary-on-light': 'black',
+      '--mdc-theme-text-primary-on-light': 'var(--text-primary-on-light)',
+      '--text-primary-on-background': 'white',
+      '--mdc-theme-text-primary-on-background': 'var(--text-primary-on-background)'
     });
   });
 });

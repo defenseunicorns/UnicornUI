@@ -19,7 +19,7 @@
     max-width: 100%;
     display: flex;
     flex-direction: column;
-    color: var(--mdc-theme-primary);
+    color: var(--primary);
     background-color: black;
     padding: 16px;
     white-space: pre-wrap; /* css-3 */

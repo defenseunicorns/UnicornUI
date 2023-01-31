@@ -6,8 +6,8 @@
 <Variant
   title="Accordion"
   code={`Theme (default): 
-  background-color: --mdc-theme-surface
-  color: --mdc-theme-on-surface
+  background-color: --surface 
+  color: --on-surface
 
 Props (extends HTMLDivElement):
   isOpen = false;
@@ -44,11 +44,11 @@ Slots:
   
   /* Style
 .accordian-2-content {
-	color: var(--mdc-theme-primary);
+	color: var(--primary);
 	background-color: black;
 }
 .accordian-2-content pre {
-	color: var(--mdc-theme-primary);
+	color: var(--primary);
 	background-color: black;
 	padding: 8px;
 }
@@ -60,7 +60,7 @@ Slots:
 
 <style lang="scss" global>
   .accordian-1-content {
-    background-color: var(--mdc-theme-secondary);
-    color: var(--mdc-theme-on-secondary);
+    background-color: var(--secondary);
+    color: var(--on-secondary);
   }
 </style>

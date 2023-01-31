@@ -11,17 +11,18 @@ export function createPaletteMap(palettes: Palettes): Map<string, ThemeVars> {
   return paletteMap;
 }
 
-export function paletteToCssVars(palette: Palette, prefix = MDC_THEME_PREFIX): ThemeVars {
+export function paletteToCssVars(palette: Palette, prefix = ''): ThemeVars {
   let paletteCss: ThemeVars = {};
   Object.entries(palette).forEach((value: [string, PaletteField]) => {
     const [key, val] = value;
-    const newPrefix = `${prefix}-${camelBackToDash(key)}`;
+    const newPrefix = `${prefix}${camelBackToDash(key)}`;
     // Field type string
     if (typeof val === 'string') {
-      paletteCss[newPrefix] = val;
+      paletteCss['--' + newPrefix] = val;
+      paletteCss[`${MDC_THEME_PREFIX}-${newPrefix}`] = `var(--${newPrefix})`;
       // Field type palette recurse.
     } else {
-      paletteCss = { ...paletteCss, ...paletteToCssVars(val, newPrefix) };
+      paletteCss = { ...paletteCss, ...paletteToCssVars(val, newPrefix + '-') };
     }
   });
   return paletteCss;
