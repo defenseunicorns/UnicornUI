@@ -1,11 +1,43 @@
 # v0.0.34
 
+## Updates
+
+### Theme Css vars can now be accessed without mdc-\* prefix.
+
+- Palette and Typography values accessed with dashed css convention
+- \* non-breaking --mdc-\* is still supported but not recommended
+
+```css
+/* Example Css */
+.myClass {
+  color: var(--on-primary);
+  background-color: var(--primary);
+  font-size: var(--h3-font-size);
+}
+```
+
+### Chip default colors can now easily be overridden in Palette
+
+```js
+const palette = {
+  shared: {
+    ...UUI_PALETTES.shared,
+    chip: {
+      color: 'var(--on-surface)',
+      backgroundColor: 'var(--surface)',
+      filledRippleColor: 'pink',
+      outlinedRippleColor: 'purple'
+    }
+  }
+};
+```
+
 ## Development
 
-- Added issue templates
-- Created internal Contributor guide "CONTRIBUTING.md"
 - Added Code owners
+- Added issue templates
 - Update README with link to CONTRIBUTING
+- Created internal Contributor guide "CONTRIBUTING.md"
 
 ---
 
