@@ -44,7 +44,7 @@ Additional Notes:
   - Should be applied to top level layout.
   - Should wrap all website components to prevent layout flash.
   - Acts purely as a wrapper and contains no html tags. 
-  - Palette and TypographyConfig values are accessible via css vars following the mdc pattern (--mdc-theme, --mdc-typography, etc...)
+  - Palette and TypographyConfig values are accessible via css vars following the theme properties separated by dashes (--primary, --on-primary, --h3-font-size); 
   - A runtime list of available css vars are in the head style id='uui-theme-css'
 `}
 >
