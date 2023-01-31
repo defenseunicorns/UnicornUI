@@ -135,9 +135,6 @@
     @include mdc-text-field-placeholder-color(var(--color));
     @include mdc-text-field-focused-outline-color(var(--color));
     @include mdc-text-field-caret-color(var(--color));
-
-    //disabled
-    @include mdc-text-field-disabled-label-color(red);
   }
 
   .text-field-outlined {

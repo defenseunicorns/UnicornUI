@@ -10,9 +10,8 @@
 Props (extends HTMLInputElement): 
   variant: TextFieldVariant = 'outlined';
   helperText?: string = "helper text"
-  color: ThemeColors = "primary"
-  required?: boolean = true;
-  characterCounter: boolean = true;
+  color?: ThemeColors = "primary"
+  characterCounter?: boolean = true;
 
 Slots:
   leadingIcon: optional
@@ -42,10 +41,23 @@ Slots:
             maxlength={60}
           />
           <TextField disabled label="my label" variant="outlined" color="primary" />
+          <form>
+            <TextField
+              required
+              variant="outlined"
+              label="required"
+              pattern=".+@.+\\.com"
+              helperText="try email format"
+              placeholder="try submitting"
+              maxlength={20}
+              minlength={8}
+            />
+            <button style={'margin-top: 2px;'} type="submit">Submit</button>
+          </form>
           `}
         </pre>
         <Box class="text-field-example">
-          <TextField required label="my label" variant="outlined" color="primary" maxlength={60} />
+          <TextField required label="required" variant="outlined" color="primary" maxlength={60} />
           <TextField
             label="my label"
             variant="outlined"
@@ -62,7 +74,27 @@ Slots:
             characterCounter={true}
             maxlength={60}
           />
-          <TextField disabled label="my label" variant="outlined" color="primary" />
+          <TextField
+            label="color prop"
+            variant="outlined"
+            color="secondary"
+            hoverColor="secondary"
+            helperText="helper text"
+          />
+          <TextField disabled label="input disabled" variant="outlined" color="primary" />
+          <form>
+            <TextField
+              required
+              variant="outlined"
+              label="required"
+              pattern=".+@.+\.com"
+              helperText="try email format"
+              placeholder="try submitting"
+              maxlength={20}
+              minlength={8}
+            />
+            <button style={'margin-top: 2px;'} type="submit">Submit</button>
+          </form>
         </Box>
       </Box>
     </Accordion>
