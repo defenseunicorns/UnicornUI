@@ -25,7 +25,7 @@
 
   // functions
   function clickAway(evt: any) {
-    if (document.activeElement !== evt.target && !$$restProps.placeholder) {
+    if (evt.target !== inputRef && !$$restProps.placeholder) {
       focused = '';
       if (inputRef.value === '') {
         notched = '';
