@@ -1,5 +1,5 @@
 <script>
-  import { TextField } from '@uui';
+  import { TextField, TextFieldIcon } from '@uui';
   import Variant from '$lib/Variant.svelte';
   import { AccordionGroup, Accordion, Typography, Box } from '@uui';
 </script>
@@ -35,7 +35,7 @@ Slots:
             label="my label"
             placeholder="placeholder"
             variant="outlined"
-            color="primary"
+            color="secondary"
             helperText="helper text"
             characterCounter={true}
             maxlength={60}
@@ -57,7 +57,11 @@ Slots:
           `}
         </pre>
         <Box class="text-field-example">
-          <TextField required label="required" variant="outlined" color="primary" maxlength={60} />
+          <TextField required label="required" variant="outlined" color="primary" maxlength={60}>
+            <TextFieldIcon slot="leadingIcon" class="material-symbols-outlined"
+              >favorite</TextFieldIcon
+            >
+          </TextField>
           <TextField
             label="my label"
             variant="outlined"
@@ -78,7 +82,6 @@ Slots:
             label="color prop"
             variant="outlined"
             color="secondary"
-            hoverColor="secondary"
             helperText="helper text"
           />
           <TextField disabled label="input disabled" variant="outlined" color="primary" />
@@ -105,9 +108,9 @@ Slots:
   :global(.text-field-example) {
     gap: 16px;
     display: flex;
+    flex-wrap: wrap;
     align-content: center;
     justify-content: center;
     padding-top: 1rem;
-    // width: 20%;
   }
 </style>

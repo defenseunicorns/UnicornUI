@@ -22,6 +22,7 @@
   let floating = '';
   let charCount = '';
   let notchWidth = '';
+  let invalid = false;
 
   // functions
   function clickAway(evt: any) {
@@ -40,7 +41,33 @@
     floating = 'floating';
   }
 
+  function getIconClass(): string {
+    let classes: string[] = [];
+    if ($$slots.leadingIcon) {
+      classes.push('mdc-text-field--with-leading-icon');
+    }
+    if ($$slots.trailingIcon) {
+      classes.push('mdc-text-field--with-trailing-icon');
+    }
+    return classes.join(' ');
+  }
+
+  function getIconSlot() {
+    let tag = '';
+    if ($$slots.leadingIcon) {
+      tag = '-leading';
+    }
+    if ($$slots.trailingIcon) {
+      tag = '-trailing';
+    }
+    return tag;
+  }
+
   onMount(() => {
+    inputRef.oninvalid = (evt: Event) => {
+      evt.preventDefault();
+      invalid = true;
+    };
     if ($$restProps.placeholder) {
       setFocusStates();
     }
@@ -65,18 +92,25 @@
 
 <svelte:window on:click={clickAway} />
 
-<div class="text-field-conainer">
+<div
+  class="text-field-conainer"
+  style="--color: {computedColor}; --hover-color: {computedHoverColor};"
+>
   <div
-    class={`mdc-text-field text-field-${variant} ${focused}`}
+    class={`mdc-text-field text-field mdc-text-field--${variant} ${focused} ${getIconClass()}`}
     class:mdc-text-field--disabled={$$restProps.disabled}
-    style="--color: {computedColor}; --hover-color: {computedHoverColor};"
+    class:mdc-text-field--invalid={invalid}
   >
     <slot name="leadingIcon" />
     <input
       bind:this={inputRef}
       bind:value={inputValue}
       on:focus={setFocusStates}
+      on:input={() => {
+        invalid = false;
+      }}
       type="text"
+      id={`text-field-${variant}${getIconSlot()}`}
       class="mdc-text-field__input"
       aria-labelledby="textfield-label"
       {...$$restProps}
@@ -88,9 +122,9 @@
         <label
           bind:this={labelRef}
           class={`mdc-floating-label ${floating}`}
-          for="text-field-outlined"
-          id="textfield-label"
           class:required={$$restProps.required}
+          for={`text-field-outlined${getIconSlot()}`}
+          id="textfield-label"
           >{label}
         </label>
       </span>
@@ -107,7 +141,7 @@
   </div>
 </div>
 
-<style lang="scss">
+<style lang="scss" global>
   @import '@material/textfield/mdc-text-field';
 
   .text-field-container {
@@ -116,38 +150,55 @@
     width: auto;
   }
 
+  .mdc-text-field,
+  .mdc-text-field--focused {
+    @include mdc-text-field-ink-color(var(--color));
+    @include mdc-text-field-hover-outline-color(var(--hover-color));
+    @include mdc-text-field-placeholder-color(var(--color));
+    @include mdc-text-field-outline-color(var(--color));
+    @include mdc-text-field-caret-color(var(--color));
+  }
+
+  .mdc-text-field--disabled,
+  .mdc-text-field--disabled .mdc-floating-label {
+    @include mdc-text-field-ink-color(var(--mdc-theme-disabled));
+    @include mdc-text-field-hover-outline-color(var(--mdc-theme-disabled));
+    @include mdc-text-field-placeholder-color(var(--mdc-theme-disabled));
+    @include mdc-text-field-focused-outline-color(var(--mdc-theme-disabled));
+    @include mdc-text-field-caret-color(var(--mdc-theme-disabled));
+  }
+
+  .mdc-text-field--invalid {
+    @include mdc-text-field-ink-color(var(--mdc-theme-error));
+    @include mdc-text-field-hover-outline-color(var(--mdc-theme-error));
+    @include mdc-text-field-placeholder-color(var(--mdc-theme-error));
+    @include mdc-text-field-focused-outline-color(var(--mdc-theme-error));
+    @include mdc-text-field-caret-color(var(--mdc-theme-error));
+  }
+
+  .mdc-text-field--outlined.mdc-text-field.focused:not(.mdc-text-field--disabled) {
+    @include mdc-notched-outline-color(var(--color));
+  }
+
+  .mdc-text-field--invalid.mdc-text-field.focused:not(.mdc-text-field--disabled) {
+    @include mdc-notched-outline-color(var(--mdc-theme-error));
+  }
+
   .required {
     @extend .mdc-floating-label--required;
   }
 
-  .mdc-text-field-helper-text {
-    color: var(--color) !important;
+  .mdc-text-field:not(.mdc-text-field--disabled)
+    + .mdc-text-field-helper-line
+    .mdc-text-field-helper-text,
+  .mdc-text-field:not(.mdc-text-field--disabled)
+    + .mdc-text-field-helper-line
+    .mdc-text-field-character-counter {
+    color: var(--color);
   }
 
-  .mdc-text-field-character-counter {
-    color: var(--color) !important;
-  }
-
-  .mdc-text-field {
-    // Typed input text
-    @include mdc-text-field-ink-color(var(--hover-color));
-    @include mdc-text-field-hover-outline-color(var(--hover-color));
-    @include mdc-text-field-placeholder-color(var(--color));
-    @include mdc-text-field-focused-outline-color(var(--color));
-    @include mdc-text-field-caret-color(var(--color));
-  }
-
-  .text-field-outlined {
-    @extend .mdc-text-field--outlined;
+  .mdc-text-field--outlined {
     @include mdc-text-field-outline-color(var(--color));
-  }
-
-  .mdc-text-field--disabled .mdc-floating-label {
-    color: var(--mdc-theme-text-disabled-on-dark) !important;
-  }
-
-  .mdc-floating-label {
-    color: var(--color) !important;
   }
 
   .mdc-text-field.focused {
@@ -156,6 +207,16 @@
 
   .mdc-notched-outline.notched {
     @extend .mdc-notched-outline--notched;
+  }
+
+  .mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label,
+  .mdc-text-field.focused:not(.mdc-text-field--disabled) .mdc-floating-label,
+  .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
+    color: var(--color);
+  }
+
+  .mdc-text-field--invalid .mdc-notched-outline .mdc-notched-outline__notch .mdc-floating-label {
+    color: var(--mdc-theme-error);
   }
 
   .mdc-floating-label.floating {

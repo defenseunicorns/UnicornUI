@@ -11,9 +11,10 @@ import StepIcon from './Stepper/StepIcon.svelte';
 import TextField from './TextField/TextField.svelte';
 import Accordion from './Accordion/accordion.svelte';
 import ButtonIcon from './Button/ButtonIcon.svelte';
-import DialogTitle from './Dialog/DialogTitle.svelte';
 import IconButton from './IconButton/IconButton.svelte';
 import Typography from './Typography/typography.svelte';
+import DialogTitle from './Dialog/DialogTitle.svelte';
+import TextFieldIcon from './TextField/TextFieldIcon.svelte';
 import DialogActions from './Dialog/DialogActions.svelte';
 import AccordionGroup from './Accordion/accordion-group.svelte';
 
@@ -33,6 +34,7 @@ export {
   IconButton,
   Typography,
   DialogTitle,
+  TextFieldIcon,
   DialogActions,
   AccordionGroup
 };
@@ -88,6 +90,6 @@ export type {
   CustomStep,
   CustomSteps
 } from './Stepper/stepper.types';
-export type { TextFieldProps } from './TextField/TextField.types';
+export type { TextFieldProps, TextFieldIconProps } from './TextField/TextField.types';
 export type { AccordionProps, AccordionGroupProps } from './Accordion/accordion.types';
 export type { ThemeColors } from './shared/theme/default-colors/colors.types';
