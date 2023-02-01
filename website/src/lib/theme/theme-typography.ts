@@ -1,4 +1,3 @@
-import { UUI_TYPOGRAPHY } from '@uui';
 import type { ThemeTypography } from '@uui';
 
 /*
@@ -9,17 +8,16 @@ import type { ThemeTypography } from '@uui';
  * </Theme>
  */
 const customTypography: ThemeTypography = {
-  ...UUI_TYPOGRAPHY,
   body3: {
     fontWeight: 'bold',
-    fontSize: 'var(--mdc-typography-h6-font-size)',
+    fontSize: 'var(--h6-font-size)',
     lineHeight: '143%',
     fontStyle: 'normal',
     fontFamily: 'cursive',
     letterSpacing: '.17px',
     textTransform: 'uppercase',
-    textDecoration: 'underline wavy var(--mdc-theme-warning)',
-    color: 'var(--mdc-theme-primary)'
+    textDecoration: 'underline wavy var(--warning)',
+    color: 'var(--primary)'
   }
 };
 

@@ -17,21 +17,29 @@ Props (extends BoxProps):
   clickable?: boolean = false;
 
 Slots:
-	primary
-	unamed
-	trailing
+  primary
+  unamed
+  trailing
 
-Theming (optional, color="default"):
-// "filled" background-color
-// "outlined" text, border, and ripple colors.
---mdc-chip-background-color
-// "filled" text color
---mdc-chip-color
-// "filled" ripple color
---mdc-chip-filled-ripple-color
-// "outlined" ripple color
---mdc-chip-outlined-ripple-color
-  
+Theming (optional, overrides the default color):
+  Palette: 
+    chip: {
+        // "filled" background color
+        // "outlined" text, border, and ripple colors.
+        backgroundColor: string,
+        // "filled" text color
+        color: string,
+        // "filled" ripple color
+        filledRippleColor: string,
+        // "outlined" ripple color
+        outlinedRippleColor,
+      }
+
+  css vars:
+    --chip-color
+    --chip-background-color
+    --chip-filled-ripple-color
+    --chip-outlined-ripple-color
 `}
 >
   <AccordionGroup>
@@ -203,7 +211,7 @@ Theming (optional, color="default"):
 <Chip color="success" clickable>
   <ChipIcon 
     slot="primary"
-    style="fill: var(--mdc-theme-on-success)"
+    style="fill: var(--on-success)"
   >
     <CheckCircle />
   </ChipIcon>
@@ -212,7 +220,7 @@ Theming (optional, color="default"):
 </pre>
         <Box class="chip-example">
           <Chip color="success">
-            <ChipIcon slot="primary" style="fill: var(--mdc-theme-on-success)">
+            <ChipIcon slot="primary" style="fill: var(--on-success)">
               <CheckCircle />
             </ChipIcon>
             Filled Success Clickable
