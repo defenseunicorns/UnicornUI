@@ -1,3 +1,13 @@
+# v0.0.35
+
+## Breaking Changes
+
+## Updates
+
+## Development
+
+- Added Outlined TextField
+
 # v0.0.34
 
 ## Breaking Changes
