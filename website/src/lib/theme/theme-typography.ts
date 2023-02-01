@@ -1,4 +1,3 @@
-import { UUI_TYPOGRAPHY } from '@uui';
 import type { ThemeTypography } from '@uui';
 
 /*
@@ -9,7 +8,6 @@ import type { ThemeTypography } from '@uui';
  * </Theme>
  */
 const customTypography: ThemeTypography = {
-  ...UUI_TYPOGRAPHY,
   body3: {
     fontWeight: 'bold',
     fontSize: 'var(--h6-font-size)',
