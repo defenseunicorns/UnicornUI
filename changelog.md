@@ -45,7 +45,7 @@
 
   background-color: var(--primary);
   /* replaces */
-  background-color: var(--primary);
+  background-color: var(--mdc-theme-primary);
 
   font-size: var(--h3-font-size);
   /* replaces */
