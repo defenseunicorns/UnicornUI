@@ -1,5 +1,8 @@
+import { UUI_PALETTES } from '../../../../../src/lib/shared/theme/palette/default-palettes';
+import type { Palettes } from '../../../../../src/lib/shared/theme/palette/palette.types';
 import {
   createPaletteMap,
+  mergePalettes,
   paletteToCssVars
 } from '../../../../../src/lib/shared/theme/palette/palette.utils';
 
@@ -99,5 +102,68 @@ describe('paletteToCssVars', () => {
       '--text-primary-on-background': 'white',
       '--mdc-theme-text-primary-on-background': 'var(--text-primary-on-background)'
     });
+  });
+});
+
+describe('mergePalettes', () => {
+  it('applies the base palettes first', () => {
+    const basePalettes: Palettes = {
+      shared: { primary: 'pink' },
+      dark: { secondary: 'purple' },
+      light: { primary: 'yellow' }
+    };
+    const customPalettes: Palettes = {
+      shared: { primary: 'purple' },
+      dark: { secondary: 'blue' },
+      light: { primary: 'pink' }
+    };
+
+    expect(mergePalettes(customPalettes, basePalettes)).toEqual({
+      shared: { primary: 'purple' },
+      dark: { secondary: 'blue' },
+      light: { primary: 'pink' }
+    });
+  });
+  it('adds the missing base palettes', () => {
+    const basePalettes: Palettes = {
+      shared: { primary: 'pink' },
+      dark: { secondary: 'purple' },
+      light: { primary: 'yellow' }
+    };
+    const customPalettes: Palettes = { shared: { primary: 'purple' }, dark: { secondary: 'blue' } };
+
+    expect(mergePalettes(customPalettes, basePalettes).light).toEqual({ primary: 'yellow' });
+  });
+
+  it('adds the missing base fields', () => {
+    const basePalettes: Palettes = {
+      shared: { primary: 'pink' },
+      dark: { secondary: 'purple' },
+      light: { primary: 'yellow', secondary: 'blue' }
+    };
+    const customPalettes: Palettes = {
+      shared: { primary: 'purple' },
+      dark: { secondary: 'blue' },
+      light: { primary: 'pink' }
+    };
+
+    expect(mergePalettes(customPalettes, basePalettes)).toEqual({
+      shared: { primary: 'purple' },
+      dark: { secondary: 'blue' },
+      light: { primary: 'pink', secondary: 'blue' }
+    });
+  });
+
+  it('returns the base if the override and base reference the same object', () => {
+    const basePalettes: Palettes = {
+      shared: { primary: 'pink' },
+      dark: { secondary: 'purple' },
+      light: { primary: 'yellow' }
+    };
+    expect(mergePalettes(basePalettes, basePalettes)).toBe(basePalettes);
+  });
+
+  it('uses UUI_Palettes as the default base', () => {
+    expect(mergePalettes(UUI_PALETTES)).toBe(UUI_PALETTES);
   });
 });

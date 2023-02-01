@@ -1,4 +1,5 @@
 import { camelBackToDash } from '../config/theme-config.utils';
+import { UUI_PALETTES } from './default-palettes';
 import type { PaletteField, Palette, Palettes, ThemeVars } from './palette.types';
 
 const MDC_THEME_PREFIX = '--mdc-theme';
@@ -26,4 +27,11 @@ export function paletteToCssVars(palette: Palette, prefix = ''): ThemeVars {
     }
   });
   return paletteCss;
+}
+export function mergePalettes(override: Palettes, base: Palettes = UUI_PALETTES): Palettes {
+  if (override === base) return base;
+  for (const palette in base) {
+    override[palette] = { ...base[palette], ...(override[palette] || {}) };
+  }
+  return override;
 }
