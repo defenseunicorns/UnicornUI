@@ -198,10 +198,10 @@ Wrapping Component:
 
 /* Style
 .primaryCube path {
-	stroke: var(--mdc-theme-primary);
+	stroke: var(--primary);
 }
 .secondaryCube path {
-	stroke: var(--mdc-theme-secondary);
+	stroke: var(--secondary);
 }
 */`}
 >
@@ -222,10 +222,10 @@ Wrapping Component:
   </IconButton>
   <style lang="scss">
     .primaryCube path {
-      stroke: var(--mdc-theme-primary);
+      stroke: var(--primary);
     }
     .secondaryCube path {
-      stroke: var(--mdc-theme-secondary);
+      stroke: var(--secondary);
     }
   </style>
 </Variant>

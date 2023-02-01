@@ -28,20 +28,45 @@ export function createTypographyClasses(
   const typoConfig: TypographyConfig = { classes: {}, vars: {} };
   const classValues: Record<string, string> = {};
   const dashedPrefix = camelBackToDash(prefix);
-  const typographyClass = `.${createTypographyVariantClass(dashedPrefix)}`;
+  const typographyClass = createTypographyConfigClass(dashedPrefix);
 
   Object.entries(typographyPalette).forEach(([key, val]: [string, string]) => {
     const dashedKey = camelBackToDash(key);
-    const varName = `${TYPOGRAPHY_VARS_PREFIX}-${dashedPrefix}-${dashedKey}`;
-    classValues[dashedKey] = `var(${varName}, ${val})`;
-    typoConfig.vars[varName] = val;
+    const unPrefixedVarName = `${dashedPrefix}-${dashedKey}`;
+    const uuiVarName = createUUITypographyVarName(unPrefixedVarName);
+    const mdcVarName = createMDCTypographyVarName(unPrefixedVarName);
+    const mdcVarValue = createMDCVarValue(uuiVarName);
+
+    classValues[dashedKey] = `var(${uuiVarName}, ${val})`;
+    typoConfig.vars[uuiVarName] = val;
+    typoConfig.vars[mdcVarName] = mdcVarValue;
   });
 
   typoConfig.classes[typographyClass] = classValues;
   return typoConfig;
 }
 
-export function createTypographyVariantClass(variant: TypographyVariant): string {
+export function createUUITypographyVarName(unprefixedVarName: string): string {
+  return `--${unprefixedVarName}`;
+}
+
+export function createMDCVarValue(uuiVarName: string): string {
+  return `var(${uuiVarName})`;
+}
+
+export function createMDCTypographyVarName(unprefixedVarName: string): string {
+  return `${TYPOGRAPHY_VARS_PREFIX}-${unprefixedVarName}`;
+}
+
+export function createTypographyConfigClass(variant: TypographyVariant): string {
+  return `.${createMDCTypographyClassName(variant)},.${createUUITypographyClassName(variant)}`;
+}
+
+export function createUUITypographyClassName(variant: TypographyVariant): string {
+  return camelBackToDash(variant);
+}
+
+export function createMDCTypographyClassName(variant: TypographyVariant): string {
   let className = 'mdc-typography--';
   switch (variant) {
     case 'h1':

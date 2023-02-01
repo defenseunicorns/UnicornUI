@@ -60,12 +60,7 @@ export type {
   ButtonProps,
   ButtonIconProps
 } from './Button/Button.types';
-export type {
-  TypographyVariant,
-  TypographyElement,
-  TypographyElements,
-  TypographyProps
-} from './Typography/typography.types';
+export type { TypographyVariant, TypographyProps } from './Typography/typography.types';
 export type {
   Palette,
   Palettes,

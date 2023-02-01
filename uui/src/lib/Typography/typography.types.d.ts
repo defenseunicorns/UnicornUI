@@ -18,14 +18,6 @@ export type TypographyVariant =
   | 'inherit'
   | string;
 
-export type TypographyElement = {
-  element: string;
-  class: string;
-};
-export type TypographyElements = {
-  [key in TypographyVariant]: TypographyElement;
-};
-
 export interface TypographyProps<T extends EventTarget> extends BoxProps<T> {
   variant?: TypographyVariant;
   color?: ThemeColors;
