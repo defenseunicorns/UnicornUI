@@ -36,6 +36,7 @@ Slots:
             placeholder="placeholder"
             variant="outlined"
             color="secondary"
+            onSurfaceColor="primary"
             helperText="helper text"
             characterCounter={true}
             maxlength={60}
@@ -79,9 +80,10 @@ Slots:
             maxlength={60}
           />
           <TextField
-            label="color prop"
+            label="color & onSurfaceColor"
             variant="outlined"
             color="secondary"
+            onSurfaceColor="primary"
             helperText="helper text"
           />
           <TextField disabled label="input disabled" variant="outlined" color="primary" />

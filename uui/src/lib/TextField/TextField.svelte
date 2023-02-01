@@ -8,8 +8,8 @@
   type $$Props = TextFieldProps;
   export let variant: TextFieldVariant = 'outlined';
   export let label = '';
-  export let hoverColor: ThemeColors = 'inherit';
   export let color: ThemeColors = 'inherit';
+  export let onSurfaceColor: ThemeColors = 'inherit';
   export let helperText = '';
   export let characterCounter = false;
 
@@ -74,7 +74,7 @@
   });
 
   $: computedColor = makeThemeColor(color);
-  $: computedHoverColor = makeThemeColor(hoverColor);
+  $: computedOnSurfaceColor = makeThemeColor(onSurfaceColor);
   $: if (inputRef && characterCounter) {
     if ($$restProps.maxlength) {
       charCount = `${inputRef.value.length} / ${$$restProps.maxlength}`;
@@ -94,7 +94,7 @@
 
 <div
   class="text-field-conainer"
-  style="--color: {computedColor}; --hover-color: {computedHoverColor};"
+  style="--color: {computedColor}; --on-surface-color: {computedOnSurfaceColor};"
 >
   <div
     class={`mdc-text-field text-field mdc-text-field--${variant} ${focused} ${getIconClass()}`}
@@ -152,11 +152,11 @@
 
   .mdc-text-field,
   .mdc-text-field--focused {
-    @include mdc-text-field-ink-color(var(--color));
-    @include mdc-text-field-hover-outline-color(var(--hover-color));
-    @include mdc-text-field-placeholder-color(var(--color));
+    @include mdc-text-field-ink-color(var(--on-surface-color));
+    @include mdc-text-field-hover-outline-color(var(--on-surface-color));
+    @include mdc-text-field-placeholder-color(var(--on-surface-color));
     @include mdc-text-field-outline-color(var(--color));
-    @include mdc-text-field-caret-color(var(--color));
+    @include mdc-text-field-caret-color(var(--on-surface-color));
   }
 
   .mdc-text-field--disabled,
@@ -194,7 +194,7 @@
   .mdc-text-field:not(.mdc-text-field--disabled)
     + .mdc-text-field-helper-line
     .mdc-text-field-character-counter {
-    color: var(--color);
+    color: var(--on-surface-color);
   }
 
   .mdc-text-field--outlined {
