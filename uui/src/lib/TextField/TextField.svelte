@@ -52,17 +52,6 @@
     return classes.join(' ');
   }
 
-  function getIconSlot() {
-    let tag = '';
-    if ($$slots.leadingIcon) {
-      tag = '-leading';
-    }
-    if ($$slots.trailingIcon) {
-      tag = '-trailing';
-    }
-    return tag;
-  }
-
   onMount(() => {
     inputRef.oninvalid = (evt: Event) => {
       evt.preventDefault();
@@ -110,7 +99,6 @@
         invalid = false;
       }}
       type="text"
-      id={`text-field-${variant}${getIconSlot()}`}
       class="mdc-text-field__input"
       aria-labelledby="textfield-label"
       {...$$restProps}
@@ -123,7 +111,7 @@
           bind:this={labelRef}
           class={`mdc-floating-label ${floating}`}
           class:required={$$restProps.required}
-          for={`text-field-outlined${getIconSlot()}`}
+          for={`text-field-${variant}`}
           id="textfield-label"
           >{label}
         </label>
@@ -161,19 +149,19 @@
 
   .mdc-text-field--disabled,
   .mdc-text-field--disabled .mdc-floating-label {
-    @include mdc-text-field-ink-color(var(--mdc-theme-disabled));
-    @include mdc-text-field-hover-outline-color(var(--mdc-theme-disabled));
-    @include mdc-text-field-placeholder-color(var(--mdc-theme-disabled));
-    @include mdc-text-field-focused-outline-color(var(--mdc-theme-disabled));
-    @include mdc-text-field-caret-color(var(--mdc-theme-disabled));
+    @include mdc-text-field-ink-color(var(--disabled));
+    @include mdc-text-field-hover-outline-color(var(--disabled));
+    @include mdc-text-field-placeholder-color(var(--disabled));
+    @include mdc-text-field-focused-outline-color(var(--disabled));
+    @include mdc-text-field-caret-color(var(--disabled));
   }
 
   .mdc-text-field--invalid {
-    @include mdc-text-field-ink-color(var(--mdc-theme-error));
-    @include mdc-text-field-hover-outline-color(var(--mdc-theme-error));
-    @include mdc-text-field-placeholder-color(var(--mdc-theme-error));
-    @include mdc-text-field-focused-outline-color(var(--mdc-theme-error));
-    @include mdc-text-field-caret-color(var(--mdc-theme-error));
+    @include mdc-text-field-ink-color(var(--error));
+    @include mdc-text-field-hover-outline-color(var(--error));
+    @include mdc-text-field-placeholder-color(var(--error));
+    @include mdc-text-field-focused-outline-color(var(--error));
+    @include mdc-text-field-caret-color(var(--error));
   }
 
   .mdc-text-field--outlined.mdc-text-field.focused:not(.mdc-text-field--disabled) {
@@ -181,7 +169,7 @@
   }
 
   .mdc-text-field--invalid.mdc-text-field.focused:not(.mdc-text-field--disabled) {
-    @include mdc-notched-outline-color(var(--mdc-theme-error));
+    @include mdc-notched-outline-color(var(--error));
   }
 
   .required {
@@ -216,7 +204,7 @@
   }
 
   .mdc-text-field--invalid .mdc-notched-outline .mdc-notched-outline__notch .mdc-floating-label {
-    color: var(--mdc-theme-error);
+    color: var(--error);
   }
 
   .mdc-floating-label.floating {
