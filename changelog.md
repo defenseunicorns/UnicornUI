@@ -4,9 +4,20 @@
 
 ## Updates
 
-## Development
+### TextField
 
-- Added Outlined TextField
+- created outlined variant of text field component
+- accepts all native HTML properties as well as:
+- - variant: "outlined" | "filled"
+- - helperText?: string
+- - characterCounter?: boolean (must be used with maxLength)
+- - color?: ThemeColors = inherit (default)
+- - onSurfaceColor?: ThemeColors = inherit (default)
+- created TextFieldIcon specifically for text field leading and trailing icons
+- accepts leadingIcon and trailingIcon as slot names and:
+- - variant: "leading" | "trailing"
+
+## Development
 
 # v0.0.34
 

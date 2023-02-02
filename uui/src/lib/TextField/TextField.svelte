@@ -158,10 +158,7 @@
 
   .mdc-text-field--invalid {
     @include mdc-text-field-ink-color(var(--error));
-    @include mdc-text-field-hover-outline-color(var(--error));
-    @include mdc-text-field-placeholder-color(var(--error));
     @include mdc-text-field-focused-outline-color(var(--error));
-    @include mdc-text-field-caret-color(var(--error));
   }
 
   .mdc-text-field--outlined.mdc-text-field.focused:not(.mdc-text-field--disabled) {
@@ -183,6 +180,12 @@
     + .mdc-text-field-helper-line
     .mdc-text-field-character-counter {
     color: var(--on-surface-color);
+  }
+
+  .mdc-text-field--invalid:not(.mdc-text-field--disabled)
+    + .mdc-text-field-helper-line
+    .mdc-text-field-character-counter {
+    color: var(--error);
   }
 
   .mdc-text-field--outlined {

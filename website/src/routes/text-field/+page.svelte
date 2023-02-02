@@ -1,7 +1,7 @@
 <script>
   import { TextField, TextFieldIcon } from '@uui';
   import Variant from '$lib/Variant.svelte';
-  import { AccordionGroup, Accordion, Typography, Box } from '@uui';
+  import { AccordionGroup, Accordion, Typography, Box, Button } from '@uui';
 </script>
 
 <Variant
@@ -57,19 +57,6 @@ Slots:
             <TextFieldIcon slot="leadingIcon" class="material-symbols-outlined">favorite</TextFieldIcon>
             <TextFieldIcon slot="trailingIcon" class="material-symbols-outlined">bolt</TextFieldIcon>
           </TextField>
-          <form>
-            <TextField
-              required
-              variant="outlined"
-              label="required"
-              pattern=".+@.+\\.com"
-              helperText="try email format"
-              placeholder="try submitting"
-              maxlength={20}
-              minlength={8}
-            />
-            <button style={'margin-top: 2px;'} type="submit">Submit</button>
-          </form>     
           `}
         </pre>
         <Box class="text-field-example">
@@ -98,17 +85,39 @@ Slots:
           />
           <TextField disabled label="input disabled" variant="outlined" color="primary" />
           <TextField label="1 icon" variant="outlined" color="primary" maxlength={60}>
-            <TextFieldIcon slot="leadingIcon" class="material-symbols-outlined"
+            <TextFieldIcon variant="leading" slot="leadingIcon" class="material-symbols-outlined"
               >favorite</TextFieldIcon
             >
           </TextField>
           <TextField label="2 icons" variant="outlined" color="primary">
-            <TextFieldIcon slot="leadingIcon" class="material-symbols-outlined"
+            <TextFieldIcon variant="leading" slot="leadingIcon" class="material-symbols-outlined"
               >favorite</TextFieldIcon
             >
-            <TextFieldIcon slot="trailingIcon" class="material-symbols-outlined">bolt</TextFieldIcon
+            <TextFieldIcon variant="trailing" slot="trailingIcon" class="material-symbols-outlined"
+              >bolt</TextFieldIcon
             >
           </TextField>
+        </Box>
+      </Box>
+    </Accordion>
+    <Accordion>
+      <Typography slot="headerContent" variant="h6">Example: Validation</Typography>
+      <Box slot="content">
+        <pre class="variant-code">
+          {`
+          <TextField
+              required
+              variant="outlined"
+              label="required"
+              pattern=".+@.+\\.com"
+              helperText="try email format"
+              placeholder="try submitting"
+              maxlength={20}
+              minlength={8}
+            />
+            `}
+        </pre>
+        <Box class="text-field-example">
           <form>
             <TextField
               required
@@ -116,11 +125,12 @@ Slots:
               label="required"
               pattern=".+@.+\.com"
               helperText="try email format"
+              characterCounter={true}
               placeholder="try submitting"
               maxlength={20}
               minlength={8}
             />
-            <button style={'margin-top: 2px;'} type="submit">Submit</button>
+            <Button style={'margin-top: 2px;'} type="submit" variant="text">Submit</Button>
           </form>
         </Box>
       </Box>

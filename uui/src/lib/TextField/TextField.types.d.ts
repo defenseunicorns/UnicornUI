@@ -12,4 +12,8 @@ export interface TextFieldProps extends svelte.JSX.HTMLAttributes<HTMLInputEleme
   characterCounter?: boolean;
 }
 
-export type TextFieldIconProps<T extends EventTarget> = BoxProps<T>;
+export type TextFieldIconVariant = 'leading' | 'trailing';
+
+export interface TextFieldIconProps<T extends EventTarget> extends BoxProps<T> {
+  variant: TextFieldIconVariant;
+}
