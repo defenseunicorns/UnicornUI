@@ -1,3 +1,11 @@
+# v0.0.35
+
+## Updates
+
+### TypographyConfig now supports css typing, including vendor attributes and intellisense.
+
+- Added [csstypes](https://github.com/frenic/csstype)
+
 # v0.0.34
 
 ## Breaking Changes
@@ -30,7 +38,7 @@
 - No longer necessary to import UUI_TYPOGRAPHY or UUI_PALETTES in consumers respective custom values.
 - Ensures that fallback values are UUI defaults instead of MDC defaults.
 
-### Theme css vars can now be accessed without mdc-\* prefix.
+### Theme Css vars can now be accessed without mdc-\* prefix.
 
 - Palette and Typography values accessed with dashed css convention
 - Typography classes can now be designated using their `TypographyConfig` field name.

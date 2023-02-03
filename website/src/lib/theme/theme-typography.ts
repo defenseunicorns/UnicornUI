@@ -17,7 +17,8 @@ const customTypography: ThemeTypography = {
     letterSpacing: '.17px',
     textTransform: 'uppercase',
     textDecoration: 'underline wavy var(--warning)',
-    color: 'var(--primary)'
+    color: 'var(--primary)',
+    '--webkit-text-decoration-line': 'wavy'
   }
 };
 

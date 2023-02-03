@@ -70,7 +70,7 @@ export type {
   ThemeTypography,
   TypographyConfig,
   TypographyPalette,
-  TypographyPaletteValues
+  CssObject as TypographyPaletteValues
 } from './shared/theme/typography-config/typography-config.types';
 export type { DialogActionsProps, DialogTitleProps } from './Dialog/Dialog.types';
 export type { IconButtonColor, IconButtonProps } from './IconButton/IconButton.types';

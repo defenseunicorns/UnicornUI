@@ -1,4 +1,4 @@
-import type { CssObject } from './theme-config.types';
+import type { CssProperties, CssObject } from './theme-config.types';
 
 export function updateThemeStyle(themeStyle: CssObject, document?: Document) {
   document && addThemeStyleToHead(document, makeStyles(themeStyle));
@@ -20,14 +20,14 @@ export function addThemeStyleToHead(document: Document, typographyCss: string) {
 
 export function makeStyles(cssObj: CssObject): string {
   let css = '';
-  Object.entries(cssObj).forEach(([key, val]: [string, Record<string, string>]) => {
+  Object.entries(cssObj).forEach(([key, val]: [string, CssProperties]) => {
     const classProperties = jsToCSS(val);
     css += `${key}{${classProperties}}`;
   });
   return css;
 }
 
-export function jsToCSS(js: Record<string, string>) {
+export function jsToCSS(js: CssProperties) {
   return Object.entries(js).reduce((prev: string, [key, val]: [string, string]) => {
     return `${prev}${camelBackToDash(key)}:${val};`;
   }, '');
