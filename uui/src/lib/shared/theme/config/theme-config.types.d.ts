@@ -1,15 +1,6 @@
-import {
-  Properties,
-  PropertiesHyphen,
-  type ObsoleteProperties,
-  type StandardProperties,
-  type SvgProperties
-} from 'csstype';
+import { Properties, PropertiesHyphen } from 'csstype';
 
-export type CssProperties = StandardProperties &
-  SvgProperties &
-  ObsoleteProperties &
-  PropertiesHyphen;
+export type CssProperties = Properties & PropertiesHyphen;
 
 export interface CssObject {
   [key: string]: CssProperties;
