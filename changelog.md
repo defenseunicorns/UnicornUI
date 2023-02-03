@@ -1,3 +1,45 @@
+# v0.0.35
+
+## Breaking Changes
+
+### Internal
+
+- renamed `eventHandler.ts` to `eventRedirection.ts`
+  - renamed `eventHandler` to `eventRedirection`
+  - `eventRedirection` is no longer a curried fn.
+  - `eventRedirection` now takes in an `Array` of `type current_component`
+  - is now used inline:
+
+```svelte
+<script lang="ts">
+  import eventRedirection from '...';
+
+  // locals
+  let inputRef: HtmlInputElement;
+  let inputValue: '';
+
+  // Watch
+  $: eventComponents = [current_component];
+</script>
+
+<input
+  use:eventRedirection={eventComponents}
+  type="text"
+  bind:this={inputRef}
+  bind:value={inputValue}
+/>
+```
+
+### Box
+
+- Removed the `additionalEvents` prop as it is no longer necessary with new eventRedirection action.
+
+## Updates
+
+### Box
+
+- `ref` prop type changed to Node in order to support more generic types than HtmlElement.
+
 # v0.0.34
 
 ## Breaking Changes
