@@ -32,36 +32,6 @@ Slots:
             characterCounter={true}
           />
           <TextField
-            label="my label"
-            placeholder="placeholder"
-            variant="outlined"
-            color="primary"
-            helperText="helper text"
-            characterCounter={true}
-            maxlength={60}
-          />
-          <TextField
-            label="color & onSurfaceColor"
-            variant="outlined"
-            color="secondary"
-            onSurfaceColor="primary"
-            helperText="helper text"
-          />
-          <TextField disabled label="input disabled" variant="outlined" color="primary" />
-          <TextField label="1 icon" variant="outlined" color="primary" maxlength={60}>
-            <TextFieldIcon slot="leadingIcon" class="material-symbols-outlined"
-              >favorite</TextFieldIcon
-            >
-          </TextField>
-          <TextField label="2 icons" variant="outlined" color="primary">
-            <TextFieldIcon slot="leadingIcon" class="material-symbols-outlined">favorite</TextFieldIcon>
-            <TextFieldIcon slot="trailingIcon" class="material-symbols-outlined">bolt</TextFieldIcon>
-          </TextField>
-          `}
-        </pre>
-        <Box class="text-field-example">
-          <TextField
-            label="my label"
             variant="outlined"
             color="primary"
             helperText="helper text"
@@ -83,7 +53,6 @@ Slots:
             onSurfaceColor="primary"
             helperText="helper text"
           />
-          <TextField disabled label="input disabled" variant="outlined" color="primary" />
           <TextField label="1 icon" variant="outlined" color="primary" maxlength={60}>
             <TextFieldIcon variant="leading" slot="leadingIcon" class="material-symbols-outlined"
               >favorite</TextFieldIcon
@@ -97,11 +66,119 @@ Slots:
               >bolt</TextFieldIcon
             >
           </TextField>
+          <TextField disabled label="input disabled" variant="outlined" color="primary" />
+          `}
+        </pre>
+        <Box class="text-field-example">
+          <TextField
+            label="my label"
+            variant="outlined"
+            color="primary"
+            helperText="helper text"
+            characterCounter={true}
+          />
+          <TextField
+            variant="outlined"
+            color="primary"
+            helperText="helper text"
+            characterCounter={true}
+          />
+          <TextField
+            label="my label"
+            placeholder="placeholder"
+            variant="outlined"
+            color="primary"
+            helperText="helper text"
+            characterCounter={true}
+            maxlength={60}
+          />
+          <TextField
+            label="color & onSurfaceColor"
+            variant="outlined"
+            color="secondary"
+            onSurfaceColor="primary"
+            helperText="helper text"
+          />
+          <TextField label="1 icon" variant="outlined" color="primary" maxlength={60}>
+            <TextFieldIcon variant="leading" slot="leadingIcon" class="material-symbols-outlined"
+              >favorite</TextFieldIcon
+            >
+          </TextField>
+          <TextField label="2 icons" variant="outlined" color="primary">
+            <TextFieldIcon variant="leading" slot="leadingIcon" class="material-symbols-outlined"
+              >favorite</TextFieldIcon
+            >
+            <TextFieldIcon variant="trailing" slot="trailingIcon" class="material-symbols-outlined"
+              >bolt</TextFieldIcon
+            >
+          </TextField>
+          <TextField disabled label="input disabled" variant="outlined" color="primary" />
         </Box>
       </Box>
     </Accordion>
     <Accordion>
-      <Typography slot="headerContent" variant="h6">Example: Validation</Typography>
+      <Typography slot="headerContent" variant="h6">Variant: "filled"</Typography>
+      <Box slot="content">
+        <pre class="variant-code">
+          {`
+           <TextField variant="filled" color="primary" />
+          <TextField label="my label" variant="filled" color="primary" />
+          <TextField
+            label="my label"
+            variant="filled"
+            color="primary"
+            helperText="helper text"
+            characterCounter={true}
+            maxlength={30}
+          />
+          <TextField
+            label="my label"
+            variant="filled"
+            color="primary"
+            helperText="helper text"
+            characterCounter={true}
+            maxlength={30}
+            ><TextFieldIcon variant="leading" slot="leadingIcon" class="material-symbols-outlined"
+              >favorite</TextFieldIcon
+            >
+            <TextFieldIcon variant="trailing" slot="trailingIcon" class="material-symbols-outlined"
+              >bolt</TextFieldIcon
+            ></TextField
+          >
+          <TextField disabled label="input disabled" variant="filled" color="primary" />
+          `}
+        </pre>
+        <Box class="text-field-example">
+          <TextField variant="filled" color="primary" />
+          <TextField label="my label" variant="filled" color="primary" />
+          <TextField
+            label="my label"
+            variant="filled"
+            color="primary"
+            helperText="helper text"
+            characterCounter={true}
+            maxlength={30}
+          />
+          <TextField
+            label="my label"
+            variant="filled"
+            color="primary"
+            helperText="helper text"
+            characterCounter={true}
+            maxlength={30}
+            ><TextFieldIcon variant="leading" slot="leadingIcon" class="material-symbols-outlined"
+              >favorite</TextFieldIcon
+            >
+            <TextFieldIcon variant="trailing" slot="trailingIcon" class="material-symbols-outlined"
+              >bolt</TextFieldIcon
+            ></TextField
+          >
+          <TextField disabled label="input disabled" variant="filled" color="primary" />
+        </Box>
+      </Box>
+    </Accordion>
+    <Accordion>
+      <Typography slot="headerContent" variant="h6">Example: Validation (outlined)</Typography>
       <Box slot="content">
         <pre class="variant-code">
           {`
@@ -122,6 +199,41 @@ Slots:
             <TextField
               required
               variant="outlined"
+              label="required"
+              pattern=".+@.+\.com"
+              helperText="try email format"
+              characterCounter={true}
+              placeholder="try submitting"
+              maxlength={20}
+              minlength={8}
+            />
+            <Button style={'margin-top: 2px;'} type="submit" variant="text">Submit</Button>
+          </form>
+        </Box>
+      </Box>
+    </Accordion>
+    <Accordion>
+      <Typography slot="headerContent" variant="h6">Example: Validation (filled)</Typography>
+      <Box slot="content">
+        <pre class="variant-code">
+          {`
+          <TextField
+              required
+              variant="outlined"
+              label="required"
+              pattern=".+@.+\\.com"
+              helperText="try email format"
+              placeholder="try submitting"
+              maxlength={20}
+              minlength={8}
+            />
+            `}
+        </pre>
+        <Box class="text-field-example">
+          <form>
+            <TextField
+              required
+              variant="filled"
               label="required"
               pattern=".+@.+\.com"
               helperText="try email format"
