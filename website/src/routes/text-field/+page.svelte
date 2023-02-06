@@ -1,7 +1,10 @@
-<script>
+<script lang="ts">
   import { TextField, TextFieldIcon } from '@uui';
   import Variant from '$lib/Variant.svelte';
   import { AccordionGroup, Accordion, Typography, Box, Button } from '@uui';
+
+  let formOutlinedValue = '';
+  let formFilledValue = '';
 </script>
 
 <Variant
@@ -9,6 +12,7 @@
   code={`
 Props (extends HTMLInputElement): 
   variant: TextFieldVariant = 'outlined';
+  value?: string = '';
   helperText?: string = "helper text"
   color?: ThemeColors = "primary"
   characterCounter?: boolean = true;
@@ -184,6 +188,7 @@ Slots:
           {`
           <TextField
               required
+              bind:value={formOutlinedValue}
               variant="outlined"
               label="required"
               pattern=".+@.+\\.com"
@@ -195,9 +200,10 @@ Slots:
             `}
         </pre>
         <Box class="text-field-example">
-          <form>
+          <form on:submit={() => alert(`you submitted ${formOutlinedValue}`)}>
             <TextField
               required
+              bind:value={formOutlinedValue}
               variant="outlined"
               label="required"
               pattern=".+@.+\.com"
@@ -218,6 +224,7 @@ Slots:
         <pre class="variant-code">
           {`
           <TextField
+              bind:value={formFilledValue}
               required
               variant="outlined"
               label="required"
@@ -230,8 +237,9 @@ Slots:
             `}
         </pre>
         <Box class="text-field-example">
-          <form>
+          <form on:submit={() => alert(`you submitted ${formFilledValue}`)}>
             <TextField
+              bind:value={formFilledValue}
               required
               variant="filled"
               label="required"

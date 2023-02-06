@@ -14,11 +14,11 @@
   export let onSurfaceColor: ThemeColors = 'inherit';
   export let helperText = '';
   export let characterCounter = false;
+  export let value = '';
 
   // locals
   let inputRef: HTMLInputElement;
   let labelRef: HTMLLabelElement;
-  let inputValue = '';
   let focused = '';
   let notched = '';
   let floating = '';
@@ -32,7 +32,7 @@
     if (evt.target !== inputRef && !$$restProps.placeholder) {
       focused = '';
       active = '';
-      if (inputValue === '') {
+      if (inputRef.value === '') {
         notched = '';
         floating = '';
       }
@@ -105,7 +105,7 @@
     <input
       use:eventRedirection={eventComponents}
       bind:this={inputRef}
-      bind:value={inputValue}
+      bind:value
       on:focus={setFocusStates}
       on:input={() => {
         invalid = false;
