@@ -64,13 +64,17 @@ export type {
   PreferredTheme
 } from './shared/theme/palette/palette.types';
 export type { BoxProps } from './Box/box.types';
-export type { CssObject } from './shared/theme/config/theme-config.types';
+export type {
+  CssObject,
+  ScopedStyles,
+  BaseScopedStyle,
+  CssProperties
+} from './shared/theme/config/theme-config.types';
 export type {
   TypographyVars,
   ThemeTypography,
   TypographyConfig,
-  TypographyPalette,
-  CssObject as TypographyPaletteValues
+  TypographyPalette
 } from './shared/theme/typography-config/typography-config.types';
 export type { DialogActionsProps, DialogTitleProps } from './Dialog/Dialog.types';
 export type { IconButtonColor, IconButtonProps } from './IconButton/IconButton.types';

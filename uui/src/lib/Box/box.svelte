@@ -1,4 +1,6 @@
 <script lang="ts">
+  import type { ScopedStyles } from '../shared/theme/config/theme-config.types';
+  import { scopedStyles } from '../shared/utils/scopedStyle';
   import { current_component } from 'svelte/internal';
   import { eventRedirection } from '../shared/utils/eventRedirection';
   import type { BoxProps } from './box.types';
@@ -10,6 +12,7 @@
   export let element = 'div';
   export let ref: Node | undefined = undefined;
   export let eventComponent: typeof current_component | undefined = undefined;
+  export let scopedStyle: ScopedStyles | undefined = undefined;
 
   type $$Props = BoxProps<T>;
 
@@ -20,6 +23,7 @@
 {#if $$slots.default}
   <svelte:element
     this={element}
+    use:scopedStyles={scopedStyle}
     use:eventRedirection={eventComponents}
     bind:this={ref}
     {...$$restProps}
@@ -31,6 +35,7 @@
   <!--Prevents self closing tag warning-->
   <svelte:element
     this={element}
+    use:scopedStyles={scopedStyle}
     use:eventRedirection={eventComponents}
     bind:this={ref}
     {...$$restProps}

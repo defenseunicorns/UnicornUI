@@ -34,6 +34,10 @@
 
 - Removed the `additionalEvents` prop as it is no longer necessary with new eventRedirection action.
 
+### Types
+
+- removed `type` `TypographyPaletteValues` in favor of `CssObject`
+
 ## Updates
 
 ### Box
