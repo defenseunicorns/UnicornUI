@@ -1,8 +1,10 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { current_component } from 'svelte/internal';
   import { makeThemeColor } from '../shared/utils/makeThemeColor';
   import type { ThemeColors } from '../shared/theme/default-colors/colors.types';
   import type { TextFieldProps, TextFieldVariant } from './TextField.types';
+  import { eventRedirection } from '../shared/utils/eventRedirection';
 
   //Props
   type $$Props = TextFieldProps;
@@ -28,7 +30,7 @@
   function clickAway(evt: any) {
     if (evt.target !== inputRef && !$$restProps.placeholder) {
       focused = '';
-      if (inputRef.value === '') {
+      if (inputValue === '') {
         notched = '';
         floating = '';
       }
@@ -53,17 +55,17 @@
   }
 
   onMount(() => {
-    inputRef.oninvalid = (evt: Event) => {
-      evt.preventDefault();
-      invalid = true;
-    };
+    if (inputRef) {
+      inputRef.oninvalid = (evt: Event) => {
+        evt.preventDefault();
+        invalid = true;
+      };
+    }
     if ($$restProps.placeholder) {
       setFocusStates();
     }
   });
 
-  $: computedColor = makeThemeColor(color);
-  $: computedOnSurfaceColor = makeThemeColor(onSurfaceColor);
   $: if (inputRef && characterCounter) {
     if ($$restProps.maxlength) {
       charCount = `${inputRef.value.length} / ${$$restProps.maxlength}`;
@@ -77,6 +79,10 @@
       notchWidth = 'auto';
     }
   }
+
+  $: eventComponents = [current_component];
+  $: computedColor = makeThemeColor(color);
+  $: computedOnSurfaceColor = makeThemeColor(onSurfaceColor);
 </script>
 
 <svelte:window on:click={clickAway} />
@@ -92,6 +98,7 @@
   >
     <slot name="leadingIcon" />
     <input
+      use:eventRedirection={eventComponents}
       bind:this={inputRef}
       bind:value={inputValue}
       on:focus={setFocusStates}
