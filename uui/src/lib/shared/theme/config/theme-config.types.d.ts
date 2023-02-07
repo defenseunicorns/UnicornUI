@@ -6,7 +6,5 @@ export interface CssObject {
   [key: string]: CssProperties;
 }
 
-export type BaseScopedStyle = CssProperties | { [key: string]: CssProperties };
-export type ScopedStyles = { $self?: BaseScopedStyle } & {
-  [key: string]: BaseScopedStyle;
-} & CssProperties;
+export type BaseScopedStyle = BaseScopedStyle | CssObject | ScopedStyles;
+export type ScopedStyles = { $self?: BaseScopedStyle; [key: string]: BaseScopedStyle };

@@ -1,24 +1,53 @@
+import type {
+  BaseScopedStyle,
+  ScopedStyles
+} from '../../../../../src/lib/shared/theme/config/theme-config.types';
 import {
   makeStyles,
   jsToCSS,
   camelBackToDash
 } from '../../../../../src/lib/shared/theme/config/theme-config.utils';
 describe('makeStyles', () => {
-  it('creates a css class string from cssObject', () => {
+  it('creates a css class string from ScopedStyles', () => {
     expect(makeStyles({ '.mdc-typography--custom-typography': { fontSize: '1.2px' } })).toBe(
       '.mdc-typography--custom-typography{font-size:1.2px;}'
     );
   });
 
-  it('creates a css style from cssObject', () => {
+  it('creates a css style from ScopedStyles', () => {
     expect(makeStyles({ 'body > h1': { color: 'pink', backgroundColor: 'red' } })).toBe(
       'body > h1{color:pink;background-color:red;}'
+    );
+  });
+
+  it('replaces $self with the provided prefix', () => {
+    const scopedStyle: ScopedStyles = {
+      $self: {
+        color: 'pink'
+      }
+    };
+    expect(makeStyles(scopedStyle, '.prefix')).toBe('.prefix{color:pink;}');
+  });
+
+  it('handles nested css values', () => {
+    const scopedStyle: ScopedStyles = {
+      '@media screen (max-width: 600px)': {
+        $self: {
+          color: 'pink'
+        },
+        '.someClass': {
+          color: 'blue'
+        }
+      }
+    };
+    expect(makeStyles(scopedStyle, '.prefix')).toBe(
+      `@media screen (max-width: 600px){.prefix{color:pink;}.someClass{color:blue;}}`
     );
   });
 });
 
 describe('jsToCss', () => {
-  const js: Record<string, string> = {
+  const js: BaseScopedStyle = {
     fontSize: '16px',
     color: 'pink',
     backgroundColor: 'blue',

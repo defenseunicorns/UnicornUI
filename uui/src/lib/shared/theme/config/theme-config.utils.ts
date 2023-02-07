@@ -31,9 +31,9 @@ export function makeStyles(cssObj: ScopedStyles, prefix = ''): string {
 }
 
 export function jsToCSS(js: BaseScopedStyle) {
-  return Object.entries(js).reduce((prev: string, [key, val]: [string, ScopedStyles]) => {
+  return Object.entries(js).reduce((prev: string, [key, val]: [string, BaseScopedStyle]) => {
     if (typeof val === 'object') {
-      return `${prev}${makeStyles({ $self: val }, key)};`;
+      return `${prev}${makeStyles({ $self: val }, key)}`;
     }
     return `${prev}${camelBackToDash(key)}:${val};`;
   }, '');
