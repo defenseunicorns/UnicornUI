@@ -44,13 +44,6 @@ export const UUI_PALETTES = {
         onDark: '#FFB400',
         onBackground: '#323232'
       }
-    },
-    textField: {
-      inactive: 'rgba(255, 255, 255, .6)',
-      hoverColor: '#ffffff',
-      background: 'rgba(255, 255, 255, .1)',
-      backgroundHover: 'rgba(255, 255, 255, .3)',
-      bottomLineHover: 'rgba(255, 255, 255, 0.8)'
     }
   },
   dark: {

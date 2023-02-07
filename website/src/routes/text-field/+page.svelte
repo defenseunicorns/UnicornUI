@@ -17,6 +17,21 @@ Props (extends HTMLInputElement):
   color?: ThemeColors = "primary"
   characterCounter?: boolean = true;
 
+  Theming (optional, overrides the default color):
+    Palette: {
+      textField: {
+        // "outlined" border, label, helper text, and character counter colors
+        // "filled" bottom line, helper text, and character counter colors
+        inactive: 'rgba(255, 255, 255, .6)',
+        // "outlined" border color
+        hover: '#ffffff',
+        // "filled" background and bottom line
+        background: 'rgba(255, 255, 255, .1)',
+        backgroundHover: 'rgba(255, 255, 255, .3)',
+        bottomLineHover: 'rgba(255, 255, 255, 0.8)'
+      }
+    }
+
 Slots:
   leadingIcon: optional
   trailingIcon: optional
