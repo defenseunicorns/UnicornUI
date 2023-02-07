@@ -57,20 +57,47 @@ Slots:
             onSurfaceColor="primary"
             helperText="helper text"
           />
-          <TextField label="1 icon" variant="outlined" color="primary" maxlength={60}>
-            <TextFieldIcon variant="leading" slot="leadingIcon" class="material-symbols-outlined"
-              >favorite</TextFieldIcon
+          <TextField 
+            label="1 icon" 
+            variant="outlined" 
+            color="primary" 
+            maxlength={60}
+          >
+            <TextFieldIcon 
+              variant="leading" 
+              slot="leadingIcon" 
+              class="material-symbols-outlined" 
+              style="color: pink !important;"
             >
+              favorite
+            </TextFieldIcon>
           </TextField>
-          <TextField label="2 icons" variant="outlined" color="primary">
-            <TextFieldIcon variant="leading" slot="leadingIcon" class="material-symbols-outlined"
-              >favorite</TextFieldIcon
+          <TextField 
+            label="2 icons"
+            variant="outlined" 
+            color="primary"
+          >
+            <TextFieldIcon
+              variant="leading" 
+              slot="leadingIcon" 
+              class="material-symbols-outlined"
             >
-            <TextFieldIcon variant="trailing" slot="trailingIcon" class="material-symbols-outlined"
-              >bolt</TextFieldIcon
+              favorite
+            </TextFieldIcon>
+            <TextFieldIcon 
+              variant="trailing" 
+              slot="trailingIcon" 
+              class="material-symbols-outlined"
             >
+              bolt
+            </TextFieldIcon>
           </TextField>
-          <TextField disabled label="input disabled" variant="outlined" color="primary" />
+          <TextField 
+            disabled 
+            label="input disabled"
+            variant="outlined" 
+            color="primary" 
+          />
           `}
         </pre>
         <Box class="text-field-example">
@@ -104,8 +131,11 @@ Slots:
             helperText="helper text"
           />
           <TextField label="1 icon" variant="outlined" color="primary" maxlength={60}>
-            <TextFieldIcon variant="leading" slot="leadingIcon" class="material-symbols-outlined"
-              >favorite</TextFieldIcon
+            <TextFieldIcon
+              variant="leading"
+              slot="leadingIcon"
+              class="material-symbols-outlined"
+              style="color: pink !important;">favorite</TextFieldIcon
             >
           </TextField>
           <TextField label="2 icons" variant="outlined" color="primary">
@@ -125,8 +155,15 @@ Slots:
       <Box slot="content">
         <pre class="variant-code">
           {`
-           <TextField variant="filled" color="primary" />
-          <TextField label="my label" variant="filled" color="primary" />
+           <TextField 
+            variant="filled" 
+            color="primary" 
+          />
+          <TextField 
+            label="my label" 
+            variant="filled" 
+            color="primary" 
+          />
           <TextField
             label="my label"
             variant="filled"
@@ -142,14 +179,28 @@ Slots:
             helperText="helper text"
             characterCounter={true}
             maxlength={30}
-            ><TextFieldIcon variant="leading" slot="leadingIcon" class="material-symbols-outlined"
-              >favorite</TextFieldIcon
-            >
-            <TextFieldIcon variant="trailing" slot="trailingIcon" class="material-symbols-outlined"
-              >bolt</TextFieldIcon
-            ></TextField
           >
-          <TextField disabled label="input disabled" variant="filled" color="primary" />
+            <TextFieldIcon 
+              variant="leading" 
+              slot="leadingIcon" 
+              class="material-symbols-outlined"
+            >
+              favorite
+            </TextFieldIcon>
+            <TextFieldIcon 
+              variant="trailing" 
+              slot="trailingIcon" 
+              class="material-symbols-outlined"
+            >
+              bolt
+            </TextFieldIcon>
+          </TextField>
+          <TextField 
+            disabled 
+            label="input disabled" 
+            variant="filled" 
+            color="primary" 
+          />
           `}
         </pre>
         <Box class="text-field-example">
@@ -196,7 +247,7 @@ Slots:
               placeholder="try submitting"
               maxlength={20}
               minlength={8}
-            />
+          />
             `}
         </pre>
         <Box class="text-field-example">
@@ -226,6 +277,7 @@ Slots:
           <TextField
               bind:value={formFilledValue}
               required
+              color="primary"
               variant="outlined"
               label="required"
               pattern=".+@.+\\.com"
@@ -233,7 +285,7 @@ Slots:
               placeholder="try submitting"
               maxlength={20}
               minlength={8}
-            />
+          />
             `}
         </pre>
         <Box class="text-field-example">
@@ -241,6 +293,7 @@ Slots:
             <TextField
               bind:value={formFilledValue}
               required
+              color="primary"
               variant="filled"
               label="required"
               pattern=".+@.+\.com"
