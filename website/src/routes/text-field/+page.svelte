@@ -12,10 +12,12 @@
   code={`
 Props (extends HTMLInputElement): 
   variant: TextFieldVariant = 'outlined';
+  label: string;
   value?: string = '';
-  helperText?: string = "helper text"
-  color?: ThemeColors = "primary"
-  characterCounter?: boolean = true;
+  color?: ThemeColors = 'inherit'
+  onSurfaceColor?: ThemeColors; = 'inherit'
+  helperText?: string;
+  characterCounter?: boolean;
 
   Theming (optional, overrides the default color):
     Palette: {
@@ -37,25 +39,14 @@ Slots:
   trailingIcon: optional
 `}
 >
+  <TextField label="label text" variant="outlined" color="primary" helperText="supporting text" />
+  <TextField label="label text" variant="filled" color="primary" helperText="supporting text" />
   <AccordionGroup>
     <Accordion>
       <Typography slot="headerContent" variant="h6">Variant: "outlined"</Typography>
       <Box slot="content">
         <pre class="variant-code">
-          {`   
-          <TextField
-            label="my label"
-            variant="outlined"
-            color="primary"
-            helperText="helper text"
-            characterCounter={true}
-          />
-          <TextField
-            variant="outlined"
-            color="primary"
-            helperText="helper text"
-            characterCounter={true}
-          />
+          {`
           <TextField
             label="my label"
             placeholder="placeholder"
@@ -64,13 +55,6 @@ Slots:
             helperText="helper text"
             characterCounter={true}
             maxlength={60}
-          />
-          <TextField
-            label="color & onSurfaceColor"
-            variant="outlined"
-            color="secondary"
-            onSurfaceColor="primary"
-            helperText="helper text"
           />
           <TextField 
             label="1 icon" 
@@ -117,35 +101,15 @@ Slots:
         </pre>
         <Box class="text-field-example">
           <TextField
-            label="my label"
-            variant="outlined"
-            color="primary"
-            helperText="helper text"
-            characterCounter={true}
-          />
-          <TextField
-            variant="outlined"
-            color="primary"
-            helperText="helper text"
-            characterCounter={true}
-          />
-          <TextField
-            label="my label"
+            label="label text"
             placeholder="placeholder"
             variant="outlined"
             color="primary"
-            helperText="helper text"
+            helperText="supporting text"
             characterCounter={true}
             maxlength={60}
           />
-          <TextField
-            label="color & onSurfaceColor"
-            variant="outlined"
-            color="secondary"
-            onSurfaceColor="primary"
-            helperText="helper text"
-          />
-          <TextField label="1 icon" variant="outlined" color="primary" maxlength={60}>
+          <TextField label="label text" variant="outlined" color="primary" maxlength={60}>
             <TextFieldIcon
               variant="leading"
               slot="leadingIcon"
@@ -153,15 +117,15 @@ Slots:
               style="color: pink !important;">favorite</TextFieldIcon
             >
           </TextField>
-          <TextField label="2 icons" variant="outlined" color="primary">
-            <TextFieldIcon variant="leading" slot="leadingIcon" class="material-symbols-outlined"
-              >favorite</TextFieldIcon
-            >
-            <TextFieldIcon variant="trailing" slot="trailingIcon" class="material-symbols-outlined"
-              >bolt</TextFieldIcon
-            >
+          <TextField label="label text" variant="outlined" color="primary">
+            <TextFieldIcon variant="leading" slot="leadingIcon" class="material-symbols-outlined">
+              favorite
+            </TextFieldIcon>
+            <TextFieldIcon variant="trailing" slot="trailingIcon" class="material-symbols-outlined">
+              bolt
+            </TextFieldIcon>
           </TextField>
-          <TextField disabled label="input disabled" variant="outlined" color="primary" />
+          <TextField disabled label="label text" variant="outlined" color="primary" />
         </Box>
       </Box>
     </Accordion>
@@ -170,15 +134,6 @@ Slots:
       <Box slot="content">
         <pre class="variant-code">
           {`
-           <TextField 
-            variant="filled" 
-            color="primary" 
-          />
-          <TextField 
-            label="my label" 
-            variant="filled" 
-            color="primary" 
-          />
           <TextField
             label="my label"
             variant="filled"
@@ -219,31 +174,29 @@ Slots:
           `}
         </pre>
         <Box class="text-field-example">
-          <TextField variant="filled" color="primary" />
-          <TextField label="my label" variant="filled" color="primary" />
           <TextField
-            label="my label"
+            label="label text"
+            placeholder="placeholder"
             variant="filled"
             color="primary"
-            helperText="helper text"
+            helperText="supporting text"
             characterCounter={true}
             maxlength={30}
           />
-          <TextField
-            label="my label"
-            variant="filled"
-            color="primary"
-            helperText="helper text"
-            characterCounter={true}
-            maxlength={30}
-            ><TextFieldIcon variant="leading" slot="leadingIcon" class="material-symbols-outlined"
-              >favorite</TextFieldIcon
-            >
-            <TextFieldIcon variant="trailing" slot="trailingIcon" class="material-symbols-outlined"
-              >bolt</TextFieldIcon
-            ></TextField
-          >
-          <TextField disabled label="input disabled" variant="filled" color="primary" />
+          <TextField label="label text" variant="filled" color="primary">
+            <TextFieldIcon variant="leading" slot="leadingIcon" class="material-symbols-outlined">
+              favorite
+            </TextFieldIcon>
+          </TextField>
+          <TextField label="label text" variant="filled" color="primary">
+            <TextFieldIcon variant="leading" slot="leadingIcon" class="material-symbols-outlined">
+              favorite
+            </TextFieldIcon>
+            <TextFieldIcon variant="trailing" slot="trailingIcon" class="material-symbols-outlined">
+              bolt
+            </TextFieldIcon>
+          </TextField>
+          <TextField disabled label="label text" variant="filled" color="primary" />
         </Box>
       </Box>
     </Accordion>
@@ -256,10 +209,9 @@ Slots:
               required
               bind:value={formOutlinedValue}
               variant="outlined"
-              label="required"
+              label="label text" 
               pattern=".+@.+\\.com"
-              helperText="try email format"
-              placeholder="try submitting"
+              helperText="supporting text"
               maxlength={20}
               minlength={8}
           />
@@ -271,11 +223,10 @@ Slots:
               required
               bind:value={formOutlinedValue}
               variant="outlined"
-              label="required"
+              label="label text"
               pattern=".+@.+\.com"
-              helperText="try email format"
+              helperText="supporting text"
               characterCounter={true}
-              placeholder="try submitting"
               maxlength={20}
               minlength={8}
             />
@@ -294,10 +245,9 @@ Slots:
               required
               color="primary"
               variant="outlined"
-              label="required"
+              label="label text" 
               pattern=".+@.+\\.com"
-              helperText="try email format"
-              placeholder="try submitting"
+              helperText="supporting text"
               maxlength={20}
               minlength={8}
           />
@@ -310,11 +260,10 @@ Slots:
               required
               color="primary"
               variant="filled"
-              label="required"
+              label="label text"
               pattern=".+@.+\.com"
-              helperText="try email format"
+              helperText="supporting text"
               characterCounter={true}
-              placeholder="try submitting"
               maxlength={20}
               minlength={8}
             />

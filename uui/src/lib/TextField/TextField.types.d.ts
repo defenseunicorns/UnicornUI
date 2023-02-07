@@ -5,6 +5,7 @@ export type TextFieldVariant = 'outlined' | 'filled';
 
 export interface TextFieldProps extends svelte.JSX.HTMLAttributes<HTMLInputElement> {
   variant: TextFieldVariant;
+  label: string;
   value?: string;
   helperText?: string;
   color?: ThemeColors;

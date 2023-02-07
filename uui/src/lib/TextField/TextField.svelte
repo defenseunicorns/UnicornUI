@@ -9,7 +9,7 @@
   //Props
   type $$Props = TextFieldProps;
   export let variant: TextFieldVariant = 'outlined';
-  export let label = '';
+  export let label: string;
   export let color: ThemeColors = 'inherit';
   export let onSurfaceColor: ThemeColors = 'inherit';
   export let helperText = '';
@@ -99,7 +99,6 @@
     class:mdc-text-field--disabled={$$restProps.disabled}
     class:mdc-text-field--invalid={invalid}
     class:mdc-ripple-upgraded--background-focused={variant === 'filled' && focused === 'focused'}
-    class:mdc-text-field--no-label={label === ''}
   >
     <slot name="leadingIcon" />
     <input
@@ -116,35 +115,34 @@
       {...$$restProps}
     />
     <slot name="trailingIcon" />
-    {#if variant === 'outlined'}<span
+    {#if variant === 'outlined'}
+      <span
         class={`mdc-notched-outline mdc-notched-outline--upgraded ${notched}`}
         class:mdc-notched-outline--no-label={label === ''}
       >
         <span class="mdc-notched-outline__leading" />
-        {#if label !== ''}<span
-            class="mdc-notched-outline__notch"
-            style={`padding: 0; width: ${notchWidth}`}
-          >
-            <label
-              bind:this={labelRef}
-              class={`mdc-floating-label ${floating}`}
-              class:mdc-floating-label--required={$$restProps.required}
-              for={`text-field-${variant}`}
-              id="textfield-label"
-              >{label}
-            </label>
-          </span>{/if}
+        <span class="mdc-notched-outline__notch" style={`padding: 0; width: ${notchWidth}`}>
+          <label
+            bind:this={labelRef}
+            class={`mdc-floating-label ${floating}`}
+            class:mdc-floating-label--required={$$restProps.required}
+            for={`text-field-${variant}`}
+            id="textfield-label"
+            >{label}
+          </label>
+        </span>
         <span class="mdc-notched-outline__trailing" />
-      </span>{/if}
+      </span>
+    {/if}
     {#if variant === 'filled'}
-      {#if label !== ''}<label
-          bind:this={labelRef}
-          class={`mdc-floating-label ${floating}`}
-          class:mdc-floating-label--required={$$restProps.required}
-          for={`text-field-${variant}`}
-          id="textfield-label"
-          >{label}
-        </label>{/if}
+      <label
+        bind:this={labelRef}
+        class={`mdc-floating-label ${floating}`}
+        class:mdc-floating-label--required={$$restProps.required}
+        for={`text-field-${variant}`}
+        id="textfield-label"
+        >{label}
+      </label>
       <div class={`mdc-line-ripple mdc-line-ripple--${active}`} />
     {/if}
   </div>
