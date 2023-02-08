@@ -40,9 +40,56 @@
 
 ## Updates
 
+### scopedStyles action
+
+- Add `scopedStyles` action
+- Takes in param of type `ScopedStyles`
+- Creates css for the target element allowing non-global css for composed custom components.
+- `$self` is used to reference the internal scoped classname
+- Supports css3 proposed `&` nesting inside `$self` style
+- Supports `@media` styles
+- classes must be prefixed with `$self` to maintain scoping.
+  - nested styles may use `&` in order to target the parent selector.
+
+```svelte
+<script lang="ts">
+  const boxStyle: ScopedStyles = {
+    $self: {
+      display: 'flex',
+      flexDirection: 'row',
+      backgroundColor: 'black',
+      color: 'pink'
+      '& .child': {
+        color: 'gold',
+      }
+      '&:hover': {
+        color: 'green'
+      }
+    }
+    '@media (max-width: 500px)': {
+      $self: {
+        color: 'green',
+        flexDirection: 'column'
+        '& .child': {
+          color: 'green'
+        },
+        '&::after {
+          content: '',
+        }
+      }
+    }
+  }
+</script>
+
+<Box scopedStyle={boxStyle}>
+  <Box class="child">My class can be targeted without bleeding into global.</Box>
+</Box>
+```
+
 ### Box
 
-- `ref` prop type changed to Node in order to support more generic types than HtmlElement.
+- `ref` prop type changed to Node in order to support more generic types than HtmlElement
+- Add `scopedStyles` prop that is passed to the `use:scopedStyles` action
 
 ### TypographyConfig now supports css typing, including vendor attributes and intellisense.
 

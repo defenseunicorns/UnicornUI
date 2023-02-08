@@ -1,6 +1,7 @@
 import type { ScopedStyles } from '../theme/config/theme-config.types';
-import { addThemeStyleToHead, makeStyles } from '../theme/config/theme-config.utils';
+import { addThemeStyleToHead } from '../theme/config/theme-config.utils';
 import { v4 as uuid } from 'uuid';
+import { StyleBuilder } from '../theme/config/StyleBuilder';
 
 function hashCode(str: string) {
   let hash = 0;
@@ -13,25 +14,38 @@ function hashCode(str: string) {
 }
 
 export function scopedStyles(el: Element, css?: ScopedStyles) {
-  const hash = `uui-${hashCode(uuid())}`;
+  // Generate element instance uuid (hash to shorten)
+  const scopedClass = `uui-${hashCode(uuid())}`;
+  // Conditional classes remove the hashed uuid. when applied
+  // need to watch for changes to the instances class.
   let mutationObserver: MutationObserver;
 
+  // Executes when there is a change to the el class.
   function callback() {
-    if (!el.className.includes(hash)) el.setAttribute('class', `${el.className} ${hash}`);
+    // Only add the scoped class back in if it is missing.
+    if (!el.className.includes(scopedClass))
+      el.setAttribute('class', `${el.className} ${scopedClass}`);
   }
 
   if (css) {
-    el.setAttribute('class', `${el.className} ${hash}`);
-    const styles = makeStyles(css, `.${hash}`);
-    addThemeStyleToHead(document, styles, hash);
+    // initially updated the with the scoped class.
+    el.setAttribute('class', `${el.className} ${scopedClass}`);
+    // create the styles from the provided jss
+    const styles = new StyleBuilder(css, scopedClass).parse();
+    // add style to head with id="hash"
+    addThemeStyleToHead(document, styles, scopedClass);
+    // instantiate the mutation observer with callback;
     mutationObserver = new MutationObserver(callback);
+    // set the mutation observer to look for changes to the class attribute
     mutationObserver.observe(el, { attributeFilter: ['class'] });
   }
 
   return {
     destroy: () => {
+      // Remove the listener
       mutationObserver?.disconnect();
-      document.getElementById(hash)?.remove();
+      // Remove the generated css from the head
+      document.getElementById(scopedClass)?.remove();
     }
   };
 }

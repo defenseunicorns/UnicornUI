@@ -1,4 +1,4 @@
-import type { BaseScopedStyle, ScopedStyles } from './theme-config.types';
+import type { BaseScopedStyle, CssProperties, ScopedStyles } from './theme-config.types';
 
 export function updateThemeStyle(themeStyle: ScopedStyles, document?: Document) {
   document && addThemeStyleToHead(document, makeStyles(themeStyle));
@@ -24,19 +24,19 @@ export function addThemeStyleToHead(
 export function makeStyles(cssObj: ScopedStyles, prefix = ''): string {
   let css = '';
   Object.entries(cssObj).forEach(([key, val]: [string, BaseScopedStyle]) => {
-    const classProperties = jsToCSS(val);
+    const classProperties = jsToCSS(val as CssProperties);
     css += `${key}{${classProperties}}`.replaceAll('$self', prefix);
   });
   return css;
 }
 
-export function jsToCSS(js: BaseScopedStyle) {
-  return Object.entries(js).reduce((prev: string, [key, val]: [string, BaseScopedStyle]) => {
-    if (typeof val === 'object') {
-      return `${prev}${makeStyles({ $self: val }, key)}`;
-    }
-    return `${prev}${camelBackToDash(key)}:${val};`;
-  }, '');
+// # Deprecated
+// Keeping for now until replacement from StyleBuilder.
+export function jsToCSS(js: CssProperties) {
+  return Object.entries(js).reduce(
+    (prev: string, [key, val]: [string, string]) => `${prev}${camelBackToDash(key)}:${val};`,
+    ''
+  );
 }
 
 export function camelBackToDash(camelBack: string): string {
