@@ -3,6 +3,7 @@ import { addThemeStyleToHead } from '../theme/config/theme-config.utils';
 import { v4 as uuid } from 'uuid';
 import { StyleBuilder } from '../theme/config/StyleBuilder';
 
+// https://stackoverflow.com/questions/6122571/simple-non-secure-hash-function-for-javascript
 function hashCode(str: string) {
   let hash = 0;
   for (let i = 0, len = str.length; i < len; i++) {
@@ -17,7 +18,7 @@ export function scopedStyles(el: Element, css?: ScopedStyles) {
   // Generate element instance uuid (hash to shorten)
   const scopedClass = `uui-${hashCode(uuid())}`;
   // Conditional classes remove the hashed uuid. when applied
-  // need to watch for changes to the instances class.
+  // need to watch for changes to the elements class attribute.
   let mutationObserver: MutationObserver;
 
   // Executes when there is a change to the el class.
@@ -28,10 +29,10 @@ export function scopedStyles(el: Element, css?: ScopedStyles) {
   }
 
   if (css) {
-    // initially updated the with the scoped class.
-    el.setAttribute('class', `${el.className} ${scopedClass}`);
     // create the styles from the provided jss
     const styles = new StyleBuilder(css, scopedClass).parse();
+    // initially updated the with the scoped class.
+    el.setAttribute('class', `${el.className} ${scopedClass}`);
     // add style to head with id="hash"
     addThemeStyleToHead(document, styles, scopedClass);
     // instantiate the mutation observer with callback;

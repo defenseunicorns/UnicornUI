@@ -38,6 +38,7 @@ export {
 // Export Utility Functions here
 export { makeThemeColor } from './shared/utils/makeThemeColor';
 export { getPreferredTheme } from './shared/utils/getPreferredTheme';
+export { scopedStyles } from './shared/utils/scopedStyles';
 export { UUI_PALETTES } from './shared/theme/palette/default-palettes';
 export { UUI_TYPOGRAPHY } from './shared/theme/typography-config/default-typography-config';
 

@@ -23,8 +23,8 @@ export class StyleBuilder {
   //
   public scopedClass: string;
 
-  constructor(public inputStyle: ScopedStyles, prefix = '') {
-    this.scopedClass = `.uui-${prefix}`;
+  constructor(public inputStyle: ScopedStyles, scopedClass = '') {
+    this.scopedClass = scopedClass.startsWith('.') ? scopedClass : `.${scopedClass}`;
   }
 
   parse(): string {
@@ -32,6 +32,7 @@ export class StyleBuilder {
     Object.entries(this.inputStyle).forEach(([selector, val]: [string, BaseScopedStyle]) => {
       if (this.isPureObject(val)) {
         if (this.isMedia(selector)) {
+          // Keep initial nesting then flatten and hydrate sub objects.
           css += `${selector}{${this.buildMediaStyle(val as ScopedStyles)}}`;
         } else {
           css += this.buildNestedStyle(selector, val);
@@ -43,7 +44,7 @@ export class StyleBuilder {
   }
 
   isPureObject(val: unknown): boolean {
-    return typeof val === 'object' && !Array.isArray(val);
+    return typeof val === 'object' && !Array.isArray(val) && val !== null;
   }
 
   isMedia(key: string): boolean {
@@ -69,23 +70,38 @@ export class StyleBuilder {
       ''
     );
   }
-
+  /*
+   * Builds the nested css selector replacing & with parent selector.
+   * ex input: '$self;;& .child;;& .grandchild;;backgroundColor'
+   * Separates the property field and the new selector
+   * ex output: ['uui-prefix .child .grandchild', 'backgroundColor']
+   */
   buildNestedSelectors(selector: string): string[] {
     const selectors = selector.split(this.FLATTENED_SEPARATOR);
-    const newSelector = selectors.reduce(
-      (prev: string, next: string) => prev.replace(this.NESTED_DESIGNATOR, next),
-      selector
-    );
-    const keyAndProperty = newSelector.split(this.FLATTENED_SEPARATOR).slice(-2);
-    return this.compileSelectors(keyAndProperty);
+    // Replace next selector & with previous selector;
+    selectors.forEach((s: string, i: number) => {
+      if (i !== selectors.length - 1) {
+        selectors[i + 1] = selectors[i + 1].replace(this.NESTED_DESIGNATOR, s);
+      }
+    });
+    // 2nd to last is the fully built select, last index is always the property.
+    const selectorAndProperty = selectors.slice(-2);
+    // Replace remaining designators with associated values prior to returning.
+    return this.compileSelectors(selectorAndProperty);
   }
 
+  // Replace designator tokens with the associated value.
+  // ex input: '$self .child .grandchild:hover`
+  // ex output: `.uui-prefix .child .grandchild:hover`
   compileSelectors(selectors: string[]): string[] {
     return selectors.map((s) => s.replaceAll(this.SCOPED_DESIGNATOR, this.scopedClass));
   }
 
   // https://www.geeksforgeeks.org/flatten-javascript-objects-into-a-single-depth-object/
   // Flattens object with separated values
+  /*
+   * {key: {subKey: {property: value}}}
+   */
   // ex return: {key;;subKey;;property: value, key;;property: value}
   flattenObj(nestedStyles: ScopedStyles): Record<string, string> {
     const result: Record<string, string> = {};
@@ -111,7 +127,10 @@ export class StyleBuilder {
     }
     return result;
   }
-
+  /*
+   * Reconstructs flattened with all nested objects at top level
+   * // {'key subkey': {property: value}, 'key': {property: value}}
+   */
   hydrateStyles(flattenedStyles: Record<string, string>): ScopedStyles {
     // Values will be hydrated into new object.
     const newObject: Record<string, Record<string, string>> = {};
