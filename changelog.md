@@ -77,8 +77,7 @@
           content: '',
         }
       }
-    }
-  }
+    };
 </script>
 
 <Box scopedStyle={boxStyle}>
