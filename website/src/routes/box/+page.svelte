@@ -1,7 +1,6 @@
 <script lang="ts">
   import { Box } from '@uui';
   import Variant from '$lib/Variant.svelte';
-  import { scopedStyles } from '../../../../uui/src/lib/shared/utils/scopedStyles';
   let hovering = false;
   $: hoverClass = hovering ? 'hover' : '';
 </script>

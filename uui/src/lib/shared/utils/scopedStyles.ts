@@ -14,7 +14,7 @@ function hashCode(str: string) {
   return hash;
 }
 
-export function scopedStyles(el: Element, css?: ScopedStyles) {
+export function scopedStyles(el: Element, jss?: ScopedStyles) {
   // Generate element instance uuid (hash to shorten)
   const scopedClass = `uui-${hashCode(uuid())}`;
   // Conditional classes remove the hashed uuid. when applied
@@ -28,9 +28,9 @@ export function scopedStyles(el: Element, css?: ScopedStyles) {
       el.setAttribute('class', `${el.className} ${scopedClass}`);
   }
 
-  if (css) {
+  if (jss) {
     // create the styles from the provided jss
-    const styles = new StyleBuilder(css, scopedClass).parse();
+    const styles = new StyleBuilder(jss, scopedClass).parse();
     // initially updated the with the scoped class.
     el.setAttribute('class', `${el.className} ${scopedClass}`);
     // add style to head with id="hash"
