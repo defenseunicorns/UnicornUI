@@ -8,16 +8,16 @@
 
 <Variant
   title="Text Field"
-  code={`
-  
-
-Slots:
-  leadingIcon: optional
-  trailingIcon: optional
-`}
+  code="The basic Text Field is a wrapper around a native input element with the type set to 'text'. It can be configured a number of ways, but has two main variants -- outlined and filled."
 >
-  <TextField label="Label" variant="outlined" color="primary" helperText="supporting text" />
-  <TextField label="Label" variant="filled" color="primary" helperText="supporting text" />
+  <div class="labeled-example">
+    <Typography variant="subtitle1">Outlined Enabled:</Typography>
+    <TextField label="Label" variant="outlined" color="primary" />
+  </div>
+  <div class="labeled-example">
+    <Typography variant="subtitle1">Filled Active:</Typography>
+    <TextField label="Label" variant="filled" color="primary" value="Default Value" />
+  </div>
   <AccordionGroup>
     <Accordion>
       <Typography slot="headerContent" variant="h6">Props</Typography>
@@ -244,6 +244,13 @@ Slots:
 </Variant>
 
 <style lang="scss">
+  .labeled-example {
+    display: flex;
+    flex-direction: column;
+    height: 7rem;
+    justify-content: space-between;
+  }
+
   :global(.text-field-example) {
     gap: 16px;
     display: flex;
