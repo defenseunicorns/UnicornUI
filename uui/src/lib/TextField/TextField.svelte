@@ -172,6 +172,7 @@
 
   // Ready State General Colors
   .mdc-text-field {
+    @include mdc-text-field-ink-color(var(--on-background));
     @include mdc-text-field-outline-color(var(--text-field-inactive));
     @include mdc-text-field-hover-outline-color(var(--text-field-hover));
   }
@@ -182,7 +183,6 @@
   }
 
   .mdc-text-field--focused {
-    @include mdc-text-field-ink-color(var(--on-background));
     @include mdc-text-field-placeholder-color(var(--on-background));
     @include mdc-text-field-caret-color(var(--on-background));
 
