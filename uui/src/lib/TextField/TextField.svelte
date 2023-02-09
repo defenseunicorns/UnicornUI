@@ -64,7 +64,7 @@
         invalid = true;
       };
     }
-    if ($$restProps.placeholder) {
+    if (value) {
       setFocusStates();
     }
   });
@@ -114,7 +114,13 @@
       aria-labelledby="textfield-label"
       {...$$restProps}
     />
-    <slot name="trailingIcon" />
+    {#if invalid}
+      <span class:errorIcon={invalid} class="material-symbols-outlined mdc-text-field__icon">
+        error
+      </span>
+    {:else}
+      <slot name="trailingIcon" />
+    {/if}
     {#if variant === 'outlined'}
       <span
         class={`mdc-notched-outline mdc-notched-outline--upgraded ${notched}`}
@@ -170,6 +176,11 @@
     color: var(--on-background) !important;
   }
 
+  .errorIcon {
+    fill: var(--error) !important;
+    color: var(--error) !important;
+  }
+
   // Ready State General Colors
   .mdc-text-field {
     @include mdc-text-field-ink-color(var(--on-background));
@@ -185,9 +196,6 @@
   .mdc-text-field--focused {
     @include mdc-text-field-placeholder-color(var(--on-background));
     @include mdc-text-field-caret-color(var(--on-background));
-
-    // only affects notched outline
-    @include mdc-notched-outline-color(var(--color));
   }
 
   // Disabled State Classes
@@ -202,6 +210,7 @@
   // Invalid State Classes
   .mdc-text-field--invalid {
     @include mdc-text-field-ink-color(var(--error));
+    @include mdc-text-field-hover-outline-color(var(--error));
   }
 
   // Label
@@ -257,6 +266,11 @@
   .mdc-notched-outline.notched {
     @extend .mdc-notched-outline--notched;
   }
+
+  .mdc-text-field--outlined.mdc-text-field--focused:not(.mdc-text-field--disabled) {
+    @include mdc-text-field-focused-outline-color(var(--color));
+  }
+
   .mdc-text-field--outlined.mdc-text-field--invalid.mdc-text-field:not(.mdc-text-field--disabled),
   .mdc-text-field--outlined.mdc-text-field--invalid.mdc-text-field.focused:not(
       .mdc-text-field--disabled
