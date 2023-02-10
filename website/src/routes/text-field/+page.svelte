@@ -23,9 +23,8 @@
       <Typography slot="headerContent" variant="h6">Props</Typography>
       <Box slot="content">
         <Typography variant="body1">
-          The Text Field component accepts native HTMLInput props as well as several custom defined
-          ones. Examples of native props -- required, disabled, value, minlength, maxlengh, pattern.
-          Custom Props -- label, variant, helperText
+          The Text Field component accepts native HTMLInput props as well as several Unicorn UI
+          defined ones implemented by the TextFieldProps interface.
         </Typography>
         <Box class="text-field-example">
           <TextField required label="required" variant="outlined" color="primary" />
@@ -42,11 +41,32 @@
             characterCounter={true}
             maxlength={60}
           />
-          <TextField disabled label="Disabled" variant="outlined" color="primary" />
+          <TextField
+            disabled
+            label="Disabled"
+            variant="outlined"
+            color="primary"
+            value="Default Value"
+          />
         </Box>
         <pre class="variant-code">
           {`
-           <TextField required label="required" variant="outlined" color="primary" />
+          interface TextFieldProps extends svelte.JSX.HTMLAttributes<HTMLInputElement> {
+              variant: TextFieldVariant;
+              label: string;
+              value?: string;
+              helperText?: string;
+              color?: ThemeColors;
+              characterCounter?: boolean;
+          }
+          ___________________________________________
+          
+          <TextField 
+            required 
+            label="required" 
+            variant="outlined" 
+            color="primary" 
+          />
           <TextField
             label="Helper Text"
             variant="outlined"
@@ -60,7 +80,12 @@
             characterCounter={true}
             maxlength={60}
           />
-          <TextField disabled label="Disabled" variant="outlined" color="primary" />
+          <TextField 
+            disabled 
+            label="Disabled" 
+            variant="outlined" 
+            color="primary" 
+          />
           `}
         </pre>
       </Box>
@@ -208,7 +233,12 @@
             color="secondary"
             helperText="color is secondary"
           />
-          <TextField label="Label" variant="outlined" color="primary">
+          <TextField
+            label="Label"
+            variant="outlined"
+            color="primary"
+            helperText="icon color is overridden by custom style prop"
+          >
             <TextFieldIcon
               variant="leading"
               slot="leadingIcon"
@@ -237,6 +267,29 @@
                     bottomLineHover: 'value',
                   }
                 }
+          ____________________________________________________________________
+
+          <TextField
+            variant="outlined"
+            label="Label"
+            color="secondary"
+            helperText="color is secondary"
+          />
+          <TextField
+            label="Label"
+            variant="outlined"
+            color="primary"
+            helperText="icon color is overridden by custom style prop"
+          >
+            <TextFieldIcon
+              variant="leading"
+              slot="leadingIcon"
+              class="material-symbols-outlined"
+              style="color: pink !important;"
+            >
+              search
+            </TextFieldIcon>
+          </TextField>
         `}
         </pre>
       </Box>

@@ -182,17 +182,7 @@
     flex-direction: column;
   }
 
-  .mdc-text-field__icon {
-    fill: var(--on-background) !important;
-    color: var(--on-background) !important;
-  }
-
-  .errorIcon {
-    fill: var(--error) !important;
-    color: var(--error) !important;
-  }
-
-  // Ready State General Colors
+  // Ready State Colors
   .mdc-text-field {
     @include mdc-text-field-ink-color(var(--on-background));
     @include mdc-text-field-outline-color(var(--text-field-inactive));
@@ -202,26 +192,33 @@
   // Focused State Classes / Colors
   .mdc-text-field.focused {
     @extend .mdc-text-field--focused;
-  }
-
-  .mdc-text-field--focused {
-    @include mdc-text-field-placeholder-color(var(--on-background));
     @include mdc-text-field-caret-color(var(--on-background));
+
+    &.mdc-text-field--outlined {
+      @include mdc-text-field-focused-outline-color(var(--color));
+    }
   }
 
   // Disabled State Classes
   .mdc-text-field--disabled {
-    @include mdc-text-field-ink-color(var(--disabled));
-    @include mdc-text-field-hover-outline-color(var(--disabled));
-    @include mdc-text-field-placeholder-color(var(--disabled));
-    @include mdc-text-field-focused-outline-color(var(--disabled));
-    @include mdc-text-field-caret-color(var(--disabled));
+    @include mdc-text-field-disabled-outline-color(var(--disabled));
+    @include mdc-text-field-disabled-ink-color(var(--disabled));
+    @include mdc-text-field-disabled-label-color(var(--disabled));
+
+    &:not(.mdc-text-field--outlined) {
+      @include mdc-text-field-disabled-fill-color(var(--disabled));
+      @include mdc-text-field-disabled-bottom-line-color(var(--disabled));
+      @include mdc-text-field-disabled-ink-color(var(--on-disabled));
+      @include mdc-text-field-disabled-label-color(var(--on-disabled));
+    }
   }
 
   // Invalid State Classes
   .mdc-text-field--invalid {
     @include mdc-text-field-ink-color(var(--error));
     @include mdc-text-field-hover-outline-color(var(--error));
+    @include mdc-text-field-outline-color(var(--error));
+    @include mdc-text-field-focused-outline-color(var(--error));
   }
 
   // Label
@@ -230,16 +227,16 @@
   }
 
   .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
-    color: var(--text-field-inactive);
+    @include mdc-floating-label-ink-color(var(--text-field-inactive));
   }
 
   .mdc-text-field.focused:not(.mdc-text-field--disabled) .mdc-floating-label {
-    color: var(--color);
+    @include mdc-floating-label-ink-color(var(--color));
   }
 
   .mdc-text-field--invalid.focused:not(.mdc-text-field--disabled) .mdc-floating-label,
   .mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-floating-label {
-    color: var(--error);
+    @include mdc-floating-label-ink-color(var(--error));
   }
 
   // Helper Line
@@ -259,6 +256,11 @@
 
   // Variants
 
+  // outlined
+  .mdc-notched-outline.notched {
+    @extend .mdc-notched-outline--notched;
+  }
+
   // filled
   .mdc-text-field--filled {
     @include mdc-text-field-fill-color(var(--text-field-background));
@@ -273,19 +275,14 @@
     @include mdc-text-field-fill-color(var(--text-field-background));
   }
 
-  // outlined
-  .mdc-notched-outline.notched {
-    @extend .mdc-notched-outline--notched;
+  // Icon Overrides
+  .mdc-text-field__icon {
+    fill: var(--on-background) !important;
+    color: var(--on-background) !important;
   }
 
-  .mdc-text-field--outlined.mdc-text-field--focused:not(.mdc-text-field--disabled) {
-    @include mdc-text-field-focused-outline-color(var(--color));
-  }
-
-  .mdc-text-field--outlined.mdc-text-field--invalid.mdc-text-field:not(.mdc-text-field--disabled),
-  .mdc-text-field--outlined.mdc-text-field--invalid.mdc-text-field.focused:not(
-      .mdc-text-field--disabled
-    ) {
-    @include mdc-notched-outline-color(var(--error));
+  .errorIcon {
+    fill: var(--error) !important;
+    color: var(--error) !important;
   }
 </style>
