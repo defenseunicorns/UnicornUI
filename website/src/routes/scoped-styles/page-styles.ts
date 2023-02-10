@@ -5,6 +5,7 @@ export const scopedExample: ScopedStyles = {
     gap: '32px',
     width: '100%',
     display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center'
   }
