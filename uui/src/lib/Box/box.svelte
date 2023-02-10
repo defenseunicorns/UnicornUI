@@ -1,7 +1,9 @@
 <script lang="ts">
-  import { current_component } from 'svelte/internal';
-  import { eventRedirection } from '../shared/utils/eventRedirection';
   import type { BoxProps } from './box.types';
+  import { current_component } from 'svelte/internal';
+  import { scopedStyles } from '../shared/utils/scopedStyles';
+  import { eventRedirection } from '../shared/utils/eventRedirection';
+  import type { ScopedStyles } from '../shared/theme/config/theme-config.types';
 
   // Svelte does generics
   type T = $$Generic<EventTarget>;
@@ -10,6 +12,7 @@
   export let element = 'div';
   export let ref: Node | undefined = undefined;
   export let eventComponent: typeof current_component | undefined = undefined;
+  export let scopedStyle: ScopedStyles | undefined = undefined;
 
   type $$Props = BoxProps<T>;
 
@@ -20,6 +23,7 @@
 {#if $$slots.default}
   <svelte:element
     this={element}
+    use:scopedStyles={scopedStyle}
     use:eventRedirection={eventComponents}
     bind:this={ref}
     {...$$restProps}
@@ -31,6 +35,7 @@
   <!--Prevents self closing tag warning-->
   <svelte:element
     this={element}
+    use:scopedStyles={scopedStyle}
     use:eventRedirection={eventComponents}
     bind:this={ref}
     {...$$restProps}

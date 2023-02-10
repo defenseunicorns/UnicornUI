@@ -1,16 +1,17 @@
+import type { BaseScopedStyle } from '../../../../../src/lib/shared/theme/config/theme-config.types';
 import {
   makeStyles,
   jsToCSS,
   camelBackToDash
 } from '../../../../../src/lib/shared/theme/config/theme-config.utils';
 describe('makeStyles', () => {
-  it('creates a css class string from cssObject', () => {
-    expect(makeStyles({ '.mdc-typography--custom-typography': { 'font-size': '1.2px' } })).toBe(
+  it('creates a css class string from ScopedStyles', () => {
+    expect(makeStyles({ '.mdc-typography--custom-typography': { fontSize: '1.2px' } })).toBe(
       '.mdc-typography--custom-typography{font-size:1.2px;}'
     );
   });
 
-  it('creates a css style from cssObject', () => {
+  it('creates a css style from ScopedStyles', () => {
     expect(makeStyles({ 'body > h1': { color: 'pink', backgroundColor: 'red' } })).toBe(
       'body > h1{color:pink;background-color:red;}'
     );
@@ -18,7 +19,7 @@ describe('makeStyles', () => {
 });
 
 describe('jsToCss', () => {
-  const js: Record<string, string> = {
+  const js: BaseScopedStyle = {
     fontSize: '16px',
     color: 'pink',
     backgroundColor: 'blue',

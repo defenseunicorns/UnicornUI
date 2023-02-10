@@ -1,36 +1,42 @@
-import type { CssObject } from './theme-config.types';
+import type { BaseScopedStyle, CssProperties, ScopedStyles } from './theme-config.types';
 
-export function updateThemeStyle(themeStyle: CssObject, document?: Document) {
+export function updateThemeStyle(themeStyle: ScopedStyles, document?: Document) {
   document && addThemeStyleToHead(document, makeStyles(themeStyle));
 }
 
-export function addThemeStyleToHead(document: Document, typographyCss: string) {
-  const ELEMENT_ID = 'uui-theme-css';
-  let style = document.getElementById(ELEMENT_ID);
+export function addThemeStyleToHead(
+  document: Document,
+  typographyCss: string,
+  elementId = 'uui-theme-css'
+) {
+  let style = document.getElementById(elementId);
   if (style) {
     style.innerHTML = typographyCss;
   } else {
     style = document.createElement('style');
-    style.setAttribute('id', ELEMENT_ID);
+    style.setAttribute('id', elementId);
     style.setAttribute('type', 'text/css');
     style.innerHTML = typographyCss;
     document.getElementsByTagName('head')[0].appendChild(style);
   }
 }
 
-export function makeStyles(cssObj: CssObject): string {
+export function makeStyles(cssObj: ScopedStyles, prefix = ''): string {
   let css = '';
-  Object.entries(cssObj).forEach(([key, val]: [string, Record<string, string>]) => {
-    const classProperties = jsToCSS(val);
-    css += `${key}{${classProperties}}`;
+  Object.entries(cssObj).forEach(([key, val]: [string, BaseScopedStyle]) => {
+    const classProperties = jsToCSS(val as CssProperties);
+    css += `${key}{${classProperties}}`.replaceAll('$self', prefix);
   });
   return css;
 }
 
-export function jsToCSS(js: Record<string, string>) {
-  return Object.entries(js).reduce((prev: string, [key, val]: [string, string]) => {
-    return `${prev}${camelBackToDash(key)}:${val};`;
-  }, '');
+// # Deprecated
+// Keeping for now until replacement from StyleBuilder.
+export function jsToCSS(js: CssProperties) {
+  return Object.entries(js).reduce(
+    (prev: string, [key, val]: [string, string]) => `${prev}${camelBackToDash(key)}:${val};`,
+    ''
+  );
 }
 
 export function camelBackToDash(camelBack: string): string {
