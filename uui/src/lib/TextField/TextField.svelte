@@ -27,6 +27,17 @@
   let active = '';
   let invalid = false;
 
+  let inputProps: any = {};
+  let containerProps: any = {};
+  ({
+    required: inputProps.required,
+    disabled: inputProps.disabled,
+    minlength: inputProps.minlength,
+    maxlength: inputProps.maxlengh,
+    pattern: inputProps.pattern,
+    ...containerProps
+  } = $$restProps);
+
   // functions
   function clickAway(evt: any) {
     if (evt.target !== inputRef && !$$restProps.placeholder) {
@@ -86,14 +97,15 @@
   $: eventComponents = [current_component];
   $: computedColor = makeThemeColor(color);
   $: computedOnSurfaceColor = makeThemeColor(onSurfaceColor);
+  $: containerProps.style =
+    containerProps.style +
+    `;--color: ${computedColor}; --on-surface-color: ${computedOnSurfaceColor};`;
+  $: containerProps.class = containerProps.class + ' text-field-container';
 </script>
 
 <svelte:window on:click={clickAway} />
 
-<div
-  class="text-field-conainer"
-  style="--color: {computedColor}; --on-surface-color: {computedOnSurfaceColor};"
->
+<div {...containerProps}>
   <div
     class={`mdc-text-field text-field mdc-text-field--${variant} ${focused} ${getIconClass()}`}
     class:mdc-text-field--disabled={$$restProps.disabled}
@@ -112,7 +124,7 @@
       type="text"
       class="mdc-text-field__input"
       aria-labelledby="textfield-label"
-      {...$$restProps}
+      {...inputProps}
     />
     {#if invalid}
       <span class:errorIcon={invalid} class="material-symbols-outlined mdc-text-field__icon">
@@ -168,7 +180,6 @@
   .text-field-container {
     display: flex;
     flex-direction: column;
-    width: auto;
   }
 
   .mdc-text-field__icon {

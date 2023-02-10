@@ -150,8 +150,9 @@
       <Typography slot="headerContent" variant="h6">Validation</Typography>
       <Box slot="content">
         <Typography variant="body1">
-          Try interacting with this Text field wrapped by a native HTMLFormElement. We're making use
-          of the required, minlength, maxlength, and pattern props.
+          Try interacting with this Text Field to see how validation occurs. Notice we're binding
+          the value, making this a controlled input. You can still use the Text Field as an
+          unctrolled input and the value will be captured by the form.
         </Typography>
         <Box class="text-field-example">
           <form on:submit={() => alert(`you submitted ${formValue}`)}>
@@ -159,9 +160,9 @@
               required
               bind:value={formValue}
               variant="outlined"
-              label="Label"
+              label="Email"
               pattern=".+@.+\.com"
-              helperText="expected format is email"
+              helperText="email format required that is really long"
               characterCounter={true}
               maxlength={20}
               minlength={8}
@@ -176,9 +177,9 @@
               required
               bind:value={formValue}
               variant="outlined"
-              label="Label"
+              label="Email"
               pattern=".+@.+\\.com"
-              helperText="expected format is email"
+              helperText="email format required that is really long"
               characterCounter={true}
               maxlength={20}
               minlength={8}
