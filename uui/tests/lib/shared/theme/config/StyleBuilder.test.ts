@@ -1,6 +1,7 @@
 import type { ScopedStyles } from '../../../../../src/lib/shared/theme/config/theme-config.types';
 import { StyleBuilder } from '../../../../../src/lib/shared/theme/config/StyleBuilder';
-describe('style builder', () => {
+
+describe.concurrent('style builder', () => {
   it('replaces selectors with the $self designation with its prefix', () => {
     expect(new StyleBuilder({}, 'uui-prefix').compileSelectors(['$self', '$self .child'])).toEqual([
       '.uui-prefix',

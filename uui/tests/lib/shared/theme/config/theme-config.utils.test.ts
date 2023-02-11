@@ -4,7 +4,8 @@ import {
   jsToCSS,
   camelBackToDash
 } from '../../../../../src/lib/shared/theme/config/theme-config.utils';
-describe('makeStyles', () => {
+
+describe.concurrent('makeStyles', () => {
   it('creates a css class string from ScopedStyles', () => {
     expect(makeStyles({ '.mdc-typography--custom-typography': { fontSize: '1.2px' } })).toBe(
       '.mdc-typography--custom-typography{font-size:1.2px;}'
