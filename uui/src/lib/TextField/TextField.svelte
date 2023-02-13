@@ -19,13 +19,13 @@
   // locals
   let inputRef: HTMLInputElement;
   let labelRef: HTMLLabelElement;
-  let focused = '';
-  let notched = '';
-  let floating = '';
+  let focused = false;
+  let notched = false;
+  let floating = false;
+  let invalid = false;
   let charCount = '';
   let notchWidth = '';
   let active = '';
-  let invalid = false;
 
   let inputProps: any = {};
   let containerProps: any = {};
@@ -39,22 +39,22 @@
   } = $$restProps);
 
   // functions
-  function clickAway(evt: any) {
-    if (evt.target !== inputRef && !$$restProps.placeholder) {
-      focused = '';
-      active = '';
-      if (inputRef.value === '') {
-        notched = '';
-        floating = '';
-      }
-    }
+  function setFocusStates() {
+    focused = true;
+    notched = true;
+    floating = true;
+    active = 'active';
   }
 
-  function setFocusStates() {
-    focused = 'focused';
-    notched = 'notched';
-    floating = 'floating';
-    active = 'active';
+  function clickAway(evt: MouseEvent) {
+    if (evt.target !== inputRef && !$$restProps.placeholder) {
+      focused = false;
+      active = '';
+      if (inputRef.value === '') {
+        notched = false;
+        floating = false;
+      }
+    }
   }
 
   function getIconClass(): string {
@@ -87,7 +87,7 @@
   }
 
   $: if (labelRef) {
-    if (focused === 'focused') {
+    if (focused) {
       notchWidth = `${labelRef.offsetWidth * 0.9}px`;
     } else {
       notchWidth = 'auto';
@@ -107,10 +107,11 @@
 
 <div {...containerProps}>
   <div
-    class={`mdc-text-field text-field mdc-text-field--${variant} ${focused} ${getIconClass()}`}
+    class={`mdc-text-field text-field mdc-text-field--${variant} ${getIconClass()}`}
     class:mdc-text-field--disabled={$$restProps.disabled}
     class:mdc-text-field--invalid={invalid}
-    class:mdc-ripple-upgraded--background-focused={variant === 'filled' && focused === 'focused'}
+    class:mdc-text-field--focused={focused}
+    class:mdc-ripple-upgraded--background-focused={variant === 'filled' && focused}
   >
     <slot name="leadingIcon" />
     <input
@@ -135,14 +136,15 @@
     {/if}
     {#if variant === 'outlined'}
       <span
-        class={`mdc-notched-outline mdc-notched-outline--upgraded ${notched}`}
-        class:mdc-notched-outline--no-label={label === ''}
+        class={`mdc-notched-outline mdc-notched-outline--upgraded`}
+        class:mdc-notched-outline--notched={notched}
       >
         <span class="mdc-notched-outline__leading" />
         <span class="mdc-notched-outline__notch" style={`padding: 0; width: ${notchWidth}`}>
           <label
             bind:this={labelRef}
-            class={`mdc-floating-label ${floating}`}
+            class={`mdc-floating-label`}
+            class:mdc-floating-label--float-above={floating}
             class:mdc-floating-label--required={$$restProps.required}
             for={`text-field-${variant}`}
             id="textfield-label"
@@ -155,7 +157,8 @@
     {#if variant === 'filled'}
       <label
         bind:this={labelRef}
-        class={`mdc-floating-label ${floating}`}
+        class={`mdc-floating-label`}
+        class:mdc-floating-label--float-above={floating}
         class:mdc-floating-label--required={$$restProps.required}
         for={`text-field-${variant}`}
         id="textfield-label"
@@ -190,11 +193,10 @@
   }
 
   // Focused State Classes / Colors
-  .mdc-text-field.focused {
-    @extend .mdc-text-field--focused;
+  .mdc-text-field--focused {
     @include mdc-text-field-caret-color(var(--on-background));
 
-    &.mdc-text-field--outlined {
+    &.mdc-text-field--outlined:not(.mdc-text-field--invalid) {
       @include mdc-text-field-focused-outline-color(var(--color));
     }
   }
@@ -222,19 +224,16 @@
   }
 
   // Label
-  .mdc-floating-label.floating {
-    @extend .mdc-floating-label--float-above;
-  }
-
   .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
     @include mdc-floating-label-ink-color(var(--text-field-inactive));
   }
 
-  .mdc-text-field.focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+  .mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
     @include mdc-floating-label-ink-color(var(--color));
   }
 
-  .mdc-text-field--invalid.focused:not(.mdc-text-field--disabled) .mdc-floating-label,
+  .mdc-text-field--invalid.mdc-text-field--focused:not(.mdc-text-field--disabled)
+    .mdc-floating-label,
   .mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-floating-label {
     @include mdc-floating-label-ink-color(var(--error));
   }
@@ -257,9 +256,6 @@
   // Variants
 
   // outlined
-  .mdc-notched-outline.notched {
-    @extend .mdc-notched-outline--notched;
-  }
 
   // filled
   .mdc-text-field--filled {
@@ -271,7 +267,7 @@
     @include mdc-text-field-bottom-line-color(var(--text-field-bottom-line-hover));
   }
 
-  .mdc-text-field--filled.focused {
+  .mdc-text-field--filled.mdc-text-field--focused {
     @include mdc-text-field-fill-color(var(--text-field-background));
   }
 
