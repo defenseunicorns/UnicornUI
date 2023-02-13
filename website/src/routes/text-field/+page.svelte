@@ -11,15 +11,15 @@
   code="The basic Text Field is a wrapper around a native input element with the type set to 'text'. It can be configured a number of ways, but has two main variants -- outlined and filled."
 >
   <div class="labeled-example">
-    <Typography variant="subtitle1">Outlined Enabled:</Typography>
-    <TextField label="Label" variant="outlined" color="primary" />
+    <Typography variant="subtitle1">Outlined:</Typography>
+    <TextField autofocus label="Label" variant="outlined" color="primary" />
   </div>
   <div class="labeled-example">
-    <Typography variant="subtitle1">Filled Active:</Typography>
-    <TextField label="Label" variant="filled" color="primary" value="Default Value" />
+    <Typography variant="subtitle1">Filled:</Typography>
+    <TextField label="Label" variant="filled" color="primary" value="Value" />
   </div>
   <AccordionGroup>
-    <Accordion>
+    <Accordion isOpen={true}>
       <Typography slot="headerContent" variant="h6">Props</Typography>
       <Box slot="content">
         <Typography variant="body1">
@@ -27,28 +27,35 @@
           defined ones implemented by the TextFieldProps interface.
         </Typography>
         <Box class="text-field-example">
-          <TextField required label="required" variant="outlined" color="primary" />
-          <TextField
-            label="Helper Text"
-            variant="outlined"
-            color="primary"
-            helperText="supporting text"
-          />
-          <TextField
-            label="Character Counter"
-            variant="outlined"
-            color="primary"
-            characterCounter={true}
-            maxlength={60}
-          />
-          <TextField
-            disabled
-            autofocus
-            label="Disabled"
-            variant="outlined"
-            color="primary"
-            value="Default Value"
-          />
+          <div class="labeled-example">
+            <Typography variant="subtitle1">Required:</Typography>
+            <TextField required label="Label" variant="outlined" color="primary" />
+          </div>
+
+          <div class="labeled-example">
+            <Typography variant="subtitle1">Helper Text:</Typography>
+            <TextField
+              label="Label"
+              variant="outlined"
+              color="primary"
+              helperText="supporting text"
+            />
+          </div>
+
+          <div class="labeled-example">
+            <Typography variant="subtitle1">Character Counter:</Typography>
+            <TextField
+              label="Label"
+              variant="outlined"
+              color="primary"
+              characterCounter={true}
+              maxlength={60}
+            />
+          </div>
+          <div class="labeled-example">
+            <Typography variant="subtitle1">Disabled:</Typography>
+            <TextField disabled label="Label" variant="outlined" color="primary" value="Value" />
+          </div>
         </Box>
         <pre class="variant-code">
           {`
@@ -64,18 +71,18 @@
           
           <TextField 
             required 
-            label="required" 
+            label="Label" 
             variant="outlined" 
             color="primary" 
           />
           <TextField
-            label="Helper Text"
+            label="Label"
             variant="outlined"
             color="primary"
             helperText="supporting text"
           />
           <TextField
-            label="Character Counter"
+            label="Label"
             variant="outlined"
             color="primary"
             characterCounter={true}
@@ -84,7 +91,7 @@
           <TextField 
             disabled 
             autofocus
-            label="Disabled" 
+            label="Label" 
             variant="outlined" 
             color="primary" 
           />
@@ -92,7 +99,7 @@
         </pre>
       </Box>
     </Accordion>
-    <Accordion>
+    <Accordion isOpen={true}>
       <Typography slot="headerContent" variant="h6">Slots</Typography>
       <Box slot="content">
         <Typography variant="body1"
@@ -102,24 +109,41 @@
           well as the slot name ('leadingIcon' or 'trailingIcon')</Typography
         >
         <Box class="text-field-example">
-          <TextField label="Label" variant="outlined" color="primary">
-            <TextFieldIcon variant="leading" slot="leadingIcon" class="material-symbols-outlined">
-              search
-            </TextFieldIcon>
-          </TextField>
-          <TextField label="Label" variant="outlined" color="primary">
-            <TextFieldIcon variant="trailing" slot="trailingIcon" class="material-symbols-outlined">
-              close
-            </TextFieldIcon>
-          </TextField>
-          <TextField label="Label" variant="outlined" color="primary">
-            <TextFieldIcon variant="leading" slot="leadingIcon" class="material-symbols-outlined">
-              search
-            </TextFieldIcon>
-            <TextFieldIcon variant="trailing" slot="trailingIcon" class="material-symbols-outlined">
-              close
-            </TextFieldIcon>
-          </TextField>
+          <div class="labeled-example">
+            <Typography variant="subtitle1">Leading Icon:</Typography>
+            <TextField label="Label" variant="outlined" color="primary">
+              <TextFieldIcon variant="leading" slot="leadingIcon" class="material-symbols-outlined">
+                search
+              </TextFieldIcon>
+            </TextField>
+          </div>
+          <div class="labeled-example">
+            <Typography variant="subtitle1">Trailing Icon:</Typography>
+            <TextField label="Label" variant="outlined" color="primary">
+              <TextFieldIcon
+                variant="trailing"
+                slot="trailingIcon"
+                class="material-symbols-outlined"
+              >
+                close
+              </TextFieldIcon>
+            </TextField>
+          </div>
+          <div class="labeled-example">
+            <Typography variant="subtitle1">Both Icons:</Typography>
+            <TextField label="Label" variant="outlined" color="primary">
+              <TextFieldIcon variant="leading" slot="leadingIcon" class="material-symbols-outlined">
+                search
+              </TextFieldIcon>
+              <TextFieldIcon
+                variant="trailing"
+                slot="trailingIcon"
+                class="material-symbols-outlined"
+              >
+                close
+              </TextFieldIcon>
+            </TextField>
+          </div>
         </Box>
         <pre class="variant-code">
           {`
@@ -173,7 +197,7 @@
         </pre>
       </Box>
     </Accordion>
-    <Accordion>
+    <Accordion isOpen={true}>
       <Typography slot="headerContent" variant="h6">Validation</Typography>
       <Box slot="content">
         <Typography variant="body1">
@@ -183,17 +207,20 @@
         </Typography>
         <Box class="text-field-example">
           <form on:submit={() => alert(`you submitted ${formValue}`)}>
-            <TextField
-              required
-              bind:value={formValue}
-              variant="outlined"
-              label="Email"
-              pattern=".+@.+\.com"
-              helperText="email format required that is really long"
-              characterCounter={true}
-              maxlength={20}
-              minlength={8}
-            />
+            <div class="labeled-example">
+              <Typography variant="subtitle1">Validate:</Typography>
+              <TextField
+                required
+                bind:value={formValue}
+                variant="outlined"
+                label="Email"
+                pattern=".+@.+\.com"
+                helperText="Email format"
+                characterCounter={true}
+                maxlength={20}
+                minlength={8}
+              />
+            </div>
             <Button style={'margin-top: 2px;'} type="submit" variant="text">Submit</Button>
           </form>
         </Box>
@@ -206,7 +233,7 @@
               variant="outlined"
               label="Email"
               pattern=".+@.+\\.com"
-              helperText="email format required that is really long"
+              helperText="Email format"
               characterCounter={true}
               maxlength={20}
               minlength={8}
@@ -217,39 +244,46 @@
         </pre>
       </Box>
     </Accordion>
-    <Accordion>
+    <Accordion isOpen={true}>
       <Typography slot="headerContent" variant="h6">Theming</Typography>
       <Box slot="content">
         <Typography variant="body1">
           Certain aspects of the Text Field theme can be directly overridden by a mix of props
           (color) and a textField palette. To override the focused state colors use the prop. If you
-          want to override inactive, hover, background, background hover, or bottom line hover,
-          you'll need to add a custom text field palette to your theme. Text Field icons, by
+          want to override other states (inactive, hover, background, background hover, bottom line
+          hover) you'll need to add a custom text field palette to your theme. Text Field icons, by
           default, use --on-background for their color. You can override that color by adding a
           style tag to your TextFieldIcon with a "!important".
         </Typography>
         <Box class="text-field-example">
-          <TextField
-            variant="outlined"
-            label="Label"
-            color="secondary"
-            helperText="color is secondary"
-          />
-          <TextField
-            label="Label"
-            variant="outlined"
-            color="primary"
-            helperText="icon color is overridden by custom style prop"
-          >
-            <TextFieldIcon
-              variant="leading"
-              slot="leadingIcon"
-              class="material-symbols-outlined"
-              style="color: pink !important;"
+          <div class="labeled-example">
+            <Typography variant="subtitle1">Override Focus:</Typography>
+            <TextField
+              variant="outlined"
+              label="Label"
+              color="secondary"
+              value="Value"
+              helperText="Click me: color is secondary"
+            />
+          </div>
+          <div class="labeled-example">
+            <Typography variant="subtitle1">Override Icon:</Typography>
+            <TextField
+              label="Label"
+              variant="outlined"
+              color="primary"
+              helperText="icon color is overridden by custom style prop"
             >
-              search
-            </TextFieldIcon>
-          </TextField>
+              <TextFieldIcon
+                variant="leading"
+                slot="leadingIcon"
+                class="material-symbols-outlined"
+                style="color: pink !important;"
+              >
+                search
+              </TextFieldIcon>
+            </TextField>
+          </div>
         </Box>
         <pre class="variant-code">
           {`
