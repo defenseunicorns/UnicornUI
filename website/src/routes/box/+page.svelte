@@ -12,14 +12,14 @@ General use unstyled border-box element that allows all default events, props,
 and elements supported by svelte:element without block-margins.
 
 Props:
-    // desired html element
-    element: string = "div";
-    // Bound element reference (bind:this={ref});
-    ref: Element = undefined;
-    // Add additional events supported by svelte.
-    additionalEvents: string[] = [];
-    // Pass svelte internal "current_component" to allow simple event forwarding.
-    eventComponent: typeof current_component | undefined = undefined;
+  // desired html element
+  element: string = "div";
+  // Bound element reference (bind:this={ref});
+  ref: Element = undefined;
+  // Pass svelte internal "current_component" to allow simple event forwarding.
+  eventComponent: typeof current_component | undefined = undefined;
+  // Pass ScopedStyles to Box without bleeding to global styles. 
+  scopedStyle: ScopedStyles | undefined = undefined
 
 Slots:
   unamed
@@ -27,29 +27,58 @@ Slots:
 Examples:
 <Box element="a" href="/box">link</Box>
 
+<Box element="button">Button</Box>
+
 <Box
-    bind:ref={myElementRef}
-	style="display: flex; padding: 16px; justify-content: center; align-content: center"
-	on:mouseover={() => (hovering = true)}
-	on:mouseout={() => (hovering = false)}
-	class={hoverClass}
+  bind:ref={myElementRef}
+  style="padding: 16px;"
+  on:mouseover={() => (hovering = true)}
+  on:mouseout={() => (hovering = false)}
+  class={hoverClass}
 >
-	div (default)
+  div (default)
 </Box>
 
-<Box element="button">Button</Box>
+<Box
+  scopedStyle={{
+    $self: {
+      padding: '16px',
+      '&:hover': { 
+        backgroundColor: 'black', 
+        color: 'pink' 
+      }
+    }
+  }}
+>
+  div (scoped styles)
+</Box>
 `}
 >
   <Box class="box-examples">
     <Box element="a" href="/box">link</Box>
     <Box element="button">Button</Box>
     <Box
-      style="display: flex; padding: 16px; justify-content: center; align-content: center"
+      style="padding: 16px;"
       on:mouseover={() => (hovering = true)}
       on:mouseout={() => (hovering = false)}
       class={hoverClass}
     >
       div (default)
+    </Box>
+    <Box
+      scopedStyle={{
+        $self: {
+          padding: '16px',
+          '&:hover': { backgroundColor: 'black', color: 'pink' }
+        },
+        '@media (max-width: 500px)': {
+          $self: {
+            color: 'green'
+          }
+        }
+      }}
+    >
+      div (scoped styles)
     </Box>
   </Box>
 </Variant>

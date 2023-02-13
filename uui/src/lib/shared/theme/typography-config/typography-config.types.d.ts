@@ -1,4 +1,4 @@
-import type { CssObject } from '../config/theme-config.types';
+import type { CssObject, CssProperties } from '../config/theme-config.types';
 
 export type ThemeTypography = TypographyPalette;
 
@@ -12,32 +12,20 @@ export interface TypographyVars {
 }
 
 export interface TypographyPalette {
-  global?: { fontFamily: string };
-  h1?: TypographyPaletteValues;
-  h2?: TypographyPaletteValues;
-  h3?: TypographyPaletteValues;
-  h4?: TypographyPaletteValues;
-  h5?: TypographyPaletteValues;
-  h6?: TypographyPaletteValues;
-  body1?: TypographyPaletteValues;
-  body2?: TypographyPaletteValues;
-  subtitle1?: TypographyPaletteValues;
-  subtitle2?: TypographyPaletteValues;
-  caption?: TypographyPaletteValues;
-  overline?: TypographyPaletteValues;
-  inherit?: TypographyPaletteValues;
-  button?: TypographyPaletteValues;
-  [key: string]: TypographyPaletteValues;
-}
-
-export interface TypographyPaletteValues {
-  fontFamily?: string;
-  fontStyle?: string;
-  fontWeight?: string;
-  fontSize?: string;
-  lineHeight?: string;
-  letterSpacing?: string;
-  textDecoration?: string;
-  textTransform?: string;
-  color?: string;
+  global?: CssProperties;
+  h1?: CssProperties;
+  h2?: CssProperties;
+  h3?: CssProperties;
+  h4?: CssProperties;
+  h5?: CssProperties;
+  h6?: CssProperties;
+  body1?: CssProperties;
+  body2?: CssProperties;
+  subtitle1?: CssProperties;
+  subtitle2?: CssProperties;
+  caption?: CssProperties;
+  overline?: CssProperties;
+  inherit?: CssProperties;
+  button?: CssProperties;
+  [key: string]: CssProperties;
 }

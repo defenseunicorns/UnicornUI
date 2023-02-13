@@ -1,4 +1,6 @@
-export const UUI_TYPOGRAPHY = {
+import type { ThemeTypography } from './typography-config.types';
+
+export const UUI_TYPOGRAPHY: ThemeTypography = {
   global: {
     fontFamily: 'roboto, helvetica, sans-serif, arial'
   },

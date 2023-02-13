@@ -42,6 +42,7 @@ export {
 // Export Utility Functions here
 export { makeThemeColor } from './shared/utils/makeThemeColor';
 export { getPreferredTheme } from './shared/utils/getPreferredTheme';
+export { scopedStyles } from './shared/utils/scopedStyles';
 export { UUI_PALETTES } from './shared/theme/palette/default-palettes';
 export { UUI_TYPOGRAPHY } from './shared/theme/typography-config/default-typography-config';
 
@@ -68,13 +69,17 @@ export type {
   PreferredTheme
 } from './shared/theme/palette/palette.types';
 export type { BoxProps } from './Box/box.types';
-export type { CssObject } from './shared/theme/config/theme-config.types';
+export type {
+  CssObject,
+  ScopedStyles,
+  BaseScopedStyle,
+  CssProperties
+} from './shared/theme/config/theme-config.types';
 export type {
   TypographyVars,
   ThemeTypography,
   TypographyConfig,
-  TypographyPalette,
-  TypographyPaletteValues
+  TypographyPalette
 } from './shared/theme/typography-config/typography-config.types';
 export type { DialogActionsProps, DialogTitleProps } from './Dialog/Dialog.types';
 export type { IconButtonColor, IconButtonProps } from './IconButton/IconButton.types';

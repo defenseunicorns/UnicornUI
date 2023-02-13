@@ -35,7 +35,7 @@
             helperText="supporting text"
           />
           <TextField
-            label="Label"
+            label="Character Counter"
             variant="outlined"
             color="primary"
             characterCounter={true}
