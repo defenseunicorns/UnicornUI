@@ -43,6 +43,7 @@
           />
           <TextField
             disabled
+            autofocus
             label="Disabled"
             variant="outlined"
             color="primary"
@@ -74,7 +75,7 @@
             helperText="supporting text"
           />
           <TextField
-            label="Label"
+            label="Character Counter"
             variant="outlined"
             color="primary"
             characterCounter={true}
@@ -82,6 +83,7 @@
           />
           <TextField 
             disabled 
+            autofocus
             label="Disabled" 
             variant="outlined" 
             color="primary" 
