@@ -19,5 +19,8 @@
     "format": "npm run format --workspaces",
     "prepare": "husky install",
     "postinstall": "npm run check"
+  },
+  "dependencies": {
+    "@material/checkbox": "^14.0.0"
   }
 }
