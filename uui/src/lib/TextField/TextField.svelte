@@ -30,6 +30,7 @@
   let inputProps: any = {};
   let containerProps: any = {};
   ({
+    autofocus: inputProps.autofocus,
     required: inputProps.required,
     disabled: inputProps.disabled,
     minlength: inputProps.minlength,
@@ -76,6 +77,10 @@
       };
     }
     if (value) {
+      notched = true;
+      floating = true;
+    }
+    if ($$restProps.autofocus) {
       setFocusStates();
     }
   });

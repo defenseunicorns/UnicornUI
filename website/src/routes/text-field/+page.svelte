@@ -12,11 +12,11 @@
 >
   <div class="labeled-example">
     <Typography variant="subtitle1">Outlined:</Typography>
-    <TextField autofocus label="Label" variant="outlined" color="primary" />
+    <TextField label="Label" variant="outlined" color="primary" />
   </div>
   <div class="labeled-example">
     <Typography variant="subtitle1">Filled:</Typography>
-    <TextField label="Label" variant="filled" color="primary" value="Value" />
+    <TextField autofocus label="Label" variant="filled" color="primary" value="Value" />
   </div>
   <AccordionGroup>
     <Accordion isOpen={true}>
@@ -259,6 +259,7 @@
           <div class="labeled-example">
             <Typography variant="subtitle1">Override Focus:</Typography>
             <TextField
+              autofocus
               variant="outlined"
               label="Label"
               color="secondary"
