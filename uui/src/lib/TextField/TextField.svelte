@@ -11,9 +11,9 @@
   export let variant: TextFieldVariant = 'outlined';
   export let label: string;
   export let color: ThemeColors = 'inherit';
-  export let onSurfaceColor: ThemeColors = 'inherit';
   export let helperText = '';
   export let characterCounter = false;
+  export let error = false;
   export let value = '';
 
   // locals
@@ -27,8 +27,9 @@
   let notchWidth = '';
   let active = '';
 
-  let inputProps: any = {};
-  let containerProps: any = {};
+  // Separate Container Props from Input Props
+  let inputProps: Record<string, string | boolean | number> = {};
+  let containerProps: Record<string, string | boolean | number> = {};
   ({
     autofocus: inputProps.autofocus,
     required: inputProps.required,
@@ -47,7 +48,8 @@
     active = 'active';
   }
 
-  function clickAway(evt: MouseEvent) {
+  // Remove some or all focus states when user clicks away
+  function clickAway(evt: MouseEvent | KeyboardEvent) {
     if (evt.target !== inputRef && !$$restProps.placeholder) {
       focused = false;
       active = '';
@@ -69,6 +71,7 @@
     return classes.join(' ');
   }
 
+  // Handle initial states based on props
   onMount(() => {
     if (inputRef) {
       inputRef.oninvalid = (evt: Event) => {
@@ -83,6 +86,9 @@
     if ($$restProps.autofocus) {
       setFocusStates();
     }
+    if (error) {
+      invalid = true;
+    }
   });
 
   $: if (inputRef && characterCounter) {
@@ -91,6 +97,7 @@
     }
   }
 
+  // Calculate Notch Width
   $: if (labelRef) {
     if (focused) {
       notchWidth = `${labelRef.offsetWidth * 0.9}px`;
@@ -99,16 +106,16 @@
     }
   }
 
+  // Reactive Variables
   $: eventComponents = [current_component];
   $: computedColor = makeThemeColor(color);
-  $: computedOnSurfaceColor = makeThemeColor(onSurfaceColor);
-  $: containerProps.style =
-    containerProps.style +
-    `;--color: ${computedColor}; --on-surface-color: ${computedOnSurfaceColor};`;
+
+  // Merge default styles / classes with any styles or classes passed to TextField by user
+  $: containerProps.style = containerProps.style + `;--color: ${computedColor};`;
   $: containerProps.class = containerProps.class + ' text-field-container';
 </script>
 
-<svelte:window on:click={clickAway} />
+<svelte:window on:click={clickAway} on:keydown={clickAway} />
 
 <div {...containerProps}>
   <div
@@ -190,7 +197,7 @@
     flex-direction: column;
   }
 
-  // Ready State Colors
+  // Enabled Inactive State Colors
   .mdc-text-field {
     @include mdc-text-field-ink-color(var(--on-background));
     @include mdc-text-field-outline-color(var(--text-field-inactive));
@@ -228,7 +235,7 @@
     @include mdc-text-field-focused-outline-color(var(--error));
   }
 
-  // Label
+  // Label Classes for Specific Targeting
   .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
     @include mdc-floating-label-ink-color(var(--text-field-inactive));
   }
@@ -243,7 +250,7 @@
     @include mdc-floating-label-ink-color(var(--error));
   }
 
-  // Helper Line
+  // Helper Line Classes for Specific Targeting
   .mdc-text-field:not(.mdc-text-field--disabled)
     + .mdc-text-field-helper-line
     .mdc-text-field-helper-text,
@@ -260,9 +267,9 @@
 
   // Variants
 
-  // outlined
+  // outlined -- no specific targeting needed
 
-  // filled
+  // Filled Classes for Specific Targeting
   .mdc-text-field--filled {
     @include mdc-text-field-fill-color(var(--text-field-background));
     @include mdc-text-field-bottom-line-color(var(--text-field-inactive));

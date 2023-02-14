@@ -16,7 +16,7 @@
   </div>
   <div class="labeled-example">
     <Typography variant="subtitle1">Filled:</Typography>
-    <TextField autofocus label="Label" variant="filled" color="primary" value="Value" />
+    <TextField label="Label" variant="filled" color="primary" />
   </div>
   <AccordionGroup>
     <Accordion isOpen={true}>
@@ -54,7 +54,11 @@
           </div>
           <div class="labeled-example">
             <Typography variant="subtitle1">Disabled:</Typography>
-            <TextField disabled label="Label" variant="outlined" color="primary" value="Value" />
+            <TextField label="Label" variant="outlined" color="primary" value="Value" />
+          </div>
+          <div class="labeled-example">
+            <Typography variant="subtitle1">Error:</Typography>
+            <TextField error label="Label" variant="outlined" color="primary" value="Value" />
           </div>
         </Box>
         <pre class="variant-code">
@@ -66,6 +70,7 @@
               helperText?: string;
               color?: ThemeColors;
               characterCounter?: boolean;
+              error?: boolean;
           }
           ___________________________________________
           
@@ -94,6 +99,13 @@
             label="Label" 
             variant="outlined" 
             color="primary" 
+          />
+          <TextField 
+            error 
+            label="Label" 
+            variant="outlined" 
+            color="primary" 
+            value="Value" 
           />
           `}
         </pre>
@@ -259,7 +271,6 @@
           <div class="labeled-example">
             <Typography variant="subtitle1">Override Focus:</Typography>
             <TextField
-              autofocus
               variant="outlined"
               label="Label"
               color="secondary"
