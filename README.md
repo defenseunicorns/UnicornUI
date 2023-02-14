@@ -14,6 +14,7 @@ https://unicorn-ui.netlify.app/
 
 - [Theme](https://unicorn-ui.netlify.app/theme)
 - [Typography](https://unicorn-ui.netlify.app/typography)
+- [ScopedStyles](https://unicorn-ui.netlify.app/scoped-styles)
 
 ### Components
 
@@ -23,6 +24,7 @@ https://unicorn-ui.netlify.app/
 - [Accordion](https://unicorn-ui.netlify.app/Accordion)
 - [Dialog](https://unicorn-ui.netlify.app/dialog)
 - [Chip](https://unicorn-ui.netlify.app/chip)
+- [TextField](https://unicorn-ui.netlify.app/text-field)
 
 ## Contributing
 
