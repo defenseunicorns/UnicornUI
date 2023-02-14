@@ -1,3 +1,115 @@
+# v0.0.35
+
+## Breaking Changes
+
+### Box
+
+- Removed the `additionalEvents` prop as it is no longer necessary with new eventRedirection action.
+
+### Types
+
+- removed `type` `TypographyPaletteValues` in favor of `CssObject`
+
+### eventHandler
+
+- renamed `eventHandler.ts` to `eventRedirection.ts`
+  - renamed `eventHandler` to `eventRedirection`
+  - `eventRedirection` is no longer a curried fn.
+  - `eventRedirection` now takes in an `Array` of `type current_component`
+- is now used inline:
+
+```svelte
+<script lang="ts">
+  import eventRedirection from '...';
+
+  // locals
+  let inputRef: HtmlInputElement;
+  let inputValue: '';
+
+  // Watch
+  $: eventComponents = [current_component];
+</script>
+
+<input
+  use:eventRedirection={eventComponents}
+  type="text"
+  bind:this={inputRef}
+  bind:value={inputValue}
+/>
+```
+
+## Updates
+
+### scopedStyles action
+
+- Add `scopedStyles` action
+- Takes in param of type `ScopedStyles`
+- Creates css for the target element allowing non-global css for composed custom components.
+- `$self` is used to reference the internal scoped classname
+- Supports css3 proposed `&` nesting inside `$self` style
+- Supports `@media` styles
+- classes must be prefixed with `$self` to maintain scoping.
+  - nested styles may use `&` in order to target the parent selector.
+
+```svelte
+<script lang="ts">
+  const boxStyle: ScopedStyles = {
+    $self: {
+      display: 'flex',
+      flexDirection: 'row',
+      backgroundColor: 'black',
+      color: 'pink'
+      '& .child': {
+        color: 'gold',
+      }
+      '&:hover': {
+        color: 'green'
+      }
+    }
+    '@media (max-width: 500px)': {
+      $self: {
+        color: 'green',
+        flexDirection: 'column'
+        '& .child': {
+          color: 'green'
+        },
+        '&::after {
+          content: '',
+        }
+      }
+    };
+</script>
+
+<Box scopedStyle={boxStyle}>
+  <Box class="child">My class can be targeted without bleeding into global.</Box>
+</Box>
+```
+
+### Box
+
+- `ref` prop type changed to Node in order to support more generic types than HtmlElement
+- Add `scopedStyles` prop that is passed to the `use:scopedStyles` action
+
+### TypographyConfig now supports css typing, including vendor attributes and intellisense.
+
+- Added [csstypes](https://github.com/frenic/csstype)
+
+### TextField
+
+- Created outlined and filled variants of TextField component
+  - Accepts all native HTMLInput properties as well as:
+    - variant: "outlined" | "filled" = 'outlined' (default)
+    - label: string
+    - helperText?: string
+    - characterCounter?: boolean (must be used with maxLength)
+    - color?: ThemeColors = inherit (default)
+    - error?: boolean = false (default)
+- Created TextFieldIcon component specifically for TextField leading and trailing icons
+  - accepts leadingIcon and trailingIcon as slot names
+  - expects variant ("leading" | "trailing")
+
+---
+
 # v0.0.34
 
 ## Breaking Changes
@@ -30,7 +142,7 @@
 - No longer necessary to import UUI_TYPOGRAPHY or UUI_PALETTES in consumers respective custom values.
 - Ensures that fallback values are UUI defaults instead of MDC defaults.
 
-### Theme css vars can now be accessed without mdc-\* prefix.
+### Theme Css vars can now be accessed without mdc-\* prefix.
 
 - Palette and Typography values accessed with dashed css convention
 - Typography classes can now be designated using their `TypographyConfig` field name.

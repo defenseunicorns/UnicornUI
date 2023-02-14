@@ -1,32 +1,47 @@
 <script lang="ts">
-  import { current_component } from 'svelte/internal';
-  import { eventHandler } from '../shared/utils/eventHandler';
   import type { BoxProps } from './box.types';
+  import { current_component } from 'svelte/internal';
+  import { scopedStyles } from '../shared/utils/scopedStyles';
+  import { eventRedirection } from '../shared/utils/eventRedirection';
+  import type { ScopedStyles } from '../shared/theme/config/theme-config.types';
 
   // Svelte does generics
   type T = $$Generic<EventTarget>;
 
   // Props
   export let element = 'div';
-  export let additionalEvents: string[] = [];
-  export let ref: HTMLElement | undefined = undefined;
+  export let ref: Node | undefined = undefined;
   export let eventComponent: typeof current_component | undefined = undefined;
+  export let scopedStyle: ScopedStyles | undefined = undefined;
 
   type $$Props = BoxProps<T>;
 
   // Watch
-  $: handleEvents = eventHandler(eventComponent || current_component, additionalEvents);
+  $: eventComponents = [current_component, eventComponent];
 </script>
 
-<svelte:element
-  this={element}
-  bind:this={ref}
-  use:handleEvents
-  {...$$restProps}
-  class="unstyled-box {$$restProps.class || ''}"
->
-  <slot />
-</svelte:element>
+{#if $$slots.default}
+  <svelte:element
+    this={element}
+    use:scopedStyles={scopedStyle}
+    use:eventRedirection={eventComponents}
+    bind:this={ref}
+    {...$$restProps}
+    class="unstyled-box {$$restProps.class || ''}"
+  >
+    <slot />
+  </svelte:element>
+{:else}
+  <!--Prevents self closing tag warning-->
+  <svelte:element
+    this={element}
+    use:scopedStyles={scopedStyle}
+    use:eventRedirection={eventComponents}
+    bind:this={ref}
+    {...$$restProps}
+    class="unstyled-box {$$restProps.class || ''}"
+  />
+{/if}
 
 <style lang="scss">
   .unstyled-box,
