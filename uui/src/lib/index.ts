@@ -8,6 +8,7 @@ import Dialog from './Dialog/Dialog.svelte';
 import Stepper from './Stepper/Stepper.svelte';
 import ChipIcon from './Chip/chip-icon.svelte';
 import StepIcon from './Stepper/StepIcon.svelte';
+import ListItem from './ListItem/ListItem.svelte';
 import ButtonIcon from './Button/ButtonIcon.svelte';
 import Accordion from './Accordion/accordion.svelte';
 import DialogTitle from './Dialog/DialogTitle.svelte';
@@ -26,6 +27,7 @@ export {
   Stepper,
   ChipIcon,
   StepIcon,
+  ListItem,
   Accordion,
   ButtonIcon,
   IconButton,
@@ -88,3 +90,4 @@ export type {
 } from './Stepper/stepper.types';
 export type { AccordionProps, AccordionGroupProps } from './Accordion/accordion.types';
 export type { ThemeColors } from './shared/theme/default-colors/colors.types';
+export type { ListItemProps } from './ListItem/ListItem.types';
