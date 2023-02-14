@@ -7,6 +7,8 @@
   <ul class="mdc-deprecated-list demo-list">
     <ListItem text="List Item" />
     <ListItem text="List Item" />
+    <ListItem text="List Item" selected={true} />
+    <ListItem text="List Item" disabled={true} />
   </ul>
 </section>
 

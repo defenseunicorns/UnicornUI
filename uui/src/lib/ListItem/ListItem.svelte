@@ -20,20 +20,24 @@
   export let order: number;
 
   // functions
-
   onMount((): void => {
     if (listElement) {
       new MDCRipple(listElement);
     }
   });
+
+  function setSelected() {
+    if (!disabled) selected = !selected;
+  }
 </script>
 
 <li
   bind:this={listElement}
   class="mdc-deprecated-list-item mdc-ripple-upgraded"
   class:mdc-ripple-upgraded--background-focused={selected}
-  on:click={() => (selected = !selected)}
-  on:keydown={() => (selected = !selected)}
+  class:mdc-deprecated-list-item--disabled={disabled}
+  on:click={setSelected}
+  on:keydown={setSelected}
 >
   {#if checkBox && checkBox === 'leading'}
     <ListItemCheckbox {selected} />
