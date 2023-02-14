@@ -32,7 +32,7 @@ export function eventRedirection(node: Node, components: (typeof current_compone
 
   return {
     destroy: () => {
-      events.map(([event, fn]: [string, VoidFunction]) => {
+      events.forEach(([event, fn]: [string, VoidFunction]) => {
         node.removeEventListener(event, fn);
       });
     }

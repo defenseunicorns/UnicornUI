@@ -2,6 +2,8 @@
 
 ## Breaking Changes
 
+## Development
+
 ### Internal
 
 - renamed `eventHandler.ts` to `eventRedirection.ts`
@@ -93,6 +95,20 @@
 ### TypographyConfig now supports css typing, including vendor attributes and intellisense.
 
 - Added [csstypes](https://github.com/frenic/csstype)
+
+### TextField
+
+- Created outlined and filled variants of TextField component
+- - Accepts all native HTMLInput properties as well as:
+- - - variant: "outlined" | "filled" = 'outlined' (default)
+- - - label: string
+- - - helperText?: string
+- - - characterCounter?: boolean (must be used with maxLength)
+- - - color?: ThemeColors = inherit (default)
+- - - error?: boolean = false (default)
+- Created TextFieldIcon component specifically for TextField leading and trailing icons
+- - accepts leadingIcon and trailingIcon as slot names
+- - expects variant ("leading" | "trailing")
 
 # v0.0.34
 
