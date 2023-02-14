@@ -54,6 +54,7 @@
       <Button href="/dialog" {...getVariant(path, '/dialog')}>Dialog</Button>
       <Button href="/typography" {...getVariant(path, '/typography')}>Typography</Button>
       <Button href="/chip" {...getVariant(path, '/chip')}>Chip</Button>
+      <Button href="/text-field" {...getVariant(path, '/text-field')}>Text Field</Button>
       <Button href="/scoped-styles" {...getVariant(path, '/scoped-styles')}>Scoped Styles</Button>
     </div>
   </section>
