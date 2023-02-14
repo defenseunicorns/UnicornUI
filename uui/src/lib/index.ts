@@ -41,6 +41,7 @@ export { getPreferredTheme } from './shared/utils/getPreferredTheme';
 export { scopedStyles } from './shared/utils/scopedStyles';
 export { UUI_PALETTES } from './shared/theme/palette/default-palettes';
 export { UUI_TYPOGRAPHY } from './shared/theme/typography-config/default-typography-config';
+export { UUI_BREAKPOINTS } from './shared/theme/breakpoints/default-breakpoints';
 
 // Re-export your types here.
 export type {
@@ -88,3 +89,4 @@ export type {
 } from './Stepper/stepper.types';
 export type { AccordionProps, AccordionGroupProps } from './Accordion/accordion.types';
 export type { ThemeColors } from './shared/theme/default-colors/colors.types';
+export type { BreakPoints } from './shared/theme/breakpoints/breakpoints.types';
