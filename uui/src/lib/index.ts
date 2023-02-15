@@ -46,6 +46,7 @@ export { scopedStyles } from './shared/utils/scopedStyles';
 export { UUI_PALETTES } from './shared/theme/palette/default-palettes';
 export { UUI_TYPOGRAPHY } from './shared/theme/typography-config/default-typography-config';
 export { UUI_BREAKPOINTS } from './shared/theme/breakpoints/default-breakpoints';
+export { BREAKPOINT_CONTEXT } from './shared/theme/breakpoints/breakpoint-context';
 
 // Re-export your types here.
 export type {
@@ -72,7 +73,8 @@ export type {
 export type { BoxProps } from './Box/box.types';
 export type {
   CssObject,
-  ScopedStyles,
+  ScopedStyleExpression,
+  SSX,
   BaseScopedStyle,
   CssProperties
 } from './shared/theme/config/theme-config.types';
@@ -94,4 +96,4 @@ export type {
 export type { TextFieldProps, TextFieldIconProps } from './TextField/TextField.types';
 export type { AccordionProps, AccordionGroupProps } from './Accordion/accordion.types';
 export type { ThemeColors } from './shared/theme/default-colors/colors.types';
-export type { BreakPoints } from './shared/theme/breakpoints/breakpoints.types';
+export type { Breakpoints } from './shared/theme/breakpoints/breakpoints.types';

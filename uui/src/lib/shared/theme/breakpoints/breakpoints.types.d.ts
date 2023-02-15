@@ -1,7 +1,10 @@
-export interface BreakPoints {
-  xs?: string;
-  sm?: string;
-  md?: string;
-  lg?: string;
-  xl?: string;
+export type BreakpointKey = `$${string}`;
+export type BreakpointValue = `${number}${string}`;
+export interface Breakpoints {
+  $xs?: BreakpointValue;
+  $sm?: BreakpointValue;
+  $md?: BreakpointValue;
+  $lg?: BreakpointValue;
+  $xl?: BreakpointValue;
+  [key: BreakpointKey]: BreakpointValue;
 }

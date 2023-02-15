@@ -9,13 +9,14 @@
 <section>
   <Typography variant="h3">Scoped Styles</Typography>
   <Typography variant="body1">
-    ScopedStyles has been created to allow styling on composed components without abusing the
-    :global tag and allowing isolated component styles to bleed into the global space. In order to
-    solve svelte shortcomings related to styling composed components, Unicorn UI implements a
+    ScopedStyleExpression has been created to allow styling on composed components without abusing
+    the :global tag and allowing isolated component styles to bleed into the global space. In order
+    to solve svelte shortcomings related to styling composed components, Unicorn UI implements a
     runtime js to css action to apply truly scoped css styles to custom components without the need
-    of large external dependencies. While ScopedStyles uses "js in css", in order to maintain the
-    simplicity and continuity that svelte provides, ScopedStyles has been designed to "write like
-    css" with only a few simple caveats such as support for '&' based css nesting.</Typography
+    of large external dependencies. While ScopedStyleExpression (SSX) uses "js in css", in order to
+    maintain the simplicity and continuity that svelte provides, ScopedStyleExpression has been
+    designed to "write like css" with only a few simple caveats such as support for '&' based css
+    nesting.</Typography
   >
   <Typography variant="h4">Action:</Typography>
   <Box element="ul">
@@ -23,7 +24,7 @@
   </Box>
   <Typography variant="h4">Params:</Typography>
   <Box element="ul">
-    <Typography variant="body1">jss?: ScopedStyles</Typography>
+    <Typography variant="body1">ssx?: ScopedStyleExpression | SSX</Typography>
   </Box>
   <Typography variant="h4">Reserved Tokens:</Typography>
   <Box element="ul">
@@ -37,7 +38,7 @@
       &
       <Box element="ul">
         <Typography>
-          * replaced with the "parent" selector within the ScopedStyles Object.
+          * replaced with the "parent" selector within the ScopedStyleExpression Object.
         </Typography>
       </Box>
     </Typography>

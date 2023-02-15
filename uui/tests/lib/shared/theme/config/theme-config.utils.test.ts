@@ -5,13 +5,13 @@ import {
   camelBackToDash
 } from '../../../../../src/lib/shared/theme/config/theme-config.utils';
 describe('makeStyles', () => {
-  it('creates a css class string from ScopedStyles', () => {
+  it('creates a css class string from ScopedStyleExpression', () => {
     expect(makeStyles({ '.mdc-typography--custom-typography': { fontSize: '1.2px' } })).toBe(
       '.mdc-typography--custom-typography{font-size:1.2px;}'
     );
   });
 
-  it('creates a css style from ScopedStyles', () => {
+  it('creates a css style from ScopedStyleExpression', () => {
     expect(makeStyles({ 'body > h1': { color: 'pink', backgroundColor: 'red' } })).toBe(
       'body > h1{color:pink;background-color:red;}'
     );
