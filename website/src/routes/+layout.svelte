@@ -56,7 +56,7 @@
       <Button href="/chip" {...getVariant(path, '/chip')}>Chip</Button>
       <Button href="/text-field" {...getVariant(path, '/text-field')}>Text Field</Button>
       <Button href="/scoped-styles" {...getVariant(path, '/scoped-styles')}>Scoped Styles</Button>
-      <Button href="/list-item" {...getVariant(path, '/list-item')}>List Item</Button>
+      <Button href="/list" {...getVariant(path, '/list')}>List</Button>
     </div>
   </section>
   <main>

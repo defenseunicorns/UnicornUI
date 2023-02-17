@@ -33,9 +33,12 @@
 </div>
 
 <style lang="scss">
-  @use '@material/checkbox';
   @use '@material/ripple';
   @use '@material/list';
-  @include list.deprecated-core-styles;
+  @use '@material/checkbox';
+  @use '@material/form-field';
+
   @include checkbox.core-styles;
+  @include form-field.core-styles;
+  @include list.deprecated-core-styles;
 </style>
