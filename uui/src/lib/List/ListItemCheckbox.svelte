@@ -1,5 +1,6 @@
 <script lang="ts">
   export let selected = false;
+  export let placement: 'graphic' | 'meta' = 'meta';
   let strokeColor = 'black';
 
   function setSelected() {
@@ -8,7 +9,7 @@
 </script>
 
 <div
-  class="mdc-checkbox mdc-deprecated-list-item__meta mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded"
+  class="mdc-checkbox mdc-deprecated-list-item__{placement} mdc-checkbox--upgraded mdc-ripple-upgraded mdc-ripple-upgraded--unbounded"
   class:mdc-checkbox--selected={selected}
   class:mdc-ripple-upgraded--background-focused={selected}
 >

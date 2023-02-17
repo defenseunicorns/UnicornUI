@@ -2,6 +2,7 @@
 import Box from './Box/box.svelte';
 import Chip from './Chip/chip.svelte';
 import Step from './Stepper/Step.svelte';
+import List from './List/List.svelte';
 import Theme from './Theme/theme.svelte';
 import Button from './Button/Button.svelte';
 import Dialog from './Dialog/Dialog.svelte';
@@ -9,7 +10,7 @@ import Stepper from './Stepper/Stepper.svelte';
 import ChipIcon from './Chip/chip-icon.svelte';
 import StepIcon from './Stepper/StepIcon.svelte';
 import TextField from './TextField/TextField.svelte';
-import List from './List/List.svelte';
+import ListItem from './List/ListItem.svelte';
 import Accordion from './Accordion/accordion.svelte';
 import ButtonIcon from './Button/ButtonIcon.svelte';
 import IconButton from './IconButton/IconButton.svelte';
@@ -29,6 +30,7 @@ export {
   Dialog,
   Stepper,
   ChipIcon,
+  ListItem,
   StepIcon,
   TextField,
   Accordion,
@@ -96,3 +98,4 @@ export type { TextFieldProps, TextFieldIconProps } from './TextField/TextField.t
 export type { AccordionProps, AccordionGroupProps } from './Accordion/accordion.types';
 export type { ThemeColors } from './shared/theme/default-colors/colors.types';
 export type { ListProps } from './List/List.types';
+export type { ListItemProps } from './List/ListItem.types';

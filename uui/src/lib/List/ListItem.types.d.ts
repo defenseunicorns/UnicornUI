@@ -8,4 +8,6 @@ export interface ListItemProps {
   disabledGutters?: boolean;
   disabledPadding?: boolean;
   order?: number;
+  leadingAdornment?: { element: ComponentType<SvelteComponentTyped>; props: Record<string, any> };
+  trailingAdornment?: { element: ComponentType<SvelteComponentTyped>; props: Record<string, any> };
 }
