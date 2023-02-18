@@ -27,7 +27,7 @@
     use:eventRedirection={eventComponents}
     bind:this={ref}
     {...$$restProps}
-    class="unstyled-box {$$restProps.class || ''}"
+    class="box unstyled-box {$$restProps.class || ''}"
   >
     <slot />
   </svelte:element>
@@ -39,7 +39,7 @@
     use:eventRedirection={eventComponents}
     bind:this={ref}
     {...$$restProps}
-    class="unstyled-box {$$restProps.class || ''}"
+    class="box unstyled-box {$$restProps.class || ''}"
   />
 {/if}
 
@@ -48,6 +48,5 @@
   .unstyled-box::before,
   .unstyled-box::after {
     box-sizing: border-box;
-    margin-block: unset;
   }
 </style>

@@ -68,10 +68,6 @@ export class StyleBuilder {
     return this.isBreakpoint(key) || this.NESTABLE_AT_RULES.has(keyPrefix || key);
   }
 
-  isMedia(key: string): boolean {
-    return key.startsWith(this.MEDIA_DESIGNATOR);
-  }
-
   isBreakpoint(key: string): boolean {
     return this.breakpoints[key as BreakpointKey] !== undefined;
   }
@@ -168,7 +164,7 @@ export class StyleBuilder {
       }
       // BaseCase
       // Ignore array values as they are not supported in css
-      else if (typeof nestedStyles[selector] === 'string') {
+      else if (!Array.isArray(result[selector])) {
         result[selector] = nestedStyles[selector] as string;
       }
     }

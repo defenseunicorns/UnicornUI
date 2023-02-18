@@ -19,6 +19,7 @@ export interface ScopedStylesParams {
 ### Box
 
 - renamed `scopedStyle` prop to `ssx`
+- removed `margin-block: unset`
 
 ### Types
 

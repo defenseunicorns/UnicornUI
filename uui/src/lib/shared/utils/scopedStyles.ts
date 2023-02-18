@@ -1,4 +1,4 @@
-import type { ScopedStylesParams } from '../theme/config/theme-config.types';
+import type { ScopedStylesParams } from '../theme/config/scopedStyles.types';
 import { UUI_BREAKPOINTS } from '../theme/breakpoints/default-breakpoints';
 import { addThemeStyleToHead } from '../theme/config/theme-config.utils';
 import { BREAKPOINT_CONTEXT } from '../theme/breakpoints/breakpoint-context';
