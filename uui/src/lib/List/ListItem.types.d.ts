@@ -1,4 +1,8 @@
-export interface ListItemProps {
+import type { IconButtonProps } from '$lib/IconButton/IconButton.types';
+import type { ComponentAsProp } from '../shared/types/propComponent';
+import type { HtmlAttributes } from 'csstype';
+
+export type ListItemProps = {
   text: string;
   secondaryText?: string;
   selected?: boolean;
@@ -8,6 +12,6 @@ export interface ListItemProps {
   disabledGutters?: boolean;
   disabledPadding?: boolean;
   order?: number;
-  leadingAdornment?: { element: ComponentType<SvelteComponentTyped>; props: Record<string, any> };
-  trailingAdornment?: { element: ComponentType<SvelteComponentTyped>; props: Record<string, any> };
-}
+  leadingAdornment?: ComponentAsProp<IconButtonProps>;
+  trailingAdornment?: ComponentAsProp<IconButtonProps | Record<string, unknown>>;
+};

@@ -1,7 +1,7 @@
 <script lang="ts">
   import IconButton from '@defense-unicorns/unicorn-ui/src/lib/IconButton/IconButton.svelte';
-  import { List, Typography, ListItem } from '@uui';
-  import type { ListItemProps } from '@uui';
+  import { List, Typography, type StepProps } from '@uui';
+  import type { ListItemProps, ComponentAsProp, IconButtonProps } from '@uui';
 
   let listItemsOneLine: ListItemProps[] = [
     { text: 'List Item' },
@@ -12,7 +12,7 @@
       leadingAdornment: {
         element: IconButton,
         props: { iconClass: 'material-symbols-outlined', iconContent: 'favorite' }
-      }
+      } as ComponentAsProp<StepProps>
     }
   ];
 
@@ -25,8 +25,12 @@
       secondaryText: 'Secondary Text',
       trailingAdornment: {
         element: IconButton,
-        props: { iconClass: 'material-symbols-outlined', iconContent: 'close' }
-      }
+        props: {
+          iconClass: 'material-symbols-outlined',
+          iconColor: 'primary',
+          iconContent: 'close'
+        }
+      } as ComponentAsProp<IconButtonProps>
     }
   ];
 </script>
@@ -38,16 +42,6 @@
 <section>
   <Typography variant="h6">Single-Line</Typography>
   <List class="demo-list" listItems={listItemsOneLine} />
-
-  <Typography variant="h6">Single-Line: Slot</Typography>
-  <List class="demo-list" useSlot={true}>
-    <div slot="listItems">
-      <ListItem text="List Item" />
-      <ListItem text="List Item" selected={true} />
-      <ListItem text="List Item" disabled={true} />
-      <ListItem text="List Item" checkBox="trailing" />
-    </div>
-  </List>
 
   <Typography variant="h6">Two-Line</Typography>
   <List class="demo-list" variant="two-line" listItems={listItemsTwoLine} />

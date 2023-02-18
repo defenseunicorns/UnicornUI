@@ -99,3 +99,4 @@ export type { AccordionProps, AccordionGroupProps } from './Accordion/accordion.
 export type { ThemeColors } from './shared/theme/default-colors/colors.types';
 export type { ListProps } from './List/List.types';
 export type { ListItemProps } from './List/ListItem.types';
+export type { ComponentAsProp } from './shared/types/propComponent';
