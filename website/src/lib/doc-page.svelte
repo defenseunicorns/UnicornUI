@@ -40,6 +40,6 @@
   $: $$restProps.ssx = { ...wrapper, ...$$restProps.ssx };
 </script>
 
-<Box element="section" class="elevation-4" {...$$restProps}>
+<Box element="section" {...$$restProps}>
   <slot />
 </Box>
