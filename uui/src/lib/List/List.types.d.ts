@@ -1,5 +1,6 @@
 import type { ListItemProps } from './ListItem.types';
 
-export type ListProps = {
+export interface ListProps {
   listItems: ListItemProps[];
-};
+  disabledPadding?: boolean;
+}

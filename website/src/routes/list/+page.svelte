@@ -1,7 +1,7 @@
 <script lang="ts">
   import IconButton from '@defense-unicorns/unicorn-ui/src/lib/IconButton/IconButton.svelte';
-  import { List, Typography, type StepProps } from '@uui';
-  import type { ListItemProps, ComponentAsProp, IconButtonProps } from '@uui';
+  import type { ListItemProps } from '@uui';
+  import { List, Typography } from '@uui';
 
   let listItemsOneLine: ListItemProps[] = [
     { text: 'List Item' },
@@ -12,7 +12,18 @@
       leadingAdornment: {
         element: IconButton,
         props: { iconClass: 'material-symbols-outlined', iconContent: 'favorite' }
-      } as ComponentAsProp<StepProps>
+      }
+    },
+    {
+      text: 'List Item',
+      trailingAdornment: {
+        element: IconButton,
+        props: {
+          iconClass: 'material-symbols-outlined',
+          iconColor: 'primary',
+          iconContent: 'close'
+        }
+      }
     }
   ];
 
@@ -30,7 +41,8 @@
           iconColor: 'primary',
           iconContent: 'close'
         }
-      } as ComponentAsProp<IconButtonProps>
+      },
+      disabledGutters: true
     }
   ];
 </script>
@@ -41,7 +53,7 @@
 
 <section>
   <Typography variant="h6">Single-Line</Typography>
-  <List class="demo-list" listItems={listItemsOneLine} />
+  <List class="demo-list" listItems={listItemsOneLine} disabledPadding={true} />
 
   <Typography variant="h6">Two-Line</Typography>
   <List class="demo-list" variant="two-line" listItems={listItemsTwoLine} />
