@@ -1,14 +1,35 @@
+# v0.0.36
+
+## Breaking Changes
+
+## Updates
+
+## Development
+
+- Replaced Jest with Vitest
+- configured tests via uui/vite.config.ts -- {globals: true, environment: 'jsdom'}
+- Extended vitest global types via uui/tsconfig.json
+- Added @testing-library/svelte and @testing-library/jest-dom for component testing
+
 # v0.0.35
 
 ## Breaking Changes
 
-### Internal
+### Box
+
+- Removed the `additionalEvents` prop as it is no longer necessary with new eventRedirection action.
+
+### Types
+
+- removed `type` `TypographyPaletteValues` in favor of `CssObject`
+
+### eventHandler
 
 - renamed `eventHandler.ts` to `eventRedirection.ts`
   - renamed `eventHandler` to `eventRedirection`
   - `eventRedirection` is no longer a curried fn.
   - `eventRedirection` now takes in an `Array` of `type current_component`
-  - is now used inline:
+- is now used inline:
 
 ```svelte
 <script lang="ts">
@@ -29,14 +50,6 @@
   bind:value={inputValue}
 />
 ```
-
-### Box
-
-- Removed the `additionalEvents` prop as it is no longer necessary with new eventRedirection action.
-
-### Types
-
-- removed `type` `TypographyPaletteValues` in favor of `CssObject`
 
 ## Updates
 
@@ -93,6 +106,22 @@
 ### TypographyConfig now supports css typing, including vendor attributes and intellisense.
 
 - Added [csstypes](https://github.com/frenic/csstype)
+
+### TextField
+
+- Created outlined and filled variants of TextField component
+  - Accepts all native HTMLInput properties as well as:
+    - variant: "outlined" | "filled" = 'outlined' (default)
+    - label: string
+    - helperText?: string
+    - characterCounter?: boolean (must be used with maxLength)
+    - color?: ThemeColors = inherit (default)
+    - error?: boolean = false (default)
+- Created TextFieldIcon component specifically for TextField leading and trailing icons
+  - accepts leadingIcon and trailingIcon as slot names
+  - expects variant ("leading" | "trailing")
+
+---
 
 # v0.0.34
 
