@@ -52,7 +52,7 @@
   on:keydown={handleInteraction}
 >
   {#if checkBox && checkBox === 'leading' && !leadingAdornment}
-    <ListItemCheckbox {selected} placement="graphic" />
+    <ListItemCheckbox {selected} class="mdc-deprecated-list__graphic" {disabled} />
   {:else if leadingAdornment}
     <svelte:component
       this={leadingAdornment.element}
@@ -68,7 +68,7 @@
   </span>
 
   {#if checkBox && checkBox === 'trailing' && !trailingAdornment}
-    <ListItemCheckbox {selected} placement="meta" />
+    <ListItemCheckbox {selected} class="mdc-deprecated-list__meta" {disabled} />
   {:else if trailingAdornment}
     <svelte:component
       this={trailingAdornment.element}
@@ -78,7 +78,7 @@
   {/if}
 </li>
 
-<style lang="scss">
+<style lang="scss" global>
   @use '@material/list';
   @use '@material/ripple';
 

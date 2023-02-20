@@ -20,7 +20,7 @@
 </ul>
 
 <style lang="scss" global>
-  @use '@material/list' as list;
+  @use '@material/list';
   @include list.deprecated-core-styles;
 
   .mdc-deprecated-list {
