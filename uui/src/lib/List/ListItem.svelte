@@ -78,7 +78,7 @@
   {/if}
 </li>
 
-<style lang="scss" global>
+<style lang="scss">
   @use '@material/list';
   @use '@material/ripple';
 
