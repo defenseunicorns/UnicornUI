@@ -1,19 +1,18 @@
 <script lang="ts">
-  import Box from '../Box/box.svelte';
-  import { current_component } from 'svelte/internal';
+  import Icon from '../Icon/Icon.svelte';
   import type { TextFieldIconProps, TextFieldIconVariant } from './TextField.types';
+  import type { MaterialSymbols } from 'material-symbols';
 
   type T = $$Generic<EventTarget>;
   type $$Props = TextFieldIconProps<T>;
   export let variant: TextFieldIconVariant;
+  export let iconContent: MaterialSymbols;
 </script>
 
-<Box
-  element="i"
-  eventComponent={current_component}
+<Icon
+  variant={iconContent}
   {...$$restProps}
-  class={`mdc-text-field__icon mdc-text-field__icon--${variant} ${$$restProps.class || ''}`}
-  aria-hidden="true"
+  class="mdc-text-field__icon mdc-text-field__icon--{variant} {$$restProps.class || ''}"
 >
   <slot />
-</Box>
+</Icon>

@@ -76,6 +76,7 @@
       <Button href="/breakpoints" {...getVariant(path, '/breakpoints')}>Breakpoints</Button>
       <Button href="/box" {...getVariant(path, '/box')}>Box</Button>
       <Button href="/button" {...getVariant(path, '/button')}>Button</Button>
+      <Button href="/icon" {...getVariant(path, '/icon')}>Icon</Button>
       <Button href="/icon-button" {...getVariant(path, '/icon-button')}>Icon Button</Button>
       <Button href="/accordion" {...getVariant(path, '/accordion')}>Accordion</Button>
       <Button href="/stepper" {...getVariant(path, '/stepper')}>Stepper</Button>

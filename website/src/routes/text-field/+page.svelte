@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { TextField, TextFieldIcon } from '@uui';
+  import { TextField, TextFieldIcon, Icon } from '@uui';
   import Variant from '$lib/Variant.svelte';
   import { AccordionGroup, Accordion, Typography, Box, Button } from '@uui';
 
@@ -124,36 +124,20 @@
           <div class="labeled-example">
             <Typography variant="subtitle1">Leading Icon:</Typography>
             <TextField label="Label" variant="outlined" color="primary">
-              <TextFieldIcon variant="leading" slot="leadingIcon" class="material-symbols-outlined">
-                search
-              </TextFieldIcon>
+              <TextFieldIcon iconContent="search" variant="leading" slot="leadingIcon" />
             </TextField>
           </div>
           <div class="labeled-example">
             <Typography variant="subtitle1">Trailing Icon:</Typography>
             <TextField label="Label" variant="outlined" color="primary">
-              <TextFieldIcon
-                variant="trailing"
-                slot="trailingIcon"
-                class="material-symbols-outlined"
-              >
-                close
-              </TextFieldIcon>
+              <TextFieldIcon iconContent="close" variant="trailing" slot="trailingIcon" />
             </TextField>
           </div>
           <div class="labeled-example">
             <Typography variant="subtitle1">Both Icons:</Typography>
             <TextField label="Label" variant="outlined" color="primary">
-              <TextFieldIcon variant="leading" slot="leadingIcon" class="material-symbols-outlined">
-                search
-              </TextFieldIcon>
-              <TextFieldIcon
-                variant="trailing"
-                slot="trailingIcon"
-                class="material-symbols-outlined"
-              >
-                close
-              </TextFieldIcon>
+              <TextFieldIcon iconContent="search" variant="leading" slot="leadingIcon" />
+              <TextFieldIcon iconContent="close" variant="trailing" slot="trailingIcon" />
             </TextField>
           </div>
         </Box>
@@ -167,7 +151,6 @@
             <TextFieldIcon 
               variant="leading" 
               slot="leadingIcon" 
-              class="material-symbols-outlined"
             >
               search
             </TextFieldIcon>
@@ -180,7 +163,6 @@
             <TextFieldIcon 
               variant="trailing" 
               slot="trailingIcon" 
-              class="material-symbols-outlined"
             >
               close
             </TextFieldIcon>
@@ -193,14 +175,12 @@
             <TextFieldIcon 
               variant="leading" 
               slot="leadingIcon" 
-              class="material-symbols-outlined"
             >
               search
             </TextFieldIcon>
             <TextFieldIcon 
               variant="trailing" 
               slot="trailingIcon" 
-              class="material-symbols-outlined"
             >
               close
             </TextFieldIcon>
@@ -287,13 +267,11 @@
               helperText="icon color is overridden by custom style prop"
             >
               <TextFieldIcon
+                iconContent="search"
                 variant="leading"
                 slot="leadingIcon"
-                class="material-symbols-outlined"
                 style="color: pink !important;"
-              >
-                search
-              </TextFieldIcon>
+              />
             </TextField>
           </div>
         </Box>
@@ -332,7 +310,6 @@
             <TextFieldIcon
               variant="leading"
               slot="leadingIcon"
-              class="material-symbols-outlined"
               style="color: pink !important;"
             >
               search
