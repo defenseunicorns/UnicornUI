@@ -40,10 +40,12 @@ export {
 };
 
 // Export Utility Functions here
+export { scopedStyles } from './shared/utils/scopedStyles';
 export { makeThemeColor } from './shared/utils/makeThemeColor';
 export { getPreferredTheme } from './shared/utils/getPreferredTheme';
-export { scopedStyles } from './shared/utils/scopedStyles';
 export { UUI_PALETTES } from './shared/theme/palette/default-palettes';
+export { UUI_BREAKPOINTS } from './shared/theme/breakpoints/default-breakpoints';
+export { BREAKPOINT_CONTEXT } from './shared/theme/breakpoints/breakpoint-context';
 export { UUI_TYPOGRAPHY } from './shared/theme/typography-config/default-typography-config';
 
 // Re-export your types here.
@@ -71,7 +73,8 @@ export type {
 export type { BoxProps } from './Box/box.types';
 export type {
   CssObject,
-  ScopedStyles,
+  ScopedStyleExpression,
+  SSX,
   BaseScopedStyle,
   CssProperties
 } from './shared/theme/config/theme-config.types';
@@ -93,3 +96,8 @@ export type {
 export type { TextFieldProps, TextFieldIconProps } from './TextField/TextField.types';
 export type { AccordionProps, AccordionGroupProps } from './Accordion/accordion.types';
 export type { ThemeColors } from './shared/theme/default-colors/colors.types';
+export type {
+  Breakpoints,
+  BreakpointKey,
+  BreakpointValue
+} from './shared/theme/breakpoints/breakpoints.types';

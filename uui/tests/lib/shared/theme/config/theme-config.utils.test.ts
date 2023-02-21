@@ -12,7 +12,7 @@ describe.concurrent('makeStyles', () => {
     );
   });
 
-  it('creates a css style from ScopedStyles', () => {
+  it('creates a css style from ScopedStyleExpression', () => {
     expect(makeStyles({ 'body > h1': { color: 'pink', backgroundColor: 'red' } })).toBe(
       'body > h1{color:pink;background-color:red;}'
     );
