@@ -14,7 +14,7 @@ export interface ScopedStylesParams {
 ```
 
 - `ScopedStylesParams.breakpoints` should be left **undefined to use context**.
-- `Breakpoints` fall back from `ScopedStylesParams.breakpoints` to `BREAKPOINT_CONTEXT.getBreapoints()` to `UUI_BREAKPOINTS` in that order.
+- `Breakpoints` fall back from `ScopedStylesParams.breakpoints` to `BREAKPOINT_CONTEXT.getBreakpoints()` to `UUI_BREAKPOINTS` in that order.
 
 ### Box
 
