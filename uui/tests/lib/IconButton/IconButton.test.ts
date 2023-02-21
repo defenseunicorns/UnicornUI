@@ -1,4 +1,4 @@
-import IconButton from './IconButton.svelte';
+import IconButton from '../../../src/lib/IconButton/IconButton.svelte';
 import { render, screen } from '@testing-library/svelte';
 import '@testing-library/jest-dom';
 
