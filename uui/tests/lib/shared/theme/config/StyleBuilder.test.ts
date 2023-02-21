@@ -2,7 +2,7 @@ import { UUI_BREAKPOINTS } from '../../../../../src/lib/shared/theme/breakpoints
 import type { ScopedStyleExpression } from '../../../../../src/lib/shared/theme/config/theme-config.types';
 import { StyleBuilder } from '../../../../../src/lib/shared/theme/config/StyleBuilder';
 
-describe.concurrent('style builder', () => {
+describe('style builder', () => {
   it('replaces selectors with the $self designation with its prefix', () => {
     expect(
       new StyleBuilder({}, UUI_BREAKPOINTS, 'uui-prefix').compileSelectors([
