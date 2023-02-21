@@ -1,3 +1,72 @@
+# v0.0.36
+
+## Breaking Changes
+
+### scopedStyles
+
+- parameters changed from `jss: ScopedStyles` to `ScopedStylesParams`:
+
+```ts
+export interface ScopedStylesParams {
+  ssx?: ScopedStyleExpression | SSX | undefined;
+  breakpoints?: Breakpoints | undefined;
+}
+```
+
+- `ScopedStylesParams.breakpoints` should be left **undefined to use context**.
+- `Breakpoints` fall back from `ScopedStylesParams.breakpoints` to `BREAKPOINT_CONTEXT.getBreakpoints()` to `UUI_BREAKPOINTS` in that order.
+
+### Box
+
+- renamed `scopedStyle` prop to `ssx`
+- removed `margin-block: unset`
+
+### Types
+
+- renamed `ScopedStyles` to `ScopedStyleExpression` with alias `SSX`
+  - Updated `SSX` to have more strict typing.
+  - Added default `breakpoint` fields.
+
+## Updates
+
+### Breakpoints
+
+- created `BREAKPOINT_CONTEXT` with `setBreakpoints` and `getBreakpoints` initialized by passing `Breakpoints` to `<Theme />`
+- created default `Breakpoints` (`UUI_BREAKPOINTS`) that are used and merged with custom `Breakpoints` in `<Theme />`
+- Created type `Breakpoints` that can be used to add or edit custom and default `Breakpoints` to `<Theme />`
+  - `Breakpoints` must be prefixed with **$**
+  - Can be used as top level values in `SSX` (`ScopedStyleExpression`) as shorthand for `@media screen and (min-width: VALUE)`
+  - Can be used as shorthand placeholders in custom `SupportedAtRules` ie `@media (min-width: $md) and (max-width: $lg)` in top level `SSX`.
+
+```ts
+export type BreakpointKey = `$${string}`;
+export type BreakpointValue = `${number}${string}`;
+export interface Breakpoints {
+  $xs?: BreakpointValue;
+  $sm?: BreakpointValue;
+  $md?: BreakpointValue;
+  $lg?: BreakpointValue;
+  $xl?: BreakpointValue;
+  [key: BreakpointKey]: BreakpointValue;
+}
+```
+
+### Theme
+
+- added prop `breakpoints: Breakpoints = UUI_BREAKPOINTS`
+- added logic to merge `breakpoints` prop value with `UUI_BREAKPOINTS` to allow overriding or adding custom values without the need to redeclare defaults that aren't being overridden.
+- added `BREAKPOINT_CONTEXT` that is set in Theme for access from all child components.
+
+## Internal
+
+### StyleBuilder
+
+- Updated to parse `$breakpoint` fields to `@media screen and (min-width: BREAKPOINT_VALUE)`
+- Added checks for "nested" `AtRules` (supported rules are listed in type `SupportedAtRules` as template literals)
+  - Supports custom `Breakpoint` fields
+- Updated to parse `$breakpoint` and replace with values when used in `SupportedAtRules` that can be nested. For example: `@media (min-width: $md) and (max-width: $lg)` becomes `@media (min-width: 900px) and (max-width: 1200px)` when using default `UUI_BREAKPOINTS`.
+  - Supports custom `Breakpoint` fields
+
 # v0.0.35
 
 ## Breaking Changes
