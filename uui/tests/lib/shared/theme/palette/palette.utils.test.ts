@@ -6,7 +6,7 @@ import {
   paletteToCssVars
 } from '../../../../../src/lib/shared/theme/palette/palette.utils';
 
-describe('createPaletteMap', () => {
+describe.concurrent('createPaletteMap', () => {
   it('creates a map with key (name) and value (ThemeVars) given Palettes', () => {
     const paletteMap = createPaletteMap({
       test: { primary: 'pink', on: { primary: 'black' } },
