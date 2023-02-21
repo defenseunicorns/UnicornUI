@@ -83,6 +83,14 @@
   @use '@material/list';
   @include list.deprecated-core-styles;
 
+  .mdc-deprecated-list-item__primary-text {
+    color: var(--on-background);
+  }
+
+  .mdc-deprecated-list-item__secondary-text {
+    color: var(--on-background);
+  }
+
   .disabled-gutters {
     @include list.deprecated-list-item-padding(0);
   }

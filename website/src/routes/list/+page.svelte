@@ -34,7 +34,7 @@
     { text: 'List Item', secondaryText: 'Secondary Text', disabled: true },
     {
       text: 'List Item',
-      secondaryText: 'Secondary Text',
+      secondaryText: 'Disabled Gutters',
       trailingAdornment: {
         element: IconButton,
         props: {
@@ -53,7 +53,7 @@
 </section>
 
 <section>
-  <Typography variant="h6">Single-Line</Typography>
+  <Typography variant="h6">Single-Line List With No Padding</Typography>
   <List
     variant="single-line"
     class="demo-list"
@@ -61,7 +61,7 @@
     disabledPadding={true}
   />
 
-  <Typography variant="h6">Two-Line</Typography>
+  <Typography variant="h6">Two-Line List With Padding</Typography>
   <List class="demo-list" variant="two-line" listItems={listItemsTwoLine} />
 
   <Typography variant="h6">CheckBox</Typography>
