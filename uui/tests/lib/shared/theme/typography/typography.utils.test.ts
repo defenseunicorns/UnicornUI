@@ -37,7 +37,8 @@ const testTypography: ThemeTypography = {
 beforeAll(() => {
   typographyConfig = createTypographyConfig(testTypography);
 });
-describe('createTypographyConfig', () => {
+
+describe.concurrent('createTypographyConfig', () => {
   it('returns a TypographyConfig given a Typography object', () => {
     expect(typographyConfig.classes).toBeDefined();
     expect(typographyConfig.vars).toBeDefined();
