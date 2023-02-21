@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { SSX } from '@uui';
+  import type { ScopedStyles } from '@uui';
   import ExampleComponent from './example-component.svelte';
-  const ssx: SSX = {
+  const scopedStyle: ScopedStyles = {
     $self: {
       textAlign: 'center',
       padding: '16px',
@@ -22,7 +22,7 @@
   };
 </script>
 
-<ExampleComponent {ssx} class="h4">
+<ExampleComponent {scopedStyle} class="h4">
   Example Component
   <ExampleComponent class="child h5">Child Component</ExampleComponent>
 </ExampleComponent>

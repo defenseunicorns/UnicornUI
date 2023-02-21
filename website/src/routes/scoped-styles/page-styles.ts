@@ -1,6 +1,6 @@
-import type { SSX } from '@uui';
+import type { ScopedStyles } from '@uui';
 
-export const scopedExample: SSX = {
+export const scopedExample: ScopedStyles = {
   $self: {
     gap: '32px',
     width: '100%',

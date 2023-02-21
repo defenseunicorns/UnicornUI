@@ -1,6 +1,6 @@
-import type { BaseScopedStyle, CssProperties } from './theme-config.types';
+import type { BaseScopedStyle, CssProperties, ScopedStyles } from './theme-config.types';
 
-export function updateThemeStyle(themeStyle: BaseScopedStyle, document?: Document) {
+export function updateThemeStyle(themeStyle: ScopedStyles, document?: Document) {
   document && addThemeStyleToHead(document, makeStyles(themeStyle));
 }
 
@@ -21,7 +21,7 @@ export function addThemeStyleToHead(
   }
 }
 
-export function makeStyles(cssObj: BaseScopedStyle, prefix = ''): string {
+export function makeStyles(cssObj: ScopedStyles, prefix = ''): string {
   let css = '';
   Object.entries(cssObj).forEach(([key, val]: [string, BaseScopedStyle]) => {
     const classProperties = jsToCSS(val as CssProperties);
