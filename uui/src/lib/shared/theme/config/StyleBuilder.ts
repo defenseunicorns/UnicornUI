@@ -1,4 +1,10 @@
-import type { BaseScopedStyle, CssProperties, ScopedStyles } from './theme-config.types';
+import type { BreakpointKey, Breakpoints } from '../breakpoints/breakpoints.types';
+import type {
+  BaseScopedStyle,
+  CssProperties,
+  ScopedStyleExpression,
+  GenericScopedStyle
+} from './theme-config.types';
 import { camelBackToDash } from './theme-config.utils';
 
 export class StyleBuilder {
@@ -10,6 +16,10 @@ export class StyleBuilder {
   SCOPED_DESIGNATOR = '$self';
   // @media expects nested styles to stay nested and cannot 'bubble' up the same way as standard nested.
   MEDIA_DESIGNATOR = '@media';
+  // Added to the breakpoint fields in order to replace breakpoints.
+  BREAKPOINT_PREFIX = '$';
+  // @rules that allow nesting
+  NESTABLE_AT_RULES = new Set(['@media', '@supports', '@counter-style', '@key-frames']);
 
   static parseJss(jssProperties: CssProperties): string {
     const genericJssProperties = jssProperties as Record<string, string>;
@@ -23,7 +33,11 @@ export class StyleBuilder {
   //
   public scopedClass: string;
 
-  constructor(public inputStyle: ScopedStyles, scopedClass = '') {
+  constructor(
+    public inputStyle: ScopedStyleExpression,
+    public breakpoints: Breakpoints,
+    scopedClass = ''
+  ) {
     this.scopedClass = scopedClass.startsWith('.') ? scopedClass : `.${scopedClass}`;
   }
 
@@ -31,9 +45,11 @@ export class StyleBuilder {
     let css = '';
     Object.entries(this.inputStyle).forEach(([selector, val]: [string, BaseScopedStyle]) => {
       if (this.isPureObject(val)) {
-        if (this.isMedia(selector)) {
+        if (this.staysNested(selector)) {
           // Keep initial nesting then flatten and hydrate sub objects.
-          css += `${selector}{${this.buildMediaStyle(val as ScopedStyles)}}`;
+          css += `${this.buildMediaSelector(selector)}{${this.buildMediaStyle(
+            val as ScopedStyleExpression
+          )}}`;
         } else {
           css += this.buildNestedStyle(selector, val);
         }
@@ -47,12 +63,35 @@ export class StyleBuilder {
     return typeof val === 'object' && !Array.isArray(val) && val !== null;
   }
 
-  isMedia(key: string): boolean {
-    return key.startsWith(this.MEDIA_DESIGNATOR);
+  staysNested(key: string): boolean {
+    const keyPrefix = key.split(' ').shift();
+    return this.isBreakpoint(key) || this.NESTABLE_AT_RULES.has(keyPrefix || key);
   }
 
-  buildMediaStyle(val: ScopedStyles): string {
-    const hydratedStyle = this.hydrateStyles(this.flattenObj(val as ScopedStyles));
+  isBreakpoint(key: string): boolean {
+    return this.breakpoints[key as BreakpointKey] !== undefined;
+  }
+
+  buildMediaSelector(selector: string): string {
+    let newSelector = selector;
+    if (this.isBreakpoint(selector)) {
+      // Get mediaquery templated string
+      newSelector = this.getMediaQuery(newSelector as BreakpointKey);
+    } else if (selector.search(/\$[a-zA-Z0-9]+/)) {
+      // Replace breakpoint values
+      newSelector = this.replaceScopedDesignator(newSelector);
+      for (const breakpoint in this.breakpoints) {
+        newSelector = newSelector.replaceAll(
+          breakpoint,
+          this.breakpoints[breakpoint as BreakpointKey]
+        );
+      }
+    }
+    return newSelector;
+  }
+
+  buildMediaStyle(val: ScopedStyleExpression): string {
+    const hydratedStyle = this.hydrateStyles(this.flattenObj(val as ScopedStyleExpression));
     return Object.entries(hydratedStyle).reduce(
       (prev: string, [newSelector, value]: [string, BaseScopedStyle]) =>
         `${prev}${newSelector}{${StyleBuilder.parseJss(value as CssProperties)}}`,
@@ -61,7 +100,7 @@ export class StyleBuilder {
   }
 
   buildNestedStyle(selector: string, val: BaseScopedStyle): string {
-    const tempObj: ScopedStyles = {};
+    const tempObj: GenericScopedStyle = {};
     tempObj[selector] = val;
     const hydratedStyle = this.hydrateStyles(this.flattenObj(tempObj));
     return Object.entries(hydratedStyle).reduce(
@@ -94,7 +133,11 @@ export class StyleBuilder {
   // ex input: '$self .child .grandchild:hover`
   // ex output: `.uui-prefix .child .grandchild:hover`
   compileSelectors(selectors: string[]): string[] {
-    return selectors.map((s) => s.replaceAll(this.SCOPED_DESIGNATOR, this.scopedClass));
+    return selectors.map((s) => this.replaceScopedDesignator(s));
+  }
+
+  replaceScopedDesignator(selector: string): string {
+    return selector.replaceAll(this.SCOPED_DESIGNATOR, this.scopedClass);
   }
 
   // https://www.geeksforgeeks.org/flatten-javascript-objects-into-a-single-depth-object/
@@ -103,7 +146,7 @@ export class StyleBuilder {
    * {key: {subKey: {property: value}}}
    */
   // ex return: {key;;subKey;;property: value, key;;property: value}
-  flattenObj(nestedStyles: ScopedStyles): Record<string, string> {
+  flattenObj(nestedStyles: GenericScopedStyle): Record<string, string> {
     const result: Record<string, string> = {};
 
     for (const selector in nestedStyles) {
@@ -111,7 +154,7 @@ export class StyleBuilder {
       // Item is nested object
       if (this.isPureObject(val)) {
         // Recurse
-        const temp = this.flattenObj(val as ScopedStyles);
+        const temp = this.flattenObj(val as ScopedStyleExpression);
         for (const nestedSelector in temp) {
           // Add previous to nested selector with unique separator
           const newKey = `${selector}${this.FLATTENED_SEPARATOR}${nestedSelector}`;
@@ -121,7 +164,7 @@ export class StyleBuilder {
       }
       // BaseCase
       // Ignore array values as they are not supported in css
-      else if (typeof nestedStyles[selector] === 'string') {
+      else if (!Array.isArray(result[selector])) {
         result[selector] = nestedStyles[selector] as string;
       }
     }
@@ -131,7 +174,7 @@ export class StyleBuilder {
    * Reconstructs flattened with all nested objects at top level
    * // {'key subkey': {property: value}, 'key': {property: value}}
    */
-  hydrateStyles(flattenedStyles: Record<string, string>): ScopedStyles {
+  hydrateStyles(flattenedStyles: Record<string, string>): ScopedStyleExpression {
     // Values will be hydrated into new object.
     const newObject: Record<string, Record<string, string>> = {};
     for (const nestedKey in flattenedStyles) {
@@ -143,6 +186,10 @@ export class StyleBuilder {
       }
       newObject[selector][propertyName] = propertyValue;
     }
-    return newObject as ScopedStyles;
+    return newObject as ScopedStyleExpression;
+  }
+
+  getMediaQuery(breakPoint: BreakpointKey): string {
+    return `@media screen and (min-width: ${this.breakpoints[breakPoint]})`;
   }
 }
