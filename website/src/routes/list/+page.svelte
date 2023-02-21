@@ -53,14 +53,20 @@
 
 <section>
   <Typography variant="h6">Single-Line</Typography>
-  <List class="demo-list" listItems={listItemsOneLine} disabledPadding={true} />
+  <List
+    variant="single-line"
+    class="demo-list"
+    listItems={listItemsOneLine}
+    disabledPadding={true}
+  />
 
   <Typography variant="h6">Two-Line</Typography>
   <List class="demo-list" variant="two-line" listItems={listItemsTwoLine} />
 
   <Typography variant="h6">CheckBox</Typography>
   <List
-    class="mdc-deprecated-list demo-list"
+    variant="single-line"
+    class="demo-list"
     listItems={[
       { text: 'List Item', checkBox: 'leading' },
       { text: 'List Item', checkBox: 'trailing', selected: true },

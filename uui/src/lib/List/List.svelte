@@ -1,17 +1,26 @@
 <script lang="ts">
+  import type { ListProps } from './List.types';
   import ListItem from './ListItem.svelte';
   import type { ListItemProps } from './ListItem.types';
 
+  // Props
+  type $$Props = ListProps;
   export let listItems: ListItemProps[] = [];
-  export let variant = '';
+  export let variant = 'single-line';
   export let disabledPadding: boolean;
 
-  let listClass = '';
-  $: listClass = variant.includes('two-line') ? '--two-line' : '';
+  // Local Variables
+  const variantMap = new Map<string, string>([
+    ['single-line', ''],
+    ['two-line', '--two-line'],
+    ['icon', '--icon-list'],
+    ['avatar', '--avatar-list']
+  ]);
+  let listType = variantMap.get(variant);
 </script>
 
 <ul
-  class="mdc-deprecated-list mdc-deprecated-list{listClass} {$$restProps.class || ''}"
+  class="mdc-deprecated-list mdc-deprecated-list{listType} {$$restProps.class || ''}"
   class:disabled-padding={disabledPadding}
 >
   {#each listItems as item}
