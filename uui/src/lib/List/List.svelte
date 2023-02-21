@@ -28,7 +28,7 @@
   {/each}
 </ul>
 
-<style lang="scss" global>
+<style lang="scss">
   @use '@material/list';
   @include list.deprecated-core-styles;
 

@@ -24,6 +24,7 @@
   }
 </script>
 
+<!-- <div class="mdc-form-field"> -->
 <div
   bind:this={checkboxRef}
   class="mdc-checkbox mdc-checkbox--upgraded {$$restProps.class || ''}"
@@ -51,13 +52,16 @@
     <div class="mdc-checkbox__mixedmark" />
   </div>
   <div class="mdc-checkbox__ripple" />
+  <div class="mdc-checkbox__focus-ring" />
 </div>
 
+<!-- </div> -->
 <style lang="scss">
-  @use '@material/ripple';
   @use '@material/checkbox';
   @use '@material/form-field';
+  @use '@material/list';
 
   @include checkbox.core-styles;
   @include form-field.core-styles;
+  @include list.deprecated-core-styles;
 </style>
