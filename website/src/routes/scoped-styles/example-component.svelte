@@ -1,14 +1,14 @@
 <!--ExampleComponent-->
 <script lang="ts">
   type T = $$Generic<EventTarget>;
-  import { scopedStyles, type SSX } from '@uui';
+  import { scopedStyles, type ScopedStyles } from '@uui';
   import type { HTMLAttributes } from 'svelte/elements';
-  export let ssx: SSX | undefined = undefined;
+  export let scopedStyle: ScopedStyles | undefined = undefined;
   interface $$Props extends HTMLAttributes<T> {
-    ssx?: SSX | undefined;
+    scopedStyle?: ScopedStyles;
   }
 </script>
 
-<div use:scopedStyles={{ ssx }} {...$$restProps}>
+<div use:scopedStyles={scopedStyle} {...$$restProps}>
   <slot />
 </div>
