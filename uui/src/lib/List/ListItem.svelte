@@ -48,6 +48,7 @@
   class:mdc-ripple-upgraded--background-focused={selected}
   class:mdc-deprecated-list-item--disabled={disabled}
   class:disabled-gutters={disabledGutters}
+  class:divider
   on:click={handleInteraction}
   on:keydown={handleInteraction}
 >
@@ -84,5 +85,9 @@
 
   .disabled-gutters {
     @include list.deprecated-list-item-padding(0);
+  }
+
+  .divider {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
   }
 </style>

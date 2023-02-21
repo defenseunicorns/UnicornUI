@@ -12,7 +12,8 @@
       leadingAdornment: {
         element: IconButton,
         props: { iconClass: 'material-symbols-outlined', iconContent: 'favorite' }
-      }
+      },
+      divider: true
     },
     {
       text: 'List Item',
@@ -29,7 +30,7 @@
 
   let listItemsTwoLine: ListItemProps[] = [
     { text: 'List Item', secondaryText: 'Secondary Text' },
-    { text: 'List Item', secondaryText: 'Secondary Text', selected: true },
+    { text: 'List Item', secondaryText: 'Secondary Text', selected: true, divider: true },
     { text: 'List Item', secondaryText: 'Secondary Text', disabled: true },
     {
       text: 'List Item',
