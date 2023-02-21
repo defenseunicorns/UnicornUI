@@ -1,15 +1,19 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import { UUI_PALETTES } from '../shared/theme/palette/default-palettes';
-  import { createPaletteMap, mergePalettes } from '../shared/theme/palette/palette.utils';
-  import { updateThemeStyle } from '../shared/theme/config/theme-config.utils';
-  import { UUI_TYPOGRAPHY } from '../shared/theme/typography-config/default-typography-config';
-  import type { ThemeTypography } from '../shared/theme/typography-config/typography-config.types';
   import { createTypographyConfig } from '../shared/theme/typography-config/typography-config.utils';
-  import '../shared/theme/default-colors/colors.css';
+  import type { ThemeTypography } from '../shared/theme/typography-config/typography-config.types';
+  import { UUI_TYPOGRAPHY } from '../shared/theme/typography-config/default-typography-config';
+  import { createPaletteMap, mergePalettes } from '../shared/theme/palette/palette.utils';
+  import { BREAKPOINT_CONTEXT } from '../shared/theme/breakpoints/breakpoint-context';
+  import { UUI_BREAKPOINTS } from '../shared/theme/breakpoints/default-breakpoints';
+  import type { Breakpoints } from '../shared/theme/breakpoints/breakpoints.types';
+  import { updateThemeStyle } from '../shared/theme/config/theme-config.utils';
+  import { UUI_PALETTES } from '../shared/theme/palette/default-palettes';
   import type { Palettes } from '../shared/theme/palette/palette.types';
+  import '../shared/theme/default-colors/colors.css';
+  import { onMount } from 'svelte';
 
   // Props
+  export let breakpoints: Breakpoints = UUI_BREAKPOINTS;
   export let palettes: Palettes = UUI_PALETTES;
   export let typography: ThemeTypography = UUI_TYPOGRAPHY;
   // Check for light theme otherwise use dark
@@ -23,6 +27,9 @@
   const paletteMap = createPaletteMap(mergePalettes(palettes));
   // Create Typography Config
   const typographyConfig = createTypographyConfig({ ...UUI_TYPOGRAPHY, ...typography });
+
+  // merge and set BreakPoint Context
+  BREAKPOINT_CONTEXT.setBreakpoints({ ...UUI_BREAKPOINTS, ...breakpoints });
 
   // Watch theme and apply when changed.
   $: updateThemeStyle(
