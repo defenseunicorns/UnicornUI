@@ -1,6 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte/internal';
   import { MDCRipple } from '@material/ripple';
+  import { current_component } from 'svelte/internal';
+  import { eventRedirection } from '../shared/utils/eventRedirection';
   import type { ListItemCheckboxProps } from './ListItemCheckbox.types';
 
   // Props
@@ -22,6 +24,8 @@
   function setSelected() {
     selected = !selected;
   }
+
+  $: eventComponents = [current_component];
 </script>
 
 <!-- <div class="mdc-form-field"> -->
@@ -32,9 +36,9 @@
   class:mdc-ripple-upgraded--background-focused={selected}
 >
   <input
+    use:eventRedirection={eventComponents}
     type="checkbox"
     class="mdc-checkbox__native-control"
-    on:change={setSelected}
     checked={selected}
     disabled={$$restProps.disabled}
   />

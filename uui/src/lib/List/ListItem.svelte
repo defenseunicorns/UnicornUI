@@ -40,7 +40,12 @@
   }
 </script>
 
-<svelte:window on:click={clickAway} on:keydown={clickAway} />
+<svelte:window
+  on:click={clickAway}
+  on:keydown={(e) => {
+    if (e.key === 'enter') clickAway(e);
+  }}
+/>
 
 <li
   bind:this={listItemRef}
@@ -50,10 +55,17 @@
   class:disabled-gutters={disabledGutters}
   class:divider
   on:click={handleInteraction}
-  on:keydown={handleInteraction}
+  on:keydown={(e) => {
+    if (e.key === 'enter') handleInteraction();
+  }}
 >
   {#if checkBox && checkBox === 'leading' && !leadingAdornment}
-    <ListItemCheckbox {selected} class="mdc-deprecated-list-item__graphic" {disabled} />
+    <ListItemCheckbox
+      {selected}
+      class="mdc-deprecated-list-item__graphic"
+      {disabled}
+      on:change={handleInteraction}
+    />
   {:else if leadingAdornment}
     <svelte:component
       this={leadingAdornment.element}
@@ -69,7 +81,12 @@
   </span>
 
   {#if checkBox && checkBox === 'trailing' && !trailingAdornment}
-    <ListItemCheckbox {selected} class="mdc-deprecated-list-item__meta" {disabled} />
+    <ListItemCheckbox
+      {selected}
+      class="mdc-deprecated-list-item__meta"
+      {disabled}
+      on:change={handleInteraction}
+    />
   {:else if trailingAdornment}
     <svelte:component
       this={trailingAdornment.element}
