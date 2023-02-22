@@ -1,7 +1,9 @@
-import type { ScopedStyles } from '../theme/config/theme-config.types';
+import type { ScopedStylesParams } from '../theme/config/scopedStyles.types';
+import { UUI_BREAKPOINTS } from '../theme/breakpoints/default-breakpoints';
 import { addThemeStyleToHead } from '../theme/config/theme-config.utils';
-import { v4 as uuid } from 'uuid';
+import { BREAKPOINT_CONTEXT } from '../theme/breakpoints/breakpoint-context';
 import { StyleBuilder } from '../theme/config/StyleBuilder';
+import { v4 as uuid } from 'uuid';
 
 // https://stackoverflow.com/questions/6122571/simple-non-secure-hash-function-for-javascript
 function hashCode(str: string) {
@@ -14,7 +16,9 @@ function hashCode(str: string) {
   return hash;
 }
 
-export function scopedStyles(el: Element, jss?: ScopedStyles) {
+export function scopedStyles(el: Element, parameters: ScopedStylesParams) {
+  const breakpoints =
+    parameters.breakpoints || BREAKPOINT_CONTEXT.getBreakpoints() || UUI_BREAKPOINTS;
   // Generate element instance uuid (hash to shorten)
   const scopedClass = `uui-${hashCode(uuid())}`;
   // Conditional classes remove the hashed uuid. when applied
@@ -28,9 +32,9 @@ export function scopedStyles(el: Element, jss?: ScopedStyles) {
       el.setAttribute('class', `${el.className} ${scopedClass}`);
   }
 
-  if (jss) {
-    // create the styles from the provided jss
-    const styles = new StyleBuilder(jss, scopedClass).parse();
+  if (parameters.ssx) {
+    // create the styles from the provided ssx
+    const styles = new StyleBuilder(parameters.ssx, breakpoints, scopedClass).parse();
     // initially updated the with the scoped class.
     el.setAttribute('class', `${el.className} ${scopedClass}`);
     // add style to head with id="hash"
