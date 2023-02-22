@@ -56,7 +56,7 @@
     }
   ];
 
-  const listItemsCheckbox = [
+  const listItemsCheckbox: ListItemProps[] = [
     { text: 'List Item', checkBox: 'leading' },
     { text: 'List Item', checkBox: 'trailing', selected: true },
     { text: 'List Item', checkBox: 'leading', disabled: true }
