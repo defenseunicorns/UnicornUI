@@ -27,6 +27,8 @@ Props:
     dark?: Palette
   };
 
+  breakpoints?: Breakpoints = UUI_BREAKPOINTS
+
   // Tries light -> dark -> shared (in order if defined) then fallback to mdc defaults.
   theme?: string;
 
@@ -49,7 +51,7 @@ Additional Notes:
 `}
 >
   <AccordionGroup>
-    <Accordion>
+    <Accordion isOpen>
       <Typography slot="headerContent" variant="h6">Example: Default Installation</Typography>
       <Box slot="content" style="display: flex; flex-direction: column; gap: 16px;">
         <Typography variant="h5">Prerequisites (optional):</Typography>
@@ -58,19 +60,19 @@ Additional Notes:
         <VariantExample code={THEME_EXAMPLE_TEXT} />
       </Box>
     </Accordion>
-    <Accordion>
+    <Accordion isOpen>
       <Typography slot="headerContent" variant="h6">Example: Default Palette</Typography>
       <Box slot="content">
         <VariantExample code={DEFAULT_PALETTE_TEXT} />
       </Box>
     </Accordion>
-    <Accordion>
+    <Accordion isOpen>
       <Typography slot="headerContent" variant="h6">Example: Default Typography</Typography>
       <Box slot="content">
         <VariantExample code={DEFAULT_TYPOGRAPHY_TEXT} />
       </Box>
     </Accordion>
-    <Accordion>
+    <Accordion isOpen>
       <Typography slot="headerContent" variant="h6">Example: Custom Typography</Typography>
       <Box slot="content">
         <VariantExample code={CUSTOM_TYPOGRAPHY_TEXT} />
@@ -79,19 +81,19 @@ Additional Notes:
         >
       </Box>
     </Accordion>
-    <Accordion>
+    <Accordion isOpen>
       <Typography slot="headerContent" variant="h6">Example: Generated CSS</Typography>
       <Box slot="content">
         <VariantExample code={GENERATED_CSS_TEXT} />
       </Box>
     </Accordion>
-    <Accordion>
+    <Accordion isOpen>
       <Typography slot="headerContent" variant="h6">Example: Preferred Theme</Typography>
       <Box slot="content">
         <VariantExample code={PREFERRED_THEME_EXAMPLE} />
       </Box>
     </Accordion>
-    <Accordion>
+    <Accordion isOpen>
       <Typography slot="headerContent" variant="h6">Example: Theme Toggle</Typography>
       <Box slot="content">
         <VariantExample code={THEME_TOGGLE_EXAMPLE} />

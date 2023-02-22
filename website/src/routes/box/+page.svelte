@@ -18,8 +18,8 @@ Props:
   ref: Element = undefined;
   // Pass svelte internal "current_component" to allow simple event forwarding.
   eventComponent: typeof current_component | undefined = undefined;
-  // Pass ScopedStyles to Box without bleeding to global styles. 
-  scopedStyle: ScopedStyles | undefined = undefined
+  // Pass SSX (ScopedStyleExpression) to Box without bleeding to global styles. 
+  ssx: SSX | undefined = undefined
 
 Slots:
   unamed
@@ -40,7 +40,7 @@ Examples:
 </Box>
 
 <Box
-  scopedStyle={{
+  ssx={{
     $self: {
       padding: '16px',
       '&:hover': { 
@@ -66,7 +66,7 @@ Examples:
       div (default)
     </Box>
     <Box
-      scopedStyle={{
+      ssx={{
         $self: {
           padding: '16px',
           '&:hover': { backgroundColor: 'black', color: 'pink' }
