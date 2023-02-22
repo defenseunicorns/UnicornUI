@@ -1,4 +1,5 @@
 <script lang="ts">
+  import ListAvatar from '../../lib/ListAvatar.svelte';
   import IconButton from '@defense-unicorns/unicorn-ui/src/lib/IconButton/IconButton.svelte';
   import type { ListItemProps } from '@uui';
   import { List, Typography } from '@uui';
@@ -73,6 +74,13 @@
       { text: 'List Item', checkBox: 'trailing', selected: true },
       { text: 'List Item', checkBox: 'leading', disabled: true }
     ]}
+  />
+
+  <Typography variant="h6">Avatar</Typography>
+  <List
+    variant="avatar"
+    class="demo-list"
+    listItems={[{ text: 'List Item', leadingAdornment: { element: ListAvatar, props: {} } }]}
   />
 </section>
 
