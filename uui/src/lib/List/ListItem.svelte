@@ -18,7 +18,6 @@
   export let disabled: boolean;
   export let disabledGutters: boolean;
   export let divider: boolean;
-  export let order: number;
 
   // Local Variables
 
@@ -70,6 +69,7 @@
     <svelte:component
       this={leadingAdornment.element}
       {...leadingAdornment.props}
+      {disabled}
       class="mdc-deprecated-list-item__graphic"
     />
   {/if}
@@ -91,6 +91,7 @@
     <svelte:component
       this={trailingAdornment.element}
       {...trailingAdornment.props}
+      {disabled}
       class="mdc-deprecated-list-item__meta"
     />
   {/if}

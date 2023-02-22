@@ -15,7 +15,7 @@
 
   // Functions
   onMount((): void => {
-    if (checkboxRef) {
+    if (checkboxRef && !$$restProps.disabled) {
       const checkboxRipple = new MDCRipple(checkboxRef);
       checkboxRipple.unbounded = true;
     }
@@ -55,7 +55,7 @@
     {/if}
     <div class="mdc-checkbox__mixedmark" />
   </div>
-  <div class="mdc-checkbox__ripple" />
+  {#if !$$restProps.disabled}<div class="mdc-checkbox__ripple" />{/if}
   <div class="mdc-checkbox__focus-ring" />
 </div>
 

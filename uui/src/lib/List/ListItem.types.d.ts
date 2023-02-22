@@ -10,9 +10,6 @@ export interface ListItemProps {
   divider?: boolean;
   disabled?: boolean;
   disabledGutters?: boolean;
-  order?: number;
-  leadingAdornment?:
-    | ComponentAsProp<IconButtonProps>
-    | ComponentAsProp<HtmlAttributes<HTMLImageElement>>;
+  leadingAdornment?: ComponentAsProp<IconButtonProps>;
   trailingAdornment?: ComponentAsProp<IconButtonProps>;
 }
