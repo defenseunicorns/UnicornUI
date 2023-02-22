@@ -8,6 +8,7 @@
   export let listItems: ListItemProps[] = [];
   export let variants: ListVariant[] = ['single-line'];
   export let disabledPadding: boolean;
+  export let onSelect: () => void | undefined = undefined;
 
   // Local Variables
   const variantMap = new Map<string, string>([
@@ -18,6 +19,7 @@
   ]);
   let listClasses = getClassByListType();
 
+  // Functions
   function getClassByListType() {
     let classes = [];
 
@@ -34,7 +36,7 @@
   class:disabled-padding={disabledPadding}
 >
   {#each listItems as item}
-    <ListItem {...item} />
+    <ListItem {...item} on:click={onSelect} />
   {/each}
 </ul>
 

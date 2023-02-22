@@ -3,9 +3,8 @@
   import { MDCRipple } from '@material/ripple';
   import type { ListItemProps } from './ListItem.types';
   import ListItemCheckbox from './ListItemCheckbox.svelte';
-
-  // Local Vars
-  let listItemRef: HTMLLIElement;
+  import { eventRedirection } from '../shared/utils/eventRedirection';
+  import { current_component } from 'svelte/internal';
 
   // Props
   type $$Props = ListItemProps;
@@ -20,8 +19,9 @@
   export let divider: boolean;
 
   // Local Variables
+  let listItemRef: HTMLLIElement;
 
-  // functions
+  // Functions
   onMount((): void => {
     if (listItemRef) {
       new MDCRipple(listItemRef);
@@ -37,6 +37,8 @@
       selected = false;
     }
   }
+
+  $: eventComponents = [current_component];
 </script>
 
 <svelte:window
@@ -47,16 +49,17 @@
 />
 
 <li
+  use:eventRedirection={eventComponents}
   bind:this={listItemRef}
+  on:click={handleInteraction}
+  on:keydown={(e) => {
+    if (e.key === 'enter') handleInteraction();
+  }}
   class="mdc-deprecated-list-item mdc-ripple-upgraded"
   class:mdc-ripple-upgraded--background-focused={selected}
   class:mdc-deprecated-list-item--disabled={disabled}
   class:disabled-gutters={disabledGutters}
   class:divider
-  on:click={handleInteraction}
-  on:keydown={(e) => {
-    if (e.key === 'enter') handleInteraction();
-  }}
 >
   {#if checkBox && checkBox === 'leading' && !leadingAdornment}
     <ListItemCheckbox
@@ -67,7 +70,7 @@
     />
   {:else if leadingAdornment}
     <svelte:component
-      this={leadingAdornment.element}
+      this={leadingAdornment.component}
       {...leadingAdornment.props}
       {disabled}
       class="mdc-deprecated-list-item__graphic"
@@ -89,7 +92,7 @@
     />
   {:else if trailingAdornment}
     <svelte:component
-      this={trailingAdornment.element}
+      this={trailingAdornment.component}
       {...trailingAdornment.props}
       {disabled}
       class="mdc-deprecated-list-item__meta"

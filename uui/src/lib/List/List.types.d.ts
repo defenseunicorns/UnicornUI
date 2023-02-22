@@ -5,4 +5,5 @@ export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLElement> {
   variants: ListVariant[];
   listItems: ListItemProps[];
   disabledPadding?: boolean;
+  onSelect?: () => void;
 }

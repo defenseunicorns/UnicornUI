@@ -3,6 +3,6 @@ export type ComponentProps<T> = {
 };
 
 export type ComponentAsProp<T extends Record<string, any>> = {
-  element: ComponentType<SvelteComponentTyped>;
+  component: ComponentType<SvelteComponentTyped>;
   props: ComponentProps<T>;
 };

@@ -2,7 +2,7 @@ import type { IconButtonProps } from '$lib/IconButton/IconButton.types';
 import type { ComponentAsProp } from '../shared/types/propComponent';
 import type { HtmlAttributes } from 'csstype';
 
-export interface ListItemProps {
+export interface ListItemProps extends svelte.JSX.HTMLAttributes<HTMLLIElement> {
   text: string;
   secondaryText?: string;
   selected?: boolean;
