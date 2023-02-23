@@ -1,4 +1,6 @@
-export interface ListItemProps extends svelte.JSX.HTMLAttributes<HTMLLIElement> {
+import type { BoxProps } from '../Box/box.types';
+export interface ListItemProps
+  extends svelte.JSX.IntrinsicAttributes<svelte.JSX.HTMLAttributes<HTMLLIElement>> {
   text: string;
   secondaryText?: string;
   selected?: boolean;
