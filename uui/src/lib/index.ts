@@ -104,9 +104,9 @@ export type {
 export type { TextFieldProps, TextFieldIconProps } from './TextField/TextField.types';
 export type { AccordionProps, AccordionGroupProps } from './Accordion/accordion.types';
 export type { ThemeColors } from './shared/theme/default-colors/colors.types';
-export type { ListProps } from './List/List.types';
-export type { ListItemProps, ListItemAdornmentProps } from './List/ListItem.types';
 export type { ComponentAsProp } from './shared/types/ComponentAsProp';
+export type { ListProps } from './List/List.types';
+export type { ListItemProps, ListItemVariant, ListItemAdornmentProps } from './List/ListItem.types';
 export type {
   Breakpoints,
   BreakpointKey,

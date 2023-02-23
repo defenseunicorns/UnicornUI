@@ -11,6 +11,7 @@
   import DocPage from '../../lib/doc-page.svelte';
   import VariantExample from '../../lib/VariantExample.svelte';
   import InlineCode from '../../lib/inline-code.svelte';
+  import ListAvatar from './list-avatar.svelte';
 
   type ExampleListItems1 = ListItemProps & {
     leadingAdornment?: boolean;
@@ -97,34 +98,22 @@
   <Typography variant="h3">Types</Typography>
   <VariantExample
     code={`
-    type ListVariant = 'single-line' | 'two-line' | 'icon' | 'avatar';  
 export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLElement> {
-  variants: ListVariant[];
   disabledPadding?: boolean;
 }
     `}
   />
 
-  <Typography variant="body1">
-    The variants prop accepts an array of list variants, allowing for lists such as a two-line
-    avatar. **Note: not all types mesh well together (i.e. single-line and two-line)!**
-  </Typography>
-
   <Typography variant="h3">Styles</Typography>
   <Typography variant="body1">
-    <InlineCode>List</InlineCode> comes like blank canvas. You can control the style by passing a custom
-    class to the List component. All following examples use a custom demo-list class for making the list
-    look like this:
+    <InlineCode>List</InlineCode> comes as a blank canvas. You can control the style by passing it a
+    custom class. All following examples use a custom demo-list class for making the list look like this:
   </Typography>
-  <List class="demo-list" variants={['single-line']} />
+  <List class="demo-list" />
 
   <VariantExample
     code={`
-    <List 
-  class="demo-list" 
-  variants={['single-line']} 
-  listItems={[]} 
-/>
+    <List class="demo-list" />
 
 .demo-list {
     width: 300px;
@@ -148,17 +137,22 @@ export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLElement> {
   />
 
   <Typography variant="h2">List Item</Typography>
-  <Typography variant="body1"
-    >The <InlineCode>ListItem</InlineCode> is the true workhorse of <InlineCode>List</InlineCode>.
-    It wraps your text as well as adornments, like icons, icon buttons, images, checkboxes, etc...</Typography
-  >
+  <Typography variant="body1">
+    The <InlineCode>ListItem</InlineCode> is the true workhorse of <InlineCode>List</InlineCode>. It
+    wraps your text as well as adornments, like icons, icon buttons, images, checkboxes, etc...
+  </Typography>
   <Typography variant="h3">Types</Typography>
 
   <VariantExample
     code={`
-    export interface ListItemProps extends svelte.JSX.IntrinsicAttributes<svelte.JSX.HTMLAttributes<HTMLLIElement>> {
+    export type ListItemVariant = 'textual' | 'avatar' | 'icon' | 'image' | 'thumbnail' | 'video';
+
+export interface ListItemProps extends 
+    svelte.JSX.IntrinsicAttributes<svelte.JSX.HTMLAttributes<HTMLLIElement>> 
+{
   text: string;
   secondaryText?: string;
+  variant?: ListItemVariant;
   selected?: boolean;
   divider?: boolean;
   disabled?: boolean;
@@ -173,8 +167,8 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
   <Typography variant="body1">
     <InlineCode>ListItem</InlineCode> has two named slots for leading and trailing adornments. **As seen
     in below examples, to pass adornments (icons, icon buttons, checkboxes, avatars etc...) to these
-    slots that receive correct styles, you need to use the <InlineCode>ListItemAdornment</InlineCode
-    > component.**
+    slots, you need to use the <InlineCode>ListItemAdornment</InlineCode> component so they receive correct
+    styling.
   </Typography>
 
   <VariantExample
@@ -196,7 +190,7 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
       <InlineCode>List</InlineCode> by default has padding. To override, use the disabledPadding prop.
     </li>
   </ul>
-  <List variants={['single-line']} class="demo-list" disabledPadding={true}>
+  <List class="demo-list" disabledPadding={true}>
     <ListItem text="List Item" on:click={() => alert('you clicked me')} />
     <ListItem text="List Item" selected={true} />
     <ListItem text="List Item" disabled={true} />
@@ -207,7 +201,16 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
     </ListItem>
     <ListItem text="List Item">
       <ListItemAdornment slot="trailingAdornment">
-        <IconButton iconClass="material-symbols-outlined" iconContent="close" />
+        <IconButton
+          iconClass="material-symbols-outlined"
+          iconContent="close"
+          class="mdc-deprecated-list-item__meta"
+        />
+      </ListItemAdornment>
+    </ListItem>
+    <ListItem text="List Item" variant="avatar">
+      <ListItemAdornment slot="leadingAdornment">
+        <ListAvatar />
       </ListItemAdornment>
     </ListItem>
   </List>
@@ -250,7 +253,7 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
     extend the ListItemProps interface as seen below.
   </Typography>
 
-  <List class="demo-list" variants={['two-line']}>
+  <List class="demo-list">
     {#each listItemsTwoLine1 as item}
       <ListItem {...item} on:click={() => !item.disabled && alert('item selected')}>
         <svelte:fragment slot="leadingAdornment">
@@ -349,10 +352,10 @@ const listItemsTwoLine1: ExampleListItems1[] = [
   <Typography variant="h5">Example 2: Using Iteration</Typography>
   <Typography variant="body1">
     Another example of iteration, except this time we're passing different types of icons or even
-    different types of components used for adornments. Notice the change to the addornments type.
+    different types of components used for adornments. Notice the change to the adornments type.
   </Typography>
 
-  <List class="demo-list" variants={['two-line']}>
+  <List class="demo-list">
     {#each listItemsTwoLine2 as item}
       <ListItem {...item}>
         <svelte:fragment slot="leadingAdornment">
@@ -457,6 +460,24 @@ const listItemsTwoLine2: ExampleListItems2[] = [
 </List>
   `}
   />
+
+  <List class="demo-list">
+    <ListItem text="List Item" variant="avatar">
+      <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
+        folder
+      </ListItemAdornment>
+    </ListItem>
+    <ListItem text="List Item" variant="avatar">
+      <ListItemAdornment slot="leadingAdornment">
+        <ListAvatar />
+      </ListItemAdornment>
+    </ListItem>
+    <ListItem text="List Item" variant="avatar" secondaryText="Secondary Text">
+      <ListItemAdornment slot="leadingAdornment">
+        <ListAvatar />
+      </ListItemAdornment>
+    </ListItem>
+  </List>
 </DocPage>
 
 <style lang="scss" global>
