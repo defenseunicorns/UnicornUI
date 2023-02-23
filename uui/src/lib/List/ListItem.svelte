@@ -9,10 +9,10 @@
   type $$Props = ListItemProps;
   export let text = '';
   export let secondaryText = '';
-  export let selected: boolean;
-  export let disabled: boolean;
-  export let disabledGutters: boolean;
-  export let divider: boolean;
+  export let selected: boolean | undefined = undefined;
+  export let disabled: boolean | undefined = undefined;
+  export let disabledGutters: boolean | undefined = undefined;
+  export let divider: boolean | undefined = undefined;
 
   // Local Variables
   let listItemRef: HTMLLIElement;

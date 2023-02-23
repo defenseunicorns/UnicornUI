@@ -10,6 +10,7 @@
   } from '@uui';
   import DocPage from '../../lib/doc-page.svelte';
   import VariantExample from '../../lib/VariantExample.svelte';
+  import InlineCode from '../../lib/inline-code.svelte';
 
   type ExampleListItems1 = ListItemProps & {
     leadingAdornment?: boolean;
@@ -89,8 +90,8 @@
 <DocPage>
   <Typography variant="h2">List</Typography>
   <p>
-    The List component acts as the base wrapper for ListItems and is used in several other
-    components such as menus, select drop downs, and navigation drawers.
+    The <InlineCode>List</InlineCode> component acts as the base wrapper for ListItems and is used in
+    several other components such as menus, select drop downs, and navigation drawers.
   </p>
 
   <Typography variant="h3">Types</Typography>
@@ -110,11 +111,11 @@ export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLElement> {
   </Typography>
 
   <Typography variant="h3">Styles</Typography>
-  <Typography variant="body1"
-    >Lists come like blank canvas. You can control the style by passing a custom class to the List
-    component. All following examples use a custom demo-list class for making the list look like
-    this:</Typography
-  >
+  <Typography variant="body1">
+    <InlineCode>List</InlineCode> comes like blank canvas. You can control the style by passing a custom
+    class to the List component. All following examples use a custom demo-list class for making the list
+    look like this:
+  </Typography>
   <List class="demo-list" variants={['single-line']} />
 
   <VariantExample
@@ -135,15 +136,12 @@ export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLElement> {
   <Typography variant="h3">Slots</Typography>
 
   <Typography variant="body1">
-    List utilizes an unnamed slot in which ListItems are rendered as "children".
+    <InlineCode>List</InlineCode> utilizes an unnamed slot in which ListItems are rendered as "children".
   </Typography>
 
   <VariantExample
     code={`
-<ul
-  class="mdc-deprecated-list {listClasses} {$$restProps.class || ''}"
-  class:disabled-padding={disabledPadding}
-> 
+<ul ...> 
   <slot />
 </ul>
 `}
@@ -151,8 +149,8 @@ export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLElement> {
 
   <Typography variant="h2">List Item</Typography>
   <Typography variant="body1"
-    >The ListItem is the true workhorse of Lists. It wraps your text as well as adornments, like
-    icons, icon buttons, images, checkboxes, etc...</Typography
+    >The <InlineCode>ListItem</InlineCode> is the true workhorse of <InlineCode>List</InlineCode>.
+    It wraps your text as well as adornments, like icons, icon buttons, images, checkboxes, etc...</Typography
   >
   <Typography variant="h3">Types</Typography>
 
@@ -171,11 +169,32 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
 `}
   />
 
+  <Typography variant="h3">Slots</Typography>
+  <Typography variant="body1">
+    <InlineCode>ListItem</InlineCode> has two named slots for leading and trailing adornments. **As seen
+    in below examples, to pass adornments (icons, icon buttons, checkboxes, avatars etc...) to these
+    slots that receive correct styles, you need to use the <InlineCode>ListItemAdornment</InlineCode
+    > component.**
+  </Typography>
+
+  <VariantExample
+    code={` 
+  <li ...>
+  <slot name="leadingAdornment" />
+    ....
+  <slot name="trailingAdornment" />
+</li>
+  
+  `}
+  />
+
   <Typography variant="h3">List Item Examples</Typography>
 
   <Typography variant="h4">Single-Line With No Padding</Typography>
   <ul>
-    <li>List by default has padding. To override, use the disabledPadding prop.</li>
+    <li>
+      <InlineCode>List</InlineCode> by default has padding. To override, use the disabledPadding prop.
+    </li>
   </ul>
   <List variants={['single-line']} class="demo-list" disabledPadding={true}>
     <ListItem text="List Item" on:click={() => alert('you clicked me')} />
