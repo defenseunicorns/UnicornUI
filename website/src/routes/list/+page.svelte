@@ -1,5 +1,4 @@
 <script lang="ts">
-  import ListAvatar from '../../lib/ListAvatar.svelte';
   import IconButton from '@defense-unicorns/unicorn-ui/src/lib/IconButton/IconButton.svelte';
   import type { ListItemProps, ComponentAsProp } from '@uui';
   import { List, Typography, ListItem, ListItemAdornment, ListItemCheckbox } from '@uui';
@@ -94,7 +93,6 @@
     type ListVariant = 'single-line' | 'two-line' | 'icon' | 'avatar';  
 export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLElement> {
   variants: ListVariant[];
-  listItems: ListItemProps[];
   disabledPadding?: boolean;
 }
     `}
@@ -412,8 +410,8 @@ const listItemsTwoLine2: ExampleListItems2[] = [
   disabledGutters?: boolean;
 }
 
-export interface ListItemAdornmentProps<T extends EventTarget> extends BoxProps<T> {}
-    `}
+export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
+`}
   />
 </DocPage>
 
