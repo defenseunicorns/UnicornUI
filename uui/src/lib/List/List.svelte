@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { ListProps, ListVariant } from './List.types';
+  import type { ListProps } from './List.types';
 
   // Props
   type $$Props = ListProps;
