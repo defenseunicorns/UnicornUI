@@ -1,14 +1,10 @@
 <script lang="ts">
   import type { ListProps, ListVariant } from './List.types';
-  import ListItem from './ListItem.svelte';
-  import type { ListItemProps } from './ListItem.types';
 
   // Props
   type $$Props = ListProps;
-  export let listItems: ListItemProps[] = [];
   export let variants: ListVariant[] = ['single-line'];
   export let disabledPadding: boolean;
-  export let onSelect: () => void | undefined = undefined;
 
   // Local Variables
   const variantMap = new Map<string, string>([
@@ -35,9 +31,7 @@
   class="mdc-deprecated-list {listClasses} {$$restProps.class || ''}"
   class:disabled-padding={disabledPadding}
 >
-  {#each listItems as item}
-    <ListItem {...item} on:click={onSelect} />
-  {/each}
+  <slot />
 </ul>
 
 <style lang="scss">

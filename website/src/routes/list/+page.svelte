@@ -1,39 +1,65 @@
 <script lang="ts">
   import ListAvatar from '../../lib/ListAvatar.svelte';
   import IconButton from '@defense-unicorns/unicorn-ui/src/lib/IconButton/IconButton.svelte';
-  import type { ListItemProps } from '@uui';
-  import { List, Typography } from '@uui';
+  import type { ListItemProps, ComponentAsProp } from '@uui';
+  import { List, Typography, ListItem, ListItemAdornment, ListItemCheckbox } from '@uui';
   import DocPage from '../../lib/doc-page.svelte';
   import VariantExample from '../../lib/VariantExample.svelte';
 
-  let listItemsOneLine: ListItemProps[] = [
-    { text: 'List Item' },
-    { text: 'List Item', selected: true },
-    { text: 'List Item', disabled: true },
+  type ExampleListItems1 = ListItemProps & {
+    leadingAdornment?: boolean;
+    trailingAdornment?: boolean;
+  };
+
+  const listItemsTwoLine1: ExampleListItems1[] = [
+    { text: 'List Item', secondaryText: 'Secondary Text' },
+    { text: 'List Item', secondaryText: 'Secondary Text', selected: true, divider: true },
     {
       text: 'List Item',
-      leadingAdornment: {
-        component: IconButton,
-        props: { iconClass: 'material-symbols-outlined', iconContent: 'favorite' }
-      },
-      divider: true
+      secondaryText: 'Secondary Text',
+      leadingAdornment: true
     },
     {
       text: 'List Item',
-      trailingAdornment: {
-        component: IconButton,
-        props: {
-          iconClass: 'material-symbols-outlined',
-          iconColor: 'primary',
-          iconContent: 'close'
-        }
-      }
+      secondaryText: 'Secondary Text',
+      leadingAdornment: true
+    },
+    {
+      text: 'List Item',
+      secondaryText: 'Secondary Text',
+      disabled: true,
+      trailingAdornment: true
+    },
+    {
+      text: 'List Item',
+      secondaryText: 'Disabled Gutters',
+      trailingAdornment: true,
+      disabledGutters: true
     }
   ];
 
-  let listItemsTwoLine: ListItemProps[] = [
+  type ExampleListItems2 = ListItemProps & {
+    leadingAdornment?: Record<string, string> | ComponentAsProp<any>;
+    trailingAdornment?: Record<string, string> | ComponentAsProp<any>;
+  };
+
+  const listItemsTwoLine2: ExampleListItems2[] = [
     { text: 'List Item', secondaryText: 'Secondary Text' },
     { text: 'List Item', secondaryText: 'Secondary Text', selected: true, divider: true },
+    {
+      text: 'List Item',
+      secondaryText: 'Secondary Text',
+      leadingAdornment: {
+        content: 'favorite'
+      }
+    },
+    {
+      text: 'List Item',
+      secondaryText: 'Secondary Text',
+      leadingAdornment: {
+        content: 'warning'
+      }
+    },
     {
       text: 'List Item',
       secondaryText: 'Secondary Text',
@@ -47,28 +73,10 @@
       text: 'List Item',
       secondaryText: 'Disabled Gutters',
       trailingAdornment: {
-        component: IconButton,
-        props: {
-          iconClass: 'material-symbols-outlined',
-          iconColor: 'primary',
-          iconContent: 'close'
-        }
+        component: ListItemCheckbox,
+        props: {}
       },
       disabledGutters: true
-    }
-  ];
-
-  const listItemsCheckbox: ListItemProps[] = [
-    { text: 'List Item', checkBox: 'leading' },
-    { text: 'List Item', checkBox: 'trailing', selected: true },
-    { text: 'List Item', checkBox: 'leading', disabled: true }
-  ];
-
-  const listItemsAvatar: ListItemProps[] = [
-    {
-      text: 'List Item',
-      secondaryText: 'Avatar',
-      leadingAdornment: { component: ListAvatar, props: {} }
     }
   ];
 </script>
@@ -88,7 +96,6 @@ export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLElement> {
   variants: ListVariant[];
   listItems: ListItemProps[];
   disabledPadding?: boolean;
-  onSelect?: () => void;
 }
     `}
   />
@@ -105,6 +112,7 @@ export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLElement> {
     this:</Typography
   >
   <List class="demo-list" variants={['single-line']} listItems={[]} />
+
   <VariantExample
     code={`
     <List 
@@ -126,107 +134,267 @@ export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLElement> {
   <Typography variant="h4">Single-Line List With No Padding</Typography>
   <ul>
     <li>List by default has padding. To override, use the disabledPadding prop.</li>
-    <li>
-      List can accept an onSelect function which gets applied to all children ListItems. Try
-      clicking through the items of the following menu.
-    </li>
   </ul>
-  <List
-    variants={['single-line']}
-    class="demo-list"
-    listItems={listItemsOneLine}
-    disabledPadding={true}
-    onSelect={() => alert('you clicked me')}
-  />
+  <List variants={['single-line']} class="demo-list" disabledPadding={true}>
+    <ListItem text="List Item" on:click={() => alert('you clicked me')} />
+    <ListItem text="List Item" selected={true} />
+    <ListItem text="List Item" disabled={true} />
+    <ListItem text="List Item" divider={true}>
+      <ListItemAdornment slot="leadingAdornment">
+        <IconButton iconClass="material-symbols-outlined" iconContent="favorite" />
+      </ListItemAdornment>
+    </ListItem>
+    <ListItem text="List Item">
+      <ListItemAdornment slot="trailingAdornment">
+        <IconButton iconClass="material-symbols-outlined" iconContent="close" />
+      </ListItemAdornment>
+    </ListItem>
+  </List>
+
   <VariantExample
     code={`
-    <List
-      variants={['single-line']}
-      class="demo-list"
-      disabledPadding={true}
-      onSelect={() => alert('you clicked me')}
-      listItems={[
-        { text: 'List Item' },
-        { text: 'List Item', selected: true },
-        { text: 'List Item', disabled: true },
-        {
-          text: 'List Item',
-          leadingAdornment: {
-            component: IconButton,
-            props: { iconClass: 'material-symbols-outlined', iconContent: 'favorite' }
-          },
-          divider: true
-        },
-        {
-          text: 'List Item',
-          trailingAdornment: {
-            component: IconButton,
-            props: {
-              iconClass: 'material-symbols-outlined',
-              iconColor: 'primary',
-              iconContent: 'close'
-            }
-          }
-      }]}
-    />
+     <List
+  variants={['single-line']}
+  class="demo-list"
+  disabledPadding={true}
+>
+  <ListItem text="List Item" on:click={() => alert('you clicked me')} />
+  <ListItem text="List Item" selected={true} />
+  <ListItem text="List Item" disabled={true} />
+  <ListItem text="List Item" divider={true}>
+      <IconButton
+        iconClass="material-symbols-outlined"
+        iconContent="favorite"
+        slot="leadingAdornment"
+      />
+  </ListItem>
+  <ListItem text="List Item">
+      <IconButton
+        iconClass="material-symbols-outlined"
+        iconContent="close"
+        slot="trailingAdornment"
+      />
+  </ListItem>
+</List>
 `}
   />
 
   <Typography variant="h4">Two-Line List With Padding</Typography>
-  <List class="demo-list" variants={['two-line']} listItems={listItemsTwoLine} />
+
+  <Typography variant="h5">Example 1: Using Iteration</Typography>
+
+  <List class="demo-list" variants={['two-line']}>
+    {#each listItemsTwoLine1 as item}
+      <ListItem {...item} on:click={() => !item.disabled && alert('item selected')}>
+        <svelte:fragment slot="leadingAdornment">
+          {#if item.leadingAdornment}
+            <ListItemAdornment
+              class="material-symbols-outlined"
+              slot="leadingAdornment"
+              disabled={item.disabled}
+            >
+              favorite
+            </ListItemAdornment>
+          {/if}
+        </svelte:fragment>
+        <svelte:fragment slot="trailingAdornment">
+          {#if item.trailingAdornment}
+            <ListItemAdornment>
+              <IconButton
+                disabled={item.disabled}
+                iconClass="material-symbols-outlined"
+                iconContent="close"
+                iconColor="primary"
+              />
+            </ListItemAdornment>
+          {/if}
+        </svelte:fragment>
+      </ListItem>
+    {/each}
+  </List>
+
+  <Typography variant="h6">
+    If you have more than a few list items, you can iterate through an array of ListItemProps, even
+    conditionally rendering adornments if some items have them and some do not.
+  </Typography>
 
   <VariantExample
     code={`
-    <List 
-  class="demo-list" 
-  variants={['two-line']} 
-  listItems={[
-        { text: 'List Item', secondaryText: 'Secondary Text' },
-        { text: 'List Item', secondaryText: 'Secondary Text', selected: true, divider: true },
-        {
-          text: 'List Item',
-          secondaryText: 'Secondary Text',
-          disabled: true,
-          trailingAdornment: {
-            component: IconButton,
-            props: { iconClass: 'material-symbols-outlined', iconContent: 'close' }
-          }
-        },
-        {
-          text: 'List Item',
-          secondaryText: 'Disabled Gutters',
-          trailingAdornment: {
-            component: IconButton,
-            props: {
-              iconClass: 'material-symbols-outlined',
-              iconColor: 'primary',
-              iconContent: 'close'
-            }
-          },
-          disabledGutters: true
-        }
-      ]} 
-/>
+
+type ExampleListItems1 = ListItemProps & {
+    leadingAdornment?: boolean;
+    trailingAdornment?: boolean;
+};
+
+const listItemsTwoLine1: ExampleListItems1[] = [
+    { text: 'List Item', secondaryText: 'Secondary Text' },
+    { text: 'List Item', secondaryText: 'Secondary Text', selected: true, divider: true },
+    {
+      text: 'List Item',
+      secondaryText: 'Secondary Text',
+      leadingAdornment: true
+    },
+    {
+      text: 'List Item',
+      secondaryText: 'Secondary Text',
+      leadingAdornment: true
+    },
+    {
+      text: 'List Item',
+      secondaryText: 'Secondary Text',
+      disabled: true,
+      trailingAdornment: true
+    },
+    {
+      text: 'List Item',
+      secondaryText: 'Disabled Gutters',
+      trailingAdornment: true,
+      disabledGutters: true
+    }
+];
   `}
   />
 
-  <Typography variant="h4">Two Line With Avatar</Typography>
-  <List variants={['avatar', 'two-line']} class="demo-list" listItems={listItemsAvatar} />
+  <VariantExample
+    code={`
+      <List class="demo-list" variants={['two-line']}>
+    {#each listItemsTwoLine as item}
+      <ListItem {...item}>
+        <svelte:fragment slot="leadingAdornment">
+          {#if item.leadingAdornment}
+            <ListItemAdornment class="material-symbols-outlined" slot="leadingAdornment">
+              favorite
+            </ListItemAdornment>
+          {/if}
+        </svelte:fragment>
+        <svelte:fragment slot="trailingAdornment">
+          {#if item.trailingAdornment}
+            <ListItemAdornment>
+              <IconButton
+                iconClass="material-symbols-outlined"
+                iconContent="close"
+                iconColor="primary"
+              />
+            </ListItemAdornment>
+          {/if}
+        </svelte:fragment>
+      </ListItem>
+    {/each}
+</List>
+  `}
+  />
+
+  <Typography variant="h5">Example 2: Using Iteration</Typography>
+
+  <List class="demo-list" variants={['two-line']}>
+    {#each listItemsTwoLine2 as item}
+      <ListItem {...item}>
+        <svelte:fragment slot="leadingAdornment">
+          {#if item.leadingAdornment}
+            <ListItemAdornment
+              slot="leadingAdornment"
+              class="material-symbols-outlined"
+              disabled={item.disabled}
+            >
+              {item.leadingAdornment.content}
+            </ListItemAdornment>
+          {/if}
+        </svelte:fragment>
+        <svelte:fragment slot="trailingAdornment">
+          {#if item.trailingAdornment}
+            <ListItemAdornment slot="trailingAdornment">
+              <svelte:component
+                this={item.trailingAdornment.component}
+                {...item.trailingAdornment.props}
+                on:click={() => alert('you clicked me')}
+                disabled={item.disabled}
+              />
+            </ListItemAdornment>
+          {/if}
+        </svelte:fragment>
+      </ListItem>
+    {/each}
+  </List>
+
+  <Typography variant="h6">
+    Another example of iteration, except this time we're passing different types of icons or even
+    different types of components used for adornments.
+  </Typography>
 
   <VariantExample
     code={`
-    <List 
-  variants={['avatar', 'two-line']} 
-  class="demo-list" 
-  listItems={[
+
+type ExampleListItems2 = ListItemProps & {
+    leadingAdornment?: Record<string, string> | ComponentAsProp<any>;
+    trailingAdornment?: Record<string, string> | ComponentAsProp<any>;
+};
+
+const listItemsTwoLine2: ExampleListItems2[] = [
+    { text: 'List Item', secondaryText: 'Secondary Text' },
+    { text: 'List Item', secondaryText: 'Secondary Text', selected: true, divider: true },
     {
       text: 'List Item',
-      secondaryText: 'Avatar',
-      leadingAdornment: { component: ListAvatar, props: {} }
+      secondaryText: 'Secondary Text',
+      leadingAdornment: {
+        content: 'favorite'
+      }
+    },
+    {
+      text: 'List Item',
+      secondaryText: 'Secondary Text',
+      leadingAdornment: {
+        content: 'warning'
+      }
+    },
+    {
+      text: 'List Item',
+      secondaryText: 'Secondary Text',
+      disabled: true,
+      trailingAdornment: {
+        component: IconButton,
+        props: { iconClass: 'material-symbols-outlined', iconContent: 'close' }
+      }
+    },
+    {
+      text: 'List Item',
+      secondaryText: 'Disabled Gutters',
+      trailingAdornment: {
+        component: ListItemCheckbox,
+        props: {}
+      },
+      disabledGutters: true
     }
-  ]} 
-/>
-    `}
+];
+  `}
+  />
+
+  <VariantExample
+    code={`
+   <List class="demo-list" variants={['two-line']}>
+    {#each listItemsTwoLine2 as item}
+      <ListItem {...item}>
+        <svelte:fragment slot="leadingAdornment">
+          {#if item.leadingAdornment}
+            <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
+              {item.leadingAdornment.content}
+            </ListItemAdornment>
+          {/if}
+        </svelte:fragment>
+        <svelte:fragment slot="trailingAdornment">
+          {#if item.trailingAdornment}
+            <ListItemAdornment>
+              <svelte:component
+                this={item.trailingAdornment.component}
+                {...item.trailingAdornment.props}
+                on:click={() => alert('you clicked me')}
+              />
+            </ListItemAdornment>
+          {/if}
+        </svelte:fragment>
+      </ListItem>
+    {/each}
+</List>
+  `}
   />
 
   <Typography variant="h2">List Item</Typography>
@@ -235,49 +403,17 @@ export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLElement> {
 
   <VariantExample
     code={`
-    export interface ListItemProps {
+    export interface ListItemProps extends svelte.JSX.HTMLAttributes<HTMLLIElement> {
   text: string;
   secondaryText?: string;
   selected?: boolean;
-  checkBox?: 'leading' | 'trailing';
   divider?: boolean;
   disabled?: boolean;
   disabledGutters?: boolean;
-  leadingAdornment?: ComponentAsProp<IconButtonProps>;
-  trailingAdornment?: ComponentAsProp<IconButtonProps>;
 }
 
-export type ComponentProps<T> = {
-  [K in keyof T]: T[K];
-};
-
-export type ComponentAsProp<T extends Record<string, any>> = {
-  component: ComponentType<SvelteComponentTyped>;
-  props: ComponentProps<T>;
-};
+export interface ListItemAdornmentProps<T extends EventTarget> extends BoxProps<T> {}
     `}
-  />
-
-  <Typography variant="h4">Default CheckBox</Typography>
-  <Typography variant="body1"
-    >ListItem, as noted above, can accept components as leading and trailing adornments. For easy
-    out of the box use, it also accepts a checkbox prop that enables a default mdc Checkbox in the
-    leading or trailing positions.</Typography
-  >
-
-  <List variants={['single-line']} class="demo-list" listItems={listItemsCheckbox} />
-
-  <VariantExample
-    code={`<List 
-  variants={['single-line']} 
-  class="demo-list" 
-  listItems={[
-    { text: 'List Item', checkBox: 'leading' },
-    { text: 'List Item', checkBox: 'trailing', selected: true },
-    { text: 'List Item', checkBox: 'leading', disabled: true }
-  ]} 
-/>
-  `}
   />
 </DocPage>
 

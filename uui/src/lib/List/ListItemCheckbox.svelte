@@ -21,10 +21,6 @@
     }
   });
 
-  function setSelected() {
-    selected = !selected;
-  }
-
   $: eventComponents = [current_component];
 </script>
 
@@ -63,9 +59,7 @@
 <style lang="scss">
   @use '@material/checkbox';
   @use '@material/form-field';
-  @use '@material/list';
 
   @include checkbox.core-styles;
   @include form-field.core-styles;
-  @include list.deprecated-core-styles;
 </style>

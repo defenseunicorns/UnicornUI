@@ -2,7 +2,6 @@
   import { onMount } from 'svelte/internal';
   import { MDCRipple } from '@material/ripple';
   import type { ListItemProps } from './ListItem.types';
-  import ListItemCheckbox from './ListItemCheckbox.svelte';
   import { eventRedirection } from '../shared/utils/eventRedirection';
   import { current_component } from 'svelte/internal';
 
@@ -11,9 +10,6 @@
   export let text = '';
   export let secondaryText = '';
   export let selected: boolean;
-  export let checkBox: 'leading' | 'trailing';
-  export let leadingAdornment: any;
-  export let trailingAdornment: any;
   export let disabled: boolean;
   export let disabledGutters: boolean;
   export let divider: boolean;
@@ -38,6 +34,7 @@
     }
   }
 
+  // Reactive Variables
   $: eventComponents = [current_component];
 </script>
 
@@ -61,21 +58,7 @@
   class:disabled-gutters={disabledGutters}
   class:divider
 >
-  {#if checkBox && checkBox === 'leading' && !leadingAdornment}
-    <ListItemCheckbox
-      {selected}
-      class="mdc-deprecated-list-item__graphic"
-      {disabled}
-      on:change={handleInteraction}
-    />
-  {:else if leadingAdornment}
-    <svelte:component
-      this={leadingAdornment.component}
-      {...leadingAdornment.props}
-      {disabled}
-      class="mdc-deprecated-list-item__graphic"
-    />
-  {/if}
+  <slot name="leadingAdornment" />
 
   <span class="mdc-deprecated-list-item__ripple" />
   <span class="mdc-deprecated-list-item__text">
@@ -83,21 +66,7 @@
     <span class="mdc-deprecated-list-item__secondary-text">{secondaryText}</span>
   </span>
 
-  {#if checkBox && checkBox === 'trailing' && !trailingAdornment}
-    <ListItemCheckbox
-      {selected}
-      class="mdc-deprecated-list-item__meta"
-      {disabled}
-      on:change={handleInteraction}
-    />
-  {:else if trailingAdornment}
-    <svelte:component
-      this={trailingAdornment.component}
-      {...trailingAdornment.props}
-      {disabled}
-      class="mdc-deprecated-list-item__meta"
-    />
-  {/if}
+  <slot name="trailingAdornment" />
 </li>
 
 <style lang="scss" global>
