@@ -1,6 +1,6 @@
 import type { BoxProps } from '../Box/box.types';
 
-export type ListItemVariant = 'textual' | 'avatar' | 'icon' | 'image' | 'thumbnail' | 'video';
+export type ListItemVariant = 'textual' | 'icon' | 'avatar';
 
 export interface ListItemProps
   extends svelte.JSX.IntrinsicAttributes<svelte.JSX.HTMLAttributes<HTMLLIElement>> {

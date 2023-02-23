@@ -96,13 +96,34 @@
   </p>
 
   <Typography variant="h3">Types</Typography>
+  <Typography variant="body1">
+    <InlineCode>List</InlineCode> can receive all HTMLAttributes of HTMLUListElement, but the only custom
+    prop is disabledPadding which removes the default horizontal and vertical padding.
+  </Typography>
+
   <VariantExample
     code={`
-export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLElement> {
+export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLUListElement> {
   disabledPadding?: boolean;
 }
     `}
   />
+
+  <div class="inline-examples">
+    <div>
+      <Typography variant="h5">No Padding</Typography>
+      <List class="demo-list" disabledPadding={true}>
+        <ListItem text="List Item" />
+      </List>
+    </div>
+    <div>
+      <Typography variant="h5">Padding</Typography>
+
+      <List class="demo-list">
+        <ListItem text="List Item" />
+      </List>
+    </div>
+  </div>
 
   <Typography variant="h3">Styles</Typography>
   <Typography variant="body1">
@@ -142,17 +163,23 @@ export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLElement> {
     wraps your text as well as adornments, like icons, icon buttons, images, checkboxes, etc...
   </Typography>
   <Typography variant="h3">Types</Typography>
+  <Typography variant="body1">
+    <InlineCode>ListItem</InlineCode> has several optional props along with one required (text). Notably
+    the variant prop, of type ListItemVariant, allows you to compose lists of varying types of list items.
+    This type is used for styling height, padding, etc... for graphics. Defaults to "textual" if no variant
+    is given.
+  </Typography>
 
   <VariantExample
     code={`
-    export type ListItemVariant = 'textual' | 'avatar' | 'icon' | 'image' | 'thumbnail' | 'video';
+    export type ListItemVariant = 'textual'| 'icon' | 'avatar';
 
 export interface ListItemProps extends 
     svelte.JSX.IntrinsicAttributes<svelte.JSX.HTMLAttributes<HTMLLIElement>> 
 {
   text: string;
   secondaryText?: string;
-  variant?: ListItemVariant;
+  variant?: ListItemVariant (default textual);
   selected?: boolean;
   divider?: boolean;
   disabled?: boolean;
@@ -184,31 +211,101 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
 
   <Typography variant="h3">List Item Examples</Typography>
 
-  <Typography variant="h4">Single-Line With No Padding</Typography>
-  <ul>
-    <li>
-      <InlineCode>List</InlineCode> by default has padding. To override, use the disabledPadding prop.
-    </li>
-  </ul>
+  <Typography variant="h4">Textual</Typography>
+  <List class="demo-list">
+    <ListItem text="List Item" on:click={() => alert('you clicked me')} />
+    <ListItem text="List Item" selected={true} />
+    <ListItem text="List Item" disabled={true} />
+    <ListItem text="List Item" secondaryText="Secondar Text" />
+    <ListItem text="List Item" secondaryText="Secondar Text" selected={true} />
+    <ListItem text="List Item" secondaryText="Secondar Text" disabled={true} />
+  </List>
+
+  <VariantExample
+    code={`
   <List class="demo-list" disabledPadding={true}>
     <ListItem text="List Item" on:click={() => alert('you clicked me')} />
     <ListItem text="List Item" selected={true} />
     <ListItem text="List Item" disabled={true} />
-    <ListItem text="List Item" divider={true}>
+    <ListItem text="List Item" secondaryText="Secondar Text" />
+    <ListItem text="List Item" secondaryText="Secondar Text" selected={true} />
+    <ListItem text="List Item" secondaryText="Secondar Text" disabled={true} />
+</List>
+  `}
+  />
+
+  <Typography variant="h4">Icon</Typography>
+
+  <List class="demo-list">
+    <ListItem text="Icon" divider={true} variant="icon">
       <ListItemAdornment slot="leadingAdornment">
         <IconButton iconClass="material-symbols-outlined" iconContent="favorite" />
       </ListItemAdornment>
     </ListItem>
-    <ListItem text="List Item">
+    <ListItem text="Icon" variant="icon" secondaryText="Secondary Text">
+      <ListItemAdornment slot="leadingAdornment">
+        <IconButton iconClass="material-symbols-outlined" iconContent="favorite" />
+      </ListItemAdornment>
+    </ListItem>
+    <ListItem text="Icon" divider={true} variant="icon">
       <ListItemAdornment slot="trailingAdornment">
-        <IconButton
-          iconClass="material-symbols-outlined"
-          iconContent="close"
-          class="mdc-deprecated-list-item__meta"
+        <IconButton iconClass="material-symbols-outlined" iconContent="close" />
+      </ListItemAdornment>
+    </ListItem>
+    <ListItem text="Icon" variant="icon" secondaryText="Secondary Text">
+      <ListItemAdornment slot="trailingAdornment">
+        <IconButton iconClass="material-symbols-outlined" iconContent="close" />
+      </ListItemAdornment>
+    </ListItem>
+  </List>
+
+  <VariantExample
+    code={`
+  <List class="demo-list">
+    <ListItem text="Icon" divider={true} variant="icon">
+      <ListItemAdornment slot="leadingAdornment">
+        <IconButton 
+          iconClass="material-symbols-outlined" 
+          iconContent="favorite" 
         />
       </ListItemAdornment>
     </ListItem>
-    <ListItem text="List Item" variant="avatar">
+    <ListItem text="Icon" variant="icon" secondaryText="Secondary Text">
+      <ListItemAdornment slot="leadingAdornment">
+        <IconButton 
+          iconClass="material-symbols-outlined" 
+          iconContent="favorite" 
+        />
+      </ListItemAdornment>
+    </ListItem>
+    <ListItem text="Icon" divider={true} variant="icon">
+      <ListItemAdornment slot="trailingAdornment">
+        <IconButton 
+          iconClass="material-symbols-outlined" 
+          iconContent="close" 
+        />
+      </ListItemAdornment>
+    </ListItem>
+    <ListItem text="Icon" variant="icon" secondaryText="Secondary Text">
+      <ListItemAdornment slot="trailingAdornment">
+        <IconButton 
+          iconClass="material-symbols-outlined" 
+          iconContent="close" 
+        />
+      </ListItemAdornment>
+    </ListItem>
+  </List>
+  `}
+  />
+
+  <Typography variant="h4">Avatar</Typography>
+  <List class="demo-list">
+    <ListItem text="Avatar" variant="avatar">
+      <ListItemAdornment slot="leadingAdornment">
+        <ListAvatar />
+      </ListItemAdornment>
+    </ListItem>
+    <ListItem text="Avatar" variant="avatar" secondaryText="Secondary Text">
       <ListItemAdornment slot="leadingAdornment">
         <ListAvatar />
       </ListItemAdornment>
@@ -217,40 +314,36 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
 
   <VariantExample
     code={`
-     <List
-  variants={['single-line']}
-  class="demo-list"
-  disabledPadding={true}
->
-  <ListItem text="List Item" on:click={() => alert('you clicked me')} />
-  <ListItem text="List Item" selected={true} />
-  <ListItem text="List Item" disabled={true} />
-  <ListItem text="List Item" divider={true}>
-      <IconButton
-        iconClass="material-symbols-outlined"
-        iconContent="favorite"
-        slot="leadingAdornment"
-      />
-  </ListItem>
-  <ListItem text="List Item">
-      <IconButton
-        iconClass="material-symbols-outlined"
-        iconContent="close"
-        slot="trailingAdornment"
-      />
-  </ListItem>
+   <List class="demo-list">
+    <ListItem text="Avatar" variant="avatar">
+      <ListItemAdornment slot="leadingAdornment">
+        <ListAvatar />
+      </ListItemAdornment>
+    </ListItem>
+    <ListItem text="Avatar" variant="avatar" secondaryText="Secondary Text">
+      <ListItemAdornment slot="leadingAdornment">
+        <ListAvatar />
+      </ListItemAdornment>
+    </ListItem>
 </List>
 `}
   />
 
-  <Typography variant="h4">Two-Line</Typography>
+  <Typography variant="h4">Developer Experience: Iteration</Typography>
 
-  <Typography variant="h5">Example 1: Using Iteration</Typography>
   <Typography variant="body1">
-    If you have more than a few list items, you can iterate through an array of ListItemProps, even
-    conditionally rendering adornments if some items have them and some do not. To add adornment
-    properties to an array of ListItemProps objects (assuming you're using typescript), you need to
-    extend the ListItemProps interface as seen below.
+    While <InlineCode>List</InlineCode> does not accept an array of items as a prop, you can still use
+    the svelte way of looping. So if you have more than a few list items, you can iterate through an
+    array of ListItemProps objects, even conditionally rendering adornments if some items have them and
+    some do not. To add adornment properties to an array of ListItemProps objects (assuming you're using
+    typescript), you need to extend the ListItemProps interface as seen in the below code example.
+  </Typography>
+
+  <Typography variant="h5">Example 1</Typography>
+  <Typography variant="body1">
+    In this case, we know that every type of adornment will be the same (i.e. favorite for leading,
+    close for trailing), so we've extended our ListItemsProps interface to use a boolean for
+    indicating if an adornment is needed.
   </Typography>
 
   <List class="demo-list">
@@ -322,16 +415,20 @@ const listItemsTwoLine1: ExampleListItems1[] = [
 
   <VariantExample
     code={`
-      <List class="demo-list" variants={['two-line']}>
+      <List class="demo-list">
     {#each listItemsTwoLine as item}
       <ListItem {...item}>
         <svelte:fragment slot="leadingAdornment">
           {#if item.leadingAdornment}
-            <ListItemAdornment class="material-symbols-outlined" slot="leadingAdornment">
+            <ListItemAdornment 
+              class="material-symbols-outlined" 
+              slot="leadingAdornment"
+            >
               favorite
             </ListItemAdornment>
           {/if}
         </svelte:fragment>
+
         <svelte:fragment slot="trailingAdornment">
           {#if item.trailingAdornment}
             <ListItemAdornment>
@@ -349,10 +446,10 @@ const listItemsTwoLine1: ExampleListItems1[] = [
   `}
   />
 
-  <Typography variant="h5">Example 2: Using Iteration</Typography>
+  <Typography variant="h5">Example 2</Typography>
   <Typography variant="body1">
-    Another example of iteration, except this time we're passing different types of icons or even
-    different types of components used for adornments. Notice the change to the adornments type.
+    Now we want to allow for adornments to be different. So we've extended our ListItemProps to
+    allow for more complex adornment metadata.
   </Typography>
 
   <List class="demo-list">
@@ -364,6 +461,7 @@ const listItemsTwoLine1: ExampleListItems1[] = [
               slot="leadingAdornment"
               class="material-symbols-outlined"
               disabled={item.disabled}
+              on:click={() => alert('you clicked me')}
             >
               {item.leadingAdornment.content}
             </ListItemAdornment>
@@ -434,16 +532,21 @@ const listItemsTwoLine2: ExampleListItems2[] = [
 
   <VariantExample
     code={`
-   <List class="demo-list" variants={['two-line']}>
+   <List class="demo-list">
     {#each listItemsTwoLine2 as item}
       <ListItem {...item}>
         <svelte:fragment slot="leadingAdornment">
           {#if item.leadingAdornment}
-            <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
+            <ListItemAdornment 
+              slot="leadingAdornment" 
+              class="material-symbols-outlined"
+              on:click={() => alert('you clicked me')}
+            >
               {item.leadingAdornment.content}
             </ListItemAdornment>
           {/if}
         </svelte:fragment>
+
         <svelte:fragment slot="trailingAdornment">
           {#if item.trailingAdornment}
             <ListItemAdornment>
@@ -460,24 +563,6 @@ const listItemsTwoLine2: ExampleListItems2[] = [
 </List>
   `}
   />
-
-  <List class="demo-list">
-    <ListItem text="List Item" variant="avatar">
-      <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
-        folder
-      </ListItemAdornment>
-    </ListItem>
-    <ListItem text="List Item" variant="avatar">
-      <ListItemAdornment slot="leadingAdornment">
-        <ListAvatar />
-      </ListItemAdornment>
-    </ListItem>
-    <ListItem text="List Item" variant="avatar" secondaryText="Secondary Text">
-      <ListItemAdornment slot="leadingAdornment">
-        <ListAvatar />
-      </ListItemAdornment>
-    </ListItem>
-  </List>
 </DocPage>
 
 <style lang="scss" global>
@@ -485,5 +570,10 @@ const listItemsTwoLine2: ExampleListItems2[] = [
     width: 300px;
     border: 1px solid gray;
     background-color: var(--surface);
+  }
+
+  .inline-examples {
+    display: flex;
+    justify-content: space-around;
   }
 </style>

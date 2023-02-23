@@ -8,7 +8,7 @@
   // Props
   type $$Props = ListItemProps;
   export let text = '';
-  export let secondaryText = '';
+  export let secondaryText: string | undefined = undefined;
   export let variant: ListItemVariant = 'textual';
   export let selected: boolean | undefined = undefined;
   export let disabled: boolean | undefined = undefined;
@@ -78,7 +78,6 @@
 
 <style lang="scss" global>
   @use '@material/list';
-  @use '@material/typography';
   @include list.deprecated-core-styles;
 
   .mdc-deprecated-list-item {
@@ -103,12 +102,26 @@
     }
   }
 
-  .mdc-deprecated-list-item.avatar:not(.two-line) {
+  .mdc-deprecated-list-item.textual:not(.two-line) {
+    @include list.deprecated-single-line-height(48px);
+  }
+
+  .mdc-deprecated-list-item.avatar:not(.two-line),
+  .mdc-deprecated-list-item.icon:not(.two-line),
+  .mdc-deprecated-list-item.thumbnail:not(.two-line) {
     @include list.deprecated-single-line-height(56px);
+  }
+  .mdc-deprecated-list-item.image:not(.two-line),
+  .mdc-deprecated-list-item.video:not(.two-line) {
+    @include list.deprecated-single-line-height(72px);
   }
 
   .mdc-deprecated-list-item.avatar .mdc-deprecated-list-item__graphic > * {
-    @include list.deprecated-graphic-size(0, 0, 40px, 40px);
+    @include list.deprecated-graphic-size(-16px, 0, 40px, 40px);
     border-radius: 50%;
+  }
+
+  .mdc-deprecated-list-item.icon .mdc-deprecated-list-item__graphic > * {
+    @include list.deprecated-graphic-size(-16px, 0px, 40px, 40px);
   }
 </style>
