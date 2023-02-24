@@ -131,8 +131,8 @@ export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLUListElement> {
 
   <Typography variant="h3">Styles</Typography>
   <Typography variant="body1">
-    <InlineCode>List</InlineCode> comes as a blank canvas. You can control the style by passing it a
-    custom class. All following examples use a custom demo-list class.
+    Other than the default padding, <InlineCode>List</InlineCode> comes as a blank canvas. You can control
+    the style by passing it a custom class. All following examples use a custom demo-list class.
   </Typography>
   <List class="demo-list" />
 

@@ -1,6 +1,7 @@
 import type { BoxProps } from '../Box/box.types';
 
 export type ListItemVariant = 'textual' | 'icon' | 'avatar';
+export type ListItemSlotProps = Record<string, boolean | undefined>;
 
 export interface ListItemProps
   extends svelte.JSX.IntrinsicAttributes<svelte.JSX.HTMLAttributes<HTMLLIElement>> {
@@ -14,9 +15,9 @@ export interface ListItemProps
 }
 
 export interface ListItemSlots {
-  default: { selected: boolean | undefined; disabled: boolean | undefined };
-  leadingAdornment: { selected: boolean | undefined; disabled: boolean | undefined };
-  trailingAdornment: { selected: boolean | undefined; disabled: boolean | undefined };
+  default: ListItemSlotProps;
+  leadingAdornment: ListItemSlotProps;
+  trailingAdornment: ListItemSlotProps;
 }
 
 export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>;

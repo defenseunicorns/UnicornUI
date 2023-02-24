@@ -109,6 +109,7 @@ export type { ListProps } from './List/List.types';
 export type {
   ListItemProps,
   ListItemSlots,
+  ListItemSlotProps,
   ListItemVariant,
   ListItemAdornmentProps
 } from './List/ListItem.types';
