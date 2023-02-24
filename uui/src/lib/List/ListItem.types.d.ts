@@ -18,6 +18,7 @@ export interface ListItemSlots {
   default: ListItemSlotProps;
   leadingAdornment: ListItemSlotProps;
   trailingAdornment: ListItemSlotProps;
+  nested: ListItemSlotProps;
 }
 
 export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>;

@@ -48,40 +48,55 @@
     if (e.key === 'enter') clickAway(e);
   }}
 />
+<div class="list-item-container">
+  <li
+    use:eventRedirection={eventComponents}
+    bind:this={listItemRef}
+    on:click={handleInteraction}
+    on:keydown={(e) => {
+      if (e.key === 'enter') handleInteraction();
+    }}
+    class="mdc-deprecated-list-item mdc-ripple-upgraded {variant}"
+    class:mdc-ripple-upgraded--background-focused={selected}
+    class:mdc-deprecated-list-item--disabled={disabled}
+    class:disabled-gutters={disabledGutters}
+    class:divider
+    class:two-line={secondaryText}
+  >
+    <slot name="leadingAdornment" {selected} {disabled} />
 
-<li
-  use:eventRedirection={eventComponents}
-  bind:this={listItemRef}
-  on:click={handleInteraction}
-  on:keydown={(e) => {
-    if (e.key === 'enter') handleInteraction();
-  }}
-  class="mdc-deprecated-list-item mdc-ripple-upgraded {variant}"
-  class:mdc-ripple-upgraded--background-focused={selected}
-  class:mdc-deprecated-list-item--disabled={disabled}
-  class:disabled-gutters={disabledGutters}
-  class:divider
-  class:two-line={secondaryText}
->
-  <slot name="leadingAdornment" {selected} {disabled} />
+    <span class="mdc-deprecated-list-item__ripple" />
 
-  <span class="mdc-deprecated-list-item__ripple" />
+    {#if secondaryText}
+      <span class="mdc-deprecated-list-item__text">
+        <span class="mdc-deprecated-list-item__primary-text">{text}</span>
+        <span class="mdc-deprecated-list-item__secondary-text">{secondaryText} </span>
+      </span>
+    {:else}
+      <span class="mdc-deprecated-list-item__text">{text}</span>
+    {/if}
 
-  {#if secondaryText}
-    <span class="mdc-deprecated-list-item__text">
-      <span class="mdc-deprecated-list-item__primary-text">{text}</span>
-      <span class="mdc-deprecated-list-item__secondary-text">{secondaryText} </span>
-    </span>
-  {:else}
-    <span class="mdc-deprecated-list-item__text">{text}</span>
+    <slot name="trailingAdornment" {selected} {disabled} />
+  </li>
+  {#if selected && $$slots.nested}
+    <div class="nested-item">
+      <slot name="nested" />
+    </div>
   {/if}
-
-  <slot name="trailingAdornment" {selected} {disabled} />
-</li>
+</div>
 
 <style lang="scss" global>
   @use '@material/list';
   @include list.deprecated-core-styles;
+
+  .list-item-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nested-item {
+    padding-left: 1rem;
+  }
 
   .mdc-deprecated-list-item {
     @include list.deprecated-item-primary-text-ink-color(var(--on-background));

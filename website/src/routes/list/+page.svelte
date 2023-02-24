@@ -179,14 +179,15 @@ export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLUListElement> {
 
   <VariantExample
     code={`
-    export type ListItemVariant = 'textual'| 'icon' | 'avatar';
+    export type ListItemVariant = 'textual' | 'icon' | 'avatar';
+export type ListItemSlotProps = Record<string, boolean | undefined>;
 
-export interface ListItemProps extends 
-    svelte.JSX.IntrinsicAttributes<svelte.JSX.HTMLAttributes<HTMLLIElement>> 
+export interface ListItemProps
+  extends svelte.JSX.IntrinsicAttributes<svelte.JSX.HTMLAttributes<HTMLLIElement>> 
 {
   text: string;
+  variant?: ListItemVariant;
   secondaryText?: string;
-  variant?: ListItemVariant (default textual);
   selected?: boolean;
   divider?: boolean;
   disabled?: boolean;
@@ -194,25 +195,32 @@ export interface ListItemProps extends
 }
 
 export interface ListItemSlots {
-  default: { selected: boolean | undefined; disabled: boolean | undefined };
-  leadingAdornment: { selected: boolean | undefined; disabled: boolean | undefined };
-  trailingAdornment: { selected: boolean | undefined; disabled: boolean | undefined };
+  default: ListItemSlotProps;
+  leadingAdornment: ListItemSlotProps;
+  trailingAdornment: ListItemSlotProps;
+  nested: ListItemSlotProps;
 }
 
-
-export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
+export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>;
 `}
   />
 
   <Typography variant="h3">Slots</Typography>
   <Typography variant="body1">
-    <InlineCode>ListItem</InlineCode> has two named slots for leading and trailing adornments. Their
-    types can be seen in the above Types code example. Currently they support two slot properties --
-    selected and disabled. This allows for <InlineCode>ListItem</InlineCode> to expose it's selected
-    and disabled states to the adornemts, keeping all parts of the <InlineCode>ListItem</InlineCode>
+    <InlineCode>ListItem</InlineCode> has three named slots for leading adornment, trailing adornment,
+    and nested content. Their types can be seen in the above Types code example. Currently they support
+    two slot properties -- selected and disabled. This allows for <InlineCode>ListItem</InlineCode> to
+    expose it's selected and disabled states to the adornments, keeping all parts of the <InlineCode
+      >ListItem</InlineCode
+    >
     in sync. **As seen in below examples, to pass adornments (icons, icon buttons, checkboxes, avatars
     etc...) to these slots, you need to use the <InlineCode>ListItemAdornment</InlineCode> component
     so they receive correct styling.
+  </Typography>
+
+  <Typography>
+    Also of note, the nested content is controlled by the selected state as well as the presence of
+    an element designated with the "nested" slot designation.
   </Typography>
 
   <VariantExample
@@ -222,6 +230,11 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
     ....
   <slot name="trailingAdornment" {selected} {disabled} />
 </li>
+{#if selected && $$slots.nested}
+    <div class="nested-item">
+      <slot name="nested" />
+    </div>
+{/if}
   
   `}
   />
@@ -422,6 +435,86 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
     </ListItem>
 </List>
 `}
+  />
+
+  <Typography variant="h4">Nested</Typography>
+  <Typography variant="body1">
+    You can nest list items or even entire lists under a single <InlineCode>ListItem</InlineCode>.
+    The nested element / component needs to indicate it's for the nested slot.
+  </Typography>
+
+  <List class="demo-list">
+    <ListItem text="Parent" variant="icon">
+      <ListItemAdornment slot="trailingAdornment">
+        <IconButton
+          iconClass="material-symbols-outlined"
+          iconContent="arrow_drop_down"
+          iconColor="primary"
+        />
+      </ListItemAdornment>
+      <List slot="nested" disabledPadding>
+        <ListItem text="Avatar" variant="avatar">
+          <ListItemAdornment slot="leadingAdornment">
+            <ListAvatar />
+          </ListItemAdornment>
+        </ListItem>
+        <ListItem text="Avatar" variant="avatar" secondaryText="Secondary Text" selected>
+          <ListItemAdornment slot="leadingAdornment">
+            <ListAvatar />
+          </ListItemAdornment>
+        </ListItem>
+        <ListItem
+          text="Avatar"
+          variant="avatar"
+          secondaryText="Secondary Text"
+          disabledGutters
+          divider
+        >
+          <ListItemAdornment slot="leadingAdornment">
+            <ListAvatar />
+          </ListItemAdornment>
+        </ListItem>
+      </List>
+    </ListItem>
+  </List>
+
+  <VariantExample
+    code={`
+  <List class="demo-list">
+    <ListItem text="Parent" variant="icon">
+      <ListItemAdornment slot="trailingAdornment">
+        <IconButton
+          iconClass="material-symbols-outlined"
+          iconContent="arrow_drop_down"
+          iconColor="primary"
+        />
+      </ListItemAdornment>
+      <List slot="nested" disabledPadding>
+        <ListItem text="Avatar" variant="avatar">
+          <ListItemAdornment slot="leadingAdornment">
+            <ListAvatar />
+          </ListItemAdornment>
+        </ListItem>
+        <ListItem text="Avatar" variant="avatar" secondaryText="Secondary Text" selected>
+          <ListItemAdornment slot="leadingAdornment">
+            <ListAvatar />
+          </ListItemAdornment>
+        </ListItem>
+        <ListItem
+          text="Avatar"
+          variant="avatar"
+          secondaryText="Secondary Text"
+          disabledGutters
+          divider
+        >
+          <ListItemAdornment slot="leadingAdornment">
+            <ListAvatar />
+          </ListItemAdornment>
+        </ListItem>
+      </List>
+    </ListItem>
+</List>
+  `}
   />
 
   <Typography variant="h3">Controlling Interaction</Typography>
