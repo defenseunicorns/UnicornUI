@@ -29,7 +29,7 @@
   });
 
   function handleInteraction() {
-    if (!disabled) selected = true;
+    if (!disabled) selected = !selected;
   }
 
   function clickAway(evt: MouseEvent | KeyboardEvent) {
