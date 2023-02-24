@@ -61,6 +61,6 @@
   @include form-field.core-styles;
 
   svg > path {
-    stroke: (var(--on-background))
+    stroke: (var(--on-background));
   }
 </style>
