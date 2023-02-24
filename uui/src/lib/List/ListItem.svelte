@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte/internal';
   import { MDCRipple } from '@material/ripple';
-  import type { ListItemProps, ListItemVariant } from './ListItem.types';
+  import type { ListItemProps, ListItemSlots, ListItemVariant } from './ListItem.types';
   import { eventRedirection } from '../shared/utils/eventRedirection';
   import { current_component } from 'svelte/internal';
 
@@ -14,6 +14,9 @@
   export let disabled: boolean | undefined = undefined;
   export let disabledGutters: boolean | undefined = undefined;
   export let divider: boolean | undefined = undefined;
+
+  // Slot Types
+  type $$Slots = ListItemSlots;
 
   // Local Variables
   let listItemRef: HTMLLIElement;
@@ -60,7 +63,7 @@
   class:divider
   class:two-line={secondaryText}
 >
-  <slot name="leadingAdornment" />
+  <slot name="leadingAdornment" {selected} {disabled} />
 
   <span class="mdc-deprecated-list-item__ripple" />
 
@@ -73,7 +76,7 @@
     <span class="mdc-deprecated-list-item__text">{text}</span>
   {/if}
 
-  <slot name="trailingAdornment" />
+  <slot name="trailingAdornment" {selected} {disabled} />
 </li>
 
 <style lang="scss" global>

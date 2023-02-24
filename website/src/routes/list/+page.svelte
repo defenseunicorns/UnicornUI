@@ -52,10 +52,11 @@
 
   const listItemsIteration2: ExtendedListItems2[] = [
     { text: 'List Item', secondaryText: 'Secondary Text' },
-    { text: 'List Item', secondaryText: 'Secondary Text', selected: true, divider: true },
+    { text: 'List Item', secondaryText: 'Secondary Text', divider: true },
     {
       text: 'List Item',
       secondaryText: 'Secondary Text',
+      selected: true,
       leadingAdornment: {
         content: 'favorite'
       }
@@ -87,7 +88,6 @@
     }
   ];
 
-  let exampleSelected = false;
   let exampleOnclick = () => alert('You selected this item');
 </script>
 
@@ -191,26 +191,72 @@ export interface ListItemProps extends
   disabledGutters?: boolean;
 }
 
+export interface ListItemSlots {
+  default: { selected: boolean | undefined; disabled: boolean | undefined };
+  leadingAdornment: { selected: boolean | undefined; disabled: boolean | undefined };
+  trailingAdornment: { selected: boolean | undefined; disabled: boolean | undefined };
+}
+
+
 export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
 `}
   />
 
   <Typography variant="h3">Slots</Typography>
   <Typography variant="body1">
-    <InlineCode>ListItem</InlineCode> has two named slots for leading and trailing adornments. **As seen
-    in below examples, to pass adornments (icons, icon buttons, checkboxes, avatars etc...) to these
-    slots, you need to use the <InlineCode>ListItemAdornment</InlineCode> component so they receive correct
-    styling.
+    <InlineCode>ListItem</InlineCode> has two named slots for leading and trailing adornments. Their
+    types can be seen in the above Types code example. Currently they support two slot properties --
+    selected and disabled. This allows for <InlineCode>ListItem</InlineCode> to expose it's selected
+    and disabled states to the adornemts, keeping all parts of the <InlineCode>ListItem</InlineCode>
+    in sync. **As seen in below examples, to pass adornments (icons, icon buttons, checkboxes, avatars
+    etc...) to these slots, you need to use the <InlineCode>ListItemAdornment</InlineCode> component
+    so they receive correct styling.
   </Typography>
 
   <VariantExample
     code={` 
   <li ...>
-  <slot name="leadingAdornment" />
+  <slot name="leadingAdornment" {selected} {disabled} />
     ....
-  <slot name="trailingAdornment" />
+  <slot name="trailingAdornment" {selected} {disabled} />
 </li>
   
+  `}
+  />
+
+  <List class="demo-list">
+    <ListItem text="List Item" variant="icon" secondaryText="Selected" let:selected selected={true}>
+      <ListItemAdornment slot="trailingAdornment">
+        <ListItemCheckbox {selected} />
+      </ListItemAdornment>
+    </ListItem>
+    <ListItem text="List Item" variant="icon" secondaryText="Disabled" disabled={true} let:disabled>
+      <ListItemAdornment slot="leadingAdornment">
+        <IconButton iconClass="material-symbols-outlined" iconContent="favorite" {disabled} />
+      </ListItemAdornment>
+      <ListItemAdornment slot="trailingAdornment">
+        <IconButton iconClass="material-symbols-outlined" iconContent="close" {disabled} />
+      </ListItemAdornment>
+    </ListItem>
+  </List>
+
+  <VariantExample
+    code={`
+  <List class="demo-list">
+    <ListItem text="List Item" variant="icon" secondaryText="Click Me" let:selected>
+      <ListItemAdornment slot="trailingAdornment">
+        <ListItemCheckbox {selected} />
+      </ListItemAdornment>
+    </ListItem>
+    <ListItem text="List Item" variant="icon" secondaryText="Disabled" disabled={true} let:disabled>
+      <ListItemAdornment slot="leadingAdornment">
+        <IconButton iconClass="material-symbols-outlined" iconContent="favorite" {disabled} />
+      </ListItemAdornment>
+      <ListItemAdornment slot="trailingAdornment">
+        <IconButton iconClass="material-symbols-outlined" iconContent="close" {disabled} />
+      </ListItemAdornment>
+    </ListItem>
+</List>
   `}
   />
 
@@ -262,12 +308,20 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
     </ListItem>
     <ListItem text="Icon" divider={true} variant="icon">
       <ListItemAdornment slot="trailingAdornment">
-        <IconButton iconClass="material-symbols-outlined" iconContent="close" />
+        <IconButton
+          iconClass="material-symbols-outlined"
+          iconContent="arrow_drop_down"
+          iconColor="primary"
+        />
       </ListItemAdornment>
     </ListItem>
     <ListItem text="Icon" variant="icon" secondaryText="Secondary Text">
       <ListItemAdornment slot="trailingAdornment">
-        <IconButton iconClass="material-symbols-outlined" iconContent="close" />
+        <IconButton
+          iconClass="material-symbols-outlined"
+          iconContent="arrow_drop_down"
+          iconColor="primary"
+        />
       </ListItemAdornment>
     </ListItem>
   </List>
@@ -353,7 +407,13 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
   <Typography variant="h3">Controlling Interaction</Typography>
   <Typography variant="body1">
     The <InlineCode>ListItem</InlineCode> and <InlineCode>ListItemAdornment</InlineCode> use event redirection,
-    allowing you to pass your own event handlers (i.e. on:click).
+    allowing you to pass your own event handlers (i.e. on:click), which will run alongside the default
+    event behavior.
+  </Typography>
+  <Typography>
+    Note: <InlineCode>ListItemAdorment</InlineCode>, if clicked, will trigger the parent click by
+    default. Make sure to <InlineCode>stopPropagation()</InlineCode> if you don't want the parent event
+    to fire.
   </Typography>
 
   <List class="demo-list">
@@ -409,20 +469,16 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
   <Typography variant="h5">Example 1</Typography>
   <Typography variant="body1">
     In this case, we know that every type of adornment will be the same (i.e. favorite for leading,
-    close for trailing), so we've extended our ListItemsProps interface to use a boolean for
+    close for trailing), so we've extended our ListItemProps interface to use a boolean for
     indicating if an adornment is needed.
   </Typography>
 
   <List class="demo-list">
     {#each listItemsIteration1 as item}
-      <ListItem {...item}>
+      <ListItem {...item} let:disabled>
         <svelte:fragment slot="leadingAdornment">
           {#if item.leadingAdornment}
-            <ListItemAdornment
-              class="material-symbols-outlined"
-              slot="leadingAdornment"
-              disabled={item.disabled}
-            >
+            <ListItemAdornment class="material-symbols-outlined" slot="leadingAdornment" {disabled}>
               favorite
             </ListItemAdornment>
           {/if}
@@ -431,7 +487,7 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
           {#if item.trailingAdornment}
             <ListItemAdornment>
               <IconButton
-                disabled={item.disabled}
+                {disabled}
                 iconClass="material-symbols-outlined"
                 iconContent="close"
                 iconColor="primary"
@@ -484,12 +540,13 @@ const listItemsIteration1: ExtendedListItems1[] = [
     code={`
       <List class="demo-list">
     {#each listItemsIteration1 as item}
-      <ListItem {...item}>
+      <ListItem {...item} let:disabled>
         <svelte:fragment slot="leadingAdornment">
           {#if item.leadingAdornment}
             <ListItemAdornment 
               class="material-symbols-outlined" 
               slot="leadingAdornment"
+              {disabled}
             >
               favorite
             </ListItemAdornment>
@@ -503,6 +560,7 @@ const listItemsIteration1: ExtendedListItems1[] = [
                 iconClass="material-symbols-outlined"
                 iconContent="close"
                 iconColor="primary"
+                {disabled}
               />
             </ListItemAdornment>
           {/if}
@@ -521,14 +579,10 @@ const listItemsIteration1: ExtendedListItems1[] = [
 
   <List class="demo-list">
     {#each listItemsIteration2 as item}
-      <ListItem {...item}>
+      <ListItem {...item} let:selected let:disabled>
         <svelte:fragment slot="leadingAdornment">
           {#if item.leadingAdornment}
-            <ListItemAdornment
-              slot="leadingAdornment"
-              class="material-symbols-outlined"
-              disabled={item.disabled}
-            >
+            <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined" {disabled}>
               {item.leadingAdornment.content}
             </ListItemAdornment>
           {/if}
@@ -538,8 +592,9 @@ const listItemsIteration1: ExtendedListItems1[] = [
             <ListItemAdornment slot="trailingAdornment">
               <svelte:component
                 this={item.trailingAdornment.component}
+                {selected}
+                {disabled}
                 {...item.trailingAdornment.props}
-                disabled={item.disabled}
               />
             </ListItemAdornment>
           {/if}
@@ -599,12 +654,13 @@ const listItemsIteration2: ExtendedListItems2[] = [
     code={`
    <List class="demo-list">
     {#each listItemsIteration2 as item}
-      <ListItem {...item}>
+      <ListItem {...item} let:selected let:disabled>
         <svelte:fragment slot="leadingAdornment">
           {#if item.leadingAdornment}
             <ListItemAdornment 
               slot="leadingAdornment" 
               class="material-symbols-outlined"
+              {disabled}
             >
               {item.leadingAdornment.content}
             </ListItemAdornment>
@@ -615,6 +671,8 @@ const listItemsIteration2: ExtendedListItems2[] = [
           {#if item.trailingAdornment}
             <ListItemAdornment>
               <svelte:component
+                {disabled}
+                {selected}
                 this={item.trailingAdornment.component}
                 {...item.trailingAdornment.props}
               />

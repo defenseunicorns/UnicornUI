@@ -13,4 +13,10 @@ export interface ListItemProps
   disabledGutters?: boolean;
 }
 
+export interface ListItemSlots {
+  default: { selected: boolean | undefined; disabled: boolean | undefined };
+  leadingAdornment: { selected: boolean | undefined; disabled: boolean | undefined };
+  trailingAdornment: { selected: boolean | undefined; disabled: boolean | undefined };
+}
+
 export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>;
