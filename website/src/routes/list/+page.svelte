@@ -13,12 +13,12 @@
   import InlineCode from '../../lib/inline-code.svelte';
   import ListAvatar from './list-avatar.svelte';
 
-  type ExampleListItems1 = ListItemProps & {
+  type ExtendedListItems1 = ListItemProps & {
     leadingAdornment?: boolean;
     trailingAdornment?: boolean;
   };
 
-  const listItemsTwoLine1: ExampleListItems1[] = [
+  const listItemsIteration1: ExtendedListItems1[] = [
     { text: 'List Item', secondaryText: 'Secondary Text' },
     { text: 'List Item', secondaryText: 'Secondary Text', selected: true, divider: true },
     {
@@ -45,12 +45,12 @@
     }
   ];
 
-  type ExampleListItems2 = ListItemProps & {
+  type ExtendedListItems2 = ListItemProps & {
     leadingAdornment?: Record<string, any>;
     trailingAdornment?: Record<string, any>;
   };
 
-  const listItemsTwoLine2: ExampleListItems2[] = [
+  const listItemsIteration2: ExtendedListItems2[] = [
     { text: 'List Item', secondaryText: 'Secondary Text' },
     { text: 'List Item', secondaryText: 'Secondary Text', selected: true, divider: true },
     {
@@ -86,13 +86,17 @@
       disabledGutters: true
     }
   ];
+
+  let exampleSelected = false;
+  let exampleOnclick = () => alert('You selected this item');
 </script>
 
 <DocPage>
   <Typography variant="h2">List</Typography>
   <p>
-    The <InlineCode>List</InlineCode> component acts as the base wrapper for ListItems and is used in
-    several other components such as menus, select drop downs, and navigation drawers.
+    The <InlineCode>List</InlineCode> component acts as the base wrapper for
+    <InlineCode>ListItem</InlineCode>
+    and is used in several other components such as menus, select drop downs, and navigation drawers.
   </p>
 
   <Typography variant="h3">Types</Typography>
@@ -120,7 +124,7 @@ export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLUListElement> {
       <Typography variant="h5">Padding</Typography>
 
       <List class="demo-list">
-        <ListItem text="List Item" />
+        <ListItem text="List Item" selected={true} />
       </List>
     </div>
   </div>
@@ -128,7 +132,7 @@ export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLUListElement> {
   <Typography variant="h3">Styles</Typography>
   <Typography variant="body1">
     <InlineCode>List</InlineCode> comes as a blank canvas. You can control the style by passing it a
-    custom class. All following examples use a custom demo-list class for making the list look like this:
+    custom class. All following examples use a custom demo-list class.
   </Typography>
   <List class="demo-list" />
 
@@ -146,7 +150,8 @@ export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLUListElement> {
   <Typography variant="h3">Slots</Typography>
 
   <Typography variant="body1">
-    <InlineCode>List</InlineCode> utilizes an unnamed slot in which ListItems are rendered as "children".
+    <InlineCode>List</InlineCode> utilizes an unnamed slot in which any number of list items are rendered
+    as "children".
   </Typography>
 
   <VariantExample
@@ -213,23 +218,31 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
 
   <Typography variant="h4">Textual</Typography>
   <List class="demo-list">
-    <ListItem text="List Item" on:click={() => alert('you clicked me')} />
+    <ListItem text="List Item" />
     <ListItem text="List Item" selected={true} />
     <ListItem text="List Item" disabled={true} />
-    <ListItem text="List Item" secondaryText="Secondar Text" />
-    <ListItem text="List Item" secondaryText="Secondar Text" selected={true} />
-    <ListItem text="List Item" secondaryText="Secondar Text" disabled={true} />
+    <ListItem text="List Item" secondaryText="Secondary Text" />
+    <ListItem text="List Item" secondaryText="Secondary Text" selected={true} />
+    <ListItem text="List Item" secondaryText="Secondary Text" disabled={true} />
   </List>
 
   <VariantExample
     code={`
   <List class="demo-list" disabledPadding={true}>
-    <ListItem text="List Item" on:click={() => alert('you clicked me')} />
+    <ListItem text="List Item" />
     <ListItem text="List Item" selected={true} />
     <ListItem text="List Item" disabled={true} />
-    <ListItem text="List Item" secondaryText="Secondar Text" />
-    <ListItem text="List Item" secondaryText="Secondar Text" selected={true} />
-    <ListItem text="List Item" secondaryText="Secondar Text" disabled={true} />
+    <ListItem text="List Item" secondaryText="Secondary Text" />
+    <ListItem 
+      text="List Item" 
+        secondaryText="Secondary Text" 
+        selected={true} 
+    />
+    <ListItem 
+      text="List Item" 
+      secondaryText="Secondary Text" 
+      disabled={true} 
+    />
 </List>
   `}
   />
@@ -270,7 +283,11 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
         />
       </ListItemAdornment>
     </ListItem>
-    <ListItem text="Icon" variant="icon" secondaryText="Secondary Text">
+    <ListItem 
+      text="Icon" 
+      variant="icon" 
+      secondaryText="Secondary Text"
+    >
       <ListItemAdornment slot="leadingAdornment">
         <IconButton 
           iconClass="material-symbols-outlined" 
@@ -286,7 +303,11 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
         />
       </ListItemAdornment>
     </ListItem>
-    <ListItem text="Icon" variant="icon" secondaryText="Secondary Text">
+    <ListItem 
+      text="Icon" 
+      variant="icon" 
+      secondaryText="Secondary Text"
+    >
       <ListItemAdornment slot="trailingAdornment">
         <IconButton 
           iconClass="material-symbols-outlined" 
@@ -329,6 +350,52 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
 `}
   />
 
+  <Typography variant="h3">Controlling Interaction</Typography>
+  <Typography variant="body1">
+    The <InlineCode>ListItem</InlineCode> and <InlineCode>ListItemAdornment</InlineCode> use event redirection,
+    allowing you to pass your own event handlers (i.e. on:click).
+  </Typography>
+
+  <List class="demo-list">
+    <ListItem text="List Item 1" on:click={exampleOnclick} />
+    <ListItem text="List Item 2" on:click={exampleOnclick} />
+    <ListItem text="List Item 3" on:click={exampleOnclick} variant="icon">
+      <ListItemAdornment
+        class="material-symbols-outlined"
+        style="color: white;"
+        slot="trailingAdornment"
+        on:click={(e) => {
+          e.stopPropagation();
+          alert('You clicked the drop down arrown');
+        }}
+      >
+        arrow_drop_down
+      </ListItemAdornment>
+    </ListItem>
+  </List>
+
+  <VariantExample
+    code={`
+  <List class="demo-list">
+    <ListItem text="List Item 1" on:click={exampleOnclick} />
+    <ListItem text="List Item 2" on:click={exampleOnclick} />
+    <ListItem text="List Item 3" on:click={exampleOnclick} variant="icon">
+      <ListItemAdornment
+        class="material-symbols-outlined"
+        style="color: white;"
+        slot="trailingAdornment"
+        on:click={(e) => {
+          e.stopPropagation();
+          alert('You clicked the drop down arrown');
+        }}
+      >
+        arrow_drop_down
+      </ListItemAdornment>
+    </ListItem>
+</List>
+  `}
+  />
+
   <Typography variant="h4">Developer Experience: Iteration</Typography>
 
   <Typography variant="body1">
@@ -347,8 +414,8 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
   </Typography>
 
   <List class="demo-list">
-    {#each listItemsTwoLine1 as item}
-      <ListItem {...item} on:click={() => !item.disabled && alert('item selected')}>
+    {#each listItemsIteration1 as item}
+      <ListItem {...item}>
         <svelte:fragment slot="leadingAdornment">
           {#if item.leadingAdornment}
             <ListItemAdornment
@@ -379,12 +446,12 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
   <VariantExample
     code={`
 
-type ExampleListItems1 = ListItemProps & {
+type ExtendedListItems1 = ListItemProps & {
     leadingAdornment?: boolean;
     trailingAdornment?: boolean;
 };
 
-const listItemsTwoLine1: ExampleListItems1[] = [
+const listItemsIteration1: ExtendedListItems1[] = [
     { text: 'List Item', secondaryText: 'Secondary Text' },
     { text: 'List Item', secondaryText: 'Secondary Text', selected: true, divider: true },
     {
@@ -416,7 +483,7 @@ const listItemsTwoLine1: ExampleListItems1[] = [
   <VariantExample
     code={`
       <List class="demo-list">
-    {#each listItemsTwoLine as item}
+    {#each listItemsIteration1 as item}
       <ListItem {...item}>
         <svelte:fragment slot="leadingAdornment">
           {#if item.leadingAdornment}
@@ -453,7 +520,7 @@ const listItemsTwoLine1: ExampleListItems1[] = [
   </Typography>
 
   <List class="demo-list">
-    {#each listItemsTwoLine2 as item}
+    {#each listItemsIteration2 as item}
       <ListItem {...item}>
         <svelte:fragment slot="leadingAdornment">
           {#if item.leadingAdornment}
@@ -461,7 +528,6 @@ const listItemsTwoLine1: ExampleListItems1[] = [
               slot="leadingAdornment"
               class="material-symbols-outlined"
               disabled={item.disabled}
-              on:click={() => alert('you clicked me')}
             >
               {item.leadingAdornment.content}
             </ListItemAdornment>
@@ -473,7 +539,6 @@ const listItemsTwoLine1: ExampleListItems1[] = [
               <svelte:component
                 this={item.trailingAdornment.component}
                 {...item.trailingAdornment.props}
-                on:click={() => alert('you clicked me')}
                 disabled={item.disabled}
               />
             </ListItemAdornment>
@@ -486,12 +551,12 @@ const listItemsTwoLine1: ExampleListItems1[] = [
   <VariantExample
     code={`
 
-type ExampleListItems2 = ListItemProps & {
+type ExtendedListItems2 = ListItemProps & {
     leadingAdornment?: Record<string, any>;
     trailingAdornment?: Record<string, any>;
 };
 
-const listItemsTwoLine2: ExampleListItems2[] = [
+const listItemsIteration2: ExtendedListItems2[] = [
     { text: 'List Item', secondaryText: 'Secondary Text' },
     { text: 'List Item', secondaryText: 'Secondary Text', selected: true, divider: true },
     {
@@ -533,14 +598,13 @@ const listItemsTwoLine2: ExampleListItems2[] = [
   <VariantExample
     code={`
    <List class="demo-list">
-    {#each listItemsTwoLine2 as item}
+    {#each listItemsIteration2 as item}
       <ListItem {...item}>
         <svelte:fragment slot="leadingAdornment">
           {#if item.leadingAdornment}
             <ListItemAdornment 
               slot="leadingAdornment" 
               class="material-symbols-outlined"
-              on:click={() => alert('you clicked me')}
             >
               {item.leadingAdornment.content}
             </ListItemAdornment>
@@ -553,7 +617,6 @@ const listItemsTwoLine2: ExampleListItems2[] = [
               <svelte:component
                 this={item.trailingAdornment.component}
                 {...item.trailingAdornment.props}
-                on:click={() => alert('you clicked me')}
               />
             </ListItemAdornment>
           {/if}

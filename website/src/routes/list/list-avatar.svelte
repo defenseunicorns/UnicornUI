@@ -1,5 +1,5 @@
 <script lang="ts">
-  let src = '/images/coach_mguirk_swords.jpeg';
+  let src = '/images/zarf-bubbles-right.png';
 </script>
 
 <img {src} alt="pic" {...$$restProps} />

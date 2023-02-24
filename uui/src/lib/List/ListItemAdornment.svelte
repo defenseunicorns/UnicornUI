@@ -9,7 +9,7 @@
   let listIconClass =
     $$restProps.slot === 'leadingAdornment'
       ? 'mdc-deprecated-list-item__graphic'
-      : 'mdc-deprecated-list-item__meta';
+      : 'mdc-deprecated-list-item__meta material-icons';
 </script>
 
 <Box
