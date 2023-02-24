@@ -116,7 +116,7 @@ export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLUListElement> {
   <div class="inline-examples">
     <div>
       <Typography variant="h5">No Padding</Typography>
-      <List class="demo-list" disabledPadding={true}>
+      <List class="demo-list" disabledPadding>
         <ListItem text="List Item" />
       </List>
     </div>
@@ -124,7 +124,7 @@ export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLUListElement> {
       <Typography variant="h5">Padding</Typography>
 
       <List class="demo-list">
-        <ListItem text="List Item" selected={true} />
+        <ListItem text="List Item" selected />
       </List>
     </div>
   </div>
@@ -225,12 +225,12 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
   />
 
   <List class="demo-list">
-    <ListItem text="List Item" variant="icon" secondaryText="Selected" let:selected selected={true}>
+    <ListItem text="List Item" variant="icon" secondaryText="Selected" let:selected selected>
       <ListItemAdornment slot="trailingAdornment">
         <ListItemCheckbox {selected} />
       </ListItemAdornment>
     </ListItem>
-    <ListItem text="List Item" variant="icon" secondaryText="Disabled" disabled={true} let:disabled>
+    <ListItem text="List Item" variant="icon" secondaryText="Disabled" let:disabled disabled>
       <ListItemAdornment slot="leadingAdornment">
         <IconButton iconClass="material-symbols-outlined" iconContent="favorite" {disabled} />
       </ListItemAdornment>
@@ -243,12 +243,12 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
   <VariantExample
     code={`
   <List class="demo-list">
-    <ListItem text="List Item" variant="icon" secondaryText="Click Me" let:selected>
+    <ListItem text="List Item" variant="icon" secondaryText="Selected" let:selected selected>
       <ListItemAdornment slot="trailingAdornment">
         <ListItemCheckbox {selected} />
       </ListItemAdornment>
     </ListItem>
-    <ListItem text="List Item" variant="icon" secondaryText="Disabled" disabled={true} let:disabled>
+    <ListItem text="List Item" variant="icon" secondaryText="Disabled" let:disabled disabled>
       <ListItemAdornment slot="leadingAdornment">
         <IconButton iconClass="material-symbols-outlined" iconContent="favorite" {disabled} />
       </ListItemAdornment>
@@ -265,30 +265,22 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
   <Typography variant="h4">Textual</Typography>
   <List class="demo-list">
     <ListItem text="List Item" />
-    <ListItem text="List Item" selected={true} />
-    <ListItem text="List Item" disabled={true} />
+    <ListItem text="List Item" selected />
+    <ListItem text="List Item" disabled />
     <ListItem text="List Item" secondaryText="Secondary Text" />
-    <ListItem text="List Item" secondaryText="Secondary Text" selected={true} />
-    <ListItem text="List Item" secondaryText="Secondary Text" disabled={true} />
+    <ListItem text="List Item" secondaryText="Secondary Text" selected />
+    <ListItem text="List Item" secondaryText="Secondary Text" disabled />
   </List>
 
   <VariantExample
     code={`
-  <List class="demo-list" disabledPadding={true}>
+  <List class="demo-list">
     <ListItem text="List Item" />
-    <ListItem text="List Item" selected={true} />
-    <ListItem text="List Item" disabled={true} />
+    <ListItem text="List Item" selected />
+    <ListItem text="List Item" disabled />
     <ListItem text="List Item" secondaryText="Secondary Text" />
-    <ListItem 
-      text="List Item" 
-        secondaryText="Secondary Text" 
-        selected={true} 
-    />
-    <ListItem 
-      text="List Item" 
-      secondaryText="Secondary Text" 
-      disabled={true} 
-    />
+    <ListItem text="List Item" secondaryText="Secondary Text" selected />
+    <ListItem text="List Item" secondaryText="Secondary Text" disabled />
 </List>
   `}
   />
@@ -296,17 +288,22 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
   <Typography variant="h4">Icon</Typography>
 
   <List class="demo-list">
-    <ListItem text="Icon" divider={true} variant="icon">
+    <ListItem text="Icon" variant="icon">
       <ListItemAdornment slot="leadingAdornment">
         <IconButton iconClass="material-symbols-outlined" iconContent="favorite" />
       </ListItemAdornment>
     </ListItem>
-    <ListItem text="Icon" variant="icon" secondaryText="Secondary Text">
+    <ListItem text="Icon" variant="icon" secondaryText="Secondary Text" selected>
       <ListItemAdornment slot="leadingAdornment">
         <IconButton iconClass="material-symbols-outlined" iconContent="favorite" />
       </ListItemAdornment>
     </ListItem>
-    <ListItem text="Icon" divider={true} variant="icon">
+    <ListItem text="Icon" variant="icon" disabledGutters divider>
+      <ListItemAdornment slot="leadingAdornment">
+        <IconButton iconClass="material-symbols-outlined" iconContent="favorite" />
+      </ListItemAdornment>
+    </ListItem>
+    <ListItem text="Icon" variant="icon">
       <ListItemAdornment slot="trailingAdornment">
         <IconButton
           iconClass="material-symbols-outlined"
@@ -315,7 +312,16 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
         />
       </ListItemAdornment>
     </ListItem>
-    <ListItem text="Icon" variant="icon" secondaryText="Secondary Text">
+    <ListItem text="Icon" variant="icon" secondaryText="Secondary Text" selected>
+      <ListItemAdornment slot="trailingAdornment">
+        <IconButton
+          iconClass="material-symbols-outlined"
+          iconContent="arrow_drop_down"
+          iconColor="primary"
+        />
+      </ListItemAdornment>
+    </ListItem>
+    <ListItem text="Icon" variant="icon" disabledGutters divider>
       <ListItemAdornment slot="trailingAdornment">
         <IconButton
           iconClass="material-symbols-outlined"
@@ -329,47 +335,49 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
   <VariantExample
     code={`
   <List class="demo-list">
-    <ListItem text="Icon" divider={true} variant="icon">
+    <ListItem text="Icon" variant="icon">
       <ListItemAdornment slot="leadingAdornment">
-        <IconButton 
-          iconClass="material-symbols-outlined" 
-          iconContent="favorite" 
-        />
+        <IconButton iconClass="material-symbols-outlined" iconContent="favorite" />
       </ListItemAdornment>
     </ListItem>
-    <ListItem 
-      text="Icon" 
-      variant="icon" 
-      secondaryText="Secondary Text"
-    >
+    <ListItem text="Icon" variant="icon" secondaryText="Secondary Text" selected>
       <ListItemAdornment slot="leadingAdornment">
-        <IconButton 
-          iconClass="material-symbols-outlined" 
-          iconContent="favorite" 
-        />
+        <IconButton iconClass="material-symbols-outlined" iconContent="favorite" />
       </ListItemAdornment>
     </ListItem>
-    <ListItem text="Icon" divider={true} variant="icon">
+    <ListItem text="Icon" variant="icon" disabledGutters divider>
+      <ListItemAdornment slot="leadingAdornment">
+        <IconButton iconClass="material-symbols-outlined" iconContent="favorite" />
+      </ListItemAdornment>
+    </ListItem>
+    <ListItem text="Icon" variant="icon">
       <ListItemAdornment slot="trailingAdornment">
-        <IconButton 
-          iconClass="material-symbols-outlined" 
-          iconContent="close" 
+        <IconButton
+          iconClass="material-symbols-outlined"
+          iconContent="arrow_drop_down"
+          iconColor="primary"
         />
       </ListItemAdornment>
     </ListItem>
-    <ListItem 
-      text="Icon" 
-      variant="icon" 
-      secondaryText="Secondary Text"
-    >
+    <ListItem text="Icon" variant="icon" secondaryText="Secondary Text" selected>
       <ListItemAdornment slot="trailingAdornment">
-        <IconButton 
-          iconClass="material-symbols-outlined" 
-          iconContent="close" 
+        <IconButton
+          iconClass="material-symbols-outlined"
+          iconContent="arrow_drop_down"
+          iconColor="primary"
         />
       </ListItemAdornment>
     </ListItem>
-  </List>
+    <ListItem text="Icon" variant="icon" disabledGutters divider>
+      <ListItemAdornment slot="trailingAdornment">
+        <IconButton
+          iconClass="material-symbols-outlined"
+          iconContent="arrow_drop_down"
+          iconColor="primary"
+        />
+      </ListItemAdornment>
+    </ListItem>
+</List>
   `}
   />
 
@@ -380,7 +388,12 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
         <ListAvatar />
       </ListItemAdornment>
     </ListItem>
-    <ListItem text="Avatar" variant="avatar" secondaryText="Secondary Text">
+    <ListItem text="Avatar" variant="avatar" secondaryText="Secondary Text" selected>
+      <ListItemAdornment slot="leadingAdornment">
+        <ListAvatar />
+      </ListItemAdornment>
+    </ListItem>
+    <ListItem text="Avatar" variant="avatar" secondaryText="Secondary Text" disabledGutters divider>
       <ListItemAdornment slot="leadingAdornment">
         <ListAvatar />
       </ListItemAdornment>
@@ -389,13 +402,18 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
 
   <VariantExample
     code={`
-   <List class="demo-list">
+    <List class="demo-list">
     <ListItem text="Avatar" variant="avatar">
       <ListItemAdornment slot="leadingAdornment">
         <ListAvatar />
       </ListItemAdornment>
     </ListItem>
-    <ListItem text="Avatar" variant="avatar" secondaryText="Secondary Text">
+    <ListItem text="Avatar" variant="avatar" secondaryText="Secondary Text" selected>
+      <ListItemAdornment slot="leadingAdornment">
+        <ListAvatar />
+      </ListItemAdornment>
+    </ListItem>
+    <ListItem text="Avatar" variant="avatar" secondaryText="Secondary Text" disabledGutters divider>
       <ListItemAdornment slot="leadingAdornment">
         <ListAvatar />
       </ListItemAdornment>
