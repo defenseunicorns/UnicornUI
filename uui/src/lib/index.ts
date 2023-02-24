@@ -11,13 +11,15 @@ import ChipIcon from './Chip/chip-icon.svelte';
 import StepIcon from './Stepper/StepIcon.svelte';
 import TextField from './TextField/TextField.svelte';
 import ListItem from './List/ListItem.svelte';
+import ListGroup from './List/ListGroup.svelte';
 import Accordion from './Accordion/accordion.svelte';
 import ButtonIcon from './Button/ButtonIcon.svelte';
 import IconButton from './IconButton/IconButton.svelte';
 import Typography from './Typography/typography.svelte';
 import DialogTitle from './Dialog/DialogTitle.svelte';
-import TextFieldIcon from './TextField/TextFieldIcon.svelte';
+import ListSubHeader from './List/ListSubHeader.svelte';
 import DialogActions from './Dialog/DialogActions.svelte';
+import TextFieldIcon from './TextField/TextFieldIcon.svelte';
 import AccordionGroup from './Accordion/accordion-group.svelte';
 import ListItemCheckbox from './List/ListItemCheckbox.svelte';
 import ListItemAdornment from './List/ListItemAdornment.svelte';
@@ -32,14 +34,16 @@ export {
   Dialog,
   Stepper,
   ChipIcon,
-  ListItem,
   StepIcon,
+  ListItem,
+  ListGroup,
   TextField,
   Accordion,
   ButtonIcon,
   IconButton,
   Typography,
   DialogTitle,
+  ListSubHeader,
   TextFieldIcon,
   DialogActions,
   AccordionGroup,
@@ -105,6 +109,8 @@ export type { TextFieldProps, TextFieldIconProps } from './TextField/TextField.t
 export type { AccordionProps, AccordionGroupProps } from './Accordion/accordion.types';
 export type { ThemeColors } from './shared/theme/default-colors/colors.types';
 export type { ComponentAsProp } from './shared/types/ComponentAsProp';
+export type { ListGroupProps } from './List/ListGroup.types';
+export type { ListSubHeaderProps } from './List/ListSubHeader.types';
 export type { ListProps } from './List/List.types';
 export type {
   ListItemProps,

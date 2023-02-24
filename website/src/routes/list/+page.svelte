@@ -5,6 +5,8 @@
     Typography,
     List,
     ListItem,
+    ListGroup,
+    ListSubHeader,
     ListItemAdornment,
     ListItemCheckbox
   } from '@uui';
@@ -471,6 +473,60 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>
       </ListItemAdornment>
     </ListItem>
 </List>
+  `}
+  />
+
+  <Typography variant="h2">List Group</Typography>
+  <Typography variant="body1">
+    If you want to wrap a group of lists together under sub headings, you can use the <InlineCode
+      >ListGroup</InlineCode
+    > and <InlineCode>ListSubhHeader</InlineCode> components.
+  </Typography>
+
+  <Typography variant="body1">
+    Note: we pass the demo-list class to the <InlineCode>ListGroup</InlineCode> so that the containing
+    foundation is styled.
+  </Typography>
+
+  <ListGroup class="demo-list">
+    <ListSubHeader>Settings</ListSubHeader>
+    <List>
+      <ListItem text="List Item">
+        <ListItemAdornment class="material-symbols-outlined" slot="leadingAdornment">
+          favorite
+        </ListItemAdornment>
+      </ListItem>
+    </List>
+    <ListSubHeader>Preferences</ListSubHeader>
+    <List>
+      <ListItem text="List ITem">
+        <ListItemAdornment class="material-symbols-outlined" slot="leadingAdornment">
+          favorite
+        </ListItemAdornment>
+      </ListItem>
+    </List>
+  </ListGroup>
+
+  <VariantExample
+    code={`
+ <ListGroup class="demo-list">
+    <ListSubHeader>Settings</ListSubHeader>
+    <List>
+      <ListItem text="List Item">
+        <ListItemAdornment class="material-symbols-outlined" slot="leadingAdornment">
+          favorite
+        </ListItemAdornment>
+      </ListItem>
+    </List>
+    <ListSubHeader>Preferences</ListSubHeader>
+    <List>
+      <ListItem text="List ITem">
+        <ListItemAdornment class="material-symbols-outlined" slot="leadingAdornment">
+          favorite
+        </ListItemAdornment>
+      </ListItem>
+    </List>
+</ListGroup>
   `}
   />
 
