@@ -18,6 +18,7 @@
     "lint": "npm run lint --workspaces",
     "format": "npm run format --workspaces",
     "prepare": "husky install",
-    "postinstall": "npm run check"
+    "postinstall": "npm run check",
+    "reinstall": "find . -maxdepth 2 -type d -name node_modules -exec rm -r {} + && rm -f package-lock.json && npm install"
   }
 }
