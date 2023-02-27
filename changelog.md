@@ -59,13 +59,6 @@ export interface Breakpoints {
 
 ## Internal
 
-### Development
-
-- Replaced Jest with Vitest
-- configured tests via uui/vite.config.ts -- {globals: true, environment: 'jsdom'}
-- Extended vitest global types via uui/tsconfig.json
-- Added @testing-library/svelte and @testing-library/jest-dom for component testing
-
 ### StyleBuilder
 
 - Updated to parse `$breakpoint` fields to `@media screen and (min-width: BREAKPOINT_VALUE)`
