@@ -95,16 +95,16 @@
 
 <DocPage>
   <Typography variant="h2">List</Typography>
-  <p>
+  <Typography variant="body1">
     The <InlineCode>List</InlineCode> component acts as the base wrapper for
     <InlineCode>ListItem</InlineCode>
     and is used in several other components such as menus, select drop downs, and navigation drawers.
-  </p>
+  </Typography>
 
   <Typography variant="h3">Types</Typography>
   <Typography variant="body1">
-    <InlineCode>List</InlineCode> can receive all HTMLAttributes of HTMLUListElement, but the only custom
-    prop is disabledPadding which removes the default horizontal and vertical padding.
+    <InlineCode>List</InlineCode> can receive all HTMLAttributes of HTMLUListElement and has one custom
+    prop, disabledPadding, which removes the default horizontal and vertical padding.
   </Typography>
 
   <VariantExample
@@ -219,8 +219,9 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>;
   </Typography>
 
   <Typography>
-    Also of note, the nested content is controlled by the selected state as well as the presence of
-    an element designated with the "nested" slot designation.
+    Also of note, the nested content is controlled by the selected state of <InlineCode
+      >ListITem</InlineCode
+    > as well as the presence of an element designated with <InlineCode>slot="nested"</InlineCode>.
   </Typography>
 
   <VariantExample
@@ -539,7 +540,7 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>;
         slot="trailingAdornment"
         on:click={(e) => {
           e.stopPropagation();
-          alert('You clicked the drop down arrown');
+          alert('You clicked the drop down arrow. Propagation stopped. No parent event fired.');
         }}
       >
         arrow_drop_down
@@ -571,9 +572,8 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>;
 
   <Typography variant="h2">List Group</Typography>
   <Typography variant="body1">
-    If you want to wrap a group of lists together under sub headings, you can use the <InlineCode
-      >ListGroup</InlineCode
-    > and <InlineCode>ListSubhHeader</InlineCode> components.
+    If you want to wrap a group of lists together under sub headings, you can use the
+    <InlineCode>ListGroup</InlineCode> and <InlineCode>ListSubhHeader</InlineCode> components.
   </Typography>
 
   <Typography variant="body1">
