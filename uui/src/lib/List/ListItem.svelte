@@ -19,6 +19,7 @@
   type $$Slots = ListItemSlots;
 
   // Local Variables
+  let listContainerRef: HTMLDivElement;
   let listItemRef: HTMLLIElement;
 
   // Functions
@@ -35,9 +36,9 @@
     if (!disabled) selected = !selected;
   }
 
-  // When user clicks off of list item
+  // When user clicks off of list item or its children (i.e adornments, nested lists);
   function clickAway(evt: MouseEvent | KeyboardEvent) {
-    if (evt.target !== listItemRef && !listItemRef.contains(evt.target as Node)) {
+    if (evt.target !== listContainerRef && !listContainerRef.contains(evt.target as Node)) {
       selected = false;
     }
   }
@@ -53,10 +54,10 @@
   }}
 />
 
-<div class="list-item-container">
+<div class="list-item-container " bind:this={listContainerRef}>
   <li
-    use:eventRedirection={eventComponents}
     bind:this={listItemRef}
+    use:eventRedirection={eventComponents}
     on:click={handleInteraction}
     on:keydown={(e) => {
       if (e.key === 'enter') handleInteraction();
