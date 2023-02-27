@@ -1,3 +1,91 @@
+# v0.0.37
+
+## Updates
+
+### List
+
+- Base component for containg list items, used in components such as menu, nav rail/drawer, selects.
+- Has default padding, which can be disabled, but other than must be styled with custom classes passed as prop.
+- Has one unnamed slot for rendering one or more children.
+- Uses Box under the hood.
+
+```ts
+export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLUListElement> {
+  disabledPadding?: boolean;
+}
+```
+
+### ListItem
+
+- Main component of lists, wrapping text and adornments.
+- Three variants: 'textual' | 'icon' | 'avatar'
+- Three named slots: leadingAdornmnt, trailingAdornment, nested
+- States: hoverable, selected, disabled.
+
+```ts
+export type ListItemVariant = 'textual' | 'icon' | 'avatar';
+export type ListItemSlotProps = Record<string, boolean | undefined>;
+
+export interface ListItemProps
+  extends svelte.JSX.IntrinsicAttributes<svelte.JSX.HTMLAttributes<HTMLLIElement>> {
+  text: string;
+  variant?: ListItemVariant;
+  secondaryText?: string;
+  selected?: boolean;
+  divider?: boolean;
+  disabled?: boolean;
+  disabledGutters?: boolean;
+}
+
+export interface ListItemSlots {
+  default: ListItemSlotProps;
+  leadingAdornment: ListItemSlotProps;
+  trailingAdornment: ListItemSlotProps;
+  nested: ListItemSlotProps;
+}
+```
+
+### ListItemAdornment
+
+- Used for passing leading or trailing adornments to ListItem.
+- Adds the mdc-deprecated-list-item\_\_graphic or mdc-deprecated-list-item\_\_meta classes.
+- Accepts children. If child is passed, add the slot=<name> directive to the child as well.
+
+```ts
+export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>;
+```
+
+### ListItemCheckbox
+
+- Checkbox currently made specifically for use in ListItem as adornment.
+
+```ts
+export interface ListItemCheckboxProps extends svelte.JSX.HTMLAttributes<HTMLInputElement> {
+  selected?: boolean;
+}
+```
+
+### ListGroup
+
+- Wraps Lists and is used in conjunction with ListSubHeader.
+- One unnamed slot for rendering children.
+- Uses Box under the hood.
+
+```ts
+export type ListGroupProps = svelte.JSX.HTMLAttributes<HTMLDivElement>;
+```
+
+### ListSubHeader
+
+- Used primarily with ListGroup, though can be used as child of List directly.
+- Gives clarification of what list is for. (i.e 'settings')
+- One unnamed slot for rendering children.
+- Uses Box under the hood.
+
+```ts
+export type ListSubHeaderProps = svelte.JSX.HTMLAttributes<HTMLHeadingElement>;
+```
+
 # v0.0.36
 
 ## Breaking Changes
