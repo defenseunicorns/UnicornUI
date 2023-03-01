@@ -243,7 +243,7 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>;
   <List class="demo-list">
     <ListItem text="List Item" variant="icon" secondaryText="Selected" let:selected selected>
       <ListItemAdornment slot="trailingAdornment">
-        <ListItemCheckbox {selected} />
+        <ListItemCheckbox checked={selected} />
       </ListItemAdornment>
     </ListItem>
     <ListItem text="List Item" variant="icon" secondaryText="Disabled" let:disabled disabled>
@@ -261,7 +261,7 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>;
   <List class="demo-list">
     <ListItem text="List Item" variant="icon" secondaryText="Selected" let:selected selected>
       <ListItemAdornment slot="trailingAdornment">
-        <ListItemCheckbox {selected} />
+        <ListItemCheckbox checked={selected} />
       </ListItemAdornment>
     </ListItem>
     <ListItem text="List Item" variant="icon" secondaryText="Disabled" let:disabled disabled>
@@ -759,7 +759,7 @@ const listItemsIteration1: ExtendedListItems1[] = [
             <ListItemAdornment slot="trailingAdornment">
               <svelte:component
                 this={item.trailingAdornment.component}
-                {selected}
+                checked={selected}
                 {disabled}
                 {...item.trailingAdornment.props}
               />
@@ -839,7 +839,7 @@ const listItemsIteration2: ExtendedListItems2[] = [
             <ListItemAdornment>
               <svelte:component
                 {disabled}
-                {selected}
+                checked={selected}
                 this={item.trailingAdornment.component}
                 {...item.trailingAdornment.props}
               />

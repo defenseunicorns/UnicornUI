@@ -7,7 +7,8 @@
 
   // Props
   type $$Props = ListItemCheckboxProps;
-  export let selected: boolean | undefined = undefined;
+  export let checked: boolean | undefined = undefined;
+  export let indeterminate: boolean | undefined = undefined;
 
   // Local Variables
   let checkboxRef: HTMLDivElement;
@@ -21,35 +22,38 @@
   });
 
   $: eventComponents = [current_component];
+  $: dataIndeterminate = !checked && indeterminate;
 </script>
 
 <div
   bind:this={checkboxRef}
   class="mdc-checkbox mdc-checkbox--upgraded {$$restProps.class || ''}"
-  class:mdc-checkbox--selected={selected}
-  class:mdc-ripple-upgraded--background-focused={selected}
+  class:mdc-checkbox--selected={checked}
+  class:mdc-ripple-upgraded--background-focused={checked}
 >
   <input
     use:eventRedirection={eventComponents}
     type="checkbox"
     class="mdc-checkbox__native-control"
-    checked={selected}
+    {checked}
     disabled={$$restProps.disabled}
+    data-indeterminate={dataIndeterminate}
   />
   <div class="mdc-checkbox__background">
-    {#if selected}
+    {#if checked}
       <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
         <path
-          class="mdc-checkbox__checkmark-patch"
+          class="mdc-checkbox__checkmark-path"
           fill="none"
-          stroke=""
           d="M1.73,12.91 8.1,19.28 22.79,4.59"
         />
       </svg>
     {/if}
     <div class="mdc-checkbox__mixedmark" />
   </div>
-  {#if !$$restProps.disabled}<div class="mdc-checkbox__ripple" />{/if}
+  {#if !$$restProps.disabled}
+    <div class="mdc-checkbox__ripple" />
+  {/if}
   <div class="mdc-checkbox__focus-ring" />
 </div>
 
@@ -59,8 +63,4 @@
 
   @include checkbox.core-styles;
   @include form-field.core-styles;
-
-  svg > path {
-    stroke: (var(--on-background));
-  }
 </style>
