@@ -63,4 +63,13 @@
 
   @include checkbox.core-styles;
   @include form-field.core-styles;
+
+  // Override default MDC theme --mdc-checkbox-unchecked-color
+  .mdc-checkbox
+    .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not(
+      [data-indeterminate='true']
+    )
+    ~ .mdc-checkbox__background {
+    border-color: var(--on-background);
+  }
 </style>
