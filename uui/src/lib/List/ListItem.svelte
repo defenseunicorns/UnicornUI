@@ -101,20 +101,27 @@
     flex-direction: column;
   }
 
-  .nested-item {
-    padding-left: 1rem;
-  }
-
+  // Enabled State
   .mdc-deprecated-list-item {
     @include list.deprecated-item-primary-text-ink-color(var(--on-background));
     @include list.deprecated-item-secondary-text-ink-color(var(--on-background));
   }
 
-  .mdc-deprecated-list-item--selected {
-    @include list.deprecated-item-primary-text-ink-color(var(--primary));
-    @include list.deprecated-item-secondary-text-ink-color(var(--primary));
+  .mdc-deprecated-list-item__graphic {
+    color: var(--on-background);
   }
 
+  .mdc-deprecated-list-item__meta {
+    color: var(--on-background);
+  }
+
+  // Selected State
+
+  .mdc-deprecated-list-item--selected .mdc-deprecated-list-item__graphic {
+    color: var(--on-background);
+  }
+
+  // Style Options
   .disabled-gutters {
     @include list.deprecated-list-item-padding(0);
   }
@@ -152,5 +159,10 @@
 
   .mdc-deprecated-list-item.icon .mdc-deprecated-list-item__graphic > * {
     @include list.deprecated-graphic-size(-16px, 0px, 40px, 40px);
+  }
+
+  // Nested Content
+  .nested-item {
+    padding-left: 1rem;
   }
 </style>

@@ -321,29 +321,17 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>;
     </ListItem>
     <ListItem text="Icon" variant="icon">
       <ListItemAdornment slot="trailingAdornment">
-        <IconButton
-          iconClass="material-symbols-outlined"
-          iconContent="arrow_drop_down"
-          iconColor="primary"
-        />
+        <IconButton iconClass="material-symbols-outlined" iconContent="arrow_drop_down" />
       </ListItemAdornment>
     </ListItem>
     <ListItem text="Icon" variant="icon" secondaryText="Secondary Text" selected>
       <ListItemAdornment slot="trailingAdornment">
-        <IconButton
-          iconClass="material-symbols-outlined"
-          iconContent="arrow_drop_down"
-          iconColor="primary"
-        />
+        <IconButton iconClass="material-symbols-outlined" iconContent="arrow_drop_down" />
       </ListItemAdornment>
     </ListItem>
     <ListItem text="Icon" variant="icon" disabledGutters divider>
-      <ListItemAdornment slot="trailingAdornment">
-        <IconButton
-          iconClass="material-symbols-outlined"
-          iconContent="arrow_drop_down"
-          iconColor="primary"
-        />
+      <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
+        <IconButton iconClass="material-symbols-outlined" iconContent="arrow_drop_down" />
       </ListItemAdornment>
     </ListItem>
   </List>
