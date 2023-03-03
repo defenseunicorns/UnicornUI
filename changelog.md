@@ -86,6 +86,29 @@ export type ListGroupProps = svelte.JSX.HTMLAttributes<HTMLDivElement>;
 export type ListSubHeaderProps = svelte.JSX.HTMLAttributes<HTMLHeadingElement>;
 ```
 
+## Internal
+
+### ComponentAsProp
+
+- There now exists a shared type for a component passed as a prop -- `ComponentAsProp`
+- This allows for declaring the type of component and its props in a JS object that can then be passed to the <svelte:component /> directive.
+
+```ts
+export type ComponentAsProp<T> = {
+  component: ComponentType<SvelteComponentTyped>;
+  props: T;
+};
+```
+
+```ts
+const props: {adornment: ComponentAsProp<IconButtonProps>} = {
+  adornment: {
+    component: IconButton
+    props: {iconContent: 'favorite', iconClass: 'material-symbol-outlined'}
+  }
+}
+```
+
 # v0.0.36
 
 ## Breaking Changes
