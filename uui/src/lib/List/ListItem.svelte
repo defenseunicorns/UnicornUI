@@ -24,44 +24,21 @@
 
   // Functions
 
-  // Create the Ripple for this list item
+  // Create the Ripple for list item
   onMount((): void => {
     if (listItemRef) {
       new MDCRipple(listItemRef);
     }
   });
 
-  // For when user clicks the list item
-  function handleInteraction() {
-    if (!disabled) selected = !selected;
-  }
-
-  // When user clicks off of list item or its children (i.e adornments, nested lists);
-  function clickAway(evt: MouseEvent | KeyboardEvent) {
-    if (evt.target !== listContainerRef && !listContainerRef.contains(evt.target as Node)) {
-      selected = false;
-    }
-  }
-
   // Reactive Variables
   $: eventComponents = [current_component];
 </script>
-
-<svelte:window
-  on:click={clickAway}
-  on:keydown={(e) => {
-    if (e.key === 'enter') clickAway(e);
-  }}
-/>
 
 <div class="list-item-container " bind:this={listContainerRef}>
   <li
     bind:this={listItemRef}
     use:eventRedirection={eventComponents}
-    on:click={handleInteraction}
-    on:keydown={(e) => {
-      if (e.key === 'enter') handleInteraction();
-    }}
     class="mdc-deprecated-list-item mdc-ripple-upgraded {variant}"
     class:mdc-deprecated-list-item--selected={selected}
     class:mdc-ripple-upgraded--background-focused={selected}
@@ -152,9 +129,18 @@
 
   // Variants: Graphic Size and Offsets
 
-  .mdc-deprecated-list-item.avatar .mdc-deprecated-list-item__graphic > * {
-    @include list.deprecated-graphic-size(-16px, 0, 40px, 40px);
+  // Graphic is direct child of list item
+  .mdc-deprecated-list-item.avatar .mdc-deprecated-list-item__graphic {
+    @include list.deprecated-graphic-size(0, 56px, 40px, 40px);
     border-radius: 50%;
+    background-color: #bdbdbd;
+  }
+
+  // Actual graphic element is a grandchild of list item (i.e. wrapped by ListItemAdornment which receives the mdc-deprecated-list-item__graphic class)
+  .mdc-deprecated-list-item.avatar .mdc-deprecated-list-item__graphic > * {
+    @include list.deprecated-graphic-size(0, 0, 40px, 40px);
+    border-radius: 50%;
+    background-color: #bdbdbd;
   }
 
   .mdc-deprecated-list-item.icon .mdc-deprecated-list-item__graphic > * {

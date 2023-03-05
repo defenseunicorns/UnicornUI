@@ -11,19 +11,19 @@
 
 ```ts
 export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLUListElement> {
-  disabledPadding?: boolean;
+  disablePadding?: boolean;
 }
 ```
 
 ### ListItem
 
 - Main component of lists, wrapping text and adornments.
-- Three variants: 'textual' | 'icon' | 'avatar'
+- Three variants: 'simple' | 'icon' | 'avatar'
 - Three named slots: leadingAdornmnt, trailingAdornment, nested
 - States: hoverable, selected, disabled.
 
 ```ts
-export type ListItemVariant = 'textual' | 'icon' | 'avatar';
+export type ListItemVariant = 'simple' | 'icon' | 'avatar';
 export type ListItemSlotProps = Record<string, boolean | undefined>;
 
 export interface ListItemProps
@@ -34,7 +34,7 @@ export interface ListItemProps
   selected?: boolean;
   divider?: boolean;
   disabled?: boolean;
-  disabledGutters?: boolean;
+  disableGutters?: boolean;
 }
 
 export interface ListItemSlots {

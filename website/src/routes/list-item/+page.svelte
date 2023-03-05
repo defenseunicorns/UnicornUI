@@ -14,6 +14,9 @@
   import VariantExample from '../../lib/VariantExample.svelte';
   import InlineCode from '../../lib/inline-code.svelte';
   import ListAvatar from './list-avatar.svelte';
+  import SimpleList from './simple-list.svelte';
+  import IconList from './icon-list.svelte';
+  import AvatarList from './avatar-list.svelte';
 
   type ExtendedListItems1 = ListItemProps & {
     leadingAdornment?: boolean;
@@ -126,6 +129,98 @@ export interface ListItemProps
 `}
   />
 
+  <Typography variant="h3">Variants</Typography>
+
+  <Typography variant="body1">
+    All <InlineCode>ListItem</InlineCode> variants share the same enabled, hoverable, selected, and disabled
+    states.
+  </Typography>
+
+  <Typography variant="h4">Simple</Typography>
+  <Typography variant="body1">
+    The simple <InlineCode>ListItem</InlineCode> consists of text and contains no icons, images, avatars,
+    or actions. It can be either single line or two line.
+  </Typography>
+
+  <SimpleList />
+
+  <Typography variant="h4">Icon</Typography>
+  <Typography variant="body1">
+    An icon <InlineCode>ListItem</InlineCode> consists of single or two line text and an icon in the
+    leading or trailing position.
+  </Typography>
+  <IconList />
+
+  <Typography variant="h4">Avatar</Typography>
+  <Typography variant="body1">
+    An avatar <InlineCode>ListItem</InlineCode> consists of single or two line text and an avatar in
+    the leading.
+  </Typography>
+  <AvatarList />
+
+  <VariantExample
+    code={`
+<List class="demo-list">
+  <ListItem text="Inbox" selected={selectedIndex === 0} on:click={() => setSelected(0)} />
+  <ListItem text="Drafts" selected={selectedIndex === 1} on:click={() => setSelected(1)} divider />
+  <ListItem text="Trash" selected={selectedIndex === 2} />
+  <ListItem text="Spam" selected={selectedIndex === 3} on:click={() => setSelected(3)} />
+</List>
+`}
+  />
+
+  <VariantExample
+    code={`
+  <List class="demo-list">
+  <ListItem text="Sent Mail" variant="icon">
+    <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
+      <ListAvatar
+    </ListItemAdornment>
+  </ListItem>
+  <ListItem text="Drafts" variant="icon">
+    <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
+      drafts
+    </ListItemAdornment>
+  </ListItem>
+  <ListItem text="Inbox" variant="icon" selected>
+    <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
+      inbox
+    </ListItemAdornment>
+    <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
+      expand_less
+    </ListItemAdornment>
+    <ListItem text="Starred" slot="nested">
+      <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
+        star
+      </ListItemAdornment>
+    </ListItem>
+  </ListItem>
+</List>
+  `}
+  />
+
+  <VariantExample
+    code={`
+  <List class="demo-list">
+  <ListItem text="Photos" secondaryText="Jan 9, 2014" variant="avatar">
+    <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
+      image
+    </ListItemAdornment>
+  </ListItem>
+  <ListItem text="Work" variant="avatar" secondaryText="Jan 20, 2014" divider>
+    <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
+      work
+    </ListItemAdornment>
+  </ListItem>
+  <ListItem text="Vacation" variant="avatar" secondaryText="July 4, 2014" disableGutters>
+    <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
+      beach_access
+    </ListItemAdornment>
+  </ListItem>
+</List>
+`}
+  />
+
   <Typography variant="h3">Slots</Typography>
   <Typography variant="body1">
     <InlineCode>ListItem</InlineCode> has three named slots for leading adornment, trailing adornment,
@@ -208,156 +303,6 @@ export interface ListItemSlots {
     </ListItem>
 </List>
   `}
-  />
-
-  <Typography variant="h3">List Item Examples</Typography>
-
-  <Typography variant="h4">Simple</Typography>
-  <List class="demo-list">
-    <ListItem text="List Item" />
-    <ListItem text="List Item" selected />
-    <ListItem text="List Item" disabled />
-    <ListItem text="List Item" secondaryText="Secondary Text" />
-    <ListItem text="List Item" secondaryText="Secondary Text" selected />
-    <ListItem text="List Item" secondaryText="Secondary Text" disabled />
-  </List>
-
-  <VariantExample
-    code={`
-  <List class="demo-list">
-    <ListItem text="List Item" />
-    <ListItem text="List Item" selected />
-    <ListItem text="List Item" disabled />
-    <ListItem text="List Item" secondaryText="Secondary Text" />
-    <ListItem text="List Item" secondaryText="Secondary Text" selected />
-    <ListItem text="List Item" secondaryText="Secondary Text" disabled />
-</List>
-  `}
-  />
-
-  <Typography variant="h4">Icon</Typography>
-
-  <List class="demo-list">
-    <ListItem text="Icon" variant="icon">
-      <ListItemAdornment slot="leadingAdornment">
-        <IconButton iconClass="material-symbols-outlined" iconContent="favorite" />
-      </ListItemAdornment>
-    </ListItem>
-    <ListItem text="Icon" variant="icon" secondaryText="Secondary Text" selected>
-      <ListItemAdornment slot="leadingAdornment">
-        <IconButton iconClass="material-symbols-outlined" iconContent="favorite" />
-      </ListItemAdornment>
-    </ListItem>
-    <ListItem text="Icon" variant="icon" disableGutters divider>
-      <ListItemAdornment slot="leadingAdornment">
-        <IconButton iconClass="material-symbols-outlined" iconContent="favorite" />
-      </ListItemAdornment>
-    </ListItem>
-    <ListItem text="Icon" variant="icon">
-      <ListItemAdornment slot="trailingAdornment">
-        <IconButton iconClass="material-symbols-outlined" iconContent="arrow_drop_down" />
-      </ListItemAdornment>
-    </ListItem>
-    <ListItem text="Icon" variant="icon" secondaryText="Secondary Text" selected>
-      <ListItemAdornment slot="trailingAdornment">
-        <IconButton iconClass="material-symbols-outlined" iconContent="arrow_drop_down" />
-      </ListItemAdornment>
-    </ListItem>
-    <ListItem text="Icon" variant="icon" disableGutters divider>
-      <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
-        <IconButton iconClass="material-symbols-outlined" iconContent="arrow_drop_down" />
-      </ListItemAdornment>
-    </ListItem>
-  </List>
-
-  <VariantExample
-    code={`
-  <List class="demo-list">
-    <ListItem text="Icon" variant="icon">
-      <ListItemAdornment slot="leadingAdornment">
-        <IconButton iconClass="material-symbols-outlined" iconContent="favorite" />
-      </ListItemAdornment>
-    </ListItem>
-    <ListItem text="Icon" variant="icon" secondaryText="Secondary Text" selected>
-      <ListItemAdornment slot="leadingAdornment">
-        <IconButton iconClass="material-symbols-outlined" iconContent="favorite" />
-      </ListItemAdornment>
-    </ListItem>
-    <ListItem text="Icon" variant="icon" disableGutters divider>
-      <ListItemAdornment slot="leadingAdornment">
-        <IconButton iconClass="material-symbols-outlined" iconContent="favorite" />
-      </ListItemAdornment>
-    </ListItem>
-    <ListItem text="Icon" variant="icon">
-      <ListItemAdornment slot="trailingAdornment">
-        <IconButton
-          iconClass="material-symbols-outlined"
-          iconContent="arrow_drop_down"
-          iconColor="primary"
-        />
-      </ListItemAdornment>
-    </ListItem>
-    <ListItem text="Icon" variant="icon" secondaryText="Secondary Text" selected>
-      <ListItemAdornment slot="trailingAdornment">
-        <IconButton
-          iconClass="material-symbols-outlined"
-          iconContent="arrow_drop_down"
-          iconColor="primary"
-        />
-      </ListItemAdornment>
-    </ListItem>
-    <ListItem text="Icon" variant="icon" disableGutters divider>
-      <ListItemAdornment slot="trailingAdornment">
-        <IconButton
-          iconClass="material-symbols-outlined"
-          iconContent="arrow_drop_down"
-          iconColor="primary"
-        />
-      </ListItemAdornment>
-    </ListItem>
-</List>
-  `}
-  />
-
-  <Typography variant="h4">Avatar</Typography>
-  <List class="demo-list">
-    <ListItem text="Avatar" variant="avatar">
-      <ListItemAdornment slot="leadingAdornment">
-        <ListAvatar />
-      </ListItemAdornment>
-    </ListItem>
-    <ListItem text="Avatar" variant="avatar" secondaryText="Secondary Text" selected>
-      <ListItemAdornment slot="leadingAdornment">
-        <ListAvatar />
-      </ListItemAdornment>
-    </ListItem>
-    <ListItem text="Avatar" variant="avatar" secondaryText="Secondary Text" disableGutters divider>
-      <ListItemAdornment slot="leadingAdornment">
-        <ListAvatar />
-      </ListItemAdornment>
-    </ListItem>
-  </List>
-
-  <VariantExample
-    code={`
-    <List class="demo-list">
-    <ListItem text="Avatar" variant="avatar">
-      <ListItemAdornment slot="leadingAdornment">
-        <ListAvatar />
-      </ListItemAdornment>
-    </ListItem>
-    <ListItem text="Avatar" variant="avatar" secondaryText="Secondary Text" selected>
-      <ListItemAdornment slot="leadingAdornment">
-        <ListAvatar />
-      </ListItemAdornment>
-    </ListItem>
-    <ListItem text="Avatar" variant="avatar" secondaryText="Secondary Text" disableGutters divider>
-      <ListItemAdornment slot="leadingAdornment">
-        <ListAvatar />
-      </ListItemAdornment>
-    </ListItem>
-</List>
-`}
   />
 
   <Typography variant="h4">Nested</Typography>
