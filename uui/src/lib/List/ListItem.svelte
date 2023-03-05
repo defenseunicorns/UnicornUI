@@ -9,10 +9,10 @@
   type $$Props = ListItemProps;
   export let text = '';
   export let secondaryText: string | undefined = undefined;
-  export let variant: ListItemVariant = 'textual';
+  export let variant: ListItemVariant = 'simple';
   export let selected: boolean | undefined = undefined;
   export let disabled: boolean | undefined = undefined;
-  export let disabledGutters: boolean | undefined = undefined;
+  export let disableGutters: boolean | undefined = undefined;
   export let divider: boolean | undefined = undefined;
 
   // Slot Types
@@ -66,7 +66,7 @@
     class:mdc-deprecated-list-item--selected={selected}
     class:mdc-ripple-upgraded--background-focused={selected}
     class:mdc-deprecated-list-item--disabled={disabled}
-    class:disabled-gutters={disabledGutters}
+    class:disabled-gutters={disableGutters}
     class:two-line={secondaryText}
     class:divider
   >
@@ -141,7 +141,7 @@
   }
 
   // Variants: Item Height
-  .mdc-deprecated-list-item.textual:not(.two-line) {
+  .mdc-deprecated-list-item.simple:not(.two-line) {
     @include list.deprecated-single-line-height(48px);
   }
 

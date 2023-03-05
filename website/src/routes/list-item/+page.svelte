@@ -43,7 +43,7 @@
       text: 'List Item',
       secondaryText: 'Disabled Gutters',
       trailingAdornment: true,
-      disabledGutters: true
+      disableGutters: true
     }
   ];
 
@@ -86,7 +86,7 @@
         component: ListItemCheckbox,
         props: {}
       } as ComponentAsProp<IconButtonProps>,
-      disabledGutters: true
+      disableGutters: true
     }
   ];
 
@@ -94,93 +94,23 @@
 </script>
 
 <DocPage>
-  <Typography variant="h2">List</Typography>
-  <Typography variant="body1">
-    The <InlineCode>List</InlineCode> component acts as the base wrapper for
-    <InlineCode>ListItem</InlineCode>
-    and is used in several other components such as menus, select drop downs, and navigation drawers.
-  </Typography>
-
-  <Typography variant="h3">Types</Typography>
-  <Typography variant="body1">
-    <InlineCode>List</InlineCode> can receive all HTMLAttributes of HTMLUListElement and has one custom
-    prop, disabledPadding, which removes the default horizontal and vertical padding.
-  </Typography>
-
-  <VariantExample
-    code={`
-export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLUListElement> {
-  disabledPadding?: boolean;
-}
-    `}
-  />
-
-  <div class="inline-examples">
-    <div>
-      <Typography variant="h5">No Padding</Typography>
-      <List class="demo-list" disabledPadding>
-        <ListItem text="List Item" />
-      </List>
-    </div>
-    <div>
-      <Typography variant="h5">Padding</Typography>
-
-      <List class="demo-list">
-        <ListItem text="List Item" selected />
-      </List>
-    </div>
-  </div>
-
-  <Typography variant="h3">Styles</Typography>
-  <Typography variant="body1">
-    Other than the default padding, <InlineCode>List</InlineCode> comes as a blank canvas. You can control
-    the style by passing it a custom class. All following examples use a custom demo-list class.
-  </Typography>
-  <List class="demo-list" />
-
-  <VariantExample
-    code={`
-    <List class="demo-list" />
-
-.demo-list {
-    width: 300px;
-    border: 1px solid gray;
-    background-color: var(--surface);
-}
-    `}
-  />
-  <Typography variant="h3">Slots</Typography>
-
-  <Typography variant="body1">
-    <InlineCode>List</InlineCode> utilizes an unnamed slot in which any number of list items are rendered
-    as "children".
-  </Typography>
-
-  <VariantExample
-    code={`
-<ul ...> 
-  <slot />
-</ul>
-`}
-  />
-
   <Typography variant="h2">List Item</Typography>
   <Typography variant="body1">
-    The <InlineCode>ListItem</InlineCode> is the true workhorse of <InlineCode>List</InlineCode>. It
-    wraps your text as well as adornments, like icons, icon buttons, images, checkboxes, etc...
+    The <InlineCode>ListItem</InlineCode> is the base component of any list. It is used to wrap text
+    and adornments into a single component. List item adornments or actions can include icons, icon buttons,
+    images, checkboxes, and avatars.
   </Typography>
-  <Typography variant="h3">Types</Typography>
+
+  <Typography variant="h3">Props</Typography>
   <Typography variant="body1">
     <InlineCode>ListItem</InlineCode> has several optional props along with one required (text). Notably
-    the variant prop, of type ListItemVariant, allows you to compose lists of varying types of list items.
-    This type is used for styling height, padding, etc... for graphics. Defaults to "textual" if no variant
-    is given.
+    the variant prop tells <InlineCode>ListItem</InlineCode> how to style itself for the type of adornments
+    it will wrap. If no variant is given it defaults to "simple"
   </Typography>
 
   <VariantExample
     code={`
-    export type ListItemVariant = 'textual' | 'icon' | 'avatar';
-export type ListItemSlotProps = Record<string, boolean | undefined>;
+    export type ListItemVariant = 'simple' | 'icon' | 'avatar';
 
 export interface ListItemProps
   extends svelte.JSX.IntrinsicAttributes<svelte.JSX.HTMLAttributes<HTMLLIElement>> 
@@ -191,31 +121,22 @@ export interface ListItemProps
   selected?: boolean;
   divider?: boolean;
   disabled?: boolean;
-  disabledGutters?: boolean;
+  disableGutters?: boolean;
 }
-
-export interface ListItemSlots {
-  default: ListItemSlotProps;
-  leadingAdornment: ListItemSlotProps;
-  trailingAdornment: ListItemSlotProps;
-  nested: ListItemSlotProps;
-}
-
-export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>;
 `}
   />
 
   <Typography variant="h3">Slots</Typography>
   <Typography variant="body1">
     <InlineCode>ListItem</InlineCode> has three named slots for leading adornment, trailing adornment,
-    and nested content. Their types can be seen in the above Types code example. Currently they support
-    two slot properties -- selected and disabled. This allows for <InlineCode>ListItem</InlineCode> to
-    expose it's selected and disabled states to the adornments, keeping all parts of the <InlineCode
-      >ListItem</InlineCode
-    >
-    in sync. **As seen in below examples, to pass adornments (icons, icon buttons, checkboxes, avatars
-    etc...) to these slots, you need to use the <InlineCode>ListItemAdornment</InlineCode> component
-    so they receive correct styling.
+    and nested content. Currently they support two slot properties -- selected and disabled. This allows
+    for <InlineCode>ListItem</InlineCode> to expose it's selected and disabled states to the adornments,
+    keeping all parts of the <InlineCode>ListItem</InlineCode>
+    in sync.
+    <br />
+    <br />
+    **As seen in below examples, to pass adornments to these slots, you need to use the
+    <InlineCode>ListItemAdornment</InlineCode> component so they receive correct styling.**
   </Typography>
 
   <Typography>
@@ -223,6 +144,19 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>;
       >ListITem</InlineCode
     > as well as the presence of an element designated with <InlineCode>slot="nested"</InlineCode>.
   </Typography>
+
+  <VariantExample
+    code={`
+export type ListItemSlotProps = Record<string, boolean | undefined>;
+
+export interface ListItemSlots {
+  default: ListItemSlotProps;
+  leadingAdornment: ListItemSlotProps;
+  trailingAdornment: ListItemSlotProps;
+  nested: ListItemSlotProps;
+}
+  `}
+  />
 
   <VariantExample
     code={` 
@@ -278,7 +212,7 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>;
 
   <Typography variant="h3">List Item Examples</Typography>
 
-  <Typography variant="h4">Textual</Typography>
+  <Typography variant="h4">Simple</Typography>
   <List class="demo-list">
     <ListItem text="List Item" />
     <ListItem text="List Item" selected />
@@ -314,7 +248,7 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>;
         <IconButton iconClass="material-symbols-outlined" iconContent="favorite" />
       </ListItemAdornment>
     </ListItem>
-    <ListItem text="Icon" variant="icon" disabledGutters divider>
+    <ListItem text="Icon" variant="icon" disableGutters divider>
       <ListItemAdornment slot="leadingAdornment">
         <IconButton iconClass="material-symbols-outlined" iconContent="favorite" />
       </ListItemAdornment>
@@ -329,7 +263,7 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>;
         <IconButton iconClass="material-symbols-outlined" iconContent="arrow_drop_down" />
       </ListItemAdornment>
     </ListItem>
-    <ListItem text="Icon" variant="icon" disabledGutters divider>
+    <ListItem text="Icon" variant="icon" disableGutters divider>
       <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
         <IconButton iconClass="material-symbols-outlined" iconContent="arrow_drop_down" />
       </ListItemAdornment>
@@ -349,7 +283,7 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>;
         <IconButton iconClass="material-symbols-outlined" iconContent="favorite" />
       </ListItemAdornment>
     </ListItem>
-    <ListItem text="Icon" variant="icon" disabledGutters divider>
+    <ListItem text="Icon" variant="icon" disableGutters divider>
       <ListItemAdornment slot="leadingAdornment">
         <IconButton iconClass="material-symbols-outlined" iconContent="favorite" />
       </ListItemAdornment>
@@ -372,7 +306,7 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>;
         />
       </ListItemAdornment>
     </ListItem>
-    <ListItem text="Icon" variant="icon" disabledGutters divider>
+    <ListItem text="Icon" variant="icon" disableGutters divider>
       <ListItemAdornment slot="trailingAdornment">
         <IconButton
           iconClass="material-symbols-outlined"
@@ -397,7 +331,7 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>;
         <ListAvatar />
       </ListItemAdornment>
     </ListItem>
-    <ListItem text="Avatar" variant="avatar" secondaryText="Secondary Text" disabledGutters divider>
+    <ListItem text="Avatar" variant="avatar" secondaryText="Secondary Text" disableGutters divider>
       <ListItemAdornment slot="leadingAdornment">
         <ListAvatar />
       </ListItemAdornment>
@@ -417,7 +351,7 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>;
         <ListAvatar />
       </ListItemAdornment>
     </ListItem>
-    <ListItem text="Avatar" variant="avatar" secondaryText="Secondary Text" disabledGutters divider>
+    <ListItem text="Avatar" variant="avatar" secondaryText="Secondary Text" disableGutters divider>
       <ListItemAdornment slot="leadingAdornment">
         <ListAvatar />
       </ListItemAdornment>
@@ -437,7 +371,7 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>;
       <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
         arrow_drop_down
       </ListItemAdornment>
-      <List slot="nested" disabledPadding>
+      <List slot="nested" disablePadding>
         <ListItem text="Avatar" variant="avatar">
           <ListItemAdornment slot="leadingAdornment">
             <ListAvatar />
@@ -452,7 +386,7 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>;
           text="Avatar"
           variant="avatar"
           secondaryText="Secondary Text"
-          disabledGutters
+          disableGutters
           divider
         >
           <ListItemAdornment slot="leadingAdornment">
@@ -474,7 +408,7 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>;
           iconColor="primary"
         />
       </ListItemAdornment>
-      <List slot="nested" disabledPadding>
+      <List slot="nested" disablePadding>
         <ListItem text="Avatar" variant="avatar">
           <ListItemAdornment slot="leadingAdornment">
             <ListAvatar />
@@ -489,7 +423,7 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>;
           text="Avatar"
           variant="avatar"
           secondaryText="Secondary Text"
-          disabledGutters
+          disableGutters
           divider
         >
           <ListItemAdornment slot="leadingAdornment">
@@ -552,6 +486,76 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>;
     </ListItem>
 </List>
   `}
+  />
+
+  <Typography variant="h2">List</Typography>
+  <Typography variant="body1">
+    The <InlineCode>List</InlineCode> component acts as the base wrapper for
+    <InlineCode>ListItem</InlineCode>
+    and is used in several other components such as menus, select drop downs, and navigation drawers.
+  </Typography>
+
+  <Typography variant="h3">Types</Typography>
+  <Typography variant="body1">
+    <InlineCode>List</InlineCode> can receive all HTMLAttributes of HTMLUListElement and has one custom
+    prop, disablePadding, which removes the default horizontal and vertical padding.
+  </Typography>
+
+  <VariantExample
+    code={`
+export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLUListElement> {
+  disablePadding?: boolean;
+}
+    `}
+  />
+
+  <div class="inline-examples">
+    <div>
+      <Typography variant="h5">No Padding</Typography>
+      <List class="demo-list" disablePadding>
+        <ListItem text="List Item" />
+      </List>
+    </div>
+    <div>
+      <Typography variant="h5">Padding</Typography>
+
+      <List class="demo-list">
+        <ListItem text="List Item" selected />
+      </List>
+    </div>
+  </div>
+
+  <Typography variant="h3">Styles</Typography>
+  <Typography variant="body1">
+    Other than the default padding, <InlineCode>List</InlineCode> comes as a blank canvas. You can control
+    the style by passing it a custom class. All following examples use a custom demo-list class.
+  </Typography>
+  <List class="demo-list" />
+
+  <VariantExample
+    code={`
+    <List class="demo-list" />
+
+.demo-list {
+    width: 300px;
+    border: 1px solid gray;
+    background-color: var(--surface);
+}
+    `}
+  />
+  <Typography variant="h3">Slots</Typography>
+
+  <Typography variant="body1">
+    <InlineCode>List</InlineCode> utilizes an unnamed slot in which any number of list items are rendered
+    as "children".
+  </Typography>
+
+  <VariantExample
+    code={`
+<ul ...> 
+  <slot />
+</ul>
+`}
   />
 
   <Typography variant="h2">List Group</Typography>
@@ -681,7 +685,7 @@ const listItemsIteration1: ExtendedListItems1[] = [
       text: 'List Item',
       secondaryText: 'Disabled Gutters',
       trailingAdornment: true,
-      disabledGutters: true
+      disableGutters: true
     }
 ];
   `}
@@ -791,7 +795,7 @@ const listItemsIteration2: ExtendedListItems2[] = [
     {
       text: 'List Item',
       secondaryText: 'Disabled Gutters',
-      disabledGutters: true
+      disableGutters: true
       trailingAdornment: {
         component: ListItemCheckbox,
         props: {}

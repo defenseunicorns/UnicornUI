@@ -1,6 +1,6 @@
 import type { BoxProps } from '../Box/box.types';
 
-export type ListItemVariant = 'textual' | 'icon' | 'avatar';
+export type ListItemVariant = 'simple' | 'icon' | 'avatar';
 export type ListItemSlotProps = Record<string, boolean | undefined>;
 
 export interface ListItemProps
@@ -11,7 +11,7 @@ export interface ListItemProps
   selected?: boolean;
   divider?: boolean;
   disabled?: boolean;
-  disabledGutters?: boolean;
+  disableGutters?: boolean;
 }
 
 export interface ListItemSlots {

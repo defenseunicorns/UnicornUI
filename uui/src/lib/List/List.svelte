@@ -5,14 +5,14 @@
 
   // Props
   type $$Props = ListProps;
-  export let disabledPadding: boolean | undefined = undefined;
+  export let disablePadding: boolean | undefined = undefined;
 </script>
 
 <Box
   element="ul"
   eventComponent={current_component}
   {...$$restProps}
-  class="mdc-deprecated-list {$$restProps.class || ''} {disabledPadding ? 'disabled-padding' : ''}"
+  class="mdc-deprecated-list {$$restProps.class || ''} {disablePadding ? 'disabled-padding' : ''}"
   ssx={{
     $self: {
       padding: '32px 16px',
