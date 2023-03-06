@@ -160,7 +160,7 @@
 </List>
 
 <Accordion>
-  <Typography slot="headerContent" varaint="h6">Iteration 1 code example</Typography>
+  <Typography slot="headerContent" variant="h6">Iteration 1 code example</Typography>
   <Box slot="content">
     <VariantExample
       code={`
