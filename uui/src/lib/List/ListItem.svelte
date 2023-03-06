@@ -84,10 +84,7 @@
     @include list.deprecated-item-secondary-text-ink-color(var(--on-background));
   }
 
-  .mdc-deprecated-list-item__graphic {
-    color: var(--on-background);
-  }
-
+  .mdc-deprecated-list-item__graphic,
   .mdc-deprecated-list-item__meta {
     color: var(--on-background);
   }
@@ -96,6 +93,12 @@
 
   .mdc-deprecated-list-item--selected .mdc-deprecated-list-item__graphic {
     color: var(--on-background);
+  }
+
+  // Disabled state
+  .mdc-deprecated-list-item--disabled .mdc-deprecated-list-item__graphic,
+  .mdc-deprecated-list-item--disabled .mdc-deprecated-list-item__meta {
+    color: var(--disabled);
   }
 
   // Style Options
