@@ -1,5 +1,7 @@
 <script>
-  import { List, ListItem, ListItemAdornment, IconButton } from '@uui';
+  import VariantExample from '$lib/VariantExample.svelte';
+
+  import { List, ListItem, ListItemAdornment, Accordion, Box, Typography } from '@uui';
 </script>
 
 <List class="demo-list">
@@ -7,10 +9,49 @@
     <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
       send
     </ListItemAdornment>
+    <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
+      star
+    </ListItemAdornment>
   </ListItem>
   <ListItem text="Drafts" variant="icon">
     <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
       drafts
+    </ListItemAdornment>
+    <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
+      star
+    </ListItemAdornment>
+  </ListItem>
+
+  <ListItem text="Inbox" variant="icon" selected>
+    <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
+      inbox
+    </ListItemAdornment>
+    <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
+      star
+    </ListItemAdornment>
+  </ListItem>
+</List>
+
+<Accordion>
+  <Typography variant="h6" slot="headerContent">Icon Code Examples</Typography>
+  <Box slot="content">
+    <VariantExample
+      code={`
+<List class="demo-list">
+  <ListItem text="Sent Mail" variant="icon">
+    <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
+      send
+    </ListItemAdornment>
+    <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
+      star
+    </ListItemAdornment>
+  </ListItem>
+  <ListItem text="Drafts" variant="icon">
+    <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
+      drafts
+    </ListItemAdornment>
+    <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
+      star
     </ListItemAdornment>
   </ListItem>
   <ListItem text="Inbox" variant="icon" selected>
@@ -18,12 +59,12 @@
       inbox
     </ListItemAdornment>
     <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
-      expand_less
+      star
     </ListItemAdornment>
-    <ListItem text="Starred" slot="nested">
-      <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
-        star
-      </ListItemAdornment>
-    </ListItem>
   </ListItem>
 </List>
+
+`}
+    />
+  </Box>
+</Accordion>

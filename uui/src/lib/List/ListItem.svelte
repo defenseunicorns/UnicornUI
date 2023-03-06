@@ -123,7 +123,8 @@
   }
 
   .mdc-deprecated-list-item.avatar:not(.two-line),
-  .mdc-deprecated-list-item.icon:not(.two-line) {
+  .mdc-deprecated-list-item.icon:not(.two-line),
+  .mdc-deprecated-list-item.action:not(.two-line) {
     @include list.deprecated-single-line-height(56px);
   }
 
@@ -143,7 +144,8 @@
     background-color: #bdbdbd;
   }
 
-  .mdc-deprecated-list-item.icon .mdc-deprecated-list-item__graphic > * {
+  .mdc-deprecated-list-item.icon .mdc-deprecated-list-item__graphic > *,
+  .mdc-deprecated-list-item.action .mdc-deprecated-list-item__graphic > * {
     @include list.deprecated-graphic-size(-16px, 0px, 40px, 40px);
   }
 

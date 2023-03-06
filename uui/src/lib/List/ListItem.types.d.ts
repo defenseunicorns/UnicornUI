@@ -1,6 +1,6 @@
 import type { BoxProps } from '../Box/box.types';
 
-export type ListItemVariant = 'simple' | 'icon' | 'avatar';
+export type ListItemVariant = 'simple' | 'icon' | 'avatar' | 'action';
 export type ListItemSlotProps = Record<string, boolean | undefined>;
 
 export interface ListItemProps

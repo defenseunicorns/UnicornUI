@@ -35,7 +35,7 @@
     use:eventRedirection={eventComponents}
     type="checkbox"
     class="mdc-checkbox__native-control"
-    {checked}
+    bind:checked
     disabled={$$restProps.disabled}
     data-indeterminate={dataIndeterminate}
   />
