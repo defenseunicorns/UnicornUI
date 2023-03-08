@@ -83,6 +83,7 @@
       <Button href="/typography" {...getVariant(path, '/typography')}>Typography</Button>
       <Button href="/chip" {...getVariant(path, '/chip')}>Chip</Button>
       <Button href="/text-field" {...getVariant(path, '/text-field')}>Text Field</Button>
+      <Button href="/elevation" {...getVariant(path, '/elevation')}>Elevation</Button>
     </div>
   </Box>
   <main>
