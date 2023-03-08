@@ -3,9 +3,8 @@
   import 'material-symbols/';
   import { afterUpdate, onMount } from 'svelte';
   import ThemeToggle from '$lib/ThemeToggle.svelte';
-  import { currentTheme } from '$lib/theme/theme-store';
   import customTypography from '$lib/theme/theme-typography';
-  import { Button, getPreferredTheme, Typography, Theme, Box } from '@uui';
+  import { Button, getPreferredTheme, Typography, Theme, Box, currentTheme } from '@uui';
   import type { ButtonColor, ButtonShape, ButtonVariant } from '@uui';
 
   let path = '';

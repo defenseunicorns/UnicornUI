@@ -48,6 +48,9 @@ export { UUI_BREAKPOINTS } from './shared/theme/breakpoints/default-breakpoints'
 export { BREAKPOINT_CONTEXT } from './shared/theme/breakpoints/breakpoint-context';
 export { UUI_TYPOGRAPHY } from './shared/theme/typography-config/default-typography-config';
 
+// Export Stores here
+export { currentTheme } from './shared/theme/store/theme-store';
+
 // Re-export your types here.
 export type {
   ChipProps,
