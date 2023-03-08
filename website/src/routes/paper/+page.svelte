@@ -33,6 +33,8 @@ export interface PaperProps<T extends EventTarget> extends BoxProps<T> {
   />
 
   <Typography variant="h4">Square</Typography>
+  <Typography variant="body1">Default is rounded.</Typography>
+
   <div class="paper-container">
     <div>
       <Typography variant="subtitle1">False</Typography>
@@ -62,6 +64,7 @@ export interface PaperProps<T extends EventTarget> extends BoxProps<T> {
   </div>
 
   <Typography variant="h4">Elevation</Typography>
+  <Typography variant="body1">Accepted elevation values range from 0 - 24.</Typography>
 
   <div class="paper-container">
     <Paper class="paper" {themeMode} elevation={0}>0dp</Paper>

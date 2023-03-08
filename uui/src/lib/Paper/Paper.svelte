@@ -1,6 +1,6 @@
 <script lang="ts">
   import Box from '../Box/box.svelte';
-  import type { PaperProps, PaperVariant } from './Paper.types';
+  import type { PaperProps, PaperThemeMode, PaperVariant } from './Paper.types';
   import { current_component } from 'svelte/internal';
 
   type T = $$Generic<EventTarget>;
@@ -10,7 +10,7 @@
   export let variant: PaperVariant | undefined = 'elevation';
   export let elevation = 0;
   export let square: boolean | undefined = false;
-  export let themeMode: 'light' | 'dark' | undefined = 'light';
+  export let themeMode: PaperThemeMode = 'light';
 
   // functions
   function getOpacityPercentage(elevation: number) {
