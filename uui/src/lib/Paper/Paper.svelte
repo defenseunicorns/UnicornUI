@@ -12,14 +12,16 @@
   export let square: boolean | undefined = false;
   export let themeMode: 'light' | 'dark' | undefined = 'light';
 
-  // Locals
-  let opacity: number | undefined;
-  let backgroundColor = '';
+  // functions
+  function roundOpacity(opacity: number) {
+    if (opacity === 100) return '';
+    else return Math.ceil(opacity);
+  }
 
   // Reactive Variables
   $: opacity = themeMode === 'dark' ? (100 * elevation) / 24 : 100;
-  $: backgroundColor = themeMode === 'dark' ? '#fff' : backgroundColor;
-  $: additionalClasses = `${square ? 'square' : ''} mdc-elevation-${variant} ${
+  $: backgroundColor = themeMode === 'dark' ? `#FFFFFF${roundOpacity(opacity)}` : '';
+  $: additionalClasses = `${!square && 'rounded'} mdc-elevation-${variant} ${
     $$restProps.class || ''
   }`;
 </script>
@@ -31,8 +33,7 @@
   class="paper mdc-elevation--z{elevation} mdc-elevation-transition {additionalClasses}"
   ssx={{
     $self: {
-      'background-color': backgroundColor,
-      opacity: `${opacity}%`
+      'background-color': backgroundColor
     }
   }}
 >
@@ -42,12 +43,8 @@
 <style lang="scss" global>
   @use '@material/elevation/mdc-elevation';
 
-  .paper {
+  .rounded {
     border-radius: 4px;
-  }
-
-  .square {
-    border-radius: 0;
   }
 
   .mdc-elevation-outlined {
