@@ -5,7 +5,33 @@
 </script>
 
 <DocPage>
-  <Typography variant="h2">Elevation</Typography>
+  <Typography variant="h2">Paper</Typography>
+
+  <Typography variant="h4">Square</Typography>
+  <div class="paper-container">
+    <div>
+      <Typography variant="subtitle1">False</Typography>
+      <Paper class="paper" elevation={10}>10dp</Paper>
+    </div>
+    <div>
+      <Typography variant="subtitle1">True</Typography>
+      <Paper class="paper" square elevation={10}>10dp</Paper>
+    </div>
+  </div>
+
+  <Typography variant="h4">Outlined</Typography>
+  <div class="paper-container">
+    <div>
+      <Typography variant="subtitle1">False</Typography>
+      <Paper class="paper" elevation={10}>10dp</Paper>
+    </div>
+    <div>
+      <Typography variant="subtitle1">True</Typography>
+      <Paper class="paper" variant="outlined" elevation={10}>10dp</Paper>
+    </div>
+  </div>
+
+  <Typography variant="h4">Elevation</Typography>
 
   <div class="paper-container">
     <Paper class="paper" elevation={0}>0dp</Paper>
