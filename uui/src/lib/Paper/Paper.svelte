@@ -13,14 +13,22 @@
   export let themeMode: 'light' | 'dark' | undefined = 'light';
 
   // functions
-  function roundOpacity(opacity: number) {
-    if (opacity === 100) return '';
-    else return Math.ceil(opacity);
+  function getOpacityPercentage(elevation: number) {
+    let opacity = `.${elevation}`;
+    if (elevation < 10) {
+      opacity = `.0${elevation}`;
+    }
+
+    return opacity;
   }
 
   // Reactive Variables
-  $: opacity = themeMode === 'dark' ? (100 * elevation) / 24 : 100;
-  $: backgroundColor = themeMode === 'dark' ? `#FFFFFF${roundOpacity(opacity)}` : '';
+  $: linearGradient = `linear-gradient(180deg, rgba(255, 255, 255, 
+  ${getOpacityPercentage(elevation)}) 0%, rgba(255, 255, 255, 
+  ${getOpacityPercentage(elevation)}) 100%), #0D133D`;
+
+  $: elevation = variant === 'outlined' ? 0 : elevation;
+  $: backgroundColor = themeMode === 'dark' ? linearGradient : '';
   $: additionalClasses = `${!square && 'paper-rounded'} mdc-elevation-${variant} ${
     $$restProps.class || ''
   }`;
@@ -31,11 +39,7 @@
   eventComponent={current_component}
   {...$$restProps}
   class="mdc-elevation--z{elevation} mdc-elevation-transition {additionalClasses}"
-  ssx={{
-    $self: {
-      'background-color': backgroundColor
-    }
-  }}
+  style="background: {backgroundColor}"
 >
   <slot />
 </Box>
