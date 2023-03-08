@@ -9,6 +9,8 @@
   import { updateThemeStyle } from '../shared/theme/config/theme-config.utils';
   import { UUI_PALETTES } from '../shared/theme/palette/default-palettes';
   import type { Palettes } from '../shared/theme/palette/palette.types';
+  import { currentTheme } from '../shared/theme/store/theme-store';
+  import { getPreferredTheme } from '../shared/utils/getPreferredTheme';
   import '../shared/theme/default-colors/colors.css';
   import { onMount } from 'svelte';
 
@@ -19,6 +21,8 @@
   // Check for light theme otherwise use dark
   // Shared is always applied even when its the only theme.
   export let theme = palettes['light'] ? 'light' : 'dark';
+  // Find and use preferred theme if true
+  export let preferredTheme = 'true';
 
   // Locals
   // Used to ensure component is mounted.
@@ -49,9 +53,19 @@
     pageDocument
   );
 
+  currentTheme.subscribe((value) => {
+    if (preferredTheme) theme = value;
+  });
+
   // Lifecycle
   onMount(() => {
     pageDocument = document;
+
+    // If preferredTheme is true, get theme from window and set in the theme store
+    const themePreference = preferredTheme && getPreferredTheme(window);
+    if (themePreference) {
+      currentTheme.set(themePreference);
+    }
   });
 </script>
 

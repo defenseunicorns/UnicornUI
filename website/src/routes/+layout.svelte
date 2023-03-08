@@ -1,26 +1,13 @@
 <script lang="ts">
   import '../app.css';
   import 'material-symbols/';
-  import { afterUpdate, onMount } from 'svelte';
+  import { afterUpdate } from 'svelte';
   import ThemeToggle from '$lib/ThemeToggle.svelte';
   import customTypography from '$lib/theme/theme-typography';
-  import { Button, getPreferredTheme, Typography, Theme, Box, currentTheme } from '@uui';
+  import { Button, Typography, Theme, Box } from '@uui';
   import type { ButtonColor, ButtonShape, ButtonVariant } from '@uui';
 
   let path = '';
-  let currentThemeVal: string;
-
-  currentTheme.subscribe((value) => {
-    currentThemeVal = value;
-  });
-
-  // Lifecycle
-  onMount(() => {
-    const themePreference = getPreferredTheme(window);
-    if (themePreference) {
-      currentTheme.set(themePreference);
-    }
-  });
 
   afterUpdate(() => {
     path = window.location.pathname;
@@ -37,7 +24,7 @@
   }
 </script>
 
-<Theme theme={currentThemeVal} typography={customTypography}>
+<Theme typography={customTypography}>
   <Box
     element="section"
     ssx={{

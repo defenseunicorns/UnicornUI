@@ -32,6 +32,9 @@ Props:
   // Tries light -> dark -> shared (in order if defined) then fallback to mdc defaults.
   theme?: string;
 
+  // Used for setting theme to browser preference. Default set as true.
+  preferredTheme?: boolean
+
   typography?: ThemeTypography;
 
 Slots:
