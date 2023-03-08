@@ -21,7 +21,7 @@
   // Reactive Variables
   $: opacity = themeMode === 'dark' ? (100 * elevation) / 24 : 100;
   $: backgroundColor = themeMode === 'dark' ? `#FFFFFF${roundOpacity(opacity)}` : '';
-  $: additionalClasses = `${!square && 'rounded'} mdc-elevation-${variant} ${
+  $: additionalClasses = `${!square && 'paper-rounded'} mdc-elevation-${variant} ${
     $$restProps.class || ''
   }`;
 </script>
@@ -30,7 +30,7 @@
   element="div"
   eventComponent={current_component}
   {...$$restProps}
-  class="paper mdc-elevation--z{elevation} mdc-elevation-transition {additionalClasses}"
+  class="mdc-elevation--z{elevation} mdc-elevation-transition {additionalClasses}"
   ssx={{
     $self: {
       'background-color': backgroundColor
@@ -43,7 +43,7 @@
 <style lang="scss" global>
   @use '@material/elevation/mdc-elevation';
 
-  .rounded {
+  .paper-rounded {
     border-radius: 4px;
   }
 
