@@ -16,5 +16,7 @@
   on:click={toggleTheme}
   variant="raised"
   color="secondary"
-  style="display: block; margin-left: auto; margin-right: auto;">Switch Theme</Button
+  style="display: block; margin-left: auto; margin-right: auto;"
 >
+  Switch Theme
+</Button>

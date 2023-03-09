@@ -22,11 +22,13 @@
   // Shared is always applied even when its the only theme.
   export let theme = palettes['light'] ? 'light' : 'dark';
   // Find and use preferred theme if true
-  export let preferredTheme = 'true';
+  export let preferredTheme = true;
 
   // Locals
   // Used to ensure component is mounted.
   let pageDocument: Document;
+  // used for the observed theme value from theme store
+  let watchedTheme: string;
   // Convert palettes to map with key, ThemeVars.
   const paletteMap = createPaletteMap(mergePalettes(palettes));
   // Create Typography Config
@@ -34,6 +36,26 @@
 
   // merge and set BreakPoint Context
   BREAKPOINT_CONTEXT.setBreakpoints({ ...UUI_BREAKPOINTS, ...breakpoints });
+
+  // Lifecycle
+  onMount(() => {
+    pageDocument = document;
+
+    // If preferredTheme is true, get theme from window and set in the theme store
+    // else set theme store to theme passed as prop
+    const themePreference = preferredTheme && getPreferredTheme(window);
+    if (themePreference) {
+      currentTheme.set(themePreference);
+    } else {
+      theme && currentTheme.set(theme);
+    }
+
+    // Needs to be inside onMount to ensure subscribe happens
+    // after theme store is set to either preferred theme or theme passed as prop
+    currentTheme.subscribe((value) => {
+      watchedTheme = value;
+    });
+  });
 
   // Watch theme and apply when changed.
   $: updateThemeStyle(
@@ -43,7 +65,7 @@
         // Apply shared palette first as base
         ...(paletteMap.get('shared') || {}),
         // Apply chosen theme palette
-        ...(paletteMap.get(theme) || {}),
+        ...(paletteMap.get(watchedTheme) || {}),
         // Apply the typography vars
         ...typographyConfig.vars
       },
@@ -52,21 +74,6 @@
     },
     pageDocument
   );
-
-  currentTheme.subscribe((value) => {
-    if (preferredTheme) theme = value;
-  });
-
-  // Lifecycle
-  onMount(() => {
-    pageDocument = document;
-
-    // If preferredTheme is true, get theme from window and set in the theme store
-    const themePreference = preferredTheme && getPreferredTheme(window);
-    if (themePreference) {
-      currentTheme.set(themePreference);
-    }
-  });
 </script>
 
 <!-- 
