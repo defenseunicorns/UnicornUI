@@ -25,7 +25,7 @@
   // Reactive Variables
   $: linearGradient = `linear-gradient(180deg, rgba(255, 255, 255, 
   ${getOpacityPercentage(elevation)}) 0%, rgba(255, 255, 255, 
-  ${getOpacityPercentage(elevation)}) 100%), #0D133D`;
+  ${getOpacityPercentage(elevation)}) 100%, #0D133D)`;
 
   $: elevation = variant === 'outlined' ? 0 : elevation;
   $: backgroundColor = themeMode === 'dark' ? linearGradient : '';
@@ -39,7 +39,7 @@
   eventComponent={current_component}
   {...$$restProps}
   class="mdc-elevation--z{elevation} mdc-elevation-transition {additionalClasses}"
-  style="background: {backgroundColor}"
+  style="background-image: {backgroundColor}"
 >
   <slot />
 </Box>
