@@ -1,7 +1,8 @@
 <script lang="ts">
   import Box from '../Box/box.svelte';
-  import type { PaperProps, PaperThemeMode, PaperVariant } from './Paper.types';
+  import type { PaperProps, PaperVariant } from './Paper.types';
   import { current_component } from 'svelte/internal';
+  import Overlay from './Overlay.svelte';
 
   type T = $$Generic<EventTarget>;
   type $$Props = PaperProps<T>;
@@ -10,26 +11,9 @@
   export let variant: PaperVariant | undefined = 'elevation';
   export let elevation = 0;
   export let square: boolean | undefined = false;
-  export let themeMode: PaperThemeMode = 'light';
-
-  // functions
-  function getOpacityPercentage(elevation: number) {
-    let opacity = `.${elevation}`;
-    if (elevation < 10) {
-      opacity = `.0${elevation}`;
-    }
-
-    return opacity;
-  }
-
-  // Reactive Variables
-  $: linearGradient = `linear-gradient(180deg, rgba(255, 255, 255, 
-  ${getOpacityPercentage(elevation)}) 0%, rgba(255, 255, 255, 
-  ${getOpacityPercentage(elevation)}) 100%, #0D133D)`;
 
   $: elevation = variant === 'outlined' ? 0 : elevation;
-  $: backgroundColor = themeMode === 'dark' ? linearGradient : '';
-  $: additionalClasses = `${!square && 'paper-rounded'} mdc-elevation-${variant} ${
+  $: additionalClasses = `${!square && 'mdc-paper-rounded'} mdc-elevation-${variant} ${
     $$restProps.class || ''
   }`;
 </script>
@@ -38,16 +22,20 @@
   element="div"
   eventComponent={current_component}
   {...$$restProps}
-  class="mdc-elevation--z{elevation} mdc-elevation-transition {additionalClasses}"
-  style="background-image: {backgroundColor}"
+  class="mdc-paper mdc-elevation--z{elevation} mdc-elevation-transition {additionalClasses}"
 >
   <slot />
+  <Overlay {elevation} />
 </Box>
 
 <style lang="scss" global>
   @use '@material/elevation/mdc-elevation';
 
-  .paper-rounded {
+  .mdc-paper {
+    position: relative;
+  }
+
+  .mdc-paper-rounded {
     border-radius: 4px;
   }
 
