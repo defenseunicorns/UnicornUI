@@ -24,7 +24,6 @@
     text="Click Me 1"
     secondaryText="Checkbox with same click."
     on:click={() => exampleOnclick(0)}
-    variant="action"
     {selected}
   >
     <ListItemAdornment slot="trailingAdornment">
@@ -35,7 +34,6 @@
     text="Click Me 2"
     secondaryText="Checkbox with separate click."
     on:click={() => exampleOnclick()}
-    variant="icon"
   >
     <ListItemAdornment
       slot="trailingAdornment"
@@ -59,7 +57,6 @@
     text="Click Me 1"
     secondaryText="Checkbox with same click."
     on:click={() => exampleOnclick(0)}
-    variant="action"
     {selected}
   >
     <ListItemAdornment slot="trailingAdornment">
@@ -70,7 +67,6 @@
     text="Click Me 2"
     secondaryText="Checkbox with separate click."
     on:click={() => exampleOnclick()}
-    variant="icon"
   >
     <ListItemAdornment
       slot="trailingAdornment"
@@ -83,7 +79,6 @@
     </ListItemAdornment>
   </ListItem>
 </List>
-
     `}
     />
   </Box>

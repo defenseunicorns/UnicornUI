@@ -134,7 +134,6 @@
       let:disabled
       selected={example1SelectedIndex === index}
       on:click={() => !item.disabled && example1Click(index)}
-      variant="icon"
     >
       <svelte:fragment slot="leadingAdornment">
         {#if item.leadingAdornment}
@@ -207,7 +206,6 @@ const listItemsIteration1: ExtendedListItems1[] = [
       let:disabled
       selected={example1SelectedIndex === index}
       on:click={() => !item.disabled && example1Click(index)}
-      variant="icon"
     >
       <svelte:fragment slot="leadingAdornment">
         {#if item.leadingAdornment}

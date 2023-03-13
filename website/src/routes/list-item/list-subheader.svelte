@@ -14,7 +14,7 @@
 
 <List class="demo-list">
   <ListSubHeader>Settings</ListSubHeader>
-  <ListItem text="Wi-Fi" variant="icon">
+  <ListItem text="Wi-Fi">
     <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
       wifi
     </ListItemAdornment>
@@ -29,7 +29,7 @@
       />
     </ListItemAdornment>
   </ListItem>
-  <ListItem text="Bluetooth" variant="icon">
+  <ListItem text="Bluetooth">
     <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
       bluetooth
     </ListItemAdornment>
@@ -53,7 +53,7 @@
       code={`
         <List class="demo-list">
   <ListSubHeader>Settings</ListSubHeader>
-  <ListItem text="Wi-Fi" variant="icon">
+  <ListItem text="Wi-Fi" >
     <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
       wifi
     </ListItemAdornment>
@@ -68,7 +68,7 @@
       />
     </ListItemAdornment>
   </ListItem>
-  <ListItem text="Bluetooth" variant="icon">
+  <ListItem text="Bluetooth" >
     <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
       bluetooth
     </ListItemAdornment>

@@ -12,12 +12,12 @@
 </script>
 
 <List class="demo-list">
-  <ListItem text="List Item 1" variant="action">
+  <ListItem text="List Item 1">
     <ListItemAdornment slot="leadingAdornment">
       <ListItemCheckbox />
     </ListItemAdornment>
   </ListItem>
-  <ListItem text="List Item 2" variant="action">
+  <ListItem text="List Item 2">
     <ListItemAdornment slot="leadingAdornment">
       <ListItemCheckbox />
     </ListItemAdornment>
@@ -25,12 +25,12 @@
 </List>
 
 <List class="demo-list">
-  <ListItem text="List Item 1" variant="action">
+  <ListItem text="List Item 1">
     <ListItemAdornment slot="trailingAdornment">
       <ListItemCheckbox />
     </ListItemAdornment>
   </ListItem>
-  <ListItem text="List Item 2" variant="action">
+  <ListItem text="List Item 2">
     <ListItemAdornment slot="trailingAdornment">
       <ListItemCheckbox />
     </ListItemAdornment>
@@ -43,12 +43,12 @@
     <VariantExample
       code={`
 <List class="demo-list">
-  <ListItem text="List Item 1" variant="action">
+  <ListItem text="List Item 1">
     <ListItemAdornment slot="leadingAdornment">
       <ListItemCheckbox />
     </ListItemAdornment>
   </ListItem>
-  <ListItem text="List Item 2" variant="action">
+  <ListItem text="List Item 2">
     <ListItemAdornment slot="leadingAdornment">
       <ListItemCheckbox />
     </ListItemAdornment>
@@ -56,12 +56,12 @@
 </List>
 
 <List class="demo-list">
-  <ListItem text="List Item 1" variant="action">
+  <ListItem text="List Item 1">
     <ListItemAdornment slot="trailingAdornment">
       <ListItemCheckbox />
     </ListItemAdornment>
   </ListItem>
-  <ListItem text="List Item 2" variant="action">
+  <ListItem text="List Item 2">
     <ListItemAdornment slot="trailingAdornment">
       <ListItemCheckbox />
     </ListItemAdornment>

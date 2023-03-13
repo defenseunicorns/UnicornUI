@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte/internal';
   import { MDCRipple } from '@material/ripple';
-  import type { ListItemProps, ListItemSlots, ListItemVariant } from './ListItem.types';
+  import type { ListItemProps, ListItemSlots } from './ListItem.types';
   import { eventRedirection } from '../shared/utils/eventRedirection';
   import { current_component } from 'svelte/internal';
 
@@ -9,7 +9,6 @@
   type $$Props = ListItemProps;
   export let text = '';
   export let secondaryText: string | undefined = undefined;
-  export let variant: ListItemVariant = 'simple';
   export let selected: boolean | undefined = undefined;
   export let disabled: boolean | undefined = undefined;
   export let disableGutters: boolean | undefined = undefined;
@@ -24,7 +23,7 @@
 
   // Functions
 
-  // Create the Ripple for list item
+  // Create Ripple for list item
   onMount((): void => {
     if (listItemRef) {
       new MDCRipple(listItemRef);
@@ -39,7 +38,7 @@
   <li
     bind:this={listItemRef}
     use:eventRedirection={eventComponents}
-    class="mdc-deprecated-list-item mdc-ripple-upgraded {variant}"
+    class="mdc-deprecated-list-item mdc-ripple-upgraded"
     class:mdc-deprecated-list-item--selected={selected}
     class:mdc-ripple-upgraded--background-focused={selected}
     class:mdc-deprecated-list-item--disabled={disabled}
@@ -62,9 +61,9 @@
 
     <slot name="trailingAdornment" {selected} {disabled} />
   </li>
-  {#if selected && $$slots.nested}
-    <div class="nested-item">
-      <slot name="nested" />
+  {#if selected && $$slots.nestedContent}
+    <div class="nested-content">
+      <slot name="nestedContent" />
     </div>
   {/if}
 </div>
@@ -120,40 +119,24 @@
     }
   }
 
-  // Variants: Item Height
-  .mdc-deprecated-list-item.simple:not(.two-line) {
+  // Item Height
+  .mdc-deprecated-list-item:not(.two-line) {
     @include list.deprecated-single-line-height(48px);
   }
 
-  .mdc-deprecated-list-item.avatar:not(.two-line),
-  .mdc-deprecated-list-item.icon:not(.two-line),
-  .mdc-deprecated-list-item.action:not(.two-line) {
+  .mdc-deprecated-list-item:not(.two-line):has(.mdc-deprecated-list-item__graphic),
+  .mdc-deprecated-list-item:not(.two-line):has(.mdc-deprecated-list-item__meta) {
     @include list.deprecated-single-line-height(56px);
   }
 
-  // Variants: Graphic Size and Offsets
-
-  // Graphic is direct child of list item
-  .mdc-deprecated-list-item.avatar .mdc-deprecated-list-item__graphic {
+  // Variants: Graphic Size
+  .mdc-deprecated-list-item .mdc-deprecated-list-item__graphic:has(.avatar) {
     @include list.deprecated-graphic-size(0, 56px, 40px, 40px);
-    border-radius: 50%;
-    background-color: #bdbdbd;
-  }
-
-  // Actual graphic element is a grandchild of list item (i.e. wrapped by ListItemAdornment which receives the mdc-deprecated-list-item__graphic class)
-  .mdc-deprecated-list-item.avatar .mdc-deprecated-list-item__graphic > * {
-    @include list.deprecated-graphic-size(0, 0, 40px, 40px);
-    border-radius: 50%;
-    background-color: #bdbdbd;
-  }
-
-  .mdc-deprecated-list-item.icon .mdc-deprecated-list-item__graphic > *,
-  .mdc-deprecated-list-item.action .mdc-deprecated-list-item__graphic > * {
-    @include list.deprecated-graphic-size(-16px, 0px, 40px, 40px);
+    display: inline-block;
   }
 
   // Nested Content
-  .nested-item {
+  .nested-content {
     padding-left: 1rem;
   }
 </style>

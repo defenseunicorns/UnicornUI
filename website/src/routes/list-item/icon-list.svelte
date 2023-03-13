@@ -5,7 +5,7 @@
 </script>
 
 <List class="demo-list">
-  <ListItem text="Sent Mail" variant="icon">
+  <ListItem text="Sent Mail">
     <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
       send
     </ListItemAdornment>
@@ -13,7 +13,7 @@
       star
     </ListItemAdornment>
   </ListItem>
-  <ListItem text="Drafts" variant="icon">
+  <ListItem text="Drafts">
     <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
       drafts
     </ListItemAdornment>
@@ -22,7 +22,7 @@
     </ListItemAdornment>
   </ListItem>
 
-  <ListItem text="Inbox" variant="icon" selected>
+  <ListItem text="Inbox" selected>
     <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
       inbox
     </ListItemAdornment>
@@ -38,7 +38,7 @@
     <VariantExample
       code={`
 <List class="demo-list">
-  <ListItem text="Sent Mail" variant="icon">
+  <ListItem text="Sent Mail">
     <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
       send
     </ListItemAdornment>
@@ -46,7 +46,7 @@
       star
     </ListItemAdornment>
   </ListItem>
-  <ListItem text="Drafts" variant="icon">
+  <ListItem text="Drafts">
     <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
       drafts
     </ListItemAdornment>
@@ -54,7 +54,7 @@
       star
     </ListItemAdornment>
   </ListItem>
-  <ListItem text="Inbox" variant="icon" selected>
+  <ListItem text="Inbox" selected>
     <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
       inbox
     </ListItemAdornment>
@@ -63,7 +63,6 @@
     </ListItemAdornment>
   </ListItem>
 </List>
-
 `}
     />
   </Box>

@@ -13,7 +13,7 @@
 
 <Typography variant="h6">Avatar with Checkboxes</Typography>
 <List class="demo-list">
-  <ListItem text="List Item 1" variant="avatar">
+  <ListItem text="List Item 1">
     <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
       person
     </ListItemAdornment>
@@ -21,7 +21,7 @@
       <ListItemCheckbox />
     </ListItemAdornment>
   </ListItem>
-  <ListItem text="List Item 2" variant="avatar">
+  <ListItem text="List Item 2">
     <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
       person
     </ListItemAdornment>
@@ -33,7 +33,7 @@
 
 <Typography variant="h6">Checkboxes with Icons</Typography>
 <List class="demo-list">
-  <ListItem text="List Item 1" variant="action">
+  <ListItem text="List Item 1">
     <ListItemAdornment slot="leadingAdornment">
       <ListItemCheckbox />
     </ListItemAdornment>
@@ -41,7 +41,7 @@
       star
     </ListItemAdornment>
   </ListItem>
-  <ListItem text="List Item 1" variant="action">
+  <ListItem text="List Item 1">
     <ListItemAdornment slot="leadingAdornment">
       <ListItemCheckbox />
     </ListItemAdornment>
@@ -57,7 +57,7 @@
     <VariantExample
       code={`
 <List class="demo-list">
-  <ListItem text="List Item 1" variant="avatar">
+  <ListItem text="List Item 1">
     <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
       person
     </ListItemAdornment>
@@ -65,7 +65,7 @@
       <ListItemCheckbox />
     </ListItemAdornment>
   </ListItem>
-  <ListItem text="List Item 2" variant="avatar">
+  <ListItem text="List Item 2">
     <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
       person
     </ListItemAdornment>
@@ -76,7 +76,7 @@
 </List>
 
 <List class="demo-list">
-  <ListItem text="List Item 1" variant="action">
+  <ListItem text="List Item 1">
     <ListItemAdornment slot="leadingAdornment">
       <ListItemCheckbox />
     </ListItemAdornment>
@@ -84,7 +84,7 @@
       star
     </ListItemAdornment>
   </ListItem>
-  <ListItem text="List Item 1" variant="action">
+  <ListItem text="List Item 1">
     <ListItemAdornment slot="leadingAdornment">
       <ListItemCheckbox />
     </ListItemAdornment>
@@ -93,7 +93,6 @@
     </ListItemAdornment>
   </ListItem>
 </List>
-  
   `}
     />
   </Box>

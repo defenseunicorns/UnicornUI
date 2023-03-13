@@ -27,7 +27,6 @@
   <ListItem text="Trash" selected={selectedIndex === 2} on:click={() => setSelected(2)} />
   <ListItem text="Spam" selected={selectedIndex === 3} on:click={() => setSelected(3)} />
 </List>
-
 `}
     />
   </Box>

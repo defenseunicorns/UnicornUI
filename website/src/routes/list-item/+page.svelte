@@ -25,26 +25,16 @@
 
   <Typography variant="h3">Props</Typography>
   <Typography variant="body1">
-    <InlineCode>ListItem</InlineCode> has several optional props along with one required (text). Notably
-    the variant prop tells <InlineCode>ListItem</InlineCode> how to style itself for the type of adornments
-    it will wrap. See the below section on Slots for more details. If no variant is given it defaults
-    to "simple".
-  </Typography>
-
-  <Typography variant="body1">
-    All <InlineCode>ListItem</InlineCode> variants share the same enabled, hoverable, selected, and disabled
-    states.
+    <InlineCode>ListItem</InlineCode> has several optional props along with one required (text).
   </Typography>
 
   <VariantExample
     code={`
-    export type ListItemVariant = 'simple' | 'icon' | 'avatar' | 'action';
 
 export interface ListItemProps
   extends svelte.JSX.IntrinsicAttributes<svelte.JSX.HTMLAttributes<HTMLLIElement>> 
 {
   text: string;
-  variant?: ListItemVariant;
   secondaryText?: string;
   selected?: boolean;
   divider?: boolean;
