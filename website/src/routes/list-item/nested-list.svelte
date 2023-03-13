@@ -30,7 +30,7 @@
 </List>
 
 <Accordion>
-  <Typography slot="headerContent" variant="h6">Nested Code Examples</Typography>
+  <Typography slot="headerContent" variant="h6">Nested Code</Typography>
   <Box slot="content">
     <VariantExample
       code={`

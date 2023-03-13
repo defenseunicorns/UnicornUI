@@ -4,7 +4,6 @@
   import VariantExample from '../../lib/VariantExample.svelte';
   import InlineCode from '../../lib/inline-code.svelte';
   import SimpleList from './simple-list.svelte';
-  import IconList from './icon-list.svelte';
   import AvatarList from './avatar-list.svelte';
   import CheckboxList from './checkbox-list.svelte';
   import CombinedList from './combined-list.svelte';
@@ -13,6 +12,8 @@
   import ListSubheader from './list-subheader.svelte';
   import ListGroupExample from './list-group-example.svelte';
   import DeveloperExpierience from './developer-expierience.svelte';
+  import LeadingIconList from './leading-icon-list.svelte';
+  import TrailingIconList from './trailing-icon-list.svelte';
 </script>
 
 <DocPage>
@@ -44,13 +45,65 @@ export interface ListItemProps
 `}
   />
 
+  <Typography variant="h5">
+    Simple:
+    <Typography variant="h6">
+      The simple <InlineCode>ListItem</InlineCode> consists of only single-line or two-line text.
+    </Typography>
+  </Typography>
+
+  <SimpleList />
+
+  <Typography variant="h5">
+    Divider
+    <Typography variant="h6">
+      A divider can be added to the bottom of any <InlineCode>ListItem</InlineCode> via the divider prop,
+      whether it is simple or has adornments.
+    </Typography>
+  </Typography>
+
+  <List class="demo-list">
+    <ListItem text="List Item" divider />
+    <ListItem text="List Item" />
+  </List>
+
+  <VariantExample
+    code={`
+   <List class="demo-list">
+    <ListItem text="List Item" divider />
+    <ListItem text="List Item" />
+</List>
+  `}
+  />
+
+  <Typography variant="h5">
+    Disabled Gutters:
+    <Typography variant="h6">
+      Disable the left padding of a <InlineCode>ListItem</InlineCode> via the disableGutters prop.
+    </Typography>
+  </Typography>
+
+  <List class="demo-list">
+    <ListItem text="List Item" divider />
+    <ListItem text="List Item" disableGutters />
+  </List>
+
+  <VariantExample
+    code={`
+  <List class="demo-list">
+    <ListItem text="List Item" divider/>
+    <ListItem text="List Item" disableGutters />
+</List>
+  `}
+  />
+
   <Typography variant="h3">Slots</Typography>
   <Typography variant="body1">
     <InlineCode>ListItem</InlineCode> has three named slots:
     <ul>
       <li>leadingAdornment</li>
       <li>trailingAdornment</li>
-      <li>nested</li>
+      <li>nestedContent</li>
     </ul>
   </Typography>
   <Typography variant="body1">
@@ -86,67 +139,37 @@ export interface ListItemProps
   `}
   />
 
-  <Typography variant="h4">Variants and Corresponding Slots</Typography>
+  <Typography variant="h5">
+    With Leading Icon:
+    <Typography variant="h6" />
+  </Typography>
+
+  <LeadingIconList />
 
   <Typography variant="h5">
-    Simple:
-    <Typography variant="h6">
-      This variant does not directly relate to a named slot as "icon", "avatar", and "action" do.
-    </Typography>
-  </Typography>
-  <Typography variant="body1">
-    The simple <InlineCode>ListItem</InlineCode> consists of text and no icons, images, avatars, or actions.
-    It can be either single line or two line.
+    With Trailing Icon:
+    <Typography variant="h6" />
   </Typography>
 
-  <SimpleList />
+  <TrailingIconList />
 
-  <Typography variant="h5">
-    Icon:
-    <Typography variant="h6">
-      This variant relates to icons or actions passed in either the leading or trailing adornment
-      positions.
-    </Typography>
-  </Typography>
-
-  <IconList />
-
-  <Typography variant="h5">
-    Avatar:
-    <Typography variant="h6">
-      This variant relates to avatars or images passed to the leading adornment position.
-    </Typography>
-  </Typography>
+  <Typography variant="h5">With Avatar:</Typography>
 
   <AvatarList />
 
-  <Typography variant="h5">
-    Action:
-    <Typography variant="h6">
-      This variant relates to actions like checkboxes, radio button, and icon buttons in either the
-      leading or trailing position.
-    </Typography>
-  </Typography>
+  <Typography variant="h5">With Checkbox:</Typography>
 
   <CheckboxList />
 
-  <Typography variant="h5">
-    Combined:
-    <Typography variant="h6">
-      Because the ListItemVariant is mainly for styling the size of the ListItem wrapper, if you
-      want to combine variants we recommend using the type of the leading adornment as the <InlineCode
-        >ListItem</InlineCode
-      > variant.
-    </Typography>
-  </Typography>
+  <Typography variant="h5">Combined:</Typography>
 
   <CombinedList />
 
   <Typography variant="h5">
-    Nested:
+    With Nested:
     <Typography variant="h6">
-      The nested slot does not directly relate to any of the <InlineCode>ListItem</InlineCode> variants
-      but can contain ListItems that of course use those variants.
+      List items can accept nested content, which could be a single
+      <InlineCode>ListItem</InlineCode> or an entire list.
     </Typography>
   </Typography>
 
@@ -196,7 +219,6 @@ export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLUListElement> {
     </div>
     <div>
       <Typography variant="h5">Padding</Typography>
-
       <List class="demo-list">
         <ListItem text="List Item" selected />
       </List>

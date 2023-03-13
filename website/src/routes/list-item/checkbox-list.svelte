@@ -38,7 +38,7 @@
 </List>
 
 <Accordion>
-  <Typography slot="headerContent" variant="h6">Action Code Examples</Typography>
+  <Typography slot="headerContent" variant="h6">Checkbox Code</Typography>
   <Box slot="content">
     <VariantExample
       code={`

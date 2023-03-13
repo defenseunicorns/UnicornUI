@@ -32,7 +32,7 @@
 </ListGroup>
 
 <Accordion>
-  <Typography variant="h6" slot="headerContent">List Group code example</Typography>
+  <Typography variant="h6" slot="headerContent">List Group Code</Typography>
   <Box slot="content">
     <VariantExample
       code={`

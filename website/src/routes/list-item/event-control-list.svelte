@@ -48,7 +48,7 @@
 </List>
 
 <Accordion>
-  <Typography slot="headerContent" variant="h6">Event Control Code Examples</Typography>
+  <Typography slot="headerContent" variant="h6">Event Control Code</Typography>
   <Box slot="content">
     <VariantExample
       code={`

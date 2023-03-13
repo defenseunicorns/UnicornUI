@@ -9,16 +9,10 @@
     <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
       send
     </ListItemAdornment>
-    <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
-      star
-    </ListItemAdornment>
   </ListItem>
   <ListItem text="Drafts">
     <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
       drafts
-    </ListItemAdornment>
-    <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
-      star
     </ListItemAdornment>
   </ListItem>
 
@@ -26,14 +20,11 @@
     <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
       inbox
     </ListItemAdornment>
-    <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
-      star
-    </ListItemAdornment>
   </ListItem>
 </List>
 
 <Accordion>
-  <Typography variant="h6" slot="headerContent">Icon Code Examples</Typography>
+  <Typography variant="h6" slot="headerContent">Leading Icon Code</Typography>
   <Box slot="content">
     <VariantExample
       code={`
@@ -42,24 +33,15 @@
     <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
       send
     </ListItemAdornment>
-    <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
-      star
-    </ListItemAdornment>
   </ListItem>
   <ListItem text="Drafts">
     <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
       drafts
     </ListItemAdornment>
-    <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
-      star
-    </ListItemAdornment>
   </ListItem>
   <ListItem text="Inbox" selected>
     <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
       inbox
-    </ListItemAdornment>
-    <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
-      star
     </ListItemAdornment>
   </ListItem>
 </List>

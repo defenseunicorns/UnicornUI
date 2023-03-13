@@ -116,7 +116,6 @@ export type {
   ListItemProps,
   ListItemSlots,
   ListItemSlotProps,
-  ListItemVariant,
   ListItemAdornmentProps
 } from './List/ListItem.types';
 export type {

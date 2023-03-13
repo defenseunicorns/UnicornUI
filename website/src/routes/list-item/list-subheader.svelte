@@ -47,7 +47,7 @@
 </List>
 
 <Accordion>
-  <Typography slot="headerContent" variant="h6">List with Subheader code example</Typography>
+  <Typography slot="headerContent" variant="h6">List with Subheader Code</Typography>
   <Box slot="content">
     <VariantExample
       code={`

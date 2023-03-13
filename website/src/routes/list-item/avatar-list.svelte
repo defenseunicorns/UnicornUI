@@ -23,7 +23,7 @@
 </List>
 
 <Accordion>
-  <Typography variant="h6" slot="headerContent">Avatar Code Examples</Typography>
+  <Typography variant="h6" slot="headerContent">Avatar Code</Typography>
   <Box slot="content">
     <VariantExample
       code={`

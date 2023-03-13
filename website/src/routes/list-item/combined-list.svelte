@@ -9,21 +9,22 @@
     ListItemAdornment,
     ListItemCheckbox
   } from '@uui';
+  import ListAvatar from './list-avatar.svelte';
 </script>
 
 <Typography variant="h6">Avatar with Checkboxes</Typography>
 <List class="demo-list">
   <ListItem text="List Item 1">
-    <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
-      person
+    <ListItemAdornment slot="leadingAdornment">
+      <ListAvatar element="i" class="material-symbols-outlined">person</ListAvatar>
     </ListItemAdornment>
     <ListItemAdornment slot="trailingAdornment">
       <ListItemCheckbox />
     </ListItemAdornment>
   </ListItem>
   <ListItem text="List Item 2">
-    <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
-      person
+    <ListItemAdornment slot="leadingAdornment">
+      <ListAvatar element="i" class="material-symbols-outlined">person</ListAvatar>
     </ListItemAdornment>
     <ListItemAdornment slot="trailingAdornment">
       <ListItemCheckbox />
@@ -52,22 +53,22 @@
 </List>
 
 <Accordion>
-  <Typography slot="headerContent" variant="h6">Combined Code Examples</Typography>
+  <Typography slot="headerContent" variant="h6">Combined Code</Typography>
   <Box slot="content">
     <VariantExample
       code={`
 <List class="demo-list">
   <ListItem text="List Item 1">
-    <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
-      person
+    <ListItemAdornment slot="leadingAdornment">
+      <ListAvatar element="i" class="material-symbols-outlined">person</ListAvatar>
     </ListItemAdornment>
     <ListItemAdornment slot="trailingAdornment">
       <ListItemCheckbox />
     </ListItemAdornment>
   </ListItem>
   <ListItem text="List Item 2">
-    <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
-      person
+    <ListItemAdornment slot="leadingAdornment">
+      <ListAvatar element="i" class="material-symbols-outlined">person</ListAvatar>
     </ListItemAdornment>
     <ListItemAdornment slot="trailingAdornment">
       <ListItemCheckbox />
