@@ -47,7 +47,7 @@
     if (themePreference) {
       currentTheme.set(themePreference);
     } else {
-      theme && currentTheme.set(theme);
+      currentTheme.set(theme);
     }
 
     // Needs to be inside onMount to ensure subscribe happens
