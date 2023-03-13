@@ -8,12 +8,12 @@
   type $$Props = PaperProps<T>;
 
   // Props
-  export let variant: PaperVariant | undefined = 'elevation';
+  export let variant: PaperVariant = 'elevation';
   export let elevation = 0;
-  export let square: boolean | undefined = false;
+  export let square = false;
 
   $: elevation = variant === 'outlined' ? 0 : elevation;
-  $: additionalClasses = `${!square && 'mdc-paper-rounded'} mdc-elevation-${variant} ${
+  $: additionalClasses = `${!square && 'paper-rounded'} mdc-elevation-${variant} ${
     $$restProps.class || ''
   }`;
 </script>
@@ -22,7 +22,7 @@
   element="div"
   eventComponent={current_component}
   {...$$restProps}
-  class="mdc-paper mdc-elevation--z{elevation} mdc-elevation-transition {additionalClasses}"
+  class="paper mdc-elevation--z{elevation} mdc-elevation-transition {additionalClasses}"
 >
   <slot />
   <Overlay {elevation} />
@@ -31,11 +31,7 @@
 <style lang="scss" global>
   @use '@material/elevation/mdc-elevation';
 
-  .mdc-paper {
-    position: relative;
-  }
-
-  .mdc-paper-rounded {
+  .paper-rounded {
     border-radius: 4px;
   }
 

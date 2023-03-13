@@ -30,10 +30,8 @@
 
 <style lang="scss" global>
   .mdc-elevation-overlay {
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    height: inherit;
+    width: inherit;
     opacity: var(--mdc-elevation-overlay-opacity, var(--elevation)) !important;
   }
 </style>
