@@ -2,6 +2,8 @@
 import Box from './Box/box.svelte';
 import Chip from './Chip/chip.svelte';
 import Step from './Stepper/Step.svelte';
+import Paper from './Paper/Paper.svelte';
+import Overlay from './Paper/Overlay.svelte';
 import Theme from './Theme/theme.svelte';
 import Button from './Button/Button.svelte';
 import Dialog from './Dialog/Dialog.svelte';
@@ -22,6 +24,8 @@ export {
   Box,
   Chip,
   Step,
+  Paper,
+  Overlay,
   Theme,
   Button,
   Dialog,
@@ -101,3 +105,5 @@ export type {
   BreakpointKey,
   BreakpointValue
 } from './shared/theme/breakpoints/breakpoints.types';
+export type { PaperProps } from './Paper/Paper.types';
+export type { OverlayProps } from './Paper/Overlay.types';
