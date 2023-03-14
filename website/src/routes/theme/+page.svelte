@@ -32,13 +32,16 @@ Props:
   // Tries light -> dark -> shared (in order if defined) then fallback to mdc defaults.
   theme?: string;
 
+  // Used for setting theme to browser preference. Default set as true.
+  preferredTheme?: boolean
+
   typography?: ThemeTypography;
 
 Slots:
   unnamed
 
 Example:
-<Theme theme={currentTheme} palettes={myCustomPalettes} typography={myCustomTypography}>
+<Theme palettes={myCustomPalettes} typography={myCustomTypography}>
     {...TheRestOfTheWebsite}
 </Theme>
 
@@ -48,6 +51,7 @@ Additional Notes:
   - Acts purely as a wrapper and contains no html tags. 
   - Palette and TypographyConfig values are accessible via css vars following the theme properties separated by dashes (--primary, --on-primary, --h3-font-size); 
   - A runtime list of available css vars are in the head style id='uui-theme-css'
+  - Default looks for preferred theme from browser.
 `}
 >
   <AccordionGroup>
@@ -88,7 +92,7 @@ Additional Notes:
       </Box>
     </Accordion>
     <Accordion isOpen>
-      <Typography slot="headerContent" variant="h6">Example: Preferred Theme</Typography>
+      <Typography slot="headerContent" variant="h6">Example: Preferred Theme Override</Typography>
       <Box slot="content">
         <VariantExample code={PREFERRED_THEME_EXAMPLE} />
       </Box>

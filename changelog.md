@@ -11,14 +11,19 @@
 
 ```ts
 export type PaperVariant = 'elevation' | 'outlined' | string;
-export type PaperThemeMode = 'light' | 'dark' | string;
 export interface PaperProps<T extends EventTarget> extends BoxProps<T> {
   variant?: PaperVariant;
   elevation?: number;
   square?: boolean;
-  themeMode?: PaperThemeMode;
 }
 ```
+
+### Theme
+
+- created internal theme store that is exported.
+- users can subscribe to theme store and get / set value.
+- added `preferredTheme` prop (default true) to `Theme`
+- `Theme` automatically looks for browser preferred theme and sets the internal store to preference
 
 # v0.0.36
 

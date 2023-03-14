@@ -1,12 +1,5 @@
 <script lang="ts">
-  import { getPreferredTheme, Theme, type PreferredTheme } from '@uui';
-  import { onMount } from 'svelte';
-
-  let theme: PreferredTheme;
-
-  onMount(() => {
-    theme = getPreferredTheme(window);
-  });
+  import { Theme } from '@uui';
 </script>
 
-<Theme {theme} />
+<Theme theme="light" preferredTheme={false} />

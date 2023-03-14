@@ -1,17 +1,10 @@
 <script lang="ts">
   // routes/+layout.svelte
 
-  import { getPreferredTheme, Theme, Typography, type PreferredTheme } from '@uui';
-  import { onMount } from 'svelte';
-
-  let theme: PreferredTheme;
-
-  onMount(() => {
-    theme = getPreferredTheme(window);
-  });
+  import { Theme, Typography } from '@uui';
 </script>
 
-<Theme {theme}>
+<Theme>
   <Typography variant="h1">Theme Example</Typography>
   <main>
     <slot />
