@@ -11,7 +11,7 @@
       flexDirection: 'column',
       padding: '2rem 0',
       gap: '2rem',
-      '& ul li': {
+      '& ul li:not(.mdc-deprecated-list-item)': {
         paddingTop: '1rem'
       }
     },
