@@ -16,7 +16,7 @@
   element="i"
   eventComponent={current_component}
   {...$$restProps}
-  class="{listIconClass} {$$restProps.class || ''}"
+  class="list-item-adornment {listIconClass} {$$restProps.class || ''}"
   aria-hidden="true"
 >
   <slot />

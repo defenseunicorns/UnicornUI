@@ -27,7 +27,7 @@
 
 <div
   bind:this={checkboxRef}
-  class="mdc-checkbox mdc-checkbox--upgraded {$$restProps.class || ''}"
+  class="checkbox mdc-checkbox mdc-checkbox--upgraded {$$restProps.class || ''}"
   class:mdc-checkbox--selected={checked}
   class:mdc-ripple-upgraded--background-focused={checked}
 >

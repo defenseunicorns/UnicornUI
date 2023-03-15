@@ -11,7 +11,7 @@
   element="div"
   eventComponent={current_component}
   {...$$restProps}
-  class="mdc-deprecated-list-group {$$restProps.class || ''}"
+  class="list-group mdc-deprecated-list-group {$$restProps.class || ''}"
 >
   <slot />
 </Box>

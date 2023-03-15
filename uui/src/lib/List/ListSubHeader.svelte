@@ -10,7 +10,7 @@
   element="h3"
   eventComponent={current_component}
   {...$$restProps}
-  class="mdc-deprecated-list-group__subheader {$$restProps.class || ''}"
+  class="list-subheader mdc-deprecated-list-group__subheader {$$restProps.class || ''}"
 >
   <slot />
 </Box>

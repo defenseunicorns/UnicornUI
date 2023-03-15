@@ -18,7 +18,7 @@ export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLUListElement> {
 ### ListItem
 
 - Main component of lists, wrapping text and adornments.
-- Three named slots: leadingAdornmnt, trailingAdornment, nestedContent
+- Three named slots: leadingAdornment, trailingAdornment, nestedContent
 - States: hoverable, selected, disabled.
 
 ```ts

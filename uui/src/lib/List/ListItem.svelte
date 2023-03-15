@@ -38,7 +38,7 @@
   <li
     bind:this={listItemRef}
     use:eventRedirection={eventComponents}
-    class="mdc-deprecated-list-item mdc-ripple-upgraded"
+    class="list-item mdc-deprecated-list-item mdc-ripple-upgraded"
     class:mdc-deprecated-list-item--selected={selected}
     class:mdc-ripple-upgraded--background-focused={selected}
     class:mdc-deprecated-list-item--disabled={disabled}
@@ -89,7 +89,6 @@
   }
 
   // Selected State
-
   .mdc-deprecated-list-item--selected .mdc-deprecated-list-item__graphic {
     color: var(--on-background);
   }
