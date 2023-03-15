@@ -1,7 +1,6 @@
 <!--CustomStep-->
 <script lang="ts">
-  import { currentTheme } from '$lib/theme/theme-store';
-  import { Step, StepIcon, type StepProps } from '@uui';
+  import { currentTheme, Step, StepIcon, type StepProps } from '@uui';
   let currentThemeVal: string;
 
   currentTheme.subscribe((value) => {

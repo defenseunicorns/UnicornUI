@@ -1,3 +1,145 @@
+# v0.0.37
+
+## Updates
+
+### List
+
+- Base component for containg list items, used in components such as menu, nav rail/drawer, selects.
+- Has default padding, which can be disabled, but other than that must be styled with custom classes passed as prop.
+- Has one unnamed slot for rendering one or more children.
+- Uses Box under the hood, which allows for event redirection and ssx.
+
+```ts
+export interface ListProps<T extends EventTarget> extends BoxProps<T> {
+  disablePadding?: boolean;
+}
+```
+
+```ts
+<List class="demo-list" ssx={{ $self: { backgroundColor: 'red' } }} />
+```
+
+### ListItem
+
+- Main component of lists, wrapping text and adornments.
+- Three named slots: leadingAdornment, trailingAdornment, nestedContent
+- States: hoverable, selected, disabled.
+- Uses Box unded the hood, which allows for event redirection and ssx.
+
+```ts
+export type ListItemSlotProps = Record<string, boolean | undefined>;
+
+export interface ListItemProps<T extends EventTarget>
+  extends svelte.JSX.IntrinsicAttributes<BoxProps<T>> {
+  text: string;
+  secondaryText?: string;
+  selected?: boolean;
+  divider?: boolean;
+  disabled?: boolean;
+  disableGutters?: boolean;
+}
+
+export interface ListItemSlots {
+  default: ListItemSlotProps;
+  leadingAdornment: ListItemSlotProps;
+  trailingAdornment: ListItemSlotProps;
+  nested: ListItemSlotProps;
+}
+```
+
+```ts
+<ListItem text="Item" ssx={{ $self: { backgroundColor: 'red' } }} />
+```
+
+### ListItemAdornment
+
+- Used for passing leading or trailing adornments to ListItem.
+- Adds the mdc-deprecated-list-item\_\_graphic or mdc-deprecated-list-item\_\_meta classes.
+- Accepts children. If child is passed, add the slot=<name> directive to the child as well.
+- Uses Box unded the hood, which allows for event redirection and ssx.
+
+```ts
+export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>;
+```
+
+### ListItemCheckbox
+
+- Checkbox currently made specifically for use in ListItem as leading or trailing adornment.
+
+```ts
+export interface ListItemCheckboxProps extends svelte.JSX.HTMLAttributes<HTMLInputElement> {
+  checked?: boolean;
+  indeterminate?: boolean;
+}
+```
+
+### ListGroup
+
+- Wraps Lists and is used in conjunction with ListSubHeader.
+- One unnamed slot for rendering children.
+- Uses Box under the hood.
+
+```ts
+export type ListGroupProps = svelte.JSX.HTMLAttributes<HTMLDivElement>;
+```
+
+### ListSubHeader
+
+- Used primarily with ListGroup, though can be used as child of List directly.
+- Gives clarification of what list is for. (i.e 'settings')
+- One unnamed slot for rendering children.
+- Uses Box under the hood.
+
+```ts
+export type ListSubHeaderProps = svelte.JSX.HTMLAttributes<HTMLHeadingElement>;
+```
+
+### Paper
+
+- created Paper component that acts as a wrapper for applying elevation in either light or dark mode.
+- created `PaperProps` type.
+- applies box-shadow in light mode and a linear-gradient "overlay" in dark mode, calculated by given elevation in both cases.
+- default configuration is a rounded, non-outlined, element set to 0 elevation.
+
+```ts
+export type PaperVariant = 'elevation' | 'outlined' | string;
+export interface PaperProps<T extends EventTarget> extends BoxProps<T> {
+  variant?: PaperVariant;
+  elevation?: number;
+  square?: boolean;
+}
+```
+
+### Theme
+
+- created internal theme store that is exported.
+- users can subscribe to theme store and get / set value.
+- added `preferredTheme` prop (default true) to `Theme`
+- `Theme` automatically looks for browser preferred theme and sets the internal store to preference
+
+## Internal
+
+### ComponentAsProp
+
+- There now exists a shared type for a component passed as a prop -- `ComponentAsProp`
+- This allows for declaring the type of component and its props in a JS object that can then be passed to the <svelte:component /> directive.
+
+```ts
+export type ComponentAsProp<T> = {
+  component: ComponentType<SvelteComponentTyped>;
+  props: T;
+};
+```
+
+```ts
+const props: {adornment: ComponentAsProp<IconButtonProps>} = {
+  adornment: {
+    component: IconButton
+    props: {iconContent: 'favorite', iconClass: 'material-symbol-outlined'}
+  }
+}
+```
+
 # v0.0.36
 
 ## Breaking Changes

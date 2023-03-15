@@ -10,12 +10,11 @@
     Stepper,
     StepIcon,
     Accordion,
-    AccordionGroup
+    AccordionGroup,
+    currentTheme
   } from '@uui';
-  import { currentTheme } from '$lib/theme/theme-store';
 
   let currentThemeVal: string;
-
   currentTheme.subscribe((value) => {
     currentThemeVal = value;
   });
