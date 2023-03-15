@@ -5,9 +5,9 @@
 ### List
 
 - Base component for containg list items, used in components such as menu, nav rail/drawer, selects.
-- Has default padding, which can be disabled, but other than must be styled with custom classes passed as prop.
+- Has default padding, which can be disabled, but other than that must be styled with custom classes passed as prop.
 - Has one unnamed slot for rendering one or more children.
-- Uses Box under the hood.
+- Uses Box under the hood, which allows for using things like event redirection and ssx.
 
 ```ts
 export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLUListElement> {
@@ -18,18 +18,15 @@ export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLUListElement> {
 ### ListItem
 
 - Main component of lists, wrapping text and adornments.
-- Three variants: 'simple' | 'icon' | 'avatar'
-- Three named slots: leadingAdornmnt, trailingAdornment, nested
+- Three named slots: leadingAdornmnt, trailingAdornment, nestedContent
 - States: hoverable, selected, disabled.
 
 ```ts
-export type ListItemVariant = 'simple' | 'icon' | 'avatar';
 export type ListItemSlotProps = Record<string, boolean | undefined>;
 
 export interface ListItemProps
   extends svelte.JSX.IntrinsicAttributes<svelte.JSX.HTMLAttributes<HTMLLIElement>> {
   text: string;
-  variant?: ListItemVariant;
   secondaryText?: string;
   selected?: boolean;
   divider?: boolean;
@@ -57,11 +54,12 @@ export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>;
 
 ### ListItemCheckbox
 
-- Checkbox currently made specifically for use in ListItem as adornment.
+- Checkbox currently made specifically for use in ListItem as leading or trailing adornment.
 
 ```ts
 export interface ListItemCheckboxProps extends svelte.JSX.HTMLAttributes<HTMLInputElement> {
-  selected?: boolean;
+  checked?: boolean;
+  indeterminate?: boolean;
 }
 ```
 
