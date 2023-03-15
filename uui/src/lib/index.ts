@@ -3,6 +3,8 @@ import Box from './Box/box.svelte';
 import Chip from './Chip/chip.svelte';
 import Step from './Stepper/Step.svelte';
 import List from './List/List.svelte';
+import Paper from './Paper/Paper.svelte';
+import Overlay from './Paper/Overlay.svelte';
 import Theme from './Theme/theme.svelte';
 import Button from './Button/Button.svelte';
 import Dialog from './Dialog/Dialog.svelte';
@@ -29,6 +31,8 @@ export {
   Chip,
   Step,
   List,
+  Paper,
+  Overlay,
   Theme,
   Button,
   Dialog,
@@ -59,6 +63,9 @@ export { UUI_PALETTES } from './shared/theme/palette/default-palettes';
 export { UUI_BREAKPOINTS } from './shared/theme/breakpoints/default-breakpoints';
 export { BREAKPOINT_CONTEXT } from './shared/theme/breakpoints/breakpoint-context';
 export { UUI_TYPOGRAPHY } from './shared/theme/typography-config/default-typography-config';
+
+// Export Stores here
+export { currentTheme } from './shared/theme/store/theme-store';
 
 // Re-export your types here.
 export type {
@@ -123,3 +130,5 @@ export type {
   BreakpointKey,
   BreakpointValue
 } from './shared/theme/breakpoints/breakpoints.types';
+export type { PaperProps } from './Paper/Paper.types';
+export type { OverlayProps } from './Paper/Overlay.types';

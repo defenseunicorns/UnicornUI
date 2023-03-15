@@ -84,6 +84,29 @@ export type ListGroupProps = svelte.JSX.HTMLAttributes<HTMLDivElement>;
 export type ListSubHeaderProps = svelte.JSX.HTMLAttributes<HTMLHeadingElement>;
 ```
 
+### Paper
+
+- created Paper component that acts as a wrapper for applying elevation in either light or dark mode.
+- created `PaperProps` type.
+- applies box-shadow in light mode and a linear-gradient "overlay" in dark mode, calculated by given elevation in both cases.
+- default configuration is a rounded, non-outlined, element set to 0 elevation.
+
+```ts
+export type PaperVariant = 'elevation' | 'outlined' | string;
+export interface PaperProps<T extends EventTarget> extends BoxProps<T> {
+  variant?: PaperVariant;
+  elevation?: number;
+  square?: boolean;
+}
+```
+
+### Theme
+
+- created internal theme store that is exported.
+- users can subscribe to theme store and get / set value.
+- added `preferredTheme` prop (default true) to `Theme`
+- `Theme` automatically looks for browser preferred theme and sets the internal store to preference
+
 ## Internal
 
 ### ComponentAsProp

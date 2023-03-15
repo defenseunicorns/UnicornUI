@@ -9,7 +9,7 @@
   element="pre"
   class="variant-code"
   color="primary"
-  style="font-size: 18px"
+  style="font-size: 18px;"
 >
   {`${code.trim()}`}
 </Typography>
