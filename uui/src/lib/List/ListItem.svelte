@@ -2,11 +2,12 @@
   import { onMount } from 'svelte/internal';
   import { MDCRipple } from '@material/ripple';
   import type { ListItemProps, ListItemSlots } from './ListItem.types';
-  import { eventRedirection } from '../shared/utils/eventRedirection';
   import { current_component } from 'svelte/internal';
+  import Box from '../Box/box.svelte';
 
   // Props
-  type $$Props = ListItemProps;
+  type T = $$Generic<EventTarget>;
+  type $$Props = ListItemProps<T>;
   export let text = '';
   export let secondaryText: string | undefined = undefined;
   export let selected: boolean | undefined = undefined;
@@ -18,7 +19,7 @@
   type $$Slots = ListItemSlots;
 
   // Local Variables
-  let listContainerRef: HTMLDivElement;
+  let listItemContainerRef: HTMLDivElement;
   let listItemRef: HTMLLIElement;
 
   // Functions
@@ -31,13 +32,17 @@
   });
 
   // Reactive Variables
-  $: eventComponents = [current_component];
 </script>
 
-<div class="list-item-container " bind:this={listContainerRef}>
+<Box
+  class="list-item-container"
+  element="div"
+  ref={listItemContainerRef}
+  eventComponent={current_component}
+  {...$$restProps}
+>
   <li
     bind:this={listItemRef}
-    use:eventRedirection={eventComponents}
     class="list-item mdc-deprecated-list-item mdc-ripple-upgraded"
     class:mdc-deprecated-list-item--selected={selected}
     class:mdc-ripple-upgraded--background-focused={selected}
@@ -66,7 +71,7 @@
       <slot name="nestedContent" />
     </div>
   {/if}
-</div>
+</Box>
 
 <style lang="scss" global>
   @use '@material/list';

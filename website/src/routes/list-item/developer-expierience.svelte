@@ -15,7 +15,7 @@
     Box
   } from '@uui';
 
-  type ExtendedListItems1 = ListItemProps & {
+  type ExtendedListItems1 = ListItemProps<EventTarget> & {
     leadingAdornment?: boolean;
     trailingAdornment?: boolean;
   };
@@ -47,7 +47,7 @@
     }
   ];
 
-  type ExtendedListItems2 = ListItemProps & {
+  type ExtendedListItems2 = ListItemProps<EventTarget> & {
     leadingAdornment?: Record<string, any>;
     trailingAdornment?: Record<string, any>;
   };

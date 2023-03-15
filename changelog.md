@@ -7,12 +7,16 @@
 - Base component for containg list items, used in components such as menu, nav rail/drawer, selects.
 - Has default padding, which can be disabled, but other than that must be styled with custom classes passed as prop.
 - Has one unnamed slot for rendering one or more children.
-- Uses Box under the hood, which allows for using things like event redirection and ssx.
+- Uses Box under the hood, which allows for event redirection and ssx.
 
 ```ts
-export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLUListElement> {
+export interface ListProps<T extends EventTarget> extends BoxProps<T> {
   disablePadding?: boolean;
 }
+```
+
+```ts
+<List class="demo-list" ssx={{ $self: { backgroundColor: 'red' } }} />
 ```
 
 ### ListItem
@@ -20,12 +24,13 @@ export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLUListElement> {
 - Main component of lists, wrapping text and adornments.
 - Three named slots: leadingAdornment, trailingAdornment, nestedContent
 - States: hoverable, selected, disabled.
+- Uses Box unded the hood, which allows for event redirection and ssx.
 
 ```ts
 export type ListItemSlotProps = Record<string, boolean | undefined>;
 
-export interface ListItemProps
-  extends svelte.JSX.IntrinsicAttributes<svelte.JSX.HTMLAttributes<HTMLLIElement>> {
+export interface ListItemProps<T extends EventTarget>
+  extends svelte.JSX.IntrinsicAttributes<BoxProps<T>> {
   text: string;
   secondaryText?: string;
   selected?: boolean;
@@ -42,11 +47,16 @@ export interface ListItemSlots {
 }
 ```
 
+```ts
+<ListItem text="Item" ssx={{ $self: { backgroundColor: 'red' } }} />
+```
+
 ### ListItemAdornment
 
 - Used for passing leading or trailing adornments to ListItem.
 - Adds the mdc-deprecated-list-item\_\_graphic or mdc-deprecated-list-item\_\_meta classes.
 - Accepts children. If child is passed, add the slot=<name> directive to the child as well.
+- Uses Box unded the hood, which allows for event redirection and ssx.
 
 ```ts
 export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>;
