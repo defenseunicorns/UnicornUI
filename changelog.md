@@ -1,3 +1,20 @@
+# v0.0.38
+
+## Breaking Changes
+
+### Theme
+
+- Now restricted to dark or light theme.
+- Removed 'shared' theme
+  - Values for dark and light must be explicitly defined and will no longer be shared using the 'shared' Pallettes field.
+
+## Updates
+
+### Theme
+
+- Now supports deep merging User Palettes with the default (UUI_PALETTES).
+- Update documentation to reflect the removal of custom and 'shared' palettes.
+
 # v0.0.37
 
 ## Updates

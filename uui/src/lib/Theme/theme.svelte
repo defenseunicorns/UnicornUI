@@ -20,7 +20,7 @@
   export let typography: ThemeTypography = UUI_TYPOGRAPHY;
   // Check for light theme otherwise use dark
   // Shared is always applied even when its the only theme.
-  export let theme = palettes['light'] ? 'light' : 'dark';
+  export let theme: 'light' | 'dark' = 'light';
   // Find and use preferred theme if true
   export let preferredTheme = true;
 
@@ -62,8 +62,6 @@
     {
       // Create vars in root.
       ':root': {
-        // Apply shared palette first as base
-        ...(paletteMap.get('shared') || {}),
         // Apply chosen theme palette
         ...(paletteMap.get(watchedTheme) || {}),
         // Apply the typography vars
