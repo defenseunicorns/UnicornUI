@@ -57,7 +57,7 @@
   <div class="mdc-checkbox__focus-ring" />
 </div>
 
-<style lang="scss">
+<style lang="scss" global>
   @use '@material/checkbox';
   @use '@material/form-field';
 

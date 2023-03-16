@@ -75,72 +75,72 @@
 
 <style lang="scss" global>
   @use '@material/list';
-  @include list.deprecated-core-styles;
-
+  .list-group .list .list-item-container,
   .list-item-container {
+    @include list.deprecated-core-styles;
     display: flex;
     flex-direction: column;
-  }
 
-  // Enabled State
-  .mdc-deprecated-list-item {
-    @include list.deprecated-item-primary-text-ink-color(var(--on-background));
-    @include list.deprecated-item-secondary-text-ink-color(var(--on-background));
-  }
-
-  .mdc-deprecated-list-item__graphic,
-  .mdc-deprecated-list-item__meta {
-    color: var(--on-background);
-  }
-
-  // Selected State
-  .mdc-deprecated-list-item--selected .mdc-deprecated-list-item__graphic {
-    color: var(--on-background);
-  }
-
-  // Disabled state
-  .mdc-deprecated-list-item--disabled .mdc-deprecated-list-item__graphic,
-  .mdc-deprecated-list-item--disabled .mdc-deprecated-list-item__meta {
-    color: var(--disabled);
-  }
-
-  // Style Options
-  .disabled-gutters {
-    @include list.deprecated-list-item-padding(0);
-  }
-
-  .divider {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-  }
-
-  // With Secondary Text
-
-  .two-line {
-    height: 4.5rem;
-
-    .mdc-deprecated-list-item__text {
-      align-self: flex-start;
+    // Enabled State
+    .mdc-deprecated-list-item {
+      @include list.deprecated-item-primary-text-ink-color(var(--on-background));
+      @include list.deprecated-item-secondary-text-ink-color(var(--on-background));
     }
-  }
 
-  // Item Height
-  .mdc-deprecated-list-item:not(.two-line) {
-    @include list.deprecated-single-line-height(48px);
-  }
+    .mdc-deprecated-list-item__graphic,
+    .mdc-deprecated-list-item__meta {
+      color: var(--on-background);
+    }
 
-  .mdc-deprecated-list-item:not(.two-line):has(.mdc-deprecated-list-item__graphic),
-  .mdc-deprecated-list-item:not(.two-line):has(.mdc-deprecated-list-item__meta) {
-    @include list.deprecated-single-line-height(56px);
-  }
+    // Selected State
+    .mdc-deprecated-list-item--selected .mdc-deprecated-list-item__graphic {
+      color: var(--on-background);
+    }
 
-  // Variants: Graphic Size
-  .mdc-deprecated-list-item .mdc-deprecated-list-item__graphic:has(.avatar) {
-    @include list.deprecated-graphic-size(0, 56px, 40px, 40px);
-    display: inline-block;
-  }
+    // Disabled state
+    .mdc-deprecated-list-item--disabled .mdc-deprecated-list-item__graphic,
+    .mdc-deprecated-list-item--disabled .mdc-deprecated-list-item__meta {
+      color: var(--disabled);
+    }
 
-  // Nested Content
-  .nested-content {
-    padding-left: 1rem;
+    // Style Options
+    .disabled-gutters {
+      @include list.deprecated-list-item-padding(0);
+    }
+
+    .divider {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    // With Secondary Text
+
+    .two-line {
+      height: 4.5rem;
+
+      .mdc-deprecated-list-item__text {
+        align-self: flex-start;
+      }
+    }
+
+    // Item Height
+    .mdc-deprecated-list-item:not(.two-line) {
+      @include list.deprecated-single-line-height(48px);
+    }
+
+    .mdc-deprecated-list-item:not(.two-line):has(.mdc-deprecated-list-item__graphic),
+    .mdc-deprecated-list-item:not(.two-line):has(.mdc-deprecated-list-item__meta) {
+      @include list.deprecated-single-line-height(56px);
+    }
+
+    // Variants: Graphic Size
+    .mdc-deprecated-list-item .mdc-deprecated-list-item__graphic:has(.avatar) {
+      @include list.deprecated-graphic-size(0, 56px, 40px, 40px);
+      display: inline-block;
+    }
+
+    // Nested Content
+    .nested-content {
+      padding-left: 1rem;
+    }
   }
 </style>
