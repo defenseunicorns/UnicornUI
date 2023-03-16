@@ -69,6 +69,7 @@
       <Button href="/typography" {...getVariant(path, '/typography')}>Typography</Button>
       <Button href="/chip" {...getVariant(path, '/chip')}>Chip</Button>
       <Button href="/text-field" {...getVariant(path, '/text-field')}>Text Field</Button>
+      <Button href="/list-item" {...getVariant(path, '/list-item')}>List Item</Button>
       <Button href="/paper" {...getVariant(path, '/paper')}>Paper</Button>
     </div>
   </Box>
