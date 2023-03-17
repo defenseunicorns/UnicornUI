@@ -69,7 +69,7 @@ export const UUI_PALETTES = {
       disabled: 'rgb(84, 84, 84)',
       primary: '#000000',
       secondary: '#FFFFFF',
-      surface: '#FFFFFF',
+      surface: '#000000',
       success: '#FFFFFF',
       warning: '#FFFFFF',
       info: '#FFFFFF',
