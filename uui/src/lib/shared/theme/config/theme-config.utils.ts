@@ -1,7 +1,12 @@
+import type { SupportedThemes } from '../palette/palette.types';
 import type { BaseScopedStyle, CssProperties } from './theme-config.types';
 
 export function updateThemeStyle(themeStyle: BaseScopedStyle, document?: Document) {
   document && addThemeStyleToHead(document, makeStyles(themeStyle));
+}
+
+export function updateDataTheme(document: Document, theme: SupportedThemes): void {
+  document && (document.documentElement.dataset.theme = theme);
 }
 
 export function addThemeStyleToHead(

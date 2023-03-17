@@ -84,6 +84,7 @@ export type {
 } from './Button/Button.types';
 export type { TypographyVariant, TypographyProps } from './Typography/typography.types';
 export type {
+  SupportedThemes,
   Palette,
   Palettes,
   ThemeVars,
