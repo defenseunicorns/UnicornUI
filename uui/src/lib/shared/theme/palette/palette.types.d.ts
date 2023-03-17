@@ -1,4 +1,6 @@
-export type PreferredTheme = 'light' | 'dark' | undefined;
+export type PreferredTheme = SupportedThemes | undefined;
+
+export type SupportedThemes = 'light' | 'dark';
 
 export type Palettes = {
   dark?: Palette;
