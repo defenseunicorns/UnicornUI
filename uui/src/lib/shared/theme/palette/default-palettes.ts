@@ -2,13 +2,13 @@ export const UUI_PALETTES = {
   dark: {
     primary: '#68c4ff',
     secondary: '#787ff6',
-    surface: '#244A8F',
+    surface: '#0D133D',
     success: '#2e7d32',
     warning: '#ed6c02',
     info: '#0288d1',
     error: '#b00020',
     disabled: '#EBEBE4',
-    background: '#0a0e2e',
+    background: '#0A0E2E',
     on: {
       disabled: 'rgb(84, 84, 84)',
       primary: '#000000',
