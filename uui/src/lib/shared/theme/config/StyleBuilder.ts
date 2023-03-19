@@ -30,7 +30,6 @@ export class StyleBuilder {
     return css;
   }
 
-  //
   public scopedClass: string;
 
   constructor(
@@ -133,11 +132,18 @@ export class StyleBuilder {
   // ex input: '$self .child .grandchild:hover`
   // ex output: `.uui-prefix .child .grandchild:hover`
   compileSelectors(selectors: string[]): string[] {
-    return selectors.map((s) => this.replaceScopedDesignator(s));
+    return selectors.map((s) => this.replaceScopedDesignator(this.replaceThemedDesignators(s)));
   }
 
   replaceScopedDesignator(selector: string): string {
     return selector.replaceAll(this.SCOPED_DESIGNATOR, this.scopedClass);
+  }
+
+  // Replace $theme designator with html[data-theme="theme"]
+  replaceThemedDesignators(selector: string): string {
+    return selector
+      .replaceAll('$light', 'html[data-theme="light"]')
+      .replaceAll('$dark', 'html[data-theme="dark"]');
   }
 
   // https://www.geeksforgeeks.org/flatten-javascript-objects-into-a-single-depth-object/

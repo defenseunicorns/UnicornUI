@@ -33,10 +33,16 @@
   <Typography variant="h3">Reserved Tokens</Typography>
   <Box element="ul">
     <Typography element="li">
-      <InlineCode>$self //Replaced with the uniquely scoped class name</InlineCode>
+      <InlineCode>$self: Replaced with the uniquely scoped class name</InlineCode>
     </Typography>
     <Typography element="li">
-      <InlineCode>& //Replaced with parent keys parsed selector</InlineCode>
+      <InlineCode>&: Replaced with parent keys parsed selector</InlineCode>
+    </Typography>
+    <Typography element="li">
+      <InlineCode>$light: Replaced with html[data-theme="light"]</InlineCode>
+    </Typography>
+    <Typography element="li">
+      <InlineCode>$dark: Replaced with html[data-theme="dark"]</InlineCode>
     </Typography>
     <Typography element="li">
       See:
