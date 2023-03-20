@@ -23,14 +23,14 @@ export interface PaperProps<T extends EventTarget> extends BoxProps<T> {
   <Typography variant="h4">Square</Typography>
   <Typography variant="body1">Default is rounded.</Typography>
 
-  <div class="paper-container">
+  <div class="paper-example">
     <div>
       <Typography variant="subtitle1">False</Typography>
-      <Paper class="paper" elevation={10}>10dp</Paper>
+      <Paper elevation={10}>10dp</Paper>
     </div>
     <div>
       <Typography variant="subtitle1">True</Typography>
-      <Paper class="paper" square elevation={10}>10dp</Paper>
+      <Paper square elevation={10}>10dp</Paper>
     </div>
   </div>
 
@@ -40,92 +40,92 @@ export interface PaperProps<T extends EventTarget> extends BoxProps<T> {
     elevated outlined component.
   </Typography>
 
-  <div class="paper-container">
+  <div class="paper-example">
     <div>
       <Typography variant="subtitle1">False</Typography>
-      <Paper class="paper" elevation={0}>0dp</Paper>
+      <Paper elevation={0}>0dp</Paper>
     </div>
     <div>
       <Typography variant="subtitle1">True</Typography>
-      <Paper class="paper" variant="outlined" elevation={10}>0dp</Paper>
+      <Paper variant="outlined" elevation={10}>0dp</Paper>
     </div>
   </div>
 
   <Typography variant="h4">Elevation</Typography>
   <Typography variant="body1">Accepted elevation values range from 0 - 24.</Typography>
 
-  <div class="paper-container">
-    <Paper class="paper" elevation={0}>0dp</Paper>
-    <Paper class="paper" elevation={1}>1dp</Paper>
-    <Paper class="paper" elevation={2}>2dp</Paper>
-    <Paper class="paper" elevation={3}>3dp</Paper>
-    <Paper class="paper" elevation={4}>4dp</Paper>
-    <Paper class="paper" elevation={5}>5dp</Paper>
-    <Paper class="paper" elevation={6}>6dp</Paper>
-    <Paper class="paper" elevation={7}>7dp</Paper>
-    <Paper class="paper" elevation={8}>8dp</Paper>
-    <Paper class="paper" elevation={9}>9dp</Paper>
-    <Paper class="paper" elevation={10}>10dp</Paper>
-    <Paper class="paper" elevation={11}>11dp</Paper>
-    <Paper class="paper" elevation={12}>12dp</Paper>
-    <Paper class="paper" elevation={13}>13dp</Paper>
-    <Paper class="paper" elevation={14}>14dp</Paper>
-    <Paper class="paper" elevation={15}>15dp</Paper>
-    <Paper class="paper" elevation={16}>16dp</Paper>
-    <Paper class="paper" elevation={17}>17dp</Paper>
-    <Paper class="paper" elevation={18}>18dp</Paper>
-    <Paper class="paper" elevation={19}>19dp</Paper>
-    <Paper class="paper" elevation={20}>20dp</Paper>
-    <Paper class="paper" elevation={21}>21dp</Paper>
-    <Paper class="paper" elevation={22}>22dp</Paper>
-    <Paper class="paper" elevation={23}>23dp</Paper>
-    <Paper class="paper" elevation={24}>24dp</Paper>
+  <div class="paper-example">
+    <Paper elevation={0}>0dp</Paper>
+    <Paper elevation={1}>1dp</Paper>
+    <Paper elevation={2}>2dp</Paper>
+    <Paper elevation={3}>3dp</Paper>
+    <Paper elevation={4}>4dp</Paper>
+    <Paper elevation={5}>5dp</Paper>
+    <Paper elevation={6}>6dp</Paper>
+    <Paper elevation={7}>7dp</Paper>
+    <Paper elevation={8}>8dp</Paper>
+    <Paper elevation={9}>9dp</Paper>
+    <Paper elevation={10}>10dp</Paper>
+    <Paper elevation={11}>11dp</Paper>
+    <Paper elevation={12}>12dp</Paper>
+    <Paper elevation={13}>13dp</Paper>
+    <Paper elevation={14}>14dp</Paper>
+    <Paper elevation={15}>15dp</Paper>
+    <Paper elevation={16}>16dp</Paper>
+    <Paper elevation={17}>17dp</Paper>
+    <Paper elevation={18}>18dp</Paper>
+    <Paper elevation={19}>19dp</Paper>
+    <Paper elevation={20}>20dp</Paper>
+    <Paper elevation={21}>21dp</Paper>
+    <Paper elevation={22}>22dp</Paper>
+    <Paper elevation={23}>23dp</Paper>
+    <Paper elevation={24}>24dp</Paper>
   </div>
 
   <VariantExample
     code={`
-<Paper class="paper" elevation={10}>10dp</Paper>
-<Paper class="paper" square elevation={10}>10dp</Paper>
-<Paper class="paper" elevation={10}>10dp</Paper>
-<Paper class="paper" variant="outlined" elevation={10}>10dp</Paper>
-<Paper class="paper" elevation={0}>0dp</Paper>
-<Paper class="paper" elevation={1}>1dp</Paper>
-<Paper class="paper" elevation={2}>2dp</Paper>
-<Paper class="paper" elevation={3}>3dp</Paper>
-<Paper class="paper" elevation={4}>4dp</Paper>
-<Paper class="paper" elevation={5}>5dp</Paper>
-<Paper class="paper" elevation={6}>6dp</Paper>
-<Paper class="paper" elevation={7}>7dp</Paper>
-<Paper class="paper" elevation={8}>8dp</Paper>
-<Paper class="paper" elevation={9}>9dp</Paper>
-<Paper class="paper" elevation={10}>10dp</Paper>
-<Paper class="paper" elevation={11}>11dp</Paper>
-<Paper class="paper" elevation={12}>12dp</Paper>
-<Paper class="paper" elevation={13}>13dp</Paper>
-<Paper class="paper" elevation={14}>14dp</Paper>
-<Paper class="paper" elevation={15}>15dp</Paper>
-<Paper class="paper" elevation={16}>16dp</Paper>
-<Paper class="paper" elevation={17}>17dp</Paper>
-<Paper class="paper" elevation={18}>18dp</Paper>
-<Paper class="paper" elevation={19}>19dp</Paper>
-<Paper class="paper" elevation={20}>20dp</Paper>
-<Paper class="paper" elevation={21}>21dp</Paper>
-<Paper class="paper" elevation={22}>22dp</Paper>
-<Paper class="paper" elevation={23}>23dp</Paper>
-<Paper class="paper" elevation={24}>24dp</Paper>
+<Paper  elevation={10}>10dp</Paper>
+<Paper  square elevation={10}>10dp</Paper>
+<Paper  elevation={10}>10dp</Paper>
+<Paper  variant="outlined" elevation={10}>10dp</Paper>
+<Paper  elevation={0}>0dp</Paper>
+<Paper  elevation={1}>1dp</Paper>
+<Paper  elevation={2}>2dp</Paper>
+<Paper  elevation={3}>3dp</Paper>
+<Paper  elevation={4}>4dp</Paper>
+<Paper  elevation={5}>5dp</Paper>
+<Paper  elevation={6}>6dp</Paper>
+<Paper  elevation={7}>7dp</Paper>
+<Paper  elevation={8}>8dp</Paper>
+<Paper  elevation={9}>9dp</Paper>
+<Paper  elevation={10}>10dp</Paper>
+<Paper  elevation={11}>11dp</Paper>
+<Paper  elevation={12}>12dp</Paper>
+<Paper  elevation={13}>13dp</Paper>
+<Paper  elevation={14}>14dp</Paper>
+<Paper  elevation={15}>15dp</Paper>
+<Paper  elevation={16}>16dp</Paper>
+<Paper  elevation={17}>17dp</Paper>
+<Paper  elevation={18}>18dp</Paper>
+<Paper  elevation={19}>19dp</Paper>
+<Paper  elevation={20}>20dp</Paper>
+<Paper  elevation={21}>21dp</Paper>
+<Paper  elevation={22}>22dp</Paper>
+<Paper  elevation={23}>23dp</Paper>
+<Paper  elevation={24}>24dp</Paper>
   `}
   />
 </DocPage>
 
-<style lang="scss" global>
-  .paper-container {
+<style lang="scss">
+  .paper-example {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
     gap: 1rem;
     padding: 1rem;
   }
-  .paper {
+  .paper-example :global(.paper) {
     width: 200px;
     height: 100px;
     display: flex;
