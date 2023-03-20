@@ -1,11 +1,10 @@
-export type PreferredTheme = 'light' | 'dark' | undefined;
+export type PreferredTheme = SupportedThemes | undefined;
+
+export type SupportedThemes = 'light' | 'dark';
 
 export type Palettes = {
   dark?: Palette;
   light?: Palette;
-  shared?: Palette;
-} & {
-  [key: string]: Palette;
 };
 
 export type Palette = {

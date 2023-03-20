@@ -20,17 +20,14 @@ Props:
 
   // These are the (default, optional) named Palettes.
   palettes?: Palettes = {
-    // Applies as base theme if present. 
-    shared?: Palette,
-    // Corelate to getPreferredTheme utility values.
     light?: Palette,
     dark?: Palette
   };
 
   breakpoints?: Breakpoints = UUI_BREAKPOINTS
 
-  // Tries light -> dark -> shared (in order if defined) then fallback to mdc defaults.
-  theme?: string;
+  // Manually setting the theme. 
+  theme?: 'dark' | 'light' = 'light';
 
   // Used for setting theme to browser preference. Default set as true.
   preferredTheme?: boolean

@@ -1,3 +1,25 @@
+# v0.0.38
+
+## Breaking Changes
+
+### Theme
+
+- Now restricted to dark or light theme.
+- Removed 'shared' `Palette`
+  - Values for dark and light must be explicitly defined and will no longer be shared using the 'shared' `Pallettes` field.
+  - `UUI_PALETTES` no longer contains 'shared' field.
+
+## Updates
+
+### Theme
+
+- Now supports deep merging User `Palettes` with the default (`UUI_PALETTES`).
+  - User created `Palettes` are automatically merged with `UUI_Palettes` before being applied by the `Theme` component.
+- Updated documentation to reflect the removal of custom and 'shared' `Palettes`.
+- `Theme` component now sets the html `data-theme` value.
+  - `data-theme` is updated whenever the theme changes.
+- Created `SupportedThemes` type.
+
 # v0.0.37
 
 ## Updates
@@ -301,7 +323,7 @@ export interface Breakpoints {
 - `ref` prop type changed to Node in order to support more generic types than HtmlElement
 - Add `scopedStyles` prop that is passed to the `use:scopedStyles` action
 
-### TypographyConfig now supports css typing, including vendor attributes and intellisense.
+### TypographyConfig now supports css typing, including vendor attributes and intellisense
 
 - Added [csstypes](https://github.com/frenic/csstype)
 
@@ -348,12 +370,12 @@ export interface Breakpoints {
 
 ## Updates
 
-### Theme now merges default Typography (`UUI_TYPOGRAPHY`) and default Palettes (`UUI_PALETTES`) with the respective provided Palettes and Typography.
+### Theme now merges default Typography (`UUI_TYPOGRAPHY`) and default Palettes (`UUI_PALETTES`) with the respective provided Palettes and Typography
 
 - No longer necessary to import UUI_TYPOGRAPHY or UUI_PALETTES in consumers respective custom values.
 - Ensures that fallback values are UUI defaults instead of MDC defaults.
 
-### Theme Css vars can now be accessed without mdc-\* prefix.
+### Theme Css vars can now be accessed without mdc-\* prefix
 
 - Palette and Typography values accessed with dashed css convention
 - Typography classes can now be designated using their `TypographyConfig` field name.
