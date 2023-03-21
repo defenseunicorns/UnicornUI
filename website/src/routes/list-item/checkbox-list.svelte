@@ -1,14 +1,5 @@
 <script lang="ts">
-  import VariantExample from '../../lib/VariantExample.svelte';
-  import {
-    Accordion,
-    Box,
-    List,
-    ListItem,
-    ListItemAdornment,
-    ListItemCheckbox,
-    Typography
-  } from '@uui';
+  import { List, ListItem, ListItemAdornment, ListItemCheckbox } from '@uui';
 </script>
 
 <List class="demo-list">
@@ -36,38 +27,3 @@
     </ListItemAdornment>
   </ListItem>
 </List>
-
-<Accordion>
-  <Typography slot="headerContent" variant="h6">Checkbox Code</Typography>
-  <Box slot="content">
-    <VariantExample
-      code={`
-<List class="demo-list">
-  <ListItem text="List Item 1">
-    <ListItemAdornment slot="leading-adornment">
-      <ListItemCheckbox />
-    </ListItemAdornment>
-  </ListItem>
-  <ListItem text="List Item 2">
-    <ListItemAdornment slot="leading-adornment">
-      <ListItemCheckbox />
-    </ListItemAdornment>
-  </ListItem>
-</List>
-
-<List class="demo-list">
-  <ListItem text="List Item 1">
-    <ListItemAdornment slot="trailing-adornment">
-      <ListItemCheckbox />
-    </ListItemAdornment>
-  </ListItem>
-  <ListItem text="List Item 2">
-    <ListItemAdornment slot="trailing-adornment">
-      <ListItemCheckbox />
-    </ListItemAdornment>
-  </ListItem>
-</List>
-`}
-    />
-  </Box>
-</Accordion>

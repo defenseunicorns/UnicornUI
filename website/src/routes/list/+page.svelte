@@ -1,9 +1,12 @@
 <script lang="ts">
   import InlineCode from '../../lib/inline-code.svelte';
   import { List, ListItem, Typography } from '@uui';
+  import LIST_TYPES from '@uui/List/List.types.d.ts?raw';
+  import LIST_SUBHEADER_EXAMPLE from './list-subheader.svelte?raw';
   import VariantExample from '../../lib/VariantExample.svelte';
   import ListSubheader from './list-subheader.svelte';
   import DocPage from '../../lib/doc-page.svelte';
+  import AccordionCodeWrapper from '$lib/accordion-code-wrapper.svelte';
 </script>
 
 <DocPage>
@@ -20,13 +23,7 @@
     the default horizontal and vertical padding.
   </Typography>
 
-  <VariantExample
-    code={`
-export interface ListProps<T extends EventTarget> extends BoxProps<T> {
-  disablePadding?: boolean;
-}
-    `}
-  />
+  <VariantExample code={LIST_TYPES} />
 
   <div class="inline-examples">
     <div>
@@ -82,6 +79,7 @@ export interface ListProps<T extends EventTarget> extends BoxProps<T> {
   </Typography>
 
   <ListSubheader />
+  <AccordionCodeWrapper rawCodeExample={LIST_SUBHEADER_EXAMPLE} header="List with Subheader Code" />
 </DocPage>
 
 <style lang="scss" global>
