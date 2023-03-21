@@ -1,18 +1,17 @@
 <script lang="ts">
-  import { Typography, Drawer, DrawerHeader, List, ListItem, ListItemAdornment } from '@uui';
+  import VariantExample from '../../lib/VariantExample.svelte';
   import DocPage from '../../lib/doc-page.svelte';
+  import { Typography, Drawer, DrawerHeader, List, ListItem, ListItemAdornment } from '@uui';
+  import DRAWER_PROPS from '@uui/Drawer/Drawer.types.d.ts?raw';
+  import InlineCode from '../../lib/inline-code.svelte';
 </script>
 
 <DocPage>
   <Typography variant="h1">Drawer</Typography>
-  <Drawer>
-    <DrawerHeader title="Testing" subtitle="Subtitle" slot="header" />
-    <List slot="content">
-      <ListItem text="List Item">
-        <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
-          star
-        </ListItemAdornment>
-      </ListItem>
-    </List>
-  </Drawer>
+  <Typography variant="body1">
+    <!-- <InlineCode>Drawer</InlineCode> -->
+  </Typography>
+  <Typography variant="h2">Props</Typography>
+
+  <VariantExample code={DRAWER_PROPS} />
 </DocPage>

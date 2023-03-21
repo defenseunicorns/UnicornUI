@@ -4,7 +4,7 @@
   import { afterUpdate } from 'svelte';
   import ThemeToggle from '$lib/ThemeToggle.svelte';
   import customTypography from '$lib/theme/theme-typography';
-  import { Button, Typography, Theme, Box, Drawer, DrawerHeader, List, ListItem } from '@uui';
+  import { Button, Typography, Theme, Box, Drawer, List, ListItem } from '@uui';
   import type { ButtonColor, ButtonShape, ButtonVariant } from '@uui';
 
   let path = '';
@@ -25,7 +25,7 @@
 </script>
 
 <Theme typography={customTypography}>
-  <Box class="nav-container">
+  <Box class="body-container">
     <Drawer>
       <List slot="content">
         <ListItem href="/theme" text="Theme" />
@@ -46,47 +46,59 @@
         <ListItem href="/drawer" text="Drawer" />
       </List>
     </Drawer>
-    <Box
-      element="section"
-      ssx={{
-        $self: {
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '32px'
-        },
-        $xs: {
+    <Box class="main-container">
+      <Box
+        element="section"
+        ssx={{
           $self: {
-            margin: '0 2rem'
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '32px'
+          },
+          $xs: {
+            $self: {
+              margin: '0 2rem'
+            }
+          },
+          $md: {
+            $self: {
+              margin: '0 15%'
+            }
           }
-        },
-        $md: {
-          $self: {
-            margin: '0 15%'
-          }
-        }
-      }}
-    >
-      <Typography variant="h1" style="margin-bottom: unset;margin-top: 2rem;">
-        Unicorn UI
-      </Typography>
-      <Button href="/" {...getVariant(path, '/')}>Home</Button>
-      <ThemeToggle />
+        }}
+      >
+        <Typography variant="h1" style="margin-bottom: unset;margin-top: 2rem;">
+          Unicorn UI
+        </Typography>
+        <Button href="/" {...getVariant(path, '/')}>Home</Button>
+        <ThemeToggle />
+      </Box>
+      <main>
+        <slot />
+      </main>
     </Box>
   </Box>
-  <main>
-    <slot />
-  </main>
 </Theme>
 
 <style lang="scss" global>
   @import '@fontsource/roboto';
   @import '@fontsource/roboto/300';
   @import '@fontsource/roboto/500';
+  body {
+    overflow: hidden;
+  }
 
-  .nav-container {
+  .body-container {
     display: flex;
-    flex: row;
+  }
+  .main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
   }
   main {
     padding-bottom: 32px;
