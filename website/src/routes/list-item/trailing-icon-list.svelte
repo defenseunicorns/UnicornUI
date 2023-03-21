@@ -5,18 +5,18 @@
 
 <List class="demo-list">
   <ListItem text="Sent Mail">
-    <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
+    <ListItemAdornment slot="trailing-adornment" class="material-symbols-outlined">
       star
     </ListItemAdornment>
   </ListItem>
   <ListItem text="Drafts">
-    <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
+    <ListItemAdornment slot="trailing-adornment" class="material-symbols-outlined">
       star
     </ListItemAdornment>
   </ListItem>
 
   <ListItem text="Inbox" selected>
-    <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
+    <ListItemAdornment slot="trailing-adornment" class="material-symbols-outlined">
       star
     </ListItemAdornment>
   </ListItem>
@@ -29,17 +29,17 @@
       code={`
 <List class="demo-list">
   <ListItem text="Sent Mail">
-    <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
+    <ListItemAdornment slot="trailing-adornment" class="material-symbols-outlined">
       star
     </ListItemAdornment>
   </ListItem>
   <ListItem text="Drafts">
-    <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
+    <ListItemAdornment slot="trailing-adornment" class="material-symbols-outlined">
       star
     </ListItemAdornment>
   </ListItem>
   <ListItem text="Inbox" selected>
-    <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
+    <ListItemAdornment slot="trailing-adornment" class="material-symbols-outlined">
       star
     </ListItemAdornment>
   </ListItem>

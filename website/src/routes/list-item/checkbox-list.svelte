@@ -13,12 +13,12 @@
 
 <List class="demo-list">
   <ListItem text="List Item 1">
-    <ListItemAdornment slot="leadingAdornment">
+    <ListItemAdornment slot="leading-adornment">
       <ListItemCheckbox />
     </ListItemAdornment>
   </ListItem>
   <ListItem text="List Item 2">
-    <ListItemAdornment slot="leadingAdornment">
+    <ListItemAdornment slot="leading-adornment">
       <ListItemCheckbox />
     </ListItemAdornment>
   </ListItem>
@@ -26,12 +26,12 @@
 
 <List class="demo-list">
   <ListItem text="List Item 1">
-    <ListItemAdornment slot="trailingAdornment">
+    <ListItemAdornment slot="trailing-adornment">
       <ListItemCheckbox />
     </ListItemAdornment>
   </ListItem>
   <ListItem text="List Item 2">
-    <ListItemAdornment slot="trailingAdornment">
+    <ListItemAdornment slot="trailing-adornment">
       <ListItemCheckbox />
     </ListItemAdornment>
   </ListItem>
@@ -44,12 +44,12 @@
       code={`
 <List class="demo-list">
   <ListItem text="List Item 1">
-    <ListItemAdornment slot="leadingAdornment">
+    <ListItemAdornment slot="leading-adornment">
       <ListItemCheckbox />
     </ListItemAdornment>
   </ListItem>
   <ListItem text="List Item 2">
-    <ListItemAdornment slot="leadingAdornment">
+    <ListItemAdornment slot="leading-adornment">
       <ListItemCheckbox />
     </ListItemAdornment>
   </ListItem>
@@ -57,12 +57,12 @@
 
 <List class="demo-list">
   <ListItem text="List Item 1">
-    <ListItemAdornment slot="trailingAdornment">
+    <ListItemAdornment slot="trailing-adornment">
       <ListItemCheckbox />
     </ListItemAdornment>
   </ListItem>
   <ListItem text="List Item 2">
-    <ListItemAdornment slot="trailingAdornment">
+    <ListItemAdornment slot="trailing-adornment">
       <ListItemCheckbox />
     </ListItemAdornment>
   </ListItem>

@@ -51,7 +51,7 @@
     class:two-line={secondaryText}
     class:divider
   >
-    <slot name="leadingAdornment" {selected} {disabled} />
+    <slot name="leading-adornment" {selected} {disabled} />
 
     <span class="mdc-deprecated-list-item__ripple" />
 
@@ -64,11 +64,11 @@
       <span class="mdc-deprecated-list-item__text">{text}</span>
     {/if}
 
-    <slot name="trailingAdornment" {selected} {disabled} />
+    <slot name="trailing-adornment" {selected} {disabled} />
   </li>
-  {#if selected && $$slots.nestedContent}
+  {#if selected && $$slots['nested-content']}
     <div class="nested-content">
-      <slot name="nestedContent" />
+      <slot name="nested-content" />
     </div>
   {/if}
 </Box>

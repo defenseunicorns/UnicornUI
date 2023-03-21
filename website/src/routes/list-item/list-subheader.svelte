@@ -15,10 +15,10 @@
 <List class="demo-list">
   <ListSubHeader>Settings</ListSubHeader>
   <ListItem text="Wi-Fi">
-    <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
+    <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined">
       wifi
     </ListItemAdornment>
-    <ListItemAdornment slot="trailingAdornment">
+    <ListItemAdornment slot="trailing-adornment">
       <IconButton
         toggleable
         iconContent="toggle_off"
@@ -30,10 +30,10 @@
     </ListItemAdornment>
   </ListItem>
   <ListItem text="Bluetooth">
-    <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
+    <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined">
       bluetooth
     </ListItemAdornment>
-    <ListItemAdornment slot="trailingAdornment">
+    <ListItemAdornment slot="trailing-adornment">
       <IconButton
         toggleable
         iconContent="toggle_off"
@@ -54,10 +54,10 @@
         <List class="demo-list">
   <ListSubHeader>Settings</ListSubHeader>
   <ListItem text="Wi-Fi" >
-    <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
+    <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined">
       wifi
     </ListItemAdornment>
-    <ListItemAdornment slot="trailingAdornment">
+    <ListItemAdornment slot="trailing-adornment">
       <IconButton
         toggleable
         iconContent="toggle_off"
@@ -69,10 +69,10 @@
     </ListItemAdornment>
   </ListItem>
   <ListItem text="Bluetooth" >
-    <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
+    <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined">
       bluetooth
     </ListItemAdornment>
-    <ListItemAdornment slot="trailingAdornment">
+    <ListItemAdornment slot="trailing-adornment">
       <IconButton
         toggleable
         iconContent="toggle_off"

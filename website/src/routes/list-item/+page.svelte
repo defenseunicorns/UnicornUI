@@ -11,7 +11,7 @@
   import EventControlList from './event-control-list.svelte';
   import ListSubheader from './list-subheader.svelte';
   import ListGroupExample from './list-group-example.svelte';
-  import DeveloperExpierience from './developer-expierience.svelte';
+  import DeveloperExperience from './developer-experience.svelte';
   import LeadingIconList from './leading-icon-list.svelte';
   import TrailingIconList from './trailing-icon-list.svelte';
 </script>
@@ -279,7 +279,7 @@ export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLUListElement> {
 
   <ListGroupExample />
 
-  <DeveloperExpierience />
+  <DeveloperExperience />
 </DocPage>
 
 <style lang="scss" global>

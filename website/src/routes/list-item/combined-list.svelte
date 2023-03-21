@@ -15,18 +15,18 @@
 <Typography variant="h6">Avatar with Checkboxes</Typography>
 <List class="demo-list">
   <ListItem text="List Item 1">
-    <ListItemAdornment slot="leadingAdornment">
+    <ListItemAdornment slot="leading-adornment">
       <ListAvatar element="i" class="material-symbols-outlined">person</ListAvatar>
     </ListItemAdornment>
-    <ListItemAdornment slot="trailingAdornment">
+    <ListItemAdornment slot="trailing-adornment">
       <ListItemCheckbox />
     </ListItemAdornment>
   </ListItem>
   <ListItem text="List Item 2">
-    <ListItemAdornment slot="leadingAdornment">
+    <ListItemAdornment slot="leading-adornment">
       <ListAvatar element="i" class="material-symbols-outlined">person</ListAvatar>
     </ListItemAdornment>
-    <ListItemAdornment slot="trailingAdornment">
+    <ListItemAdornment slot="trailing-adornment">
       <ListItemCheckbox />
     </ListItemAdornment>
   </ListItem>
@@ -35,18 +35,18 @@
 <Typography variant="h6">Checkboxes with Icons</Typography>
 <List class="demo-list">
   <ListItem text="List Item 1">
-    <ListItemAdornment slot="leadingAdornment">
+    <ListItemAdornment slot="leading-adornment">
       <ListItemCheckbox />
     </ListItemAdornment>
-    <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
+    <ListItemAdornment slot="trailing-adornment" class="material-symbols-outlined">
       star
     </ListItemAdornment>
   </ListItem>
   <ListItem text="List Item 1">
-    <ListItemAdornment slot="leadingAdornment">
+    <ListItemAdornment slot="leading-adornment">
       <ListItemCheckbox />
     </ListItemAdornment>
-    <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
+    <ListItemAdornment slot="trailing-adornment" class="material-symbols-outlined">
       star
     </ListItemAdornment>
   </ListItem>
@@ -59,18 +59,18 @@
       code={`
 <List class="demo-list">
   <ListItem text="List Item 1">
-    <ListItemAdornment slot="leadingAdornment">
+    <ListItemAdornment slot="leading-adornment">
       <ListAvatar element="i" class="material-symbols-outlined">person</ListAvatar>
     </ListItemAdornment>
-    <ListItemAdornment slot="trailingAdornment">
+    <ListItemAdornment slot="trailing-adornment">
       <ListItemCheckbox />
     </ListItemAdornment>
   </ListItem>
   <ListItem text="List Item 2">
-    <ListItemAdornment slot="leadingAdornment">
+    <ListItemAdornment slot="leading-adornment">
       <ListAvatar element="i" class="material-symbols-outlined">person</ListAvatar>
     </ListItemAdornment>
-    <ListItemAdornment slot="trailingAdornment">
+    <ListItemAdornment slot="trailing-adornment">
       <ListItemCheckbox />
     </ListItemAdornment>
   </ListItem>
@@ -78,18 +78,18 @@
 
 <List class="demo-list">
   <ListItem text="List Item 1">
-    <ListItemAdornment slot="leadingAdornment">
+    <ListItemAdornment slot="leading-adornment">
       <ListItemCheckbox />
     </ListItemAdornment>
-    <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
+    <ListItemAdornment slot="trailing-adornment" class="material-symbols-outlined">
       star
     </ListItemAdornment>
   </ListItem>
   <ListItem text="List Item 1">
-    <ListItemAdornment slot="leadingAdornment">
+    <ListItemAdornment slot="leading-adornment">
       <ListItemCheckbox />
     </ListItemAdornment>
-    <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
+    <ListItemAdornment slot="trailing-adornment" class="material-symbols-outlined">
       star
     </ListItemAdornment>
   </ListItem>

@@ -6,18 +6,18 @@
 
 <List class="demo-list">
   <ListItem text="Sent Mail">
-    <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
+    <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined">
       send
     </ListItemAdornment>
   </ListItem>
   <ListItem text="Drafts">
-    <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
+    <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined">
       drafts
     </ListItemAdornment>
   </ListItem>
 
   <ListItem text="Inbox" selected>
-    <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
+    <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined">
       inbox
     </ListItemAdornment>
   </ListItem>
@@ -30,17 +30,17 @@
       code={`
 <List class="demo-list">
   <ListItem text="Sent Mail">
-    <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
+    <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined">
       send
     </ListItemAdornment>
   </ListItem>
   <ListItem text="Drafts">
-    <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
+    <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined">
       drafts
     </ListItemAdornment>
   </ListItem>
   <ListItem text="Inbox" selected>
-    <ListItemAdornment slot="leadingAdornment" class="material-symbols-outlined">
+    <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined">
       inbox
     </ListItemAdornment>
   </ListItem>

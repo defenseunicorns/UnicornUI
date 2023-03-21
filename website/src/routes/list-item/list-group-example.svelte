@@ -16,7 +16,7 @@
   <ListSubHeader>List 1</ListSubHeader>
   <List>
     <ListItem text="List Item" divider>
-      <ListItemAdornment class="material-symbols-outlined" slot="leadingAdornment">
+      <ListItemAdornment class="material-symbols-outlined" slot="leading-adornment">
         star
       </ListItemAdornment>
     </ListItem>
@@ -24,7 +24,7 @@
   <ListSubHeader>List 2</ListSubHeader>
   <List>
     <ListItem text="List Item">
-      <ListItemAdornment class="material-symbols-outlined" slot="leadingAdornment">
+      <ListItemAdornment class="material-symbols-outlined" slot="leading-adornment">
         star
       </ListItemAdornment>
     </ListItem>
@@ -40,7 +40,7 @@
         <ListSubHeader>List 1</ListSubHeader>
         <List>
           <ListItem text="List Item"  divider>
-            <ListItemAdornment class="material-symbols-outlined" slot="leadingAdornment">
+            <ListItemAdornment class="material-symbols-outlined" slot="leading-adornment">
               star
             </ListItemAdornment>
           </ListItem>
@@ -48,7 +48,7 @@
         <ListSubHeader>List 2</ListSubHeader>
         <List>
           <ListItem text="List Item" >
-            <ListItemAdornment class="material-symbols-outlined" slot="leadingAdornment">
+            <ListItemAdornment class="material-symbols-outlined" slot="leading-adornment">
               star
             </ListItemAdornment>
           </ListItem>

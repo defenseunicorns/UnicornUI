@@ -26,7 +26,7 @@
     on:click={() => exampleOnclick(0)}
     {selected}
   >
-    <ListItemAdornment slot="trailingAdornment">
+    <ListItemAdornment slot="trailing-adornment">
       <ListItemCheckbox checked={selected} />
     </ListItemAdornment>
   </ListItem>
@@ -36,7 +36,7 @@
     on:click={() => exampleOnclick()}
   >
     <ListItemAdornment
-      slot="trailingAdornment"
+      slot="trailing-adornment"
       on:click={(e) => {
         e.stopPropagation();
         alert('Propagation stopped. No parent event fired.');
@@ -59,7 +59,7 @@
     on:click={() => exampleOnclick(0)}
     {selected}
   >
-    <ListItemAdornment slot="trailingAdornment">
+    <ListItemAdornment slot="trailing-adornment">
       <ListItemCheckbox checked={selected} />
     </ListItemAdornment>
   </ListItem>
@@ -69,7 +69,7 @@
     on:click={() => exampleOnclick()}
   >
     <ListItemAdornment
-      slot="trailingAdornment"
+      slot="trailing-adornment"
       on:click={(e) => {
         e.stopPropagation();
         alert('Propagation stopped. No parent event fired.');
