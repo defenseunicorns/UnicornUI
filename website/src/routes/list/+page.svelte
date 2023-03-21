@@ -16,13 +16,13 @@
 
   <Typography variant="h3">Types</Typography>
   <Typography variant="body1">
-    <InlineCode>List</InlineCode> can receive all HTMLAttributes of HTMLUListElement and has one custom
-    prop, disablePadding, which removes the default horizontal and vertical padding.
+    <InlineCode>List</InlineCode> extends BoxProps and has one custom prop, disablePadding, which removes
+    the default horizontal and vertical padding.
   </Typography>
 
   <VariantExample
     code={`
-export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLUListElement> {
+export interface ListProps<T extends EventTarget> extends BoxProps<T> {
   disablePadding?: boolean;
 }
     `}
