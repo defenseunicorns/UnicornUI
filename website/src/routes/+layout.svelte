@@ -28,22 +28,22 @@
   <Box class="body-container">
     <Drawer>
       <List slot="content">
-        <ListItem href="/theme" text="Theme" />
-        <ListItem href="/scoped-styles" text="Scoped Styles" />
-        <ListItem href="/breakpoints" text="Breakpoints" />
-        <ListItem href="/box" text="Box" />
-        <ListItem href="/theme" text="Theme" />
-        <ListItem href="/button" text="Button" />
-        <ListItem href="/icon-button" text="Icon Button" />
-        <ListItem href="/accordion" text="Accordion" />
-        <ListItem href="/stepper" text="Stepper" />
-        <ListItem href="/dialog" text="Dialog" />
-        <ListItem href="/typography" text="Typography" />
-        <ListItem href="/chip" text="Chip" />
-        <ListItem href="/text-field" text="Text Field" />
-        <ListItem href="/list-item" text="List Item" />
-        <ListItem href="/paper" text="Paper" />
-        <ListItem href="/drawer" text="Drawer" />
+        <ListItem element="a" href="/theme" text="Theme" />
+        <ListItem element="a" href="/breakpoints" text="Breakpoints" />
+        <ListItem element="a" href="/scoped-styles" text="Scoped Styles" />
+        <ListItem element="a" href="/box" text="Box" />
+        <ListItem element="a" href="/theme" text="Theme" />
+        <ListItem element="a" href="/button" text="Button" />
+        <ListItem element="a" href="/icon-button" text="Icon Button" />
+        <ListItem element="a" href="/accordion" text="Accordion" />
+        <ListItem element="a" href="/stepper" text="Stepper" />
+        <ListItem element="a" href="/dialog" text="Dialog" />
+        <ListItem element="a" href="/typography" text="Typography" />
+        <ListItem element="a" href="/chip" text="Chip" />
+        <ListItem element="a" href="/text-field" text="Text Field" />
+        <ListItem element="a" href="/list-item" text="List Item" />
+        <ListItem element="a" href="/paper" text="Paper" />
+        <ListItem element="a" href="/drawer" text="Drawer" />
       </List>
     </Drawer>
     <Box class="main-container">
