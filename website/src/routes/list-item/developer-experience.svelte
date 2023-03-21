@@ -14,6 +14,7 @@
     Accordion,
     Box
   } from '@uui';
+  import type { ListItemCheckboxProps } from '@defense-unicorns/unicorn-ui/src/lib/List/ListItemCheckbox.types';
 
   type ExtendedListItems1 = ListItemProps<EventTarget> & {
     leadingAdornment?: boolean;
@@ -48,8 +49,8 @@
   ];
 
   type ExtendedListItems2 = ListItemProps<EventTarget> & {
-    leadingAdornment?: Record<string, any>;
-    trailingAdornment?: Record<string, any>;
+    leadingAdornment?: Record<string, string>;
+    trailingAdornment?: ComponentAsProp<IconButtonProps | ListItemCheckboxProps>;
   };
 
   const listItemsIteration2: ExtendedListItems2[] = [
@@ -93,7 +94,7 @@
       trailingAdornment: {
         component: ListItemCheckbox,
         props: {}
-      } as ComponentAsProp<IconButtonProps>
+      } as ComponentAsProp<ListItemCheckboxProps>
     }
   ];
 
@@ -279,8 +280,8 @@ const listItemsIteration1: ExtendedListItems1[] = [
       code={`
 
 type ExtendedListItems2 = ListItemProps & {
-  leadingAdornment?: Record<string, any>;
-  trailingAdornment?: Record<string, any>;
+  leadingAdornment?: Record<string, string>;
+  trailingAdornment?: ComponentAsProp<IconButtonProps | ListItemCheckboxProps>;
 };
 
 const listItemsIteration2: ExtendedListItems2[] = [

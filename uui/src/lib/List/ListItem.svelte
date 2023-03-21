@@ -90,6 +90,7 @@
     .mdc-deprecated-list-item__graphic,
     .mdc-deprecated-list-item__meta {
       color: var(--on-background);
+      display: inline-flex;
     }
 
     // Selected State
