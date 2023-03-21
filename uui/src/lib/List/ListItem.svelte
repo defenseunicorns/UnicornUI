@@ -35,11 +35,11 @@
 </script>
 
 <Box
+  {...$$restProps}
   class="list-item-container"
-  element="div"
+  element={$$restProps.href ? 'a' : 'div'}
   ref={listItemContainerRef}
   eventComponent={current_component}
-  {...$$restProps}
 >
   <li
     bind:this={listItemRef}

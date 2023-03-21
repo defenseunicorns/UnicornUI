@@ -4,6 +4,8 @@ import Chip from './Chip/chip.svelte';
 import Step from './Stepper/Step.svelte';
 import List from './List/List.svelte';
 import Paper from './Paper/Paper.svelte';
+import Drawer from './Drawer/Drawer.svelte';
+import DrawerHeader from './Drawer/DrawerHeader.svelte';
 import Overlay from './Paper/Overlay.svelte';
 import Theme from './Theme/theme.svelte';
 import Button from './Button/Button.svelte';
@@ -32,6 +34,8 @@ export {
   Step,
   List,
   Paper,
+  Drawer,
+  DrawerHeader,
   Overlay,
   Theme,
   Button,
@@ -133,3 +137,4 @@ export type {
 } from './shared/theme/breakpoints/breakpoints.types';
 export type { PaperProps } from './Paper/Paper.types';
 export type { OverlayProps } from './Paper/Overlay.types';
+export type { DrawerProps, DrawerHeaderProps } from './Drawer/Drawer.types';
