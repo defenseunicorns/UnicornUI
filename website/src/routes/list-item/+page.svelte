@@ -9,8 +9,6 @@
   import CombinedList from './combined-list.svelte';
   import NestedList from './nested-list.svelte';
   import EventControlList from './event-control-list.svelte';
-  import ListSubheader from './list-subheader.svelte';
-  import ListGroupExample from './list-group-example.svelte';
   import DeveloperExperience from './developer-experience.svelte';
   import LeadingIconList from './leading-icon-list.svelte';
   import TrailingIconList from './trailing-icon-list.svelte';
@@ -126,13 +124,13 @@ export interface ListItemProps
   <VariantExample
     code={` 
   <li ...>
-  <slot name="leadingAdornment" />
+  <slot name="leading-adornment" />
     ....
-  <slot name="trailingAdornment" />
+  <slot name="trailing-adornment" />
 </li>
-{#if selected && $$slots.nested}
+{#if selected && $$slots["nested-content"]}
     <div ...>
-      <slot name="nested" />
+      <slot name="nested-content" />
     </div>
 {/if}
   
@@ -189,96 +187,6 @@ export interface ListItemProps
 
   <EventControlList />
 
-  <Typography variant="h2">List</Typography>
-  <Typography variant="body1">
-    The <InlineCode>List</InlineCode> component acts as the base wrapper for
-    <InlineCode>ListItem</InlineCode>
-    and is used in several other components such as menus, select drop downs, and navigation drawers.
-  </Typography>
-
-  <Typography variant="h3">Types</Typography>
-  <Typography variant="body1">
-    <InlineCode>List</InlineCode> can receive all HTMLAttributes of HTMLUListElement and has one custom
-    prop, disablePadding, which removes the default horizontal and vertical padding.
-  </Typography>
-
-  <VariantExample
-    code={`
-export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLUListElement> {
-  disablePadding?: boolean;
-}
-    `}
-  />
-
-  <div class="inline-examples">
-    <div>
-      <Typography variant="h5">No Padding</Typography>
-      <List class="demo-list" disablePadding>
-        <ListItem text="List Item" />
-      </List>
-    </div>
-    <div>
-      <Typography variant="h5">Padding</Typography>
-      <List class="demo-list">
-        <ListItem text="List Item" selected />
-      </List>
-    </div>
-  </div>
-
-  <Typography variant="h3">Styles</Typography>
-  <Typography variant="body1">
-    Other than the default padding, <InlineCode>List</InlineCode> comes as a blank canvas. You can control
-    the style by passing it a custom class.
-  </Typography>
-  <List class="demo-list" />
-
-  <VariantExample
-    code={`
-    <List class="demo-list" />
-
-.demo-list {
-    width: 300px;
-    border: 1px solid gray;
-    background-color: var(--surface);
-}
-    `}
-  />
-  <Typography variant="h3">Slots</Typography>
-
-  <Typography variant="body1">
-    <InlineCode>List</InlineCode> utilizes an unnamed slot in which any number of list items are rendered
-    as "children".
-  </Typography>
-
-  <VariantExample
-    code={`
-<ul ...> 
-  <slot />
-</ul>
-`}
-  />
-
-  <Typography variant="h4">Subheader</Typography>
-  <Typography variant="body1">
-    The <InlineCode>ListSubhHeader</InlineCode> can be used with single lists, or as we'll see below
-    in list groups.
-  </Typography>
-
-  <ListSubheader />
-
-  <Typography variant="h2">List Group</Typography>
-  <Typography variant="body1">
-    If you want to wrap a group of lists together under sub headings, you can use the
-    <InlineCode>ListGroup</InlineCode> and <InlineCode>ListSubhHeader</InlineCode> components.
-  </Typography>
-
-  <Typography variant="body1">
-    Note: we pass the demo-list class to the <InlineCode>ListGroup</InlineCode> so that the containing
-    foundation is styled.
-  </Typography>
-
-  <ListGroupExample />
-
   <DeveloperExperience />
 </DocPage>
 
@@ -287,10 +195,5 @@ export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLUListElement> {
     width: 300px;
     border: 1px solid gray;
     background-color: var(--surface);
-  }
-
-  .inline-examples {
-    display: flex;
-    justify-content: space-around;
   }
 </style>
