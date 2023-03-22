@@ -59,8 +59,4 @@ Slots:
 </Variant>
 
 <style lang="scss" global>
-  .accordian-1-content {
-    background-color: var(--secondary);
-    color: var(--on-secondary);
-  }
 </style>
