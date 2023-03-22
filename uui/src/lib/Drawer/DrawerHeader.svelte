@@ -1,5 +1,4 @@
 <script lang="ts">
-  import Typography from '../Typography/typography.svelte';
   import Box from '../Box/box.svelte';
   import type { DrawerHeaderProps } from './Drawer.types';
   import { current_component } from 'svelte/internal';

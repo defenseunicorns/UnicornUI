@@ -22,6 +22,29 @@
       ? { variant: 'raised', color: 'secondary', shape: 'squared' }
       : { variant: 'flat', color: 'primary', shape: 'squared' };
   }
+
+  let selectedRoute = '';
+  function setSelectedRoute(route: string) {
+    selectedRoute = route;
+  }
+
+  const routes = [
+    'theme',
+    'breakpoints',
+    'scoped-styles',
+    'box',
+    'button',
+    'icon-button',
+    'accordion',
+    'stepper',
+    'dialog',
+    'typography',
+    'chip',
+    'text-field',
+    'list-item',
+    'paper',
+    'drawer'
+  ];
 </script>
 
 <Theme typography={customTypography}>
@@ -29,22 +52,15 @@
     <Drawer>
       <DrawerHeader title="Components" slot="header" />
       <List slot="content">
-        <ListItem element="a" href="/theme" text="Theme" />
-        <ListItem element="a" href="/breakpoints" text="Breakpoints" />
-        <ListItem element="a" href="/scoped-styles" text="Scoped Styles" />
-        <ListItem element="a" href="/box" text="Box" />
-        <ListItem element="a" href="/theme" text="Theme" />
-        <ListItem element="a" href="/button" text="Button" />
-        <ListItem element="a" href="/icon-button" text="Icon Button" />
-        <ListItem element="a" href="/accordion" text="Accordion" />
-        <ListItem element="a" href="/stepper" text="Stepper" />
-        <ListItem element="a" href="/dialog" text="Dialog" />
-        <ListItem element="a" href="/typography" text="Typography" />
-        <ListItem element="a" href="/chip" text="Chip" />
-        <ListItem element="a" href="/text-field" text="Text Field" />
-        <ListItem element="a" href="/list-item" text="List Item" />
-        <ListItem element="a" href="/paper" text="Paper" />
-        <ListItem element="a" href="/drawer" text="Drawer" />
+        {#each routes as route}
+          <ListItem
+            selected={selectedRoute === route}
+            element="a"
+            href="/{route}"
+            text={route.toUpperCase()}
+            on:click={() => setSelectedRoute(route)}
+          />
+        {/each}
       </List>
     </Drawer>
     <Box class="main-container">
@@ -103,5 +119,9 @@
   }
   main {
     padding-bottom: 32px;
+  }
+
+  a {
+    text-decoration: none;
   }
 </style>
