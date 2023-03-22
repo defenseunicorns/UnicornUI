@@ -4,7 +4,7 @@
   import { afterUpdate } from 'svelte';
   import ThemeToggle from '$lib/ThemeToggle.svelte';
   import customTypography from '$lib/theme/theme-typography';
-  import { Button, Typography, Theme, Box, Drawer, List, ListItem } from '@uui';
+  import { Button, Typography, Theme, Box, Drawer, List, ListItem, DrawerHeader } from '@uui';
   import type { ButtonColor, ButtonShape, ButtonVariant } from '@uui';
 
   let path = '';
@@ -27,6 +27,7 @@
 <Theme typography={customTypography}>
   <Box class="body-container">
     <Drawer>
+      <DrawerHeader title="Components" slot="header" />
       <List slot="content">
         <ListItem element="a" href="/theme" text="Theme" />
         <ListItem element="a" href="/breakpoints" text="Breakpoints" />

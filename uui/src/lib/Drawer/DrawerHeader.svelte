@@ -17,8 +17,8 @@
   {...$$restProps}
   class="mdc-drawer__header {$$restProps.class || ''}"
 >
-  <Typography variant="h3" class="mdc-drawer__title">{title}</Typography>
-  <Typography variant="h6" class="mdc-drawer__subtitle">{subtitle}</Typography>
+  <h3 class="mdc-drawer__title">{title}</h3>
+  <h6 class="mdc-drawer__subtitle">{subtitle}</h6>
 </Box>
 
 <style lang="scss" global>
