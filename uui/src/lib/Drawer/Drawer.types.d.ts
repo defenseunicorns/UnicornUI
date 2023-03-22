@@ -7,6 +7,7 @@ export interface DrawerProps<T extends EventTarget> extends PaperProps<T> {
   open?: boolean;
   variant?: DrawerVariant;
   hideBackdrop?: boolean;
+  onClose?: () => void;
 }
 
 export interface DrawerHeaderProps<T extends EvenTarget> extends BoxProps<T> {
