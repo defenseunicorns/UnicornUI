@@ -3,9 +3,7 @@
   import Box from '../Box/box.svelte';
   import { MDCRipple } from '@material/ripple';
   import { current_component } from 'svelte/internal';
-  import type { IconButtonProps } from './IconButton.types';
-  import type { ThemeColors } from '../shared/theme/default-colors/colors.types';
-  import { makeThemeColor } from '../shared/utils/makeThemeColor';
+  import type { IconButtonColor, IconButtonProps } from './IconButton.types';
 
   // Props
   export let toggleable = false;
@@ -13,12 +11,12 @@
 
   export let iconClass = '';
   export let iconContent = '';
-  export let iconColor: ThemeColors = 'inherit';
+  export let iconColor: IconButtonColor = 'inherit';
 
   export let toggledIconClass = '';
   export let toggledIconContent = '';
-  export let toggledIconColor: ThemeColors = 'inherit';
-  export let ref: HTMLButtonElement | HTMLAnchorElement | undefined;
+  export let toggledIconColor: IconButtonColor = 'inherit';
+  export let ref: HTMLButtonElement | HTMLAnchorElement | undefined = undefined;
 
   type $$Props = IconButtonProps;
 
@@ -37,7 +35,7 @@
   // Watch
   $: showToggle = toggleable && toggled;
   $: toggledColor = showToggle ? toggledIconColor : iconColor;
-  $: currentColor = disabled ? 'disabled' : toggledColor;
+  $: currentColor = disabled ? '' : toggledColor;
   $: ariaPressed = toggleable ? showToggle : null;
   $: constructContainerClass = (): string => {
     let classes: string[] = [];
@@ -55,9 +53,6 @@
   eventComponent={current_component}
   aria-pressed={ariaPressed}
   class="icon-button mdc-icon-button {currentColor} {constructContainerClass()}"
-  style="--iconColor:{makeThemeColor(currentColor)};--disabled-background:{makeThemeColor(
-    'on-disabled'
-  )};{$$restProps.style}"
 >
   <div class="mdc-icon-button__ripple" />
   <span class="mdc-icon-button__focus-ring" />
@@ -89,14 +84,13 @@
     border-radius: 100% !important;
     align-items: center !important;
     justify-content: center !important;
-    @include mdc-icon-button-ink-color(var(--iconColor));
   }
-
-  .mdc-icon-button:disabled {
-    background-color: var(--iconColor);
-    @include mdc-icon-button-ink-color(var(--disabled-background));
+  .mdc-icon-button.primary {
+    @include mdc-icon-button-ink-color(var(--mdc-theme-primary, $mdc-theme-primary));
   }
-
+  .mdc-icon-button.secondary {
+    @include mdc-icon-button-ink-color(var(--mdc-theme-secondary, $mdc-theme-secondary));
+  }
   .mdc-icon-button__icon {
     display: flex;
     align-content: center;
