@@ -43,7 +43,8 @@
     'text-field',
     'list-item',
     'paper',
-    'drawer'
+    'drawer',
+    'rail'
   ];
 </script>
 
@@ -112,6 +113,7 @@
   .main-container {
     display: flex;
     flex-direction: column;
+    width: 100%;
     align-items: center;
     height: 100vh;
     overflow-x: hidden;

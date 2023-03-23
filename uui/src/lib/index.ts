@@ -3,6 +3,7 @@ import Box from './Box/box.svelte';
 import Chip from './Chip/chip.svelte';
 import Step from './Stepper/Step.svelte';
 import List from './List/List.svelte';
+import Rail from './Rail/Rail.svelte';
 import Paper from './Paper/Paper.svelte';
 import Drawer from './Drawer/Drawer.svelte';
 import DrawerHeader from './Drawer/DrawerHeader.svelte';
@@ -33,6 +34,7 @@ export {
   Chip,
   Step,
   List,
+  Rail,
   Paper,
   Drawer,
   DrawerHeader,
@@ -138,3 +140,4 @@ export type {
 export type { PaperProps } from './Paper/Paper.types';
 export type { OverlayProps } from './Paper/Overlay.types';
 export type { DrawerProps, DrawerHeaderProps } from './Drawer/Drawer.types';
+export type { RailProps } from './Rail/Rail.types';
