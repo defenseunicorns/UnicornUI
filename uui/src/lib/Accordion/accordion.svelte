@@ -5,13 +5,12 @@
    * content - parent .accordian-content
    */
   import { slide } from 'svelte/transition';
-  import { current_component } from 'svelte/internal';
+  import { createEventDispatcher, current_component } from 'svelte/internal';
   import type { AccordionProps } from './accordion.types';
   import IconButton from '../IconButton/IconButton.svelte';
   import ExpandLess from '../shared/assets/svg/expand-less.svelte';
   import ExpandMore from '../shared/assets/svg/expand-more.svelte';
   import Paper from '../Paper/Paper.svelte';
-
   type T = $$Generic<EventTarget>;
 
   // Props
@@ -20,22 +19,23 @@
   export let headerClass = '';
   export let contentClass = '';
 
+  const dispatch = createEventDispatcher();
+
   type $$Props = AccordionProps<T>;
 </script>
 
 <Paper
-  square
   eventComponent={current_component}
-  {elevation}
   {...$$restProps}
   class={`accordion ${$$restProps.class || ''}`}
 >
-  <div class="accordion-header-wrapper">
+  <Paper {elevation} class="accordion-header-wrapper">
     <slot name="icon">
       <IconButton
         class="accordion-toggle"
         on:click={() => {
           isOpen = !isOpen;
+          dispatch('change');
         }}
         toggleable
         toggled={isOpen}
@@ -47,7 +47,7 @@
     <div class="accordion-header {headerClass}">
       <slot name="headerContent" />
     </div>
-  </div>
+  </Paper>
   {#if isOpen}
     <div transition:slide class="accordion-content {contentClass}">
       <slot name="content" />

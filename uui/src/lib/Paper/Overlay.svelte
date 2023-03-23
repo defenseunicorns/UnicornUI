@@ -43,9 +43,6 @@
   function getOpacityPercentage(elevation: number) {
     return opacityMap[elevation.toString()] || 0;
   }
-
-  $: width = (ref && `${ref.parentElement?.clientWidth}px`) || 0;
-  $: height = (ref && `${ref.parentElement?.clientHeight}px`) || 0;
 </script>
 
 <Box
@@ -54,16 +51,14 @@
   eventComponent={current_component}
   {...$$restProps}
   class="elevation-overlay mdc-elevation-overlay {$$restProps.class || ''}"
-  style="--parent-width:{width};--parent-height:{height};--overlay-opacity:{getOpacityPercentage(
-    elevation
-  )};{$$restProps.style || ''}"
+  style="--overlay-opacity:{getOpacityPercentage(elevation)};{$$restProps.style || ''}"
 />
 
 <style lang="scss" global>
   .elevation-overlay.mdc-elevation-overlay {
     position: absolute;
-    height: var(--parent-height);
-    width: var(--parent-width);
+    height: 100%;
+    width: 100%;
     left: 0;
     top: 0;
     opacity: var(--overlay-opacity);
