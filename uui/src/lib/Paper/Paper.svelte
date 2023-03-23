@@ -36,6 +36,7 @@
 <style lang="scss" global>
   @use '@material/elevation/mdc-elevation';
   .paper {
+    position: relative;
     background-color: var(--surface);
     :not(:last-child) {
       // z-index of content should be one greater than paper and overlay.
