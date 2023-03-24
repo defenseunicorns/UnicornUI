@@ -11,11 +11,13 @@
   eventComponent={current_component}
   variant="elevation"
   {...$$restProps}
-  class="drawer mdc-drawer"
+  class="rail mdc-drawer {open && 'open'} {$$restProps.class || ''}"
   style="width: {open ? '' : '72px'}"
 >
-  <slot name="header" />
-  <div class="mdc-drawer__content">
+  <div class="rail-header">
+    <slot name="header" />
+  </div>
+  <div class="mdc-drawer__content rail-content">
     <slot name="content" />
   </div>
 </Paper>
@@ -27,7 +29,19 @@
   @include drawer.dismissible-core-styles;
   @include drawer.modal-core-styles;
 
-  .drawer.mdc-drawer {
-    height: 100vh;
+  .rail-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .rail.open .rail-header {
+    justify-content: end;
+    margin-right: 1rem;
+  }
+
+  .rail-content {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 </style>

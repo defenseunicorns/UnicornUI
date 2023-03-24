@@ -26,8 +26,9 @@
   .list {
     @include list.deprecated-core-styles;
     padding: 32px 16px;
-    .disabled-padding {
-      padding: 0px;
-    }
+  }
+
+  .disabled-padding {
+    padding: 0px;
   }
 </style>
