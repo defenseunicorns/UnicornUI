@@ -1,8 +1,14 @@
 <script lang="ts">
   import { current_component } from 'svelte/internal';
   import Paper from '../Paper/Paper.svelte';
+  import type { RailProps } from './Rail.types';
+
+  // Props
+  type T = $$Generic<EventTarget>;
+  type $$Props = RailProps<T>;
   export let open = false;
 
+  // Locals
   let elevation = $$restProps.elevation || 16;
 </script>
 
