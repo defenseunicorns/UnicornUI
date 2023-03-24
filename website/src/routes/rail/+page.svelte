@@ -1,70 +1,74 @@
 <script lang="ts">
-  import { Rail, Paper, Typography, IconButton, List, ListItem, ListItemAdornment } from '@uui';
+  import VariantExample from '../../lib/VariantExample.svelte';
+  import { Typography, Accordion } from '@uui';
   import DocPage from '../../lib/doc-page.svelte';
-
-  let open = false;
-  function setOpen() {
-    open = !open;
-  }
+  import NonExpandRail from './non-expand-rail.svelte';
+  import NON_EXPAND_RAIL from './non-expand-rail.svelte?raw';
+  import ExpandingRail from './expanding-rail.svelte';
+  import EXPANDING_RAIL from './expanding-rail.svelte?raw';
+  import InlineCode from '../../lib/inline-code.svelte';
+  import RAIL_PROPS from '@uui/Rail/rail.types.d.ts?raw';
 </script>
 
-<DocPage>
+<DocPage class="docs">
   <Typography variant="h1">Rail</Typography>
+  <Typography variant="body1">
+    The navigation <InlineCode>Rail</InlineCode> is very similar to the navigation
+    <InlineCode>Drawer</InlineCode> however it can only exist in a permanent fashion as either expanding
+    or non-expanding, and has fewer custom props.
+  </Typography>
+
+  <Typography variant="h2">Props</Typography>
+  <Typography variant="body1">
+    <InlineCode>Rail</InlineCode> extends the PaperProps interface, which means it accepts all props
+    for <InlineCode>Paper</InlineCode> and <InlineCode>Box</InlineCode>.
+  </Typography>
+  <VariantExample code={RAIL_PROPS} />
+
+  <Typography variant="h2">Slots</Typography>
+  <Typography variant="body1">
+    <InlineCode>Rail</InlineCode> has to two named slots:
+    <ul>
+      <li>header</li>
+      <li>content</li>
+    </ul>
+    <br />
+    You can place anything you'd like into either of these slots to customize your rail.
+  </Typography>
+  <VariantExample
+    code={`
+    <Paper ...>
+  <div ...>
+    <slot name="header" />
+  </div>
+  <div ...>
+    <slot name="content" />
+  </div>
+</Paper>
+  `}
+  />
 
   <Typography variant="h3">Non Expanding</Typography>
-  <Paper elevation={2} class="rail-demo-container">
-    <Rail>
-      <List slot="content" disablePadding>
-        <IconButton iconClass="material-symbols-outlined" iconContent="folder" />
-        <IconButton iconClass="material-symbols-outlined" iconContent="schedule" />
-      </List>
-    </Rail>
-    <DocPage>
-      <Typography variant="h1">Docs</Typography>
-    </DocPage>
-  </Paper>
+  <NonExpandRail />
+
+  <Accordion>
+    <Typography variant="h6" slot="headerContent">Non Expanding Rail Code</Typography>
+    <VariantExample slot="content" code={NON_EXPAND_RAIL} />
+  </Accordion>
 
   <Typography variant="h3">Expanding</Typography>
+  <ExpandingRail />
 
-  <Paper elevation={2} class="rail-demo-container">
-    <Rail {open}>
-      <IconButton
-        iconClass="material-symbols-outlined"
-        iconContent="menu"
-        slot="header"
-        on:click={setOpen}
-      />
-      <svelte:fragment slot="content">
-        {#if open}
-          <List>
-            <ListItem text="Data">
-              <ListItemAdornment slot="leadingAdornment">
-                <IconButton iconClass="material-symbols-outlined" iconContent="folder" />
-              </ListItemAdornment>
-            </ListItem>
-            <ListItem text="Data">
-              <ListItemAdornment slot="leadingAdornment">
-                <IconButton iconClass="material-symbols-outlined" iconContent="schedule" />
-              </ListItemAdornment>
-            </ListItem>
-          </List>
-        {:else}
-          <List disablePadding>
-            <IconButton iconClass="material-symbols-outlined" iconContent="folder" />
-            <IconButton iconClass="material-symbols-outlined" iconContent="schedule" />
-          </List>
-        {/if}
-      </svelte:fragment>
-    </Rail>
-    <DocPage>
-      <Typography variant="h1">Docs</Typography>
-    </DocPage>
-  </Paper>
+  <Accordion>
+    <Typography variant="h6" slot="headerContent">Non Expanding Rail Code</Typography>
+    <VariantExample slot="content" code={EXPANDING_RAIL} />
+  </Accordion>
 </DocPage>
 
 <style lang="scss" global>
   .rail-demo-container {
     display: flex;
+    overflow: hidden;
     width: 500px;
     height: 700px;
     background-color: var(--surface);
