@@ -14,14 +14,21 @@
   <Typography variant="h1">Rail</Typography>
   <Typography variant="body1">
     The navigation <InlineCode>Rail</InlineCode> is very similar to the navigation
-    <InlineCode>Drawer</InlineCode> however it can only exist in a permanent fashion as either expanding
-    or non-expanding, and has fewer custom props.
+    <InlineCode>Drawer</InlineCode> however it has fewer custom props and can only exist in a permanent
+    fashion as either expanding or non-expanding.
   </Typography>
 
   <Typography variant="h2">Props</Typography>
   <Typography variant="body1">
     <InlineCode>Rail</InlineCode> extends the PaperProps interface, which means it accepts all props
     for <InlineCode>Paper</InlineCode> and <InlineCode>Box</InlineCode>.
+  </Typography>
+  <Typography variant="body1">
+    Defaults:
+    <ul>
+      <li>elevation: 16</li>
+      <li>open: false</li>
+    </ul>
   </Typography>
   <VariantExample code={RAIL_PROPS} />
 
@@ -33,7 +40,6 @@
       <li>content</li>
     </ul>
     <br />
-    You can place anything you'd like into either of these slots to customize your rail.
   </Typography>
   <VariantExample
     code={`
@@ -47,6 +53,13 @@
 </Paper>
   `}
   />
+
+  <Typography variant="h3">Animations</Typography>
+  <Typography variant="body1">
+    There is a default transition of .5s applied to the rail's width on expansion or collapse.
+  </Typography>
+
+  <Typography variant="h2">Examples</Typography>
 
   <Typography variant="h3">Non Expanding</Typography>
   <NonExpandRail />

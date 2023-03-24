@@ -29,6 +29,10 @@
   @include drawer.dismissible-core-styles;
   @include drawer.modal-core-styles;
 
+  .rail.mdc-drawer {
+    transition: width 0.5s;
+  }
+
   .rail-header {
     display: flex;
     justify-content: center;
