@@ -11,6 +11,11 @@
 
 ## Updates
 
+### Paper
+
+- Now only applies the overlay when the theme is set to dark.
+- Overlay opacity is now mapped to match the material opacities.
+
 ### Theme
 
 - Now supports deep merging User `Palettes` with the default (`UUI_PALETTES`).
