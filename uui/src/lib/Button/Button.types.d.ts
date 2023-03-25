@@ -4,8 +4,7 @@ export type ButtonVariant = 'text' | 'outlined' | 'raised' | 'flat';
 export type ButtonColor = 'primary' | 'secondary';
 export type ButtonShape = 'rounded' | 'squared';
 
-export interface ButtonProps
-  extends svelte.JSX.HTMLAttributes<HTMLButtonElement | HTMLAnchorElement> {
+export interface ButtonProps extends BoxProps<HTMLAnchorElement | HTMLDivElement> {
   color?: ButtonColor;
   shape?: ButtonShape;
   variant?: ButtonVariant;

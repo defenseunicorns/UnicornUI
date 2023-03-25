@@ -9,16 +9,16 @@
   export let color: ButtonColor = 'primary';
   export let shape: ButtonShape = 'squared';
   export let variant: ButtonVariant = 'text';
+  export let ref: HTMLButtonElement | HTMLAnchorElement | undefined = undefined;
 
   type $$Props = ButtonProps;
 
   // Local Vars
-  let buttonElement: HTMLButtonElement | HTMLAnchorElement;
 
   // Lifecycle
   onMount((): void => {
-    if (buttonElement) {
-      new MDCRipple(buttonElement);
+    if (ref) {
+      new MDCRipple(ref);
     }
   });
 
@@ -35,10 +35,10 @@
 </script>
 
 <Box
-  {...$$restProps}
-  bind:ref={buttonElement}
+  bind:ref
   eventComponent={current_component}
   element={$$restProps.href ? 'a' : 'button'}
+  {...$$restProps}
   class={`button mdc-button ${getIconClass()} ${variant} ${color} ${shape} ${
     $$restProps.class || ''
   }`}
@@ -52,18 +52,18 @@
 
 <style lang="scss" global>
   @import '@material/button/mdc-button';
-  .outlined {
+  .mdc-button.outlined {
     @extend .mdc-button--outlined;
     @include mdc-button-outline-color(var(--mdc-theme-primary, $mdc-theme-primary));
   }
-  .raised {
+  .mdc-button.raised {
     @extend .mdc-button--raised;
   }
-  .flat {
+  .mdc-button.flat {
     @extend .mdc-button--unelevated;
   }
 
-  .rounded {
+  .mdc-button.rounded {
     @include mdc-button-shape-radius(100px);
   }
 

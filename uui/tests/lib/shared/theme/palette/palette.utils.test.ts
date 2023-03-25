@@ -9,19 +9,19 @@ import {
 describe('createPaletteMap', () => {
   it('creates a map with key (name) and value (ThemeVars) given Palettes', () => {
     const paletteMap = createPaletteMap({
-      test: { primary: 'pink', on: { primary: 'black' } },
-      test2: { primary: 'purple', on: { primary: 'white' } }
+      dark: { primary: 'pink', on: { primary: 'black' } },
+      light: { primary: 'purple', on: { primary: 'white' } }
     });
-    expect(paletteMap.get('test')).toStrictEqual({
-      '--primary': 'pink',
-      '--mdc-theme-primary': 'var(--primary)',
-      '--on-primary': 'black',
-      '--mdc-theme-on-primary': 'var(--on-primary)'
-    });
-    expect(paletteMap.get('test2')).toStrictEqual({
+    expect(paletteMap.get('light')).toStrictEqual({
       '--primary': 'purple',
       '--mdc-theme-primary': 'var(--primary)',
       '--on-primary': 'white',
+      '--mdc-theme-on-primary': 'var(--on-primary)'
+    });
+    expect(paletteMap.get('dark')).toStrictEqual({
+      '--primary': 'pink',
+      '--mdc-theme-primary': 'var(--primary)',
+      '--on-primary': 'black',
       '--mdc-theme-on-primary': 'var(--on-primary)'
     });
   });
@@ -108,47 +108,31 @@ describe('paletteToCssVars', () => {
 describe('mergePalettes', () => {
   it('applies the base palettes first', () => {
     const basePalettes: Palettes = {
-      shared: { primary: 'pink' },
       dark: { secondary: 'purple' },
       light: { primary: 'yellow' }
     };
     const customPalettes: Palettes = {
-      shared: { primary: 'purple' },
       dark: { secondary: 'blue' },
       light: { primary: 'pink' }
     };
 
     expect(mergePalettes(customPalettes, basePalettes)).toEqual({
-      shared: { primary: 'purple' },
       dark: { secondary: 'blue' },
       light: { primary: 'pink' }
     });
   });
-  it('adds the missing base palettes', () => {
-    const basePalettes: Palettes = {
-      shared: { primary: 'pink' },
-      dark: { secondary: 'purple' },
-      light: { primary: 'yellow' }
-    };
-    const customPalettes: Palettes = { shared: { primary: 'purple' }, dark: { secondary: 'blue' } };
-
-    expect(mergePalettes(customPalettes, basePalettes).light).toEqual({ primary: 'yellow' });
-  });
 
   it('adds the missing base fields', () => {
     const basePalettes: Palettes = {
-      shared: { primary: 'pink' },
       dark: { secondary: 'purple' },
       light: { primary: 'yellow', secondary: 'blue' }
     };
     const customPalettes: Palettes = {
-      shared: { primary: 'purple' },
       dark: { secondary: 'blue' },
       light: { primary: 'pink' }
     };
 
     expect(mergePalettes(customPalettes, basePalettes)).toEqual({
-      shared: { primary: 'purple' },
       dark: { secondary: 'blue' },
       light: { primary: 'pink', secondary: 'blue' }
     });
@@ -156,7 +140,6 @@ describe('mergePalettes', () => {
 
   it('returns the base if the override and base reference the same object', () => {
     const basePalettes: Palettes = {
-      shared: { primary: 'pink' },
       dark: { secondary: 'purple' },
       light: { primary: 'yellow' }
     };

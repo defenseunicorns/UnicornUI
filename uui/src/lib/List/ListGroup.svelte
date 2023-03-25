@@ -16,7 +16,9 @@
   <slot />
 </Box>
 
-<style lang="scss">
+<style lang="scss" global>
   @use '@material/list';
-  @include list.deprecated-core-styles;
+  .list-group.mdc-deprecated-list-group {
+    @include list.deprecated-core-styles;
+  }
 </style>

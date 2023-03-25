@@ -9,7 +9,7 @@
 <Variant
   title="Button"
   code={`
-Props (extends HTMLButtonElement | HTMLAnchorElement):
+Props (extends BoxProps<HTMLButtonElement | HTMLAnchorElement>):
   color: ButtonColor = 'primary';
   shape: ButtonShape = 'squared';
   variant: ButtonVariant = 'text';

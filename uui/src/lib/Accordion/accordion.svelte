@@ -4,33 +4,38 @@
    * headerContent - parent .accordian-content
    * content - parent .accordian-content
    */
-  import Box from '../Box/box.svelte';
   import { slide } from 'svelte/transition';
-  import { current_component } from 'svelte/internal';
+  import { createEventDispatcher, current_component } from 'svelte/internal';
   import type { AccordionProps } from './accordion.types';
   import IconButton from '../IconButton/IconButton.svelte';
   import ExpandLess from '../shared/assets/svg/expand-less.svelte';
   import ExpandMore from '../shared/assets/svg/expand-more.svelte';
+  import Paper from '../Paper/Paper.svelte';
+  type T = $$Generic<EventTarget>;
 
   // Props
+  export let elevation = 2;
   export let isOpen = false;
   export let headerClass = '';
   export let contentClass = '';
 
-  type $$Props = AccordionProps;
+  const dispatch = createEventDispatcher();
+
+  type $$Props = AccordionProps<T>;
 </script>
 
-<Box
+<Paper
+  eventComponent={current_component}
   {...$$restProps}
   class={`accordion ${$$restProps.class || ''}`}
-  eventComponent={current_component}
 >
-  <div class="accordion-header-wrapper">
+  <Paper {elevation} class="accordion-header-wrapper">
     <slot name="icon">
       <IconButton
         class="accordion-toggle"
         on:click={() => {
           isOpen = !isOpen;
+          dispatch('change');
         }}
         toggleable
         toggled={isOpen}
@@ -42,22 +47,21 @@
     <div class="accordion-header {headerClass}">
       <slot name="headerContent" />
     </div>
-  </div>
+  </Paper>
   {#if isOpen}
     <div transition:slide class="accordion-content {contentClass}">
       <slot name="content" />
     </div>
   {/if}
-</Box>
+</Paper>
 
 <style lang="scss" global>
   .accordion {
     display: flex;
     flex-direction: column;
-    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(0, 0, 0, 0.14),
-      0px 1px 3px rgba(0, 0, 0, 0.12);
-    background-color: var(--mdc-theme-surface);
-    color: var(--mdc-theme-on-surface);
+  }
+  .accordion-header-wrapper * {
+    z-index: inherit !important;
   }
   .accordion-header-wrapper {
     padding: 1rem;
@@ -66,16 +70,24 @@
     gap: 1rem;
     display: flex;
     flex-direction: row;
+    background-color: transparent;
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+    border-top-right-radius: inherit;
+    border-top-left-radius: inherit;
   }
+
   .accordion-content {
     padding: 1rem;
     display: flex;
     flex-direction: column;
+    width: inherit;
   }
+
   .accordion .mdc-icon-button i svg path {
-    fill: var(--mdc-theme-on-surface);
+    fill: var(--on-surface);
   }
   .accordion .mdc-icon-button:hover i svg path {
-    fill: var(--mdc-theme-primary);
+    fill: var(--primary);
   }
 </style>
