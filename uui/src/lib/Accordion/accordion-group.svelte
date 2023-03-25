@@ -54,12 +54,6 @@
     box-shadow: unset;
   }
 
-  .accordion-group .accordion.accordion-open:nth-last-child(2) .elevation-overlay,
-  .accordion-group .accordion.accordion-open:nth-last-child(2) .accordion-header-wrapper {
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-  }
-
   .accordion-group > .elevation-overlay {
     display: none;
   }
