@@ -11,8 +11,16 @@
       flexDirection: 'column',
       padding: '2rem 0',
       gap: '2rem',
-      '& ul li:not(.mdc-deprecated-list-item)': {
-        paddingTop: '1rem'
+      '& ul li': {
+        '&:not(.list-item)': {
+          '& p': {
+            display: 'flex',
+            alignItems: 'center'
+          },
+          '&:not(:first-child)': {
+            paddingTop: '1rem'
+          }
+        }
       }
     },
     $xs: {

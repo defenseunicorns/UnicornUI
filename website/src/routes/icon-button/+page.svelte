@@ -16,18 +16,18 @@
 <Variant
   title="Icon Button"
   code={`
-Props (extends HTMLButtonElement | HTMLAnchorElement):
+Props (extends BoxProps<HTMLButtonElement | HTMLAnchorElement>):
 
   toggleable: boolean = false;
   toggled: boolean = false;
 
   iconClass: string;
   iconContent: string;
-  iconColor: IconButtonColor = 'inherit';
+  iconColor: ThemeColors = 'inherit';
 
   toggledIconClass: string;
   toggledIconContent: string;
-  toggledIconColor: IconButtonColor = 'inherit';
+  toggledIconColor: ThemeColors = 'inherit';
 
 Slots:
   icon: optional;

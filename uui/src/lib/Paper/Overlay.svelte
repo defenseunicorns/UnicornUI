@@ -8,6 +8,7 @@
 
   //Props
   export let elevation = 0;
+  export let ref: Node | undefined = undefined;
 
   // Opacity map based on https://m2.material.io/design/color/dark-theme.html#properties
   const opacityMap: Record<string, number> = {
@@ -46,6 +47,7 @@
 
 <Box
   element="div"
+  bind:ref
   eventComponent={current_component}
   {...$$restProps}
   class="elevation-overlay mdc-elevation-overlay {$$restProps.class || ''}"
@@ -54,8 +56,11 @@
 
 <style lang="scss" global>
   .elevation-overlay.mdc-elevation-overlay {
-    height: inherit;
-    width: inherit;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
     opacity: var(--overlay-opacity);
   }
   // Light theme relies solely on box-shadow and does not need an overlay
