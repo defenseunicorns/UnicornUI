@@ -11,6 +11,7 @@
   import ExpandLess from '../shared/assets/svg/expand-less.svelte';
   import ExpandMore from '../shared/assets/svg/expand-more.svelte';
   import Paper from '../Paper/Paper.svelte';
+  import { makeThemeColor } from '../shared/utils/makeThemeColor';
   type T = $$Generic<EventTarget>;
 
   // Props
@@ -19,15 +20,29 @@
   export let headerClass = '';
   export let contentClass = '';
   export let square = false;
+  export let backgroundColor = 'surface';
+  export let color = 'on-surface';
+  export let hoverColor = 'primary';
 
   const dispatch = createEventDispatcher();
 
   type $$Props = AccordionProps<T>;
   $: accordionClass = `accordion ${(isOpen && 'accordion-open') || ''} ${$$restProps.class || ''}`;
+  $: accordionStyle = `--accordion-icon-hover-color:${makeThemeColor(hoverColor)};${
+    $$restProps.style || ''
+  }`;
 </script>
 
-<Paper eventComponent={current_component} {...$$restProps} {square} class={accordionClass}>
-  <Paper {elevation} {square} class="accordion-header-wrapper">
+<Paper
+  eventComponent={current_component}
+  {...$$restProps}
+  style={accordionStyle}
+  class={accordionClass}
+  {color}
+  {backgroundColor}
+  {square}
+>
+  <Paper {elevation} {square} {color} {backgroundColor} class="accordion-header-wrapper">
     <slot name="icon">
       <IconButton
         class="accordion-toggle"
@@ -82,10 +97,16 @@
     width: inherit;
   }
 
+  .accordion.accordion-open .elevation-overlay,
+  .accordion.accordion-open .accordion-header-wrapper {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+
   .accordion .mdc-icon-button i svg path {
-    fill: var(--on-surface);
+    fill: var(--paper-color);
   }
   .accordion .mdc-icon-button:hover i svg path {
-    fill: var(--primary);
+    fill: var(--accordion-icon-hover-color);
   }
 </style>

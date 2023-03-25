@@ -2,7 +2,7 @@
   import VariantExample from '../../lib/VariantExample.svelte';
   import DocPage from '../../lib/doc-page.svelte';
   import { Typography } from '@uui';
-  import PaperTypesText from '@uui/paper/paper.types.d.ts?raw';
+  import PaperTypesText from '../../../../uui/src/lib/Paper/Paper.types.d.ts?raw';
   import PaperElevationExample from './paper-elevation-example.svelte';
   import PaperElevationExampleText from './paper-elevation-example.svelte?raw';
   import PaperSquareExample from './paper-square-example.svelte';
