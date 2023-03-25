@@ -6,4 +6,4 @@ export interface AccordionProps<T extends EventTarget> extends PaperProps<T> {
   contentClass?: string;
 }
 
-export type AccordionGroupProps<T extends EventTarget> = PaperProps<T>;
+export type AccordionGroupProps<T> = PaperProps<T>;

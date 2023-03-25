@@ -36,19 +36,19 @@
     <Box element="li">
       <Typography>
         <InlineCode>headerClass: string</InlineCode>
-        &nbsp;adds user class string to the accordion header box (optional)
+        adds user class string to the accordion header box (optional)
       </Typography>
     </Box>
     <Box element="li">
       <Typography>
         <InlineCode>contentClass: string</InlineCode>
-        &nbsp;adds user class string to the accordion content box (optional)
+        adds user class string to the accordion content box (optional)
       </Typography>
     </Box>
     <Box element="li">
       <Typography>
         <InlineCode>elevation: string</InlineCode>
-        &nbsp;overrides the paper default with a value of 2 (optional)
+        overrides the paper default with a value of 2 (optional)
       </Typography>
     </Box>
   </Box>
@@ -59,20 +59,20 @@
     <Box element="li">
       <Typography>
         <InlineCode>icon</InlineCode>
-        &nbsp;replaces the default&nbsp;
+        replaces the default&nbsp;
         <Typography element="a" href="/icon-button">IconButton</Typography>
       </Typography>
     </Box>
     <Box element="li">
       <Typography>
         <InlineCode>headerContent</InlineCode>
-        &nbsp;adds content to the right of the icon within the header box.
+        adds content to the right of the icon within the header box.
       </Typography>
     </Box>
     <Box element="li">
       <Typography>
         <InlineCode>content</InlineCode>
-        &nbsp;adds content to the accordions content box.
+        adds content to the accordions content box.
       </Typography>
     </Box>
   </Box>
@@ -82,39 +82,49 @@
     <Box element="li">
       <Typography>
         <InlineCode>.accordion</InlineCode>
-        &nbsp;added to the top level&nbsp;
+        added to the top level&nbsp;
         <Typography element="a" href="Paper">Paper</Typography>
       </Typography>
     </Box>
     <Box element="li">
       <Typography>
+        <InlineCode>.accordion-open</InlineCode>
+        added to the top level&nbsp;
+        <Typography element="a" href="Paper">Paper</Typography>
+        &nbsp;when
+        <InlineCode>isOpen = true</InlineCode>
+      </Typography>
+    </Box>
+    <Box element="li">
+      <Typography>
         <InlineCode>.accordion-header-wrapper</InlineCode>
-        &nbsp;targets the header container.
+        targets the header container.
       </Typography>
     </Box>
     <Box element="li">
       <Typography>
         <InlineCode>.accordion-toggle</InlineCode>
-        &nbsp;targets the default expansion&nbsp;
+        targets the default expansion&nbsp;
         <Typography element="a" href="/icon-button">IconButton</Typography>
-        &nbsp;if the&nbsp;
-        <InlineCode>icon</InlineCode>&nbsp; slot is unused.
+        &nbsp;if the
+        <InlineCode>icon</InlineCode>
+        slot is unused.
       </Typography>
     </Box>
     <Box element="li">
       <Typography>
         <InlineCode>.accordion-header</InlineCode>
-        &nbsp;targets the&nbsp;
+        targets the
         <InlineCode>headerContent</InlineCode>
-        &nbsp;slot container.
+        slot container.
       </Typography>
     </Box>
     <Box element="li">
       <Typography>
         <InlineCode>.accordion-content</InlineCode>
-        &nbsp;targets the&nbsp;
+        targets the
         <InlineCode>content</InlineCode>
-        &nbsp;slot container.
+        slot container.
       </Typography>
     </Box>
   </Box>

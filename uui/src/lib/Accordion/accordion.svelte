@@ -18,18 +18,16 @@
   export let isOpen = false;
   export let headerClass = '';
   export let contentClass = '';
+  export let square = false;
 
   const dispatch = createEventDispatcher();
 
   type $$Props = AccordionProps<T>;
+  $: accordionClass = `accordion ${(isOpen && 'accordion-open') || ''} ${$$restProps.class || ''}`;
 </script>
 
-<Paper
-  eventComponent={current_component}
-  {...$$restProps}
-  class={`accordion ${$$restProps.class || ''}`}
->
-  <Paper {elevation} class="accordion-header-wrapper">
+<Paper eventComponent={current_component} {...$$restProps} {square} class={accordionClass}>
+  <Paper {elevation} {square} class="accordion-header-wrapper">
     <slot name="icon">
       <IconButton
         class="accordion-toggle"
