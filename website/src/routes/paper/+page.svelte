@@ -12,6 +12,7 @@
   import PaperColorExample from './paper-color-example.svelte';
   import PaperColorExampleText from './paper-color-example.svelte?raw';
   import InlineCode from '$lib/inline-code.svelte';
+  import PaperScrollExample from './paper-scroll-example.svelte';
 </script>
 
 <DocPage>
@@ -59,6 +60,9 @@
     <PaperColorExample />
   </div>
   <VariantExample code={PaperColorExampleText} />
+
+  <Typography variant="h6">Scrolling</Typography>
+  <PaperScrollExample />
 </DocPage>
 
 <style lang="scss">
