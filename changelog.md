@@ -1,3 +1,16 @@
+# v0.0.39
+
+## Updates
+
+### Paper
+
+- Added `backgroundColor` prop that accepts `ThemeColors`and overrides the `background-color` of the `Paper`.
+- Added `color` prop that accepts `ThemeColors`and overrides the `color` of the `Paper`.
+
+### Accordion
+
+- Added `hoverColor` prop that accepts `ThemeColors`that will change the hover state color of the default icon.
+
 # v0.0.38
 
 ## Breaking Changes
@@ -10,6 +23,11 @@
   - `UUI_PALETTES` no longer contains 'shared' field.
 
 ## Updates
+
+### Paper
+
+- Now only applies the overlay when the theme is set to dark.
+- Overlay opacity is now mapped to match the material opacities.
 
 ### Theme
 

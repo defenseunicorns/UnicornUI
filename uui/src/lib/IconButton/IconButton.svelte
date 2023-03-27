@@ -16,17 +16,17 @@
   export let toggledIconClass = '';
   export let toggledIconContent = '';
   export let toggledIconColor: IconButtonColor = 'inherit';
+  export let ref: HTMLButtonElement | HTMLAnchorElement | undefined = undefined;
 
   type $$Props = IconButtonProps;
 
   // Vars
   let disabled = false;
-  let mdcIconButtonTarget: HTMLButtonElement | HTMLAnchorElement;
 
   // Lifecycle
   onMount((): void => {
-    if (mdcIconButtonTarget) {
-      const iconButtonRipple = new MDCRipple(mdcIconButtonTarget);
+    if (ref) {
+      const iconButtonRipple = new MDCRipple(ref);
       iconButtonRipple.unbounded = true;
     }
     disabled = $$restProps.disabled;
@@ -48,7 +48,7 @@
 
 <Box
   {...$$restProps}
-  bind:ref={mdcIconButtonTarget}
+  bind:ref
   element={$$restProps.href ? 'a' : 'button'}
   eventComponent={current_component}
   aria-pressed={ariaPressed}

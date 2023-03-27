@@ -7,7 +7,7 @@
   import ExpandingRail from './expanding-rail.svelte';
   import EXPANDING_RAIL from './expanding-rail.svelte?raw';
   import InlineCode from '../../lib/inline-code.svelte';
-  import RAIL_PROPS from '@defense-unicorns/unicorn-ui/src/lib/Rail/rail.types.d.ts?raw';
+  import RAIL_PROPS from '@uui/Rail/Rail.types.d.ts?raw';
 </script>
 
 <DocPage class="docs">

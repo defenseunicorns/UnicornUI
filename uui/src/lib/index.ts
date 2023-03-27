@@ -111,7 +111,7 @@ export type {
   TypographyPalette
 } from './shared/theme/typography-config/typography-config.types';
 export type { DialogActionsProps, DialogTitleProps } from './Dialog/Dialog.types';
-export type { IconButtonColor, IconButtonProps } from './IconButton/IconButton.types';
+export type { IconButtonProps } from './IconButton/IconButton.types';
 export type {
   StepVariant,
   StepOrientation,
