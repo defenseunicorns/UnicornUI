@@ -2,7 +2,7 @@
   import VariantExample from '../../lib/VariantExample.svelte';
   import DocPage from '../../lib/doc-page.svelte';
   import { Accordion, Button, Drawer, List, ListItem, ListSubHeader, Typography } from '@uui';
-  import DRAWER_PROPS from '@uui/Drawer/Drawer.types.d.ts?raw';
+  import DRAWER_PROPS from '@defense-unicorns/unicorn-ui/src/lib/Drawer/Drawer.types.d.ts?raw';
   import InlineCode from '../../lib/inline-code.svelte';
   import LAYOUT_EXAMPLE from '../+layout.svelte?raw';
 
