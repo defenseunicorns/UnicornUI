@@ -1,42 +1,6 @@
-# v0.0.39
+# v0.0.40
 
 ## Updates
-
-### Paper
-
-- Added `backgroundColor` prop that accepts `ThemeColors`and overrides the `background-color` of the `Paper`.
-- Added `color` prop that accepts `ThemeColors`and overrides the `color` of the `Paper`.
-
-### Accordion
-
-- Added `hoverColor` prop that accepts `ThemeColors`that will change the hover state color of the default icon.
-
-# v0.0.38
-
-## Breaking Changes
-
-### Theme
-
-- Now restricted to dark or light theme.
-- Removed 'shared' `Palette`
-  - Values for dark and light must be explicitly defined and will no longer be shared using the 'shared' `Pallettes` field.
-  - `UUI_PALETTES` no longer contains 'shared' field.
-
-## Updates
-
-### Paper
-
-- Now only applies the overlay when the theme is set to dark.
-- Overlay opacity is now mapped to match the material opacities.
-
-### Theme
-
-- Now supports deep merging User `Palettes` with the default (`UUI_PALETTES`).
-  - User created `Palettes` are automatically merged with `UUI_Palettes` before being applied by the `Theme` component.
-- Updated documentation to reflect the removal of custom and 'shared' `Palettes`.
-- `Theme` component now sets the html `data-theme` value.
-  - `data-theme` is updated whenever the theme changes.
-- Created `SupportedThemes` type.
 
 ### Drawer
 
@@ -81,6 +45,46 @@ export interface RailProps<T extends EventTarget> extends PaperProps<T> {
   open?: boolean;
 }
 ```
+
+# v0.0.39
+
+## Updates
+
+### Paper
+
+- Added `backgroundColor` prop that accepts `ThemeColors`and overrides the `background-color` of the `Paper`.
+- Added `color` prop that accepts `ThemeColors`and overrides the `color` of the `Paper`.
+
+### Accordion
+
+- Added `hoverColor` prop that accepts `ThemeColors`that will change the hover state color of the default icon.
+
+# v0.0.38
+
+## Breaking Changes
+
+### Theme
+
+- Now restricted to dark or light theme.
+- Removed 'shared' `Palette`
+  - Values for dark and light must be explicitly defined and will no longer be shared using the 'shared' `Pallettes` field.
+  - `UUI_PALETTES` no longer contains 'shared' field.
+
+## Updates
+
+### Paper
+
+- Now only applies the overlay when the theme is set to dark.
+- Overlay opacity is now mapped to match the material opacities.
+
+### Theme
+
+- Now supports deep merging User `Palettes` with the default (`UUI_PALETTES`).
+  - User created `Palettes` are automatically merged with `UUI_Palettes` before being applied by the `Theme` component.
+- Updated documentation to reflect the removal of custom and 'shared' `Palettes`.
+- `Theme` component now sets the html `data-theme` value.
+  - `data-theme` is updated whenever the theme changes.
+- Created `SupportedThemes` type.
 
 # v0.0.37
 
