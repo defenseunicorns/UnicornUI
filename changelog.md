@@ -1,3 +1,11 @@
+# v0.0.41
+
+## Updates
+
+### Dependencies
+
+- `csstype` is now a `dependency` instead of a `devDependency` to ensure `SSX` types are accessible.
+
 # v0.0.40
 
 ## Breaking Changes
