@@ -36,10 +36,10 @@
     "tslib": "^2.3.1",
     "typescript": "^4.7.4",
     "vite": "^4.0.0",
-    "@types/uuid": "^9.0.0",
-    "csstype": "^3.1.1"
+    "@types/uuid": "^9.0.0"
   },
   "dependencies": {
+    "csstype": "^3.1.1",
     "@material/button": "^14.0.0",
     "@material/chips": "^14.0.0",
     "@material/dialog": "^14.0.0",
