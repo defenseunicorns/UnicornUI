@@ -39,3 +39,12 @@
     maximum velocity.</Typography
   >
 </Accordion>
+<Typography variant="subtitle1">Outlined</Typography>
+<Accordion variant="outlined">
+  <Typography slot="headerContent" variant="h6">Accordion 4</Typography>
+  <Typography slot="content"
+    >It's not impossible. I used to bull's-eye womp rats in my T-sixteen back home. They're not much
+    bigger than two meters. Man your ships! And may the Force be with you! Orbiting the planet at
+    maximum velocity.</Typography
+  >
+</Accordion>

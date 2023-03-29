@@ -73,9 +73,6 @@
     display: flex;
     flex-direction: column;
   }
-  .accordion-header-wrapper * {
-    z-index: inherit !important;
-  }
   .accordion-header-wrapper {
     padding: 1rem;
     justify-content: flex-start;
@@ -97,7 +94,6 @@
     width: inherit;
   }
 
-  .accordion.accordion-open .elevation-overlay,
   .accordion.accordion-open .accordion-header-wrapper {
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;

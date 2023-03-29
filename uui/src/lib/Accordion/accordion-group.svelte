@@ -39,7 +39,7 @@
     border-bottom-left-radius: 0px;
   }
 
-  .accordion-group .accordion:nth-last-child(2) {
+  .accordion-group .accordion:last-child {
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
     border-bottom-left-radius: var(--border-radius);
@@ -54,14 +54,10 @@
     box-shadow: unset;
   }
 
-  .accordion-group > .elevation-overlay {
-    display: none;
-  }
-
   .accordion-group .accordion {
     margin: 0px;
   }
-  .accordion-group .accordion:not(:nth-last-child(2)):after {
+  .accordion-group .accordion:not(:last-child):after {
     content: '';
     background-color: rgba(0, 0, 0, 0.12);
     height: 1px;
