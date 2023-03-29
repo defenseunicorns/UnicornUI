@@ -1,3 +1,26 @@
+# v0.0.40
+
+## Breaking Changes
+
+## Paper
+
+- No longer uses overlay to provide the semi-transparent shade in dark mode
+
+## Overlay
+
+- Removed the overlay component
+
+## Updates
+
+### Paper
+
+- When `html[data-theme=dark]` `.paper` now gains a `background-image` with a `linear-gradient` that increases and decreases in opacity when the `elevation` prop increases and decreases.
+
+## Fixes
+
+- Removing the `Overlay` component will fix the bug where the MDC Overlay classes are not properly applied if the `Button` component is not present.
+- Removing the `Overlay` component fixes the overlay layer sizing and scroll behavior.
+
 # v0.0.39
 
 ## Updates

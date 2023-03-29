@@ -20,6 +20,7 @@
     The <InlineCode>Accordion</InlineCode> component may be use individually or wrapped in an
     <InlineCode>AccordionGroup</InlineCode> to hide and display sections of content on a page.
   </Typography>
+
   <Typography variant="h3">Props</Typography>
   <Typography>
     Accordion extends all props and behavior from the
@@ -53,6 +54,7 @@
     </Box>
   </Box>
   <VariantExample code={AccordionInterface} />
+
   <Typography variant="h3">Slots</Typography>
   <Typography>Acccordion supports the following slots:</Typography>
   <Box element="ul">
@@ -76,6 +78,7 @@
       </Typography>
     </Box>
   </Box>
+
   <Typography variant="h3">CSS Classes</Typography>
   <Typography>Accordion supports the following css classes:</Typography>
   <Box element="ul">
@@ -128,13 +131,16 @@
       </Typography>
     </Box>
   </Box>
+
   <Typography variant="h3">Examples</Typography>
   <Typography variant="h4">Basic Accordion</Typography>
   <BasicAccordion />
   <VariantExample code={BasicAccordionText} />
+
   <Typography variant="h4">Controlled Accordions</Typography>
   <AccordionControlledExample />
   <VariantExample code={AccordionControlledExampleText} />
+
   <Typography variant="h2">Accordion Group</Typography>
   <Typography>
     Multiple accordions can be grouped together in a pre-styled
@@ -149,6 +155,7 @@
     <InlineCode>.accordion-group</InlineCode>
   </Typography>
   <VariantExample code={AccordionGroupType} />
+
   <Typography variant="h3">Example</Typography>
   <AccordionGroupExample />
   <VariantExample code={AccordionGroupExampleText} />

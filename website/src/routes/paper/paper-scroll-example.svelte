@@ -21,11 +21,11 @@
   hendrerit elementum velit, eget iaculis ligula consectetur et.
 </Paper>
 
-<style global>
-  .scrolling-paper {
-    padding: 0.5rem;
+<style>
+  :global(.scrolling-paper) {
+    padding: 1rem;
     overflow-y: scroll;
     overflow-x: hidden;
-    max-height: 5rem;
+    max-height: 7rem;
   }
 </style>
