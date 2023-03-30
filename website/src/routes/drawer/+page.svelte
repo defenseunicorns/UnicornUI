@@ -27,7 +27,7 @@
     extends
     <InlineCode>Box</InlineCode>
     , and therefore accepts Box and Paper props as well as some additional specific props -- anchor,
-    open, variant, and hideBackDrop.
+    open, variant, and onClose.
   </Typography>
   <Typography variant="body1">Defaults to anchor left and variant permanent.</Typography>
 
@@ -45,15 +45,26 @@
   <Typography variant="h3">Variants</Typography>
   <Typography variant="h4">Permanent</Typography>
   <Typography variant="body1">
-    The permanent Drawer is by default always open and anchored, sharing screen space with your
-    content. The Unicorn UI navigation you see currently on the left of your screen is an example of
-    the permanent Drawer.
+    The Drawer component is by default a permanent drawer meaning it is open and anchored in the
+    window, sharing screen space with your content.
   </Typography>
   <Typography variant="body1">
-    This variant does not need an anchor location. Because permanent drawers share the screen with
-    content, they end up on the left, right, top, or bottom of the screen based on where you
-    manually place them.
+    Because permanent drawers share the screen with content, you do not need to pass an anchor prop
+    to the drawer. They end up on the left, right, top, or bottom of the screen based on where you
+    manually place them within grids or flexbox.
   </Typography>
+
+  <Typography variant="h4">Mobile Drawer</Typography>
+  <Typography variant="body1">
+    You can turn a permanent drawer into a mobile drawer (one that closes) by setting the
+    <InlineCode>open</InlineCode> prop to false based on screen size.
+  </Typography>
+
+  <Typography variant="h6">
+    The Unicorn UI drawer (what you see on the left), depending on the device used, is an example of
+    a permanent or mobile version of the Drawer component.
+  </Typography>
+
   <Accordion>
     <Typography slot="headerContent">UUI Layout Drawer Code</Typography>
     <VariantExample code={LAYOUT_EXAMPLE} slot="content" />
@@ -62,14 +73,14 @@
   <Typography variant="h4">Temporary</Typography>
   <Typography variant="body1">
     The temporary Drawer acts like a modal, which when opened anchors to a particular screen
-    position (defaults to left). It sits on top of all other content.
+    position (only works with left currently), and sits on top of all other content. To control the
+    state of a temporary draw (opened or closed) use the <InlineCode>open</InlineCode> and
+    <InlineCode>onClose</InlineCode> props.
   </Typography>
 
   <div>
+    <Typography variant="subtitle1">Click for Temporary Drawer:</Typography>
     <Button on:click={() => setDrawerOpen('left')}>Left</Button>
-    <Button on:click={() => setDrawerOpen('right')}>Right</Button>
-    <Button>Top</Button>
-    <Button>Bottom</Button>
   </div>
   <Drawer
     anchor="left"
@@ -78,23 +89,28 @@
     onClose={() => setDrawerOpen('left')}
   >
     <List slot="content">
-      <ListSubHeader>Temporary Left</ListSubHeader>
+      <ListSubHeader>Temporary Drawer</ListSubHeader>
       <ListItem text="List Item" />
     </List>
   </Drawer>
 
-  <Drawer
-    anchor="right"
-    variant="temporary"
-    open={drawerPosControls.right}
-    onClose={() => setDrawerOpen('right')}
-  >
-    <List slot="content">
-      <ListSubHeader>Temporary Right</ListSubHeader>
-      <ListItem text="List Item" />
-    </List>
-  </Drawer>
+  <Accordion>
+    <Typography slot="headerContent">Temporary Drawer Code</Typography>
+    <VariantExample
+      slot="content"
+      code={`
+<Drawer
+  anchor="left"
+  variant="temporary"
+  open={drawerPosControls.left}
+  onClose={() => setDrawerOpen('left')}
+>
+  <List slot="content">
+    <ListSubHeader>Temporary Drawer</ListSubHeader>
+    <ListItem text="List Item" />
+  </List>
+</Drawer>
+    `}
+    />
+  </Accordion>
 </DocPage>
-
-<style lang="scss">
-</style>

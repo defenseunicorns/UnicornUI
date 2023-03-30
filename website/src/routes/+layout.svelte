@@ -2,32 +2,16 @@
   import '../app.css';
   import 'material-symbols/';
   import { afterUpdate } from 'svelte';
-  import ThemeToggle from '$lib/ThemeToggle.svelte';
   import customTypography from '$lib/theme/theme-typography';
-  import { Button, Typography, Theme, Box, Drawer, List, ListItem, DrawerHeader } from '@uui';
+  import { Button, Typography, Theme, Box, IconButton, Drawer, List, ListItem } from '@uui';
   import type { ButtonColor, ButtonShape, ButtonVariant } from '@uui';
+  import Navbar from '$lib/Navbar.svelte';
 
+  // Local Vars
   let path = '';
-
-  afterUpdate(() => {
-    path = window.location.pathname;
-  });
-
-  // Functions
-  function getVariant(
-    pathname: string,
-    currentPath: string
-  ): { variant: ButtonVariant; color: ButtonColor; shape: ButtonShape } {
-    return pathname === currentPath
-      ? { variant: 'raised', color: 'secondary', shape: 'squared' }
-      : { variant: 'flat', color: 'primary', shape: 'squared' };
-  }
-
   let selectedRoute = '';
-  function setSelectedRoute(route: string) {
-    selectedRoute = route;
-  }
-
+  let isDrawerOpen = true;
+  let windowWidth: number;
   const routes = [
     'theme',
     'breakpoints',
@@ -46,12 +30,48 @@
     'drawer',
     'rail'
   ];
+
+  afterUpdate(() => {
+    path = window.location.pathname;
+  });
+
+  // Functions
+  function getVariant(
+    pathname: string,
+    currentPath: string
+  ): { variant: ButtonVariant; color: ButtonColor; shape: ButtonShape } {
+    return pathname === currentPath
+      ? { variant: 'raised', color: 'secondary', shape: 'squared' }
+      : { variant: 'flat', color: 'primary', shape: 'squared' };
+  }
+
+  function setSelectedRoute(route: string) {
+    selectedRoute = route;
+  }
+
+  function ctlDrawer() {
+    isDrawerOpen = !isDrawerOpen;
+  }
+
+  function trackScreenSize() {
+    if (windowWidth < 900) isDrawerOpen = false;
+    else if (windowWidth > 900) isDrawerOpen = true;
+  }
 </script>
 
+<svelte:window bind:innerWidth={windowWidth} on:resize={trackScreenSize} />
+
 <Theme typography={customTypography}>
+  <Navbar>
+    <IconButton
+      on:click={ctlDrawer}
+      iconContent="menu"
+      iconClass="material-symbols-outlined"
+      ssx={{ $md: { $self: { display: 'none !important' } } }}
+    />
+  </Navbar>
   <Box class="body-container">
-    <Drawer>
-      <DrawerHeader title="Components" slot="header" />
+    <Drawer elevation={2} open={isDrawerOpen} ssx={{ $self: { height: 'calc(100vh - 56px)' } }}>
       <List slot="content">
         {#each routes as route}
           <ListItem
@@ -64,6 +84,7 @@
         {/each}
       </List>
     </Drawer>
+
     <Box class="main-container">
       <Box
         element="section"
@@ -90,7 +111,6 @@
           Unicorn UI
         </Typography>
         <Button href="/" {...getVariant(path, '/')}>Home</Button>
-        <ThemeToggle />
       </Box>
       <main>
         <slot />
@@ -114,8 +134,8 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    align-items: center;
     height: 100vh;
+    align-items: center;
     overflow-x: hidden;
     overflow-y: scroll;
   }
