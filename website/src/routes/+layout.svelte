@@ -10,7 +10,6 @@
 
   // Local Vars
   let path = '';
-  let isDrawerOpen = true;
   let windowWidth: number;
 
   afterUpdate(() => {
@@ -27,18 +26,10 @@
       : { variant: 'flat', color: 'primary', shape: 'squared' };
   }
 
-  function trackScreenSize() {
-    if (windowWidth < 900) isDrawerOpen = false;
-    else if (windowWidth > 900) isDrawerOpen = true;
-  }
-
-  function onItemClick() {
-    if (windowWidth < 900) isDrawerOpen = false;
-    console.log(isDrawerOpen);
-  }
+  $: isDrawerOpen = windowWidth && windowWidth > 900 ? true : false;
 </script>
 
-<svelte:window bind:innerWidth={windowWidth} on:resize={trackScreenSize} />
+<svelte:window bind:innerWidth={windowWidth} />
 
 <Theme typography={customTypography}>
   <Navbar>
@@ -50,7 +41,7 @@
     />
   </Navbar>
   <Box class="body-container">
-    <NavigationDrawer {isDrawerOpen} {onItemClick} />
+    <NavigationDrawer {isDrawerOpen} />
     <Box class="main-container">
       <Box
         element="section"

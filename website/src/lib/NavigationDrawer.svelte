@@ -1,8 +1,7 @@
 <script lang="ts">
   import { Box, Drawer, List, ListItem, ListItemAdornment } from '@uui';
 
-  export let isDrawerOpen = true;
-  export let onItemClick: (() => void) | undefined = undefined;
+  export let isDrawerOpen = false;
 
   let selectedRoute = '';
   let themingListOpen = true;
@@ -48,14 +47,13 @@
         <svelte:fragment slot="nestedContent">
           {#each themeRoutestList as route}
             <ListItem
-              slot="nestedContent"
               selected={selectedRoute === route}
               element="a"
               href="/{route}"
               text={transformRoute(route)}
-              on:click={() => {
+              on:click={(e) => {
+                e.stopPropagation();
                 setSelectedRoute(route);
-                onItemClick && onItemClick();
               }}
             />
           {/each}
@@ -78,7 +76,10 @@
               element="a"
               href="/{route}"
               text={transformRoute(route)}
-              on:click={() => setSelectedRoute(route)}
+              on:click={(e) => {
+                e.stopPropagation();
+                setSelectedRoute(route);
+              }}
             />
           {/each}
         </svelte:fragment>
