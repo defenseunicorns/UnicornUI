@@ -3,33 +3,15 @@
   import 'material-symbols/';
   import { afterUpdate } from 'svelte';
   import customTypography from '$lib/theme/theme-typography';
-  import { Button, Typography, Theme, Box, IconButton, Drawer, List, ListItem } from '@uui';
+  import { Button, Typography, Theme, Box, IconButton } from '@uui';
   import type { ButtonColor, ButtonShape, ButtonVariant } from '@uui';
   import Navbar from '$lib/Navbar.svelte';
+  import NavigationDrawer from '$lib/NavigationDrawer.svelte';
 
   // Local Vars
   let path = '';
-  let selectedRoute = '';
   let isDrawerOpen = true;
   let windowWidth: number;
-  const routes = [
-    'theme',
-    'breakpoints',
-    'scoped-styles',
-    'box',
-    'button',
-    'icon-button',
-    'accordion',
-    'stepper',
-    'dialog',
-    'typography',
-    'chip',
-    'text-field',
-    'list-item',
-    'paper',
-    'drawer',
-    'rail'
-  ];
 
   afterUpdate(() => {
     path = window.location.pathname;
@@ -45,17 +27,14 @@
       : { variant: 'flat', color: 'primary', shape: 'squared' };
   }
 
-  function setSelectedRoute(route: string) {
-    selectedRoute = route;
-  }
-
-  function ctlDrawer() {
-    isDrawerOpen = !isDrawerOpen;
-  }
-
   function trackScreenSize() {
     if (windowWidth < 900) isDrawerOpen = false;
     else if (windowWidth > 900) isDrawerOpen = true;
+  }
+
+  function onItemClick() {
+    if (windowWidth < 900) isDrawerOpen = false;
+    console.log(isDrawerOpen);
   }
 </script>
 
@@ -64,27 +43,14 @@
 <Theme typography={customTypography}>
   <Navbar>
     <IconButton
-      on:click={ctlDrawer}
+      on:click={() => (isDrawerOpen = !isDrawerOpen)}
       iconContent="menu"
       iconClass="material-symbols-outlined"
       ssx={{ $md: { $self: { display: 'none !important' } } }}
     />
   </Navbar>
   <Box class="body-container">
-    <Drawer elevation={2} open={isDrawerOpen} ssx={{ $self: { height: 'calc(100vh - 56px)' } }}>
-      <List slot="content">
-        {#each routes as route}
-          <ListItem
-            selected={selectedRoute === route}
-            element="a"
-            href="/{route}"
-            text={route.toUpperCase()}
-            on:click={() => setSelectedRoute(route)}
-          />
-        {/each}
-      </List>
-    </Drawer>
-
+    <NavigationDrawer {isDrawerOpen} {onItemClick} />
     <Box class="main-container">
       <Box
         element="section"

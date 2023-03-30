@@ -1,45 +1,17 @@
 <script lang="ts">
   import DocPage from '../../lib/doc-page.svelte';
-  import { Paper, Rail, IconButton, List, ListItem, ListItemAdornment, Typography } from '@uui';
-
-  let open = false;
-  function setOpen() {
-    open = !open;
-  }
+  import { Paper, List, IconButton, Typography, Drawer } from '@uui';
 </script>
 
 <Paper elevation={2} class="rail-demo-container">
-  <Rail {open}>
-    <IconButton
-      iconClass="material-symbols-outlined"
-      iconContent="menu"
-      slot="header"
-      on:click={setOpen}
-    />
-    <svelte:fragment slot="content">
-      {#if open}
-        <List>
-          <ListItem text="Data">
-            <ListItemAdornment slot="leadingAdornment">
-              <IconButton iconClass="material-symbols-outlined" iconContent="folder" />
-            </ListItemAdornment>
-          </ListItem>
-          <ListItem text="Data">
-            <ListItemAdornment slot="leadingAdornment">
-              <IconButton iconClass="material-symbols-outlined" iconContent="schedule" />
-            </ListItemAdornment>
-          </ListItem>
-        </List>
-      {:else}
-        <List disablePadding>
-          <IconButton iconClass="material-symbols-outlined" iconContent="folder" />
-          <IconButton iconClass="material-symbols-outlined" iconContent="schedule" />
-        </List>
-      {/if}
-    </svelte:fragment>
-  </Rail>
+  <Drawer rail open={false}>
+    <List slot="content" disablePadding>
+      <IconButton iconClass="material-symbols-outlined" iconContent="folder" />
+      <IconButton iconClass="material-symbols-outlined" iconContent="schedule" />
+    </List>
+  </Drawer>
   <DocPage>
-    <Typography variant="bod1"
+    <Typography variant="body1"
       >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec volutpat metus at libero
       sagittis sagittis a non risus. In mi mauris, viverra id malesuada ac, consequat quis neque.
       Donec molestie ligula quis mauris vehicula rhoncus. Integer pretium felis quis volutpat

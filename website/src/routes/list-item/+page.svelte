@@ -289,6 +289,8 @@ export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLUListElement> {
 
   .inline-examples {
     display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
     justify-content: space-around;
   }
 </style>

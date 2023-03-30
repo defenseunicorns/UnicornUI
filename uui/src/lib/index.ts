@@ -3,10 +3,8 @@ import Box from './Box/box.svelte';
 import Chip from './Chip/chip.svelte';
 import Step from './Stepper/Step.svelte';
 import List from './List/List.svelte';
-import Rail from './Rail/Rail.svelte';
 import Paper from './Paper/Paper.svelte';
 import Drawer from './Drawer/Drawer.svelte';
-import DrawerHeader from './Drawer/DrawerHeader.svelte';
 import Theme from './Theme/theme.svelte';
 import Button from './Button/Button.svelte';
 import Dialog from './Dialog/Dialog.svelte';
@@ -33,10 +31,8 @@ export {
   Chip,
   Step,
   List,
-  Rail,
   Paper,
   Drawer,
-  DrawerHeader,
   Theme,
   Button,
   Dialog,
@@ -136,5 +132,4 @@ export type {
   BreakpointValue
 } from './shared/theme/breakpoints/breakpoints.types';
 export type { PaperProps } from './Paper/Paper.types';
-export type { DrawerProps, DrawerHeaderProps } from './Drawer/Drawer.types';
-export type { RailProps } from './Rail/Rail.types';
+export type { DrawerProps } from './Drawer/Drawer.types';

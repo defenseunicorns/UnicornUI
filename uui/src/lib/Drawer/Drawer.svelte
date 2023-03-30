@@ -1,38 +1,42 @@
 <script lang="ts">
   import Paper from '../Paper/Paper.svelte';
-  import type { DrawerAnchor, DrawerProps, DrawerVariant } from './Drawer.types';
+  import type { DrawerAnchor, DrawerProps } from './Drawer.types';
 
   // Props
   type T = $$Generic<EventTarget>;
   type $$Props = DrawerProps<T>;
   export let anchor: DrawerAnchor = 'left';
-  export let variant: DrawerVariant = 'permanent';
+  export let modal = false;
   export let open = true;
+  export let rail = false;
   export let onClose: (() => void) | undefined = undefined;
 
+  // Local Vars
   let elevation = $$restProps.elevation || 16;
-  $: variantClasses = `${
-    variant === 'temporary'
-      ? `mdc-drawer--modal ${variant} ${anchor} ${open && 'mdc-drawer--open'}`
-      : `${variant} ${anchor}`
-  }`;
 
-  $: drawerState = open ? 'open' : 'closed';
+  // Reactive Vars
+  $: variantClasses = `${
+    modal ? `mdc-drawer--modal ${anchor} ${open && 'mdc-drawer--open'}` : ``
+  } ${rail && 'rail'} ${open ? 'open' : 'closed'}`;
 </script>
 
 <Paper
   {elevation}
   variant="elevation"
   {...$$restProps}
-  class="drawer mdc-drawer {variantClasses} {drawerState}"
+  class="drawer mdc-drawer {variantClasses} {$$restProps.class || ''}"
 >
-  <slot name="header" />
+  {#if $$slots.header}
+    <div class="header">
+      <slot name="header" />
+    </div>
+  {/if}
   <div class="mdc-drawer__content">
     <slot name="content" />
   </div>
 </Paper>
 
-{#if variant === 'temporary'}
+{#if modal}
   <div class="mdc-drawer-scrim" on:click={onClose} />
 {/if}
 
@@ -48,10 +52,19 @@
     transition: width 0.5s;
   }
 
-  .drawer.mdc-drawer:not(.temporary).closed {
-    width: 0;
+  // Header
+  .drawer .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
+  .drawer.mdc-drawer.open .header {
+    justify-content: end;
+    margin-right: 1rem;
+  }
+
+  // Modal
   .mdc-drawer--modal {
     top: 0;
   }
@@ -60,6 +73,21 @@
     right: 0;
   }
 
+  // Closed State
+  .drawer.mdc-drawer:not(.rail).closed {
+    width: 0;
+  }
+
+  .drawer.mdc-drawer.rail.closed {
+    width: 72px;
+  }
+
+  .drawer.mdc-drawer.rail.closed .mdc-drawer__content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  // Target ListSubheader if nested in Drawer
   .drawer.mdc-drawer .mdc-deprecated-list-group__subheader {
     color: var(--on-background);
   }
