@@ -1,4 +1,4 @@
-# v0.0.42
+# v0.0.43
 
 ## Updates
 
@@ -45,6 +45,14 @@ export interface RailProps<T extends EventTarget> extends PaperProps<T> {
   open?: boolean;
 }
 ```
+
+# v0.0.42
+
+## Fixes
+
+### IconButton
+
+- `IconButtonProps` now properly extends `BoxProps`
 
 # v0.0.41
 
