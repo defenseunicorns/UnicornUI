@@ -1,3 +1,11 @@
+# v0.0.42
+
+## Fixes
+
+### IconButton
+
+- `IconButtonProps` now properly extends `BoxProps`
+
 # v0.0.41
 
 ## Updates
