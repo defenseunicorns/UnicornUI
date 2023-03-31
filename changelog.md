@@ -1,3 +1,55 @@
+# v0.0.42
+
+## Fixes
+
+### IconButton
+
+- `IconButtonProps` now properly extends `BoxProps`
+
+# v0.0.41
+
+## Updates
+
+### Dependencies
+
+- `csstype` is now a `dependency` instead of a `devDependency` to ensure `SSX` types are accessible.
+
+# v0.0.40
+
+## Breaking Changes
+
+## Paper
+
+- No longer uses overlay to provide the semi-transparent shade in dark mode
+
+## Overlay
+
+- Removed the overlay component
+
+## Updates
+
+### Paper
+
+- When `html[data-theme=dark]` `.paper` now gains a `background-image` with a `linear-gradient` that increases and decreases in opacity when the `elevation` prop increases and decreases.
+
+## Fixes
+
+- Removing the `Overlay` component will fix the bug where the MDC Overlay classes are not properly applied if the `Button` component is not present.
+- Removing the `Overlay` component fixes the overlay layer sizing and scroll behavior.
+
+# v0.0.39
+
+## Updates
+
+### Paper
+
+- Added `backgroundColor` prop that accepts `ThemeColors`and overrides the `background-color` of the `Paper`.
+- Added `color` prop that accepts `ThemeColors`and overrides the `color` of the `Paper`.
+
+### Accordion
+
+- Added `hoverColor` prop that accepts `ThemeColors`that will change the hover state color of the default icon.
+
 # v0.0.38
 
 ## Breaking Changes
@@ -10,6 +62,11 @@
   - `UUI_PALETTES` no longer contains 'shared' field.
 
 ## Updates
+
+### Paper
+
+- Now only applies the overlay when the theme is set to dark.
+- Overlay opacity is now mapped to match the material opacities.
 
 ### Theme
 
