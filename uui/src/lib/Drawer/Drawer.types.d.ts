@@ -1,4 +1,3 @@
-import type { BoxProps } from '../Box/box.types';
 import type { PaperProps } from '../Paper/Paper.types';
 export type DrawerAnchor = 'bottom' | 'left' | 'right' | 'top';
 

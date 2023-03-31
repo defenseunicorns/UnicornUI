@@ -10,7 +10,16 @@
   title="Button"
   code={`
 Props (extends BoxProps<HTMLButtonElement | HTMLAnchorElement>):
-  color: ButtonColor = 'primary';
+  // Used to override the background color
+  // Applies to background in raised and flat
+  // Applies to border and text in outlined and base
+  backgroundColor: ThemeColor = '';
+  // Used to override the text color in raised and flat variants
+  textColor: ThemeColor = '';
+  // Expects a valid theme color.
+  // Will create a var from the color for backgroundColor 
+  // Will create a var from the color for textColor with the prefix 'on-'
+  color: ThemeColor = 'primary';
   shape: ButtonShape = 'squared';
   variant: ButtonVariant = 'text';
 
