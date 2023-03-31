@@ -6,6 +6,7 @@ export interface ListItemProps<T extends EventTarget>
   extends svelte.JSX.IntrinsicAttributes<BoxProps<T>> {
   text: string;
   secondaryText?: string;
+  textColor?: string;
   selected?: boolean;
   divider?: boolean;
   disabled?: boolean;
