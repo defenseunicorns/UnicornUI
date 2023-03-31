@@ -32,9 +32,7 @@
   <VariantExample
     code={`
 
-export interface ListItemProps
-  extends svelte.JSX.IntrinsicAttributes<svelte.JSX.HTMLAttributes<HTMLLIElement>> 
-{
+export interface ListItemProps<T extends EventTarget> extends BoxProps<T> {
   text: string;
   secondaryText?: string;
   selected?: boolean;
@@ -291,6 +289,8 @@ export interface ListProps extends svelte.JSX.HTMLAttributes<HTMLUListElement> {
 
   .inline-examples {
     display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
     justify-content: space-around;
   }
 </style>

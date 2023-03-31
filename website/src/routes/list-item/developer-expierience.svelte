@@ -15,10 +15,11 @@
     Box
   } from '@uui';
 
-  type ExtendedListItems1 = ListItemProps<EventTarget> & {
-    leadingAdornment?: boolean;
-    trailingAdornment?: boolean;
-  };
+  type ExtendedListItems1 = svelte.JSX.IntrinsicAttributes &
+    ListItemProps<EventTarget> & {
+      leadingAdornment?: boolean;
+      trailingAdornment?: boolean;
+    };
 
   const listItemsIteration1: ExtendedListItems1[] = [
     { text: 'List Item', selected: true },
@@ -47,10 +48,11 @@
     }
   ];
 
-  type ExtendedListItems2 = ListItemProps<EventTarget> & {
-    leadingAdornment?: Record<string, any>;
-    trailingAdornment?: Record<string, any>;
-  };
+  type ExtendedListItems2 = svelte.JSX.IntrinsicAttributes &
+    ListItemProps<EventTarget> & {
+      leadingAdornment?: Record<string, any>;
+      trailingAdornment?: Record<string, any>;
+    };
 
   const listItemsIteration2: ExtendedListItems2[] = [
     { text: 'List Item', secondaryText: 'Secondary Text' },

@@ -1,8 +1,10 @@
+import type { BoxProps } from '../Box/box.types';
+
 export type IconButtonColor = 'primary' | 'secondary' | 'inherit';
 
 export interface IconButtonProps
   extends svelte.JSX.HTMLAttributes<HTMLButtonElement | HTMLAnchorElement>,
-    Box<HTMLButtonElement | HTMLAnchorElement> {
+    BoxProps<HTMLButtonElement | HTMLAnchorElement> {
   toggled?: boolean;
   iconClass?: string;
   toggleable?: boolean;

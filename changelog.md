@@ -1,3 +1,67 @@
+# v0.0.43
+
+## Updates
+
+### Drawer
+
+- Created `Drawer` component that can either be permanent or temporary (modal).
+- Extends Paper so it can take elevation as well as all BoxProps.
+- Has two slots -- header and content.
+- Works well with using `List` as the content container.
+
+```ts
+export interface DrawerProps<T extends EventTarget> extends PaperProps<T> {
+  anchor?: DrawerAnchor;
+  open?: boolean;
+  variant?: DrawerVariant;
+  hideBackdrop?: boolean;
+  onClose?: () => void;
+}
+```
+
+### Drawer Header
+
+- Extracted header that can be used with a `Drawer`.
+- Uses `Box` as base.
+- Text is styled by `--on-surface`
+
+```ts
+export interface DrawerHeaderProps<T extends EvenTarget> extends BoxProps<T> {
+  title: string;
+  subtitle?: string;
+}
+```
+
+### Rail
+
+- Thinner version of the `Drawer` that typically shows `IconButton`s as content.
+- Extends Paper so it can take elevation as well as all BoxProps.
+- Default elevation is 16.
+- Has two slots -- header and content.
+- Is expandable via the `open` prop.
+
+```ts
+export interface RailProps<T extends EventTarget> extends PaperProps<T> {
+  open?: boolean;
+}
+```
+
+# v0.0.42
+
+## Fixes
+
+### IconButton
+
+- `IconButtonProps` now properly extends `BoxProps`
+
+# v0.0.41
+
+## Updates
+
+### Dependencies
+
+- `csstype` is now a `dependency` instead of a `devDependency` to ensure `SSX` types are accessible.
+
 # v0.0.40
 
 ## Breaking Changes

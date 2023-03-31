@@ -19,6 +19,7 @@
     "@types/jest": "^29.0.0",
     "@typescript-eslint/eslint-plugin": "^5.27.0",
     "@typescript-eslint/parser": "^5.27.0",
+    "csstype": "^3.1.1",
     "eslint": "^8.16.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-svelte3": "^4.0.0",
@@ -36,21 +37,22 @@
     "tslib": "^2.3.1",
     "typescript": "^4.7.4",
     "vite": "^4.0.0",
-    "@types/uuid": "^9.0.0",
-    "csstype": "^3.1.1"
+    "@types/uuid": "^9.0.0"
   },
   "dependencies": {
+    "csstype": "^3.1.1",
     "@material/button": "^14.0.0",
+    "@material/checkbox": "^14.0.0",
     "@material/chips": "^14.0.0",
     "@material/dialog": "^14.0.0",
+    "@material/drawer": "^14.0.0",
+    "@material/form-field": "^14.0.0",
     "@material/icon-button": "^14.0.0",
     "@material/list": "^14.0.0",
     "@material/ripple": "^14.0.0",
     "@material/textfield": "^14.0.0",
     "@material/theme": "^14.0.0",
     "@material/typography": "^14.0.0",
-    "@material/checkbox": "^14.0.0",
-    "@material/form-field": "^14.0.0",
     "uuid": "^9.0.0"
   },
   "type": "module"
