@@ -1,9 +1,10 @@
-# v0.0.43
+# v0.0.44
 
 ## Breaking Changes
 
 ### ListItem
 
+- Renamed slots in dash format: leadingAdornment => `leading-adornment`; trailingAdornment => `trailing-adornment`; nestedContent => `nested-content`.
 - Removed ListItem slot props `disabled` and `selected` and ListItemSlots type.
 - This should not be of major effect, since any logic for controlling selected and disabled states of ListItems does not live within ListItem and therefore does not need to be lifted out. If you were using these slot props for controlling ListItemAdornment state, you only need to apply the same logic controlling ListItem to ListItemAdornment.
 
@@ -25,6 +26,54 @@ now becomes:
     <ListItemCheckbox checked={...logic} disabled={...logic}>
   </ListItemAdornment>
 </ListITem>
+```
+
+# v0.0.43
+
+## Updates
+
+### Drawer
+
+- Created `Drawer` component that can either be permanent or temporary (modal).
+- Extends Paper so it can take elevation as well as all BoxProps.
+- Has two slots -- header and content.
+- Works well with using `List` as the content container.
+
+```ts
+export interface DrawerProps<T extends EventTarget> extends PaperProps<T> {
+  anchor?: DrawerAnchor;
+  open?: boolean;
+  variant?: DrawerVariant;
+  hideBackdrop?: boolean;
+  onClose?: () => void;
+}
+```
+
+### Drawer Header
+
+- Extracted header that can be used with a `Drawer`.
+- Uses `Box` as base.
+- Text is styled by `--on-surface`
+
+```ts
+export interface DrawerHeaderProps<T extends EvenTarget> extends BoxProps<T> {
+  title: string;
+  subtitle?: string;
+}
+```
+
+### Rail
+
+- Thinner version of the `Drawer` that typically shows `IconButton`s as content.
+- Extends Paper so it can take elevation as well as all BoxProps.
+- Default elevation is 16.
+- Has two slots -- header and content.
+- Is expandable via the `open` prop.
+
+```ts
+export interface RailProps<T extends EventTarget> extends PaperProps<T> {
+  open?: boolean;
+}
 ```
 
 # v0.0.42
@@ -130,7 +179,7 @@ export interface ListProps<T extends EventTarget> extends BoxProps<T> {
 ### ListItem
 
 - Main component of lists, wrapping text and adornments.
-- Three named slots: leadingAdornment, trailingAdornment, nestedContent
+- Three named slots: leading-adornment, trailing-adornment, nested-content
 - States: hoverable, selected, disabled.
 - Uses Box unded the hood, which allows for event redirection and ssx.
 
@@ -546,3 +595,7 @@ const palette = {
 - added running changelog
 - added typography "inherit" to default-typography-config
 - removed inherit class from Typography component.
+
+```
+
+```

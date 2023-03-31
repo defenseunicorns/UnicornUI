@@ -1,5 +1,4 @@
 <script lang="ts">
-  import Variant from '$lib/Variant.svelte';
   import ThemeToggle from '$lib/ThemeToggle.svelte';
   import VariantExample from '$lib/VariantExample.svelte';
   import { Box, Accordion, Typography, AccordionGroup } from '@uui';
@@ -11,13 +10,14 @@
   import PREFERRED_THEME_EXAMPLE from './PreferredTheme.example.svelte?raw';
   import DEFAULT_PALETTE_TEXT from '@defense-unicorns/unicorn-ui/src/lib/shared/theme/palette/default-palettes.ts?raw';
   import DEFAULT_TYPOGRAPHY_TEXT from '@defense-unicorns/unicorn-ui/src/lib/shared/theme/typography-config/default-typography-config?raw';
+  import DocPage from '$lib/doc-page.svelte';
 </script>
 
-<Variant
-  title="Theme"
-  code={`
-Props:
-
+<DocPage>
+  <Typography variant="h2">Theme</Typography>
+  <Typography variant="h3">Props</Typography>
+  <VariantExample
+    code={`
   // These are the (default, optional) named Palettes.
   palettes?: Palettes = {
     light?: Palette,
@@ -50,7 +50,7 @@ Additional Notes:
   - A runtime list of available css vars are in the head style id='uui-theme-css'
   - Default looks for preferred theme from browser.
 `}
->
+  />
   <AccordionGroup>
     <Accordion isOpen>
       <Typography slot="headerContent" variant="h6">Example: Default Installation</Typography>
@@ -104,4 +104,4 @@ Additional Notes:
       </Box>
     </Accordion>
   </AccordionGroup>
-</Variant>
+</DocPage>

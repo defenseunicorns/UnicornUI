@@ -20,6 +20,7 @@
   // Local Variables
   let listItemContainerRef: HTMLDivElement;
   let listItemRef: HTMLLIElement;
+  let element = $$restProps.element || 'div';
 
   // Functions
 
@@ -34,8 +35,9 @@
 </script>
 
 <Box
+  {...$$restProps}
   class="list-item-container"
-  element="div"
+  {element}
   ref={listItemContainerRef}
   eventComponent={current_component}
   {...$$restProps}

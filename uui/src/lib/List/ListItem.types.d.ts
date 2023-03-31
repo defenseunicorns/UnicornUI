@@ -2,8 +2,7 @@ import type { BoxProps } from '../Box/box.types';
 
 export type ListItemSlotProps = Record<string, boolean | undefined>;
 
-export interface ListItemProps<T extends EventTarget>
-  extends svelte.JSX.IntrinsicAttributes<BoxProps<T>> {
+export interface ListItemProps<T extends EventTarget> extends BoxProps<T> {
   text: string;
   secondaryText?: string;
   textColor?: string;

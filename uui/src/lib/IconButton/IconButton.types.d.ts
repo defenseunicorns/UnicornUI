@@ -1,4 +1,4 @@
-import type { BoxProps } from '$lib/Box/box.types';
+import type { BoxProps } from '../Box/box.types';
 
 export type IconButtonColor = 'primary' | 'secondary' | 'inherit';
 

@@ -101,9 +101,9 @@
   <Typography variant="body1">
     <InlineCode>ListItem</InlineCode> has three named slots:
     <ul>
-      <li>leadingAdornment</li>
-      <li>trailingAdornment</li>
-      <li>nestedContent</li>
+      <li>leading-adornment</li>
+      <li>trailing-adornment</li>
+      <li>nested-content</li>
     </ul>
   </Typography>
   <Typography variant="body1">
@@ -197,5 +197,12 @@
     width: 300px;
     border: 1px solid gray;
     background-color: var(--surface);
+  }
+
+  .inline-examples {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-around;
   }
 </style>
