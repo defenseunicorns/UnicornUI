@@ -1,7 +1,7 @@
 <script lang="ts">
   import VariantExample from '../../lib/VariantExample.svelte';
   import DocPage from '../../lib/doc-page.svelte';
-  import { Accordion, Button, Drawer, List, ListItem, ListSubHeader, Typography } from '@uui';
+  import { Accordion, Typography } from '@uui';
   import DRAWER_PROPS from '@defense-unicorns/unicorn-ui/src/lib/Drawer/Drawer.types.d.ts?raw';
   import InlineCode from '../../lib/inline-code.svelte';
   import NAVIGATION_DRAWER_EXP from '../../lib/NavigationDrawer.svelte?raw';
@@ -9,18 +9,8 @@
   import ExpandingRail from './expanding-rail.svelte';
   import NON_EXPAND_RAIL from './non-expand-rail.svelte?raw';
   import EXPANDING_RAIL from './expanding-rail.svelte?raw';
-
-  const drawerPosControls: Record<string, boolean> = {
-    left: false,
-    right: false,
-    top: false,
-    bottom: false
-  };
-
-  function setDrawerOpen(position: string) {
-    drawerPosControls[position] = !drawerPosControls[position];
-    console.log(position, drawerPosControls[position]);
-  }
+  import MODAL_DRAWER from './modal-drawer.svelte?raw';
+  import ModalDrawer from './modal-drawer.svelte';
 </script>
 
 <DocPage>
@@ -83,35 +73,11 @@
     <InlineCode>onClose</InlineCode> props.
   </Typography>
 
-  <div>
-    <Typography variant="h6">Click for Modal Drawer:</Typography>
-    <Button on:click={() => setDrawerOpen('left')}>Left</Button>
-  </div>
-  <Drawer anchor="left" modal open={drawerPosControls.left} onClose={() => setDrawerOpen('left')}>
-    <List slot="content">
-      <ListSubHeader>Modal Drawer</ListSubHeader>
-      <ListItem text="List Item" />
-    </List>
-  </Drawer>
+  <ModalDrawer />
 
   <Accordion>
     <Typography slot="headerContent">Modal Drawer Code</Typography>
-    <VariantExample
-      slot="content"
-      code={`
-<Drawer
-  anchor="left"
-  variant="temporary"
-  open={drawerPosControls.left}
-  onClose={() => setDrawerOpen('left')}
->
-  <List slot="content">
-    <ListSubHeader>Temporary Drawer</ListSubHeader>
-    <ListItem text="List Item" />
-  </List>
-</Drawer>
-    `}
-    />
+    <VariantExample slot="content" code={MODAL_DRAWER} />
   </Accordion>
 
   <Typography variant="h4">Rail</Typography>

@@ -15,9 +15,9 @@
   let elevation = $$restProps.elevation || 16;
 
   // Reactive Vars
-  $: variantClasses = `${
-    modal ? `mdc-drawer--modal ${anchor} ${open && 'mdc-drawer--open'}` : ``
-  } ${rail && 'rail'} ${open ? 'open' : 'closed'}`;
+  $: variantClasses = `${modal ? `modal-drawer ${anchor} ${open && 'mdc-drawer--open'}` : ``} ${
+    rail && 'rail'
+  } ${open ? 'open' : 'closed'}`;
 </script>
 
 <Paper
@@ -65,12 +65,15 @@
   }
 
   // Modal
-  .mdc-drawer--modal {
+
+  .modal-drawer {
+    @extend .mdc-drawer--modal;
     top: 0;
   }
 
-  .mdc-drawer--modal.temporary.right {
+  .modal-drawer.right {
     right: 0;
+    left: initial;
   }
 
   // Closed State
