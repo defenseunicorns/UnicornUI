@@ -30,7 +30,7 @@
     },
     $md: {
       $self: {
-        margin: '0rem 15%'
+        margin: '0rem 5%'
       }
     },
     '$self a': {
