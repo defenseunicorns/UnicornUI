@@ -12,11 +12,4 @@ export interface ListItemProps<T extends EventTarget>
   disableGutters?: boolean;
 }
 
-export interface ListItemSlots {
-  default: ListItemSlotProps;
-  'leading-adornment': ListItemSlotProps;
-  'trailing-adornment': ListItemSlotProps;
-  'nested-content': ListItemSlotProps;
-}
-
 export type ListItemAdornmentProps<T extends EventTarget> = BoxProps<T>;

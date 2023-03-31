@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte/internal';
   import { MDCRipple } from '@material/ripple';
-  import type { ListItemProps, ListItemSlots } from './ListItem.types';
+  import type { ListItemProps } from './ListItem.types';
   import { current_component } from 'svelte/internal';
   import Box from '../Box/box.svelte';
 
@@ -14,9 +14,6 @@
   export let disabled: boolean | undefined = undefined;
   export let disableGutters: boolean | undefined = undefined;
   export let divider: boolean | undefined = undefined;
-
-  // Slot Types
-  type $$Slots = ListItemSlots;
 
   // Local Variables
   let listItemContainerRef: HTMLDivElement;
@@ -51,7 +48,7 @@
     class:two-line={secondaryText}
     class:divider
   >
-    <slot name="leading-adornment" {selected} {disabled} />
+    <slot name="leading-adornment" />
 
     <span class="mdc-deprecated-list-item__ripple" />
 
@@ -64,7 +61,7 @@
       <span class="mdc-deprecated-list-item__text">{text}</span>
     {/if}
 
-    <slot name="trailing-adornment" {selected} {disabled} />
+    <slot name="trailing-adornment" />
   </li>
   {#if selected && $$slots['nested-content']}
     <div class="nested-content">

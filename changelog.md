@@ -1,3 +1,32 @@
+# v0.0.43
+
+## Breaking Changes
+
+### ListItem
+
+- Removed ListItem slot props `disabled` and `selected` and ListItemSlots type.
+- This should not be of major effect, since any logic for controlling selected and disabled states of ListItems does not live within ListItem and therefore does not need to be lifted out. If you were using these slot props for controlling ListItemAdornment state, you only need to apply the same logic controlling ListItem to ListItemAdornment.
+
+i.e.
+
+```ts
+<ListItem selected={...logic} let:selected disabled={...logic} let:disabled>
+  <ListItemAdornment slot="trailing-content">
+    <ListItemCheckbox checked={selected} {disabled}>
+  </ListItemAdornment>
+</ListITem>
+```
+
+now becomes:
+
+```ts
+<ListItem selected={...logic} disabled={...logic}>
+  <ListItemAdornment slot="trailing-content">
+    <ListItemCheckbox checked={...logic} disabled={...logic}>
+  </ListItemAdornment>
+</ListITem>
+```
+
 # v0.0.42
 
 ## Fixes

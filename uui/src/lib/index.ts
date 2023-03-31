@@ -120,7 +120,6 @@ export type { ListSubHeaderProps } from './List/ListSubHeader.types';
 export type { ListProps } from './List/List.types';
 export type {
   ListItemProps,
-  ListItemSlots,
   ListItemSlotProps,
   ListItemAdornmentProps
 } from './List/ListItem.types';
