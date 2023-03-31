@@ -26,9 +26,7 @@
 
   function transformRoute(route: string) {
     let words = route.split('-');
-    for (const _ of words) {
-      words = words.map((word) => word.charAt(0).toUpperCase() + word.slice(1));
-    }
+    words = words.map((word) => word.charAt(0).toUpperCase() + word.slice(1));
     return words.join(' ');
   }
 </script>
