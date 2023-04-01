@@ -1,3 +1,20 @@
+# v0.0.44
+
+## Updates
+
+### Button
+
+- Props
+  - updated `color` prop to take in `ThemeColor`
+    - It sets the `backgroundColor` to the prop value
+    - It sets the `textColor` to the prop value prefixed with `on-`
+  - added `backgroundColor` prop that takes in a `ThemeColor`
+    - overrides the `backgroundColor` from the `color` prop
+    - Applies as `background-color` in `raised` and `flat` variants
+    - Applies as `color`, `border-color` in `default` and `outlined` variants
+  - added `textColor` prop that takes in a `ThemeColor`
+    - overrides the label `color` in the `raised` and `flat` variants.
+
 # v0.0.43
 
 ## Updates
