@@ -1,14 +1,15 @@
 <script lang="ts">
   import { Box, Drawer, List, ListItem, ListItemAdornment } from '@uui';
   import { onMount } from 'svelte';
+  import { appStatesStore, updateAppStates } from './stores/nav-drawer-state-store';
 
   type $$Props = { isDrawerOpen: boolean };
   export let isDrawerOpen = false;
 
   // Local vars
-  let selectedRoute = localStorage.getItem('route') || '/';
-  let themingListOpen: boolean = JSON.parse(localStorage.getItem('theming') || 'true');
-  let componentListOpen: boolean = JSON.parse(localStorage.getItem('components') || 'true');
+  let selectedRoute = '';
+  let themingListOpen = false;
+  let componentListOpen = false;
 
   const themeRoutestList = ['theme', 'breakpoints', 'scoped-styles', 'typography', 'box', 'paper'];
   const componentRoutesList = [
@@ -25,16 +26,17 @@
 
   // Functions
   onMount(() => {
-    if (!localStorage.getItem('theming')) {
-      localStorage.setItem('theming', JSON.stringify(true));
-      localStorage.setItem('components', JSON.stringify(true));
-      localStorage.setItem('route', '/');
-    }
+    appStatesStore.subscribe((states) => {
+      themingListOpen = states.listStates.theming;
+      componentListOpen = states.listStates.components;
+      selectedRoute = states.currentRoute;
+    });
   });
 
   function setSelectedRoute(route: string) {
-    selectedRoute = route;
-    localStorage.setItem('route', route);
+    appStatesStore.update((states) => {
+      return updateAppStates({ ...states, currentRoute: route });
+    });
   }
 
   function transformRoute(route: string) {
@@ -44,13 +46,19 @@
   }
 
   function updateDrawerStates(list: string) {
-    if (list === 'theming') {
-      localStorage.setItem(list, JSON.stringify(!themingListOpen));
-      themingListOpen = !themingListOpen;
-    } else {
-      localStorage.setItem(list, JSON.stringify(!componentListOpen));
-      componentListOpen = !componentListOpen;
-    }
+    appStatesStore.update((states) => {
+      if (list === 'theming') {
+        return updateAppStates({
+          ...states,
+          listStates: { ...states.listStates, theming: !themingListOpen }
+        });
+      } else {
+        return updateAppStates({
+          ...states,
+          listStates: { ...states.listStates, components: !componentListOpen }
+        });
+      }
+    });
   }
 </script>
 
