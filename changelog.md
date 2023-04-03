@@ -1,3 +1,33 @@
+# v0.0.45
+
+## Breaking Changes
+
+### ListItem
+
+- Renamed slots in dash format: leadingAdornment => `leading-adornment`; trailingAdornment => `trailing-adornment`; nestedContent => `nested-content`.
+- Removed ListItem slot props `disabled` and `selected` and ListItemSlots type.
+- This should not be of major effect, since any logic for controlling selected and disabled states of ListItems does not live within ListItem and therefore does not need to be lifted out. If you were using these slot props for controlling ListItemAdornment state, you only need to apply the same logic controlling ListItem to ListItemAdornment.
+
+i.e.
+
+```ts
+<ListItem selected={...logic} let:selected disabled={...logic} let:disabled>
+  <ListItemAdornment slot="trailing-content">
+    <ListItemCheckbox checked={selected} {disabled}>
+  </ListItemAdornment>
+</ListITem>
+```
+
+now becomes:
+
+```ts
+<ListItem selected={...logic} disabled={...logic}>
+  <ListItemAdornment slot="trailing-content">
+    <ListItemCheckbox checked={...logic} disabled={...logic}>
+  </ListItemAdornment>
+</ListITem>
+```
+
 # v0.0.44
 
 ## Updates
@@ -166,7 +196,7 @@ export interface ListProps<T extends EventTarget> extends BoxProps<T> {
 ### ListItem
 
 - Main component of lists, wrapping text and adornments.
-- Three named slots: leadingAdornment, trailingAdornment, nestedContent
+- Three named slots: leading-adornment, trailing-adornment, nested-content
 - States: hoverable, selected, disabled.
 - Uses Box unded the hood, which allows for event redirection and ssx.
 
@@ -582,3 +612,7 @@ const palette = {
 - added running changelog
 - added typography "inherit" to default-typography-config
 - removed inherit class from Typography component.
+
+```
+
+```

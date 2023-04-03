@@ -13,9 +13,7 @@
   element="ul"
   eventComponent={current_component}
   {...$$restProps}
-  class="list mdc-deprecated-list {$$restProps.class || ''} {disablePadding
-    ? 'disabled-padding'
-    : ''}"
+  class="list mdc-deprecated-list {$$restProps.class || ''} {disablePadding && 'disabled-padding'}"
 >
   <slot />
 </Box>
@@ -28,7 +26,9 @@
     padding: 32px 16px;
   }
 
-  .disabled-padding {
+  .list-group .list.disabled-padding,
+  .list.disabled-padding {
+    @include list.deprecated-core-styles;
     padding: 0px;
   }
 </style>

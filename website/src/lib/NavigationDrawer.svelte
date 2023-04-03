@@ -20,6 +20,8 @@
     'dialog',
     'chip',
     'text-field',
+    'list',
+    'list-group',
     'list-item',
     'drawer'
   ];
@@ -70,10 +72,10 @@
         selected={themingListOpen}
         on:click={() => updateDrawerStates('theming')}
       >
-        <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
+        <ListItemAdornment slot="trailing-adornment" class="material-symbols-outlined">
           {themingListOpen ? 'expand_less' : 'expand_more'}
         </ListItemAdornment>
-        <svelte:fragment slot="nestedContent">
+        <svelte:fragment slot="nested-content">
           {#each themeRoutestList as route}
             <ListItem
               selected={selectedRoute === route}
@@ -95,10 +97,10 @@
         selected={componentListOpen}
         on:click={() => updateDrawerStates('components')}
       >
-        <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
+        <ListItemAdornment slot="trailing-adornment" class="material-symbols-outlined">
           {componentListOpen ? 'expand_less' : 'expand_more'}
         </ListItemAdornment>
-        <svelte:fragment slot="nestedContent">
+        <svelte:fragment slot="nested-content">
           {#each componentRoutesList as route}
             <ListItem
               selected={selectedRoute === route}

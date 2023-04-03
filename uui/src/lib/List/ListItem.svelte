@@ -1,22 +1,21 @@
 <script lang="ts">
   import { onMount } from 'svelte/internal';
   import { MDCRipple } from '@material/ripple';
-  import type { ListItemProps, ListItemSlots } from './ListItem.types';
+  import type { ListItemProps } from './ListItem.types';
   import { current_component } from 'svelte/internal';
   import Box from '../Box/box.svelte';
+  import { makeThemeColor } from '../shared/utils/makeThemeColor';
 
   // Props
   type T = $$Generic<EventTarget>;
   type $$Props = ListItemProps<T>;
   export let text = '';
   export let secondaryText: string | undefined = undefined;
+  export let textColor = 'on-background';
   export let selected: boolean | undefined = undefined;
   export let disabled: boolean | undefined = undefined;
   export let disableGutters: boolean | undefined = undefined;
   export let divider: boolean | undefined = undefined;
-
-  // Slot Types
-  type $$Slots = ListItemSlots;
 
   // Local Variables
   let listItemContainerRef: HTMLDivElement;
@@ -41,6 +40,8 @@
   {element}
   ref={listItemContainerRef}
   eventComponent={current_component}
+  {...$$restProps}
+  style="--list-item-text-color: {makeThemeColor(textColor)}"
 >
   <li
     bind:this={listItemRef}
@@ -52,7 +53,7 @@
     class:two-line={secondaryText}
     class:divider
   >
-    <slot name="leadingAdornment" {selected} {disabled} />
+    <slot name="leading-adornment" />
 
     <span class="mdc-deprecated-list-item__ripple" />
 
@@ -65,11 +66,11 @@
       <span class="mdc-deprecated-list-item__text">{text}</span>
     {/if}
 
-    <slot name="trailingAdornment" {selected} {disabled} />
+    <slot name="trailing-adornment" />
   </li>
-  {#if selected && $$slots.nestedContent}
+  {#if selected && $$slots['nested-content']}
     <div class="nested-content">
-      <slot name="nestedContent" />
+      <slot name="nested-content" />
     </div>
   {/if}
 </Box>
@@ -84,13 +85,14 @@
 
     // Enabled State
     .mdc-deprecated-list-item {
-      @include list.deprecated-item-primary-text-ink-color(var(--on-background));
-      @include list.deprecated-item-secondary-text-ink-color(var(--on-background));
+      @include list.deprecated-item-primary-text-ink-color(var(--list-item-text-color));
+      @include list.deprecated-item-secondary-text-ink-color(var(--list-item-text-color));
     }
 
     .mdc-deprecated-list-item__graphic,
     .mdc-deprecated-list-item__meta {
       color: var(--on-background);
+      display: inline-flex;
     }
 
     // Selected State
