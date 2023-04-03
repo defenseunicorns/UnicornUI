@@ -7,6 +7,7 @@
   import type { ButtonColor, ButtonShape, ButtonVariant } from '@uui';
   import Navbar from '$lib/Navbar.svelte';
   import NavigationDrawer from '$lib/NavigationDrawer.svelte';
+  import { appStatesStore, updateAppStates } from '$lib/stores/nav-drawer-state-store';
 
   // Local Vars
   let path = '';
@@ -24,6 +25,12 @@
     return pathname === currentPath
       ? { variant: 'raised', color: 'secondary', shape: 'squared' }
       : { variant: 'flat', color: 'primary', shape: 'squared' };
+  }
+
+  function setCurrRouteState() {
+    appStatesStore.update((states) => {
+      return updateAppStates({ ...states, currentRoute: '/' });
+    });
   }
 
   $: isDrawerOpen = windowWidth && windowWidth > 900 ? true : false;
@@ -67,7 +74,7 @@
         <Typography variant="h1" style="margin-bottom: unset;margin-top: 2rem;">
           Unicorn UI
         </Typography>
-        <Button href="/" {...getVariant(path, '/')}>Home</Button>
+        <Button href="/" {...getVariant(path, '/')} on:click={setCurrRouteState}>Home</Button>
       </Box>
       <main>
         <slot />

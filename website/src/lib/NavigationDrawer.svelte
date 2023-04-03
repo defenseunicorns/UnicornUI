@@ -1,11 +1,15 @@
 <script lang="ts">
   import { Box, Drawer, List, ListItem, ListItemAdornment } from '@uui';
+  import { onMount } from 'svelte';
+  import { appStatesStore, updateAppStates } from './stores/nav-drawer-state-store';
 
+  type $$Props = { isDrawerOpen: boolean };
   export let isDrawerOpen = false;
 
+  // Local vars
   let selectedRoute = '';
-  let themingListOpen = true;
-  let componentListOpen = true;
+  let themingListOpen = false;
+  let componentListOpen = false;
 
   const themeRoutestList = ['theme', 'breakpoints', 'scoped-styles', 'typography', 'box', 'paper'];
   const componentRoutesList = [
@@ -20,14 +24,41 @@
     'drawer'
   ];
 
+  // Functions
+  onMount(() => {
+    appStatesStore.subscribe((states) => {
+      themingListOpen = states.listStates.theming;
+      componentListOpen = states.listStates.components;
+      selectedRoute = states.currentRoute;
+    });
+  });
+
   function setSelectedRoute(route: string) {
-    selectedRoute = route;
+    appStatesStore.update((states) => {
+      return updateAppStates({ ...states, currentRoute: route });
+    });
   }
 
   function transformRoute(route: string) {
     let words = route.split('-');
     words = words.map((word) => word.charAt(0).toUpperCase() + word.slice(1));
     return words.join(' ');
+  }
+
+  function updateDrawerStates(list: string) {
+    appStatesStore.update((states) => {
+      if (list === 'theming') {
+        return updateAppStates({
+          ...states,
+          listStates: { ...states.listStates, theming: !themingListOpen }
+        });
+      } else {
+        return updateAppStates({
+          ...states,
+          listStates: { ...states.listStates, components: !componentListOpen }
+        });
+      }
+    });
   }
 </script>
 
@@ -37,7 +68,7 @@
       <ListItem
         text="Theming"
         selected={themingListOpen}
-        on:click={() => (themingListOpen = !themingListOpen)}
+        on:click={() => updateDrawerStates('theming')}
       >
         <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
           {themingListOpen ? 'expand_less' : 'expand_more'}
@@ -62,7 +93,7 @@
       <ListItem
         text="Components"
         selected={componentListOpen}
-        on:click={() => (componentListOpen = !componentListOpen)}
+        on:click={() => updateDrawerStates('components')}
       >
         <ListItemAdornment slot="trailingAdornment" class="material-symbols-outlined">
           {componentListOpen ? 'expand_less' : 'expand_more'}
