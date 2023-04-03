@@ -1,17 +1,10 @@
 <script lang="ts">
   import InlineCode from '../../lib/inline-code.svelte';
-  import {
-    Accordion,
-    Box,
-    ListGroup,
-    List,
-    ListItem,
-    ListItemAdornment,
-    ListSubHeader,
-    Typography
-  } from '@uui';
+  import { Accordion, Box, Typography } from '@uui';
   import DocPage from '../../lib/doc-page.svelte';
   import VariantExample from '../../lib/VariantExample.svelte';
+  import LIST_GROUP_EXP from './list-group-exp.svelte?raw';
+  import ListGroupExp from './list-group-exp.svelte';
 </script>
 
 <DocPage>
@@ -26,50 +19,12 @@
     foundation is styled.
   </Typography>
 
-  <ListGroup class="demo-list">
-    <ListSubHeader>List 1</ListSubHeader>
-    <List>
-      <ListItem text="List Item" divider>
-        <ListItemAdornment class="material-symbols-outlined" slot="leading-adornment">
-          star
-        </ListItemAdornment>
-      </ListItem>
-    </List>
-    <ListSubHeader>List 2</ListSubHeader>
-    <List>
-      <ListItem text="List Item">
-        <ListItemAdornment class="material-symbols-outlined" slot="leading-adornment">
-          star
-        </ListItemAdornment>
-      </ListItem>
-    </List>
-  </ListGroup>
+  <ListGroupExp />
 
   <Accordion>
     <Typography variant="h6" slot="headerContent">List Group Code</Typography>
     <Box slot="content">
-      <VariantExample
-        code={`
-        <ListGroup class="demo-list">
-          <ListSubHeader>List 1</ListSubHeader>
-          <List>
-            <ListItem text="List Item"  divider>
-              <ListItemAdornment class="material-symbols-outlined" slot="leading-adornment">
-                star
-              </ListItemAdornment>
-            </ListItem>
-          </List>
-          <ListSubHeader>List 2</ListSubHeader>
-          <List>
-            <ListItem text="List Item" >
-              <ListItemAdornment class="material-symbols-outlined" slot="leading-adornment">
-                star
-              </ListItemAdornment>
-            </ListItem>
-          </List>
-        </ListGroup>
-          `}
-      />
+      <VariantExample code={LIST_GROUP_EXP} />
     </Box>
   </Accordion>
 </DocPage>

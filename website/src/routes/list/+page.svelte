@@ -67,9 +67,9 @@
 
   <VariantExample
     code={`
-<ul ...> 
+<Box ...> 
   <slot />
-</ul>
+</Box>
 `}
   />
 
