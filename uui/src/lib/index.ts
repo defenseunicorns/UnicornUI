@@ -1,6 +1,7 @@
 // Reexport your entry components here
 import Box from './Box/box.svelte';
 import Chip from './Chip/chip.svelte';
+import Menu from './Menu/Menu.svelte';
 import Step from './Stepper/Step.svelte';
 import List from './List/List.svelte';
 import Paper from './Paper/Paper.svelte';
@@ -29,6 +30,7 @@ import ListItemAdornment from './List/ListItemAdornment.svelte';
 export {
   Box,
   Chip,
+  Menu,
   Step,
   List,
   Paper,
@@ -132,3 +134,4 @@ export type {
 } from './shared/theme/breakpoints/breakpoints.types';
 export type { PaperProps } from './Paper/Paper.types';
 export type { DrawerProps } from './Drawer/Drawer.types';
+export type { MenuProps } from './Menu/Menu.types';
