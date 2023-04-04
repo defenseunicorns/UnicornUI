@@ -80,6 +80,9 @@
     @extend .mdc-dialog--open;
   }
 
+  .dialog-container > .dialog-surface:not(.paper-rounded) {
+    border-radius: 0px;
+  }
   .dialog-container > .dialog-surface {
     color: var(--paper-color);
     background-color: var(--paper-bg-color);
