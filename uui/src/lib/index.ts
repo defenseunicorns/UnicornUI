@@ -134,4 +134,4 @@ export type {
 } from './shared/theme/breakpoints/breakpoints.types';
 export type { PaperProps } from './Paper/Paper.types';
 export type { DrawerProps } from './Drawer/Drawer.types';
-export type { MenuProps } from './Menu/Menu.types';
+export type { MenuProps, AnchorOrigin } from './Menu/Menu.types';

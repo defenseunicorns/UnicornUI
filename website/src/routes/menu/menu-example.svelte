@@ -1,8 +1,9 @@
 <script lang="ts">
   import { Menu, Button, List, ListItem, ListItemAdornment, Box } from '@uui';
+  import type { AnchorOrigin } from '@uui';
 
   let selectedMenu = '';
-  const origins = ['bottomLeft', 'bottomRight', 'topLeft', 'topRight'];
+  const origins: AnchorOrigin[] = ['bottomLeft', 'bottomRight', 'topLeft', 'topRight'];
   const buttonRefs: Record<string, HTMLElement | undefined> = {
     bottomLeft: undefined,
     bottomRight: undefined,
