@@ -1,5 +1,4 @@
 <script lang="ts">
-  import Variant from '$lib/Variant.svelte';
   import ThemeToggle from '$lib/ThemeToggle.svelte';
   import VariantExample from '$lib/VariantExample.svelte';
   import { Box, Accordion, Typography, AccordionGroup } from '@uui';

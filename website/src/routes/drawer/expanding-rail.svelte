@@ -20,12 +20,12 @@
       {#if open}
         <List>
           <ListItem text="Data">
-            <ListItemAdornment slot="leadingAdornment">
+            <ListItemAdornment slot="leading-adornment">
               <IconButton iconClass="material-symbols-outlined" iconContent="folder" />
             </ListItemAdornment>
           </ListItem>
           <ListItem text="Data">
-            <ListItemAdornment slot="leadingAdornment">
+            <ListItemAdornment slot="leading-adornment">
               <IconButton iconClass="material-symbols-outlined" iconContent="schedule" />
             </ListItemAdornment>
           </ListItem>
