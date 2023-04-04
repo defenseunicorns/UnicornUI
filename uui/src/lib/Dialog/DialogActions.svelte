@@ -15,7 +15,7 @@
   {element}
   eventComponent={current_component}
   {...$$restProps}
-  class={`mdc-dialog__actions ${$$restProps.class || ''}`}
+  class={`dialog-actions ${$$restProps.class || ''}`}
 >
   <slot />
 </Box>

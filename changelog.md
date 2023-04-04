@@ -1,3 +1,27 @@
+# v0.0.46
+
+## Breaking Changes
+
+### Dialog
+
+- removed mdc classes and replaced with more friendly classnames:
+  - `.dialog-container`
+  - `.dialog-surface`
+  - `.dialog-content`
+  - `.dialog-actions`
+  - `.dialog-title`
+
+## Updates
+
+### Dialog
+
+- `DialogProps` now extend `PaperProps`
+  - All `PaperProps` are applied to the `.dialog-surface`
+  - Default elevation is set to `16`
+- Added `containerSSX` prop that applies ssx to the `.dialog-container` which is the top level component in `Dialog`
+- `Dialog` can now be closed by pressing the `Escape` key when the `Dialog` is `open` and `clickAway` is set to `true`
+  - event listener calls the `toggleDialog` bindable method.
+
 # v0.0.45
 
 ## Breaking Changes
