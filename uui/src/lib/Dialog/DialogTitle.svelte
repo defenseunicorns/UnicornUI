@@ -16,7 +16,7 @@
   {variant}
   eventComponent={current_component}
   {...$$restProps}
-  class="mdc-dialog__title {$$restProps.class || ''}"
+  class="dialog-title {$$restProps.class || ''}"
 >
   <slot />
 </Typography>
