@@ -7,6 +7,7 @@ export interface DialogProps<T> extends PaperProps<T> {
   open?: boolean;
   clickAway?: boolean;
   containerSSX?: SSX;
+  toggleDialog?(): void;
 }
 export type DialogTitleProps<T extends EventTarget> = TypographyProps<T>;
 export type DialogActionsProps<T extends EventTarget> = BoxProps<T>;

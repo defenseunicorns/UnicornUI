@@ -15,15 +15,14 @@
   export let clickAway = true;
   export let elevation = 16;
   export let containerSSX: SSX = {};
-
-  type $$Props = DialogProps<T>;
-
-  // Function
   export let toggleDialog = () => {
     open = !open;
   };
 
+  type $$Props = DialogProps<T>;
+
   let documentRef: Document;
+
   let keydownListener = (e: KeyboardEvent) => {
     if (clickAway && open && e.key === 'Escape') {
       toggleDialog();
