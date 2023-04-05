@@ -38,6 +38,11 @@
             send
           </ListItemAdornment>
         </ListItem>
+        <ListItem text="List Item">
+          <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined">
+            mail
+          </ListItemAdornment>
+        </ListItem>
       </List>
     </Menu>
   {/each}

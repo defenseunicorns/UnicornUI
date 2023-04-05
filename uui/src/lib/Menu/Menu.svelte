@@ -2,7 +2,7 @@
   import { afterUpdate, onDestroy, onMount } from 'svelte';
   import Paper from '../Paper/Paper.svelte';
   import type { AnchorOrigin, MenuProps } from './Menu.types';
-  import { computePosition, autoUpdate, shift } from '@floating-ui/dom';
+  import { computePosition, autoUpdate } from '@floating-ui/dom';
 
   // Props
   type T = $$Generic<HTMLMenuElement>;
