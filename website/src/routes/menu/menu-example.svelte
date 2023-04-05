@@ -15,6 +15,10 @@
     if (selectedMenu === origin) selectedMenu = '';
     else selectedMenu = origin;
   }
+
+  function onClose(menu: string) {
+    if (selectedMenu === menu) selectedMenu = '';
+  }
 </script>
 
 <Box ssx={{ $self: { display: 'flex', gap: '5rem', 'justify-content': 'center' } }}>
@@ -22,7 +26,12 @@
     <Button variant="text" on:click={() => setOpen(origin)} bind:ref={buttonRefs[origin]}>
       {origin}
     </Button>
-    <Menu open={selectedMenu === origin} bind:anchorRef={buttonRefs[origin]} anchorOrigin={origin}>
+    <Menu
+      open={selectedMenu === origin}
+      bind:anchorRef={buttonRefs[origin]}
+      anchorOrigin={origin}
+      onClose={() => onClose(origin)}
+    >
       <List>
         <ListItem text="List Item">
           <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined">

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { afterUpdate, onDestroy } from 'svelte';
+  import { afterUpdate, onDestroy, onMount } from 'svelte';
   import Paper from '../Paper/Paper.svelte';
   import type { AnchorOrigin, MenuProps } from './Menu.types';
   import { computePosition, autoUpdate, shift } from '@floating-ui/dom';
@@ -11,6 +11,7 @@
   export let open = false;
   export let anchorOrigin: AnchorOrigin = 'bottom-start';
   export let anchorRef: Element | undefined = undefined;
+  export let onClose: (() => void) | undefined = undefined;
 
   // Local Vars
   let menuRef: HTMLElement;
@@ -18,11 +19,12 @@
   let cleanup: () => void;
 
   // Functions
+
+  // gets called by floating-ui to re-calculate menu position
   function updateMenuPos() {
     if (anchorRef && menuRef) {
       computePosition(anchorRef, menuRef, {
-        placement: anchorOrigin,
-        middleware: [shift()]
+        placement: anchorOrigin
       }).then(({ x, y }) => {
         Object.assign(menuRef.style, {
           left: `${x}px`,
@@ -32,7 +34,23 @@
     }
   }
 
+  // Close menu when user clicks away
+  function clickAway(evt: MouseEvent | KeyboardEvent) {
+    if (
+      open &&
+      evt.target !== menuRef &&
+      !menuRef.contains(evt.target as Node) &&
+      !anchorRef?.contains(evt.target as Node)
+    ) {
+      onClose && onClose();
+    }
+  }
+
   // Lifecycle
+  onMount(() => {
+    window.addEventListener('click', clickAway);
+  });
+
   afterUpdate(() => {
     if (anchorRef && menuRef && open) {
       cleanup = autoUpdate(anchorRef, menuRef, updateMenuPos);
