@@ -22,7 +22,7 @@
   let listItemRef: HTMLLIElement;
   let element = $$restProps.element || 'div';
 
-  // Functions
+  // Lifecycle Hooks
 
   // Create Ripple for list item
   onMount((): void => {
@@ -30,8 +30,6 @@
       new MDCRipple(listItemRef);
     }
   });
-
-  // Reactive Variables
 </script>
 
 <Box

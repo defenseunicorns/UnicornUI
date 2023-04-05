@@ -32,18 +32,16 @@
       anchorOrigin={origin}
       onClose={() => onClose(origin)}
     >
-      <List>
-        <ListItem text="List Item">
-          <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined">
-            send
-          </ListItemAdornment>
-        </ListItem>
-        <ListItem text="List Item">
-          <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined">
-            mail
-          </ListItemAdornment>
-        </ListItem>
-      </List>
+      <ListItem text="List Item">
+        <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined">
+          send
+        </ListItemAdornment>
+      </ListItem>
+      <ListItem text="List Item">
+        <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined">
+          mail
+        </ListItemAdornment>
+      </ListItem>
     </Menu>
   {/each}
 </Box>
