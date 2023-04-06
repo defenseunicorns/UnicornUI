@@ -64,18 +64,35 @@
   });
 
   // Reactive Vars
-  $: surfaceClasses = `mdc-menu-surface ${open && 'mdc-menu-surface--open'}`;
+  $: stateClasses = `${open && 'open'}`;
 </script>
 
 <Paper
   bind:ref={menuRef}
   {elevation}
-  class="menu mdc-menu {surfaceClasses} {anchorOrigin} {$$restProps.class || ''}"
+  {...$$restProps}
+  class="menu {stateClasses} {anchorOrigin} {$$restProps.class || ''}"
+  style="--elevation: {elevation}"
 >
   <slot />
 </Paper>
 
 <style lang="scss" global>
-  @use '@material/menu-surface/mdc-menu-surface';
-  @use '@material/menu/mdc-menu';
+  .menu {
+    display: none;
+    width: 20rem;
+    position: absolute;
+    box-sizing: border-box;
+    opacity: 0;
+    overflow: auto;
+    z-index: var(--elevation);
+    transition: opacity 0.03s linear, transform 0.12s cubic-bezier(0, 0, 0.2, 1),
+      height 250ms cubic-bezier(0, 0, 0.2, 1);
+    border-radius: 4px;
+  }
+
+  .menu.open {
+    display: inline-block;
+    opacity: 1;
+  }
 </style>

@@ -36,10 +36,16 @@
         <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined">
           send
         </ListItemAdornment>
+        <ListItemAdornment slot="trailing-adornment" class="material-symbols-outlined">
+          expand_more
+        </ListItemAdornment>
       </ListItem>
       <ListItem text="List Item">
         <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined">
           mail
+        </ListItemAdornment>
+        <ListItemAdornment slot="trailing-adornment" class="material-symbols-outlined">
+          expand_more
         </ListItemAdornment>
       </ListItem>
     </Menu>
