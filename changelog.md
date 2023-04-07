@@ -1,5 +1,26 @@
 # v0.0.46
 
+## Updates
+
+### Menu
+
+- Create Menu component that anchors to a reference element.
+- Uses Paper as base component and therefore takes elevation and ssx.
+- Uses @floating-ui/dom computePosition() on autoUpdate() to handle calculating menu position in relation to anchor element when user scrolls or resizes screen.
+
+```ts
+import type { PaperProps } from '../Paper/Paper.types';
+
+export type AnchorOrigin = 'bottom-start' | 'bottom-end' | 'top-start' | 'top-end';
+
+export interface MenuProps<T extends EventTarget> extends PaperProps<T> {
+  open: boolean;
+  anchorRef?: Element;
+  anchorOrigin?: AnchorOrigin;
+  onClose?: () => void;
+}
+```
+
 ## Breaking Changes
 
 ### Dialog
