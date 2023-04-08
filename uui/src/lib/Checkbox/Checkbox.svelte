@@ -5,16 +5,17 @@
   import { eventRedirection } from '../shared/utils/eventRedirection';
   import type { CheckboxProps } from './Checkbox.types';
   import Box from '../Box/box.svelte';
+  import { makeThemeColor } from '../shared/utils/makeThemeColor';
 
   // Props
-  //   type T = $$Generic<EventTarget>
   type $$Props = CheckboxProps<HTMLInputElement>;
   export let indeterminate: boolean | undefined = undefined;
-
-  let checked = $$restProps.checked;
+  export let color = 'on-surface';
+  export let backgroundColor = 'secondary';
 
   // Local Variables
   let checkboxRef: HTMLDivElement;
+  let checked = $$restProps.checked;
 
   // Functions
   onMount((): void => {
@@ -31,50 +32,70 @@
   }`;
 </script>
 
-<Box
-  bind:ref={checkboxRef}
-  element="div"
-  class="checkbox mdc-checkbox mdc-checkbox--upgraded {stateClasses} {$$restProps.class || ''}"
->
-  <input
-    use:eventRedirection={eventComponents}
-    type="checkbox"
-    bind:checked
-    class="mdc-checkbox__native-control"
-    disabled={$$restProps.disabled}
-    data-indeterminate={dataIndeterminate}
-    id={$$restProps.id}
-  />
-  <div class="mdc-checkbox__background">
-    {#if checked}
-      <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
-        <path
-          class="mdc-checkbox__checkmark-path"
-          fill="none"
-          d="M1.73,12.91 8.1,19.28 22.79,4.59"
-        />
-      </svg>
+<Box class="mdc-form-field">
+  <Box
+    bind:ref={checkboxRef}
+    element="div"
+    class="checkbox mdc-checkbox mdc-checkbox--upgraded {stateClasses} {$$restProps.class || ''}"
+    style="--color: {makeThemeColor(color)}; --background-color: {makeThemeColor(backgroundColor)}"
+  >
+    <input
+      use:eventRedirection={eventComponents}
+      type="checkbox"
+      bind:checked
+      class="mdc-checkbox__native-control"
+      disabled={$$restProps.disabled}
+      data-indeterminate={dataIndeterminate}
+      id={$$restProps.id}
+    />
+    <div class="mdc-checkbox__background">
+      {#if checked}
+        <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+          <path
+            class="mdc-checkbox__checkmark-path"
+            fill="none"
+            d="M1.73,12.91 8.1,19.28 22.79,4.59"
+          />
+        </svg>
+      {/if}
+      <div class="mdc-checkbox__mixedmark" />
+    </div>
+    {#if !$$restProps.disabled}
+      <div class="mdc-checkbox__ripple" />
     {/if}
-    <div class="mdc-checkbox__mixedmark" />
-  </div>
-  {#if !$$restProps.disabled}
-    <div class="mdc-checkbox__ripple" />
-  {/if}
-  <div class="mdc-checkbox__focus-ring" />
+    <div class="mdc-checkbox__focus-ring" />
+  </Box>
+  <label for={$$restProps.id}>{$$restProps.label}</label>
 </Box>
 
 <style lang="scss" global>
   @use '@material/checkbox';
   @use '@material/form-field';
 
-  .checkbox {
-    @include checkbox.core-styles;
-    @include form-field.core-styles;
-  }
+  @include checkbox.core-styles;
+  @include form-field.core-styles;
 
   .checkbox.mdc-checkbox {
     width: 40px;
     height: 40px;
+    flex: 0 0 auto;
+  }
+
+  // Color States
+  .checkbox.mdc-checkbox {
+    @include checkbox.ink-color(var(--color));
+    @include checkbox.disabled-ink-color(var(--text-disabled));
+    @include checkbox.disabled-container-colors(
+      var(--disabled),
+      var(--disabled),
+      var(--disabled),
+      var(--disabled)
+    );
+  }
+
+  .checkbox.mdc-checkbox .mdc-checkbox__native-control:enabled:checked + .mdc-checkbox__background {
+    background-color: var(--background-color);
+    border-color: var(--background-color);
   }
 
   // Override default MDC theme --mdc-checkbox-unchecked-color
