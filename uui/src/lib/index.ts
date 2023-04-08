@@ -12,8 +12,9 @@ import Dialog from './Dialog/Dialog.svelte';
 import Stepper from './Stepper/Stepper.svelte';
 import ChipIcon from './Chip/chip-icon.svelte';
 import StepIcon from './Stepper/StepIcon.svelte';
-import TextField from './TextField/TextField.svelte';
+import Checkbox from './Checkbox/Checkbox.svelte';
 import ListItem from './List/ListItem.svelte';
+import TextField from './TextField/TextField.svelte';
 import ListGroup from './List/ListGroup.svelte';
 import Accordion from './Accordion/accordion.svelte';
 import ButtonIcon from './Button/ButtonIcon.svelte';
@@ -41,6 +42,7 @@ export {
   Stepper,
   ChipIcon,
   StepIcon,
+  Checkbox,
   ListItem,
   ListGroup,
   TextField,
@@ -135,3 +137,4 @@ export type {
 export type { PaperProps } from './Paper/Paper.types';
 export type { DrawerProps } from './Drawer/Drawer.types';
 export type { MenuProps, AnchorOrigin } from './Menu/Menu.types';
+export type { CheckboxProps } from './Checkbox/Checkbox.types';
