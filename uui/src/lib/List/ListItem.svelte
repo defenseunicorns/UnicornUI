@@ -3,8 +3,8 @@
   import { MDCRipple } from '@material/ripple';
   import type { ListItemProps } from './ListItem.types';
   import { current_component } from 'svelte/internal';
-  import Box from '../Box/box.svelte';
   import { makeThemeColor } from '../shared/utils/makeThemeColor';
+  import Paper from '../Paper/Paper.svelte';
 
   // Props
   type T = $$Generic<EventTarget>;
@@ -12,10 +12,10 @@
   export let text = '';
   export let secondaryText: string | undefined = undefined;
   export let textColor = 'on-background';
-  export let selected: boolean | undefined = undefined;
-  export let disabled: boolean | undefined = undefined;
-  export let disableGutters: boolean | undefined = undefined;
-  export let divider: boolean | undefined = undefined;
+  export let selected = false;
+  export let disabled = false;
+  export let disableGutters = false;
+  export let divider = false;
 
   // Local Variables
   let listItemContainerRef: HTMLDivElement;
@@ -34,13 +34,12 @@
   // Reactive Variables
 </script>
 
-<Box
-  {...$$restProps}
-  class="list-item-container"
+<Paper
   {element}
+  {...$$restProps}
   ref={listItemContainerRef}
   eventComponent={current_component}
-  {...$$restProps}
+  class="list-item-container"
   style="--list-item-text-color: {makeThemeColor(textColor)}"
 >
   <li
@@ -73,7 +72,7 @@
       <slot name="nested-content" />
     </div>
   {/if}
-</Box>
+</Paper>
 
 <style lang="scss" global>
   @use '@material/list';

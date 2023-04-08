@@ -1,8 +1,8 @@
-import type { BoxProps } from '../Box/box.types';
+import type { PaperProps } from '../Paper/Paper.types';
 
 export type ListItemSlotProps = Record<string, boolean | undefined>;
 
-export interface ListItemProps<T extends EventTarget> extends BoxProps<T> {
+export interface ListItemProps<T extends EventTarget> extends PaperProps<T> {
   text: string;
   secondaryText?: string;
   textColor?: string;

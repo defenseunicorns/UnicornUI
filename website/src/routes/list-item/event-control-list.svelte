@@ -6,7 +6,6 @@
     if (index !== undefined) {
       selected = !selected;
     }
-    alert('You selected this item');
   };
 </script>
 
@@ -30,7 +29,6 @@
       slot="trailing-adornment"
       on:click={(e) => {
         e.stopPropagation();
-        alert('Propagation stopped. No parent event fired.');
       }}
     >
       <ListItemCheckbox />
