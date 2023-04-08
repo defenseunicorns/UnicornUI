@@ -1,7 +1,7 @@
 <script lang="ts">
   import { List, ListItem } from '@uui';
 
-  let selectedIndex: number | undefined = 0;
+  let selectedIndex = 0;
 
   function setSelected(index: number) {
     selectedIndex = index;
