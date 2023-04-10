@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { List, ListItem, ListItemAdornment, ListItemCheckbox } from '@uui';
+  import { List, ListItem, ListItemAdornment, Checkbox } from '@uui';
 
   let selected = false;
   let exampleOnclick = (index?: number) => {
@@ -18,7 +18,7 @@
     {selected}
   >
     <ListItemAdornment slot="trailing-adornment">
-      <ListItemCheckbox checked={selected} />
+      <Checkbox checked={selected} />
     </ListItemAdornment>
   </ListItem>
   <ListItem
@@ -33,7 +33,7 @@
         alert('Propagation stopped. No parent event fired.');
       }}
     >
-      <ListItemCheckbox />
+      <Checkbox />
     </ListItemAdornment>
   </ListItem>
 </List>

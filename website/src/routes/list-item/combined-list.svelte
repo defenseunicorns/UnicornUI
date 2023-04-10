@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Typography, List, ListItem, ListItemAdornment, ListItemCheckbox } from '@uui';
+  import { Typography, List, ListItem, ListItemAdornment, Checkbox } from '@uui';
   import ListAvatar from './list-avatar.svelte';
 </script>
 
@@ -10,7 +10,7 @@
       <ListAvatar element="i" class="material-symbols-outlined">person</ListAvatar>
     </ListItemAdornment>
     <ListItemAdornment slot="trailing-adornment">
-      <ListItemCheckbox />
+      <Checkbox />
     </ListItemAdornment>
   </ListItem>
   <ListItem text="List Item 2">
@@ -18,7 +18,7 @@
       <ListAvatar element="i" class="material-symbols-outlined">person</ListAvatar>
     </ListItemAdornment>
     <ListItemAdornment slot="trailing-adornment">
-      <ListItemCheckbox />
+      <Checkbox />
     </ListItemAdornment>
   </ListItem>
 </List>
@@ -27,7 +27,7 @@
 <List class="demo-list">
   <ListItem text="List Item 1">
     <ListItemAdornment slot="leading-adornment">
-      <ListItemCheckbox />
+      <Checkbox />
     </ListItemAdornment>
     <ListItemAdornment slot="trailing-adornment" class="material-symbols-outlined">
       star
@@ -35,7 +35,7 @@
   </ListItem>
   <ListItem text="List Item 1">
     <ListItemAdornment slot="leading-adornment">
-      <ListItemCheckbox />
+      <Checkbox />
     </ListItemAdornment>
     <ListItemAdornment slot="trailing-adornment" class="material-symbols-outlined">
       star

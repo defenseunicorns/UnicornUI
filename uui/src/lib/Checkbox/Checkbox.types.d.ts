@@ -4,4 +4,5 @@ export interface CheckboxProps<T extends EventTarget> extends BoxProps<T> {
   indeterminate?: boolean;
   color?: string;
   backgroundColor?: string;
+  checked?: boolean;
 }

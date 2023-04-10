@@ -5,16 +5,16 @@
     type ListItemProps,
     type IconButtonProps,
     type ComponentAsProp,
+    type CheckboxProps,
     IconButton,
-    ListItemCheckbox,
     List,
     ListItem,
     ListItemAdornment,
     Typography,
     Accordion,
-    Box
+    Box,
+    Checkbox
   } from '@uui';
-  import type { ListItemCheckboxProps } from '@defense-unicorns/unicorn-ui/src/lib/List/ListItemCheckbox.types';
 
   type ExtendedListItems1 = svelte.JSX.IntrinsicAttributes &
     ListItemProps<EventTarget> & {
@@ -85,18 +85,18 @@
       text: 'List Item',
       secondaryText: 'Secondary',
       trailingAdornment: {
-        component: ListItemCheckbox,
+        component: Checkbox,
         props: {}
-      } as ComponentAsProp<IconButtonProps>
+      } as ComponentAsProp<CheckboxProps<HTMLInputElement>>
     },
     {
       text: 'List Item',
       secondaryText: 'Secondary',
       disabled: true,
       trailingAdornment: {
-        component: ListItemCheckbox,
+        component: Checkbox,
         props: {}
-      } as ComponentAsProp<ListItemCheckboxProps>
+      } as ComponentAsProp<CheckboxProps<HTMLInputElement>>
     }
   ];
 
@@ -282,10 +282,11 @@ const listItemsIteration1: ExtendedListItems1[] = [
     <VariantExample
       code={`
 
-type ExtendedListItems2 = ListItemProps & {
-  leadingAdornment?: Record<string, string>;
-  trailingAdornment?: ComponentAsProp<IconButtonProps | ListItemCheckboxProps>;
-};
+type ExtendedListItems2 = svelte.JSX.IntrinsicAttributes &
+    ListItemProps<EventTarget> & {
+      leadingAdornment?: Record<string, any>;
+      trailingAdornment?: Record<string, any>;
+    };
 
 const listItemsIteration2: ExtendedListItems2[] = [
     { text: 'List Item', secondaryText: 'Secondary Text' },
@@ -317,18 +318,18 @@ const listItemsIteration2: ExtendedListItems2[] = [
       text: 'List Item',
       secondaryText: 'Secondary',
       trailingAdornment: {
-        component: ListItemCheckbox,
+        component: Checkbox,
         props: {}
-      } as ComponentAsProp<IconButtonProps>
+      } as ComponentAsProp<CheckboxProps<HTMLInputElement>>
     },
     {
       text: 'List Item',
       secondaryText: 'Secondary',
       disabled: true,
       trailingAdornment: {
-        component: ListItemCheckbox,
+        component: Checkbox,
         props: {}
-      } as ComponentAsProp<IconButtonProps>
+      } as ComponentAsProp<CheckboxProps<HTMLInputElement>>
     }
   ];
 `}

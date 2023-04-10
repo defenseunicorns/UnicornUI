@@ -1,8 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte/internal';
   import { MDCRipple } from '@material/ripple';
-  import { current_component } from 'svelte/internal';
-  import { eventRedirection } from '../shared/utils/eventRedirection';
   import type { CheckboxProps } from './Checkbox.types';
   import Box from '../Box/box.svelte';
   import { makeThemeColor } from '../shared/utils/makeThemeColor';
@@ -12,10 +10,10 @@
   export let indeterminate: boolean | undefined = undefined;
   export let color = 'on-surface';
   export let backgroundColor = 'secondary';
+  export let checked = false;
 
   // Local Variables
   let checkboxRef: HTMLDivElement;
-  let checked = $$restProps.checked;
 
   // Functions
   onMount((): void => {
@@ -25,7 +23,6 @@
     }
   });
 
-  $: eventComponents = [current_component];
   $: dataIndeterminate = !checked && indeterminate;
   $: stateClasses = `${
     checked && 'mdc-checkbox--selected mdc-ripple-upgraded--background-focused'
@@ -40,9 +37,8 @@
     style="--color: {makeThemeColor(color)}; --background-color: {makeThemeColor(backgroundColor)}"
   >
     <input
-      use:eventRedirection={eventComponents}
-      type="checkbox"
       bind:checked
+      type="checkbox"
       class="mdc-checkbox__native-control"
       disabled={$$restProps.disabled}
       data-indeterminate={dataIndeterminate}
@@ -65,7 +61,7 @@
     {/if}
     <div class="mdc-checkbox__focus-ring" />
   </Box>
-  <label for={$$restProps.id}>{$$restProps.label}</label>
+  <label for={$$restProps.id}>{$$restProps.label || ''}</label>
 </Box>
 
 <style lang="scss" global>
