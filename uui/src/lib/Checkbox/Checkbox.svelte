@@ -11,9 +11,12 @@
   export let color = 'on-surface';
   export let backgroundColor = 'secondary';
   export let checked = false;
+  export let value: string | undefined = undefined;
 
   // Local Variables
   let checkboxRef: HTMLDivElement;
+
+  const { id, name, disabled } = $$restProps;
 
   // Functions
   onMount((): void => {
@@ -38,11 +41,13 @@
   >
     <input
       bind:checked
+      bind:value
       type="checkbox"
+      {id}
+      {name}
+      {disabled}
       class="mdc-checkbox__native-control"
-      disabled={$$restProps.disabled}
       data-indeterminate={dataIndeterminate}
-      id={$$restProps.id}
     />
     <div class="mdc-checkbox__background">
       {#if checked}
