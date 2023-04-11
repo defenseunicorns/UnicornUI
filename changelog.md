@@ -1,4 +1,4 @@
-# v0.0.46
+# v0.0.47
 
 ## Updates
 
@@ -20,6 +20,8 @@ export interface MenuProps<T extends EventTarget> extends PaperProps<T> {
   onClose?: () => void;
 }
 ```
+
+# v0.0.46
 
 ## Breaking Changes
 
