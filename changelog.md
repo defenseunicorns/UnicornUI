@@ -1,4 +1,33 @@
-# v0.0.46
+# v0.0.48
+
+## Updates
+
+### Checkbox
+
+- Created generic Checkbox.
+- Uses Box as its foundation and extends BoxProps of type HTMLInputElement.
+- Is wrapped by a container that applies the `mdc-form-field` class.
+- Both the stroke and background colors can be modified.
+- Disabled state uses the `--disabled` theme var.
+
+```ts
+export interface CheckboxProps<T extends EventTarget> extends BoxProps<T> {
+  checked?: boolean;
+  indeterminate?: boolean;
+  color?: string;
+  backgroundColor?: string;
+}
+```
+
+## Breaking Changes
+
+### ListItemCheckbox (Deprecated: Will Be Removed)
+
+- With the creating of Checkbox, there is no longer a need for ListItemCheckbox.
+- Checkbox does what ListItemCheckbox did but with some added benefits of default form-field label alignment and color customizing.
+- If you want to see examples of using Checkbox with ListItem, please look at the List Item page on Unicorn UI, specifically at the Checkbox examples.
+
+# v0.0.47
 
 ## Updates
 
@@ -21,31 +50,7 @@ export interface MenuProps<T extends EventTarget> extends PaperProps<T> {
 }
 ```
 
-### Checkbox
-
-- Created generic Checkbox.
-- Uses Box as its foundation and extends BoxProps of type HTMLInputElement.
-- Is wrapped by a container that applies the `mdc-form-field` class.
-- Both the stroke and background colors can be modified.
-- Disabled state uses the `--disabled` theme var.
-
-```ts
-export interface CheckboxProps<T extends EventTarget> extends BoxProps<T> {
-  checked?: boolean;
-  indeterminate?: boolean;
-  color?: string;
-  backgroundColor?: string;
-}
-```
-
-### Dialog
-
-- `DialogProps` now extend `PaperProps`
-  - All `PaperProps` are applied to the `.dialog-surface`
-  - Default elevation is set to `16`
-- Added `containerSSX` prop that applies ssx to the `.dialog-container` which is the top level component in `Dialog`
-- `Dialog` can now be closed by pressing the `Escape` key when the `Dialog` is `open` and `clickAway` is set to `true`
-  - event listener calls the `toggleDialog` bindable method.
+# v0.0.46
 
 ## Breaking Changes
 
@@ -59,11 +64,15 @@ export interface CheckboxProps<T extends EventTarget> extends BoxProps<T> {
   - `.dialog-actions`
   - `.dialog-title`
 
-  ### ListItemCheckbox (Deprecated: Will Be Removed)
+### Dialog
 
-  - With the creating of Checkbox, there is no longer a need for ListItemCheckbox.
-  - Checkbox does what ListItemCheckbox did but with some added benefits of default form-field label alignment and color customizing.
-  - If you want to see examples of using Checkbox with ListItem, please look at the List Item page on Unicorn UI, specifically at the Checkbox examples.
+- `DialogProps` now extend `PaperProps`
+  - All `PaperProps` are applied to the `.dialog-surface`
+  - Default elevation is set to `16`
+- Added `containerSSX` prop that applies ssx to the `.dialog-container` which is the top level component in `Dialog`
+- `Dialog` can now be closed by pressing the `Escape` key when the `Dialog` is `open` and `clickAway` is set to `true`
+
+  - event listener calls the `toggleDialog` bindable method.
 
 # v0.0.45
 
