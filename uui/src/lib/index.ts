@@ -1,6 +1,7 @@
 // Reexport your entry components here
 import Box from './Box/box.svelte';
 import Chip from './Chip/chip.svelte';
+import Radio from './Radio/Radio.svelte';
 import Menu from './Menu/Menu.svelte';
 import Step from './Stepper/Step.svelte';
 import List from './List/List.svelte';
@@ -33,6 +34,7 @@ export {
   Menu,
   Step,
   List,
+  Radio,
   Paper,
   Drawer,
   Theme,
@@ -135,3 +137,4 @@ export type {
 export type { PaperProps } from './Paper/Paper.types';
 export type { DrawerProps } from './Drawer/Drawer.types';
 export type { MenuProps, AnchorOrigin } from './Menu/Menu.types';
+export type { RadioProps } from './Radio/Radio.types';
