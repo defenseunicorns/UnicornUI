@@ -22,7 +22,7 @@
   let listItemRef: HTMLLIElement;
   let element = $$restProps.element || 'div';
 
-  // Functions
+  // Lifecycle Hooks
 
   // Create Ripple for list item
   onMount((): void => {
@@ -30,8 +30,6 @@
       new MDCRipple(listItemRef);
     }
   });
-
-  // Reactive Variables
 </script>
 
 <Box
@@ -78,6 +76,7 @@
 <style lang="scss" global>
   @use '@material/list';
   .list-group .list .list-item-container,
+  .list.disabled-padding,
   .list-item-container {
     @include list.deprecated-core-styles;
     display: flex;
@@ -139,6 +138,14 @@
     .mdc-deprecated-list-item .mdc-deprecated-list-item__graphic:has(.avatar) {
       @include list.deprecated-graphic-size(0, 56px, 40px, 40px);
       display: inline-block;
+    }
+
+    .mdc-deprecated-list-item .mdc-deprecated-list-item__meta,
+    .mdc-deprecated-list-item .mdc-deprecated-list-item__meta > * {
+      @include list.deprecated-graphic-size(0, 56px, 24px, 24px);
+      margin-left: auto;
+      display: flex;
+      align-items: center;
     }
 
     // Nested Content
