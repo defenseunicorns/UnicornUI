@@ -5,6 +5,7 @@ import Menu from './Menu/Menu.svelte';
 import Step from './Stepper/Step.svelte';
 import List from './List/List.svelte';
 import Paper from './Paper/Paper.svelte';
+import Select from './Select/Select.svelte';
 import Drawer from './Drawer/Drawer.svelte';
 import Theme from './Theme/theme.svelte';
 import Button from './Button/Button.svelte';
@@ -22,6 +23,7 @@ import Typography from './Typography/typography.svelte';
 import DialogTitle from './Dialog/DialogTitle.svelte';
 import ListSubHeader from './List/ListSubHeader.svelte';
 import DialogActions from './Dialog/DialogActions.svelte';
+import SelectIcon from './Select/SelectIcon.svelte';
 import TextFieldIcon from './TextField/TextFieldIcon.svelte';
 import AccordionGroup from './Accordion/accordion-group.svelte';
 import ListItemCheckbox from './List/ListItemCheckbox.svelte';
@@ -35,6 +37,7 @@ export {
   List,
   Paper,
   Drawer,
+  Select,
   Theme,
   Button,
   Dialog,
@@ -50,6 +53,7 @@ export {
   Typography,
   DialogTitle,
   ListSubHeader,
+  SelectIcon,
   TextFieldIcon,
   DialogActions,
   AccordionGroup,
@@ -135,3 +139,4 @@ export type {
 export type { PaperProps } from './Paper/Paper.types';
 export type { DrawerProps } from './Drawer/Drawer.types';
 export type { MenuProps, AnchorOrigin } from './Menu/Menu.types';
+export type { SelectProps, SelectIconProps } from './Select/Select.types';

@@ -5,9 +5,11 @@
   import type { ThemeColors } from '../shared/theme/default-colors/colors.types';
   import type { TextFieldProps, TextFieldVariant } from './TextField.types';
   import { eventRedirection } from '../shared/utils/eventRedirection';
+  import Box from '../Box/box.svelte';
 
   //Props
-  type $$Props = TextFieldProps;
+  type T = $$Generic<EventTarget>;
+  type $$Props = TextFieldProps<T>;
   export let variant: TextFieldVariant = 'outlined';
   export let label: string;
   export let color: ThemeColors = 'inherit';
@@ -62,10 +64,10 @@
 
   function getIconClass(): string {
     let classes: string[] = [];
-    if ($$slots.leadingIcon) {
+    if ($$slots.leading) {
       classes.push('mdc-text-field--with-leading-icon');
     }
-    if ($$slots.trailingIcon) {
+    if ($$slots.trailing) {
       classes.push('mdc-text-field--with-trailing-icon');
     }
     return classes.join(' ');
@@ -117,7 +119,7 @@
 
 <svelte:window on:click={clickAway} on:keydown={clickAway} />
 
-<div {...containerProps}>
+<Box {...containerProps}>
   <div
     class={`mdc-text-field text-field mdc-text-field--${variant} ${getIconClass()}`}
     class:mdc-text-field--disabled={$$restProps.disabled}
@@ -125,7 +127,7 @@
     class:mdc-text-field--focused={focused}
     class:mdc-ripple-upgraded--background-focused={variant === 'filled' && focused}
   >
-    <slot name="leadingIcon" />
+    <slot name="leading" />
     <input
       use:eventRedirection={eventComponents}
       bind:this={inputRef}
@@ -144,7 +146,7 @@
         error
       </span>
     {:else}
-      <slot name="trailingIcon" />
+      <slot name="trailing" />
     {/if}
     {#if variant === 'outlined'}
       <span
@@ -187,7 +189,7 @@
     </p>
     <div class="mdc-text-field-character-counter">{charCount}</div>
   </div>
-</div>
+</Box>
 
 <style lang="scss" global>
   @import '@material/textfield/mdc-text-field';
