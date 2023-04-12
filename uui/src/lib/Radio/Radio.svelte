@@ -50,4 +50,8 @@
     @include radio.disabled-checked-stroke-color(var(--disabled));
     @include radio.disabled-ink-color(var(--disabled));
   }
+
+  .mdc-form-field:has(.radio) {
+    color: var(--on-surface);
+  }
 </style>
