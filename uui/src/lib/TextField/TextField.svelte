@@ -121,7 +121,7 @@
 
 <Box {...containerProps}>
   <div
-    class={`mdc-text-field text-field mdc-text-field--${variant} ${getIconClass()}`}
+    class={`text-field mdc-text-field mdc-text-field--${variant} ${getIconClass()}`}
     class:mdc-text-field--disabled={$$restProps.disabled}
     class:mdc-text-field--invalid={invalid}
     class:mdc-text-field--focused={focused}
@@ -146,7 +146,7 @@
         error
       </span>
     {:else}
-      <slot name="trailing" />
+      <slot name="trailing" {inputRef} />
     {/if}
     {#if variant === 'outlined'}
       <span
