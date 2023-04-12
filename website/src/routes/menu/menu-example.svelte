@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Menu, Button, List, ListItem, ListItemAdornment, Box } from '@uui';
+  import { Menu, Button, ListItem, ListItemAdornment, Box } from '@uui';
   import type { AnchorOrigin } from '@uui';
 
   let selectedMenu = '';

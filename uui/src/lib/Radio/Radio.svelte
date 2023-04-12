@@ -12,7 +12,7 @@
   const { id, name, disabled } = $$restProps;
 </script>
 
-<Box class="mdc-form-field {$$restProps.class || ''}">
+<Box {...$$restProps} class="mdc-form-field {$$restProps.class || ''}">
   <Box class="radio mdc-radio" style="--color: {makeThemeColor(color)}">
     <input
       type="radio"
