@@ -2,10 +2,19 @@
   import VariantExample from '../../lib/VariantExample.svelte';
   import { Accordion, Box, Typography } from '@uui';
   import DocPage from '../../lib/doc-page.svelte';
-  import MenuExample from './menu-example.svelte';
-  import MENU_EXP from './menu-example.svelte?raw';
   import InlineCode from '../../lib/inline-code.svelte';
   import MENU_PROPS from '@uui/Menu/Menu.types.d.ts?raw';
+  import MenuClickaway from './menu-def-clickaway.svelte';
+  import CLICKAWAY_EXP from './menu-def-clickaway.svelte?raw';
+  import ON_CLICKAWAY_EXP from './menu-on-clickaway.svelte?raw';
+  import MenuOnClickaway from './menu-on-clickaway.svelte';
+  import BOTTOM_START from './menu-bottom-start.svelte?raw';
+  import MenuBottomStart from './menu-bottom-start.svelte';
+  import MenuBottomEnd from './menu-bottom-end.svelte';
+  import MenuTopStart from './menu-top-start.svelte';
+  import MenuTopEnd from './menu-top-end.svelte';
+  import NO_CLICKAWAY_EXP from './menu-no-clickaway.svelte?raw';
+  import MenuNoClickaway from './menu-no-clickaway.svelte';
 </script>
 
 <DocPage>
@@ -20,12 +29,51 @@
   </Typography>
   <VariantExample code={MENU_PROPS} />
 
-  <Typography variant="h3">Examples</Typography>
-  <MenuExample />
-  <Accordion isOpen>
-    <Typography variant="h6" slot="headerContent">Menu Code</Typography>
+  <Typography variant="h4">Origin Examples</Typography>
+  <Box ssx={{ $self: { display: 'flex', gap: '5rem', 'justify-content': 'center' } }}>
+    <MenuBottomStart />
+    <MenuBottomEnd />
+    <MenuTopStart />
+    <MenuTopEnd />
+  </Box>
+  <Accordion>
+    <Typography variant="h6" slot="headerContent">Origin Example Code</Typography>
     <Box slot="content">
-      <VariantExample code={MENU_EXP} />
+      <VariantExample code={BOTTOM_START} />
+    </Box>
+  </Accordion>
+
+  <Typography variant="h4">Clickaway Examples</Typography>
+  <Typography ssx={{ $self: { 'align-self': 'center' } }} variant="h5">
+    Default Clickaway (bind:open)
+  </Typography>
+  <MenuClickaway />
+  <Accordion>
+    <Typography variant="h6" slot="headerContent">Clickaway Code</Typography>
+    <Box slot="content">
+      <VariantExample code={CLICKAWAY_EXP} />
+    </Box>
+  </Accordion>
+
+  <Typography ssx={{ $self: { 'align-self': 'center' } }} variant="h5">
+    Custom Clickaway (onClickaway)
+  </Typography>
+  <MenuOnClickaway />
+  <Accordion>
+    <Typography variant="h6" slot="headerContent">onClickaway Code</Typography>
+    <Box slot="content">
+      <VariantExample code={ON_CLICKAWAY_EXP} />
+    </Box>
+  </Accordion>
+
+  <Typography ssx={{ $self: { 'align-self': 'center' } }} variant="h5">
+    No Clickaway (clickaway=false)
+  </Typography>
+  <MenuNoClickaway />
+  <Accordion>
+    <Typography variant="h6" slot="headerContent">No Clickaway Code</Typography>
+    <Box slot="content">
+      <VariantExample code={NO_CLICKAWAY_EXP} />
     </Box>
   </Accordion>
 </DocPage>
