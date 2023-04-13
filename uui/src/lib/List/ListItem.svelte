@@ -33,12 +33,11 @@
 </script>
 
 <Box
-  {...$$restProps}
-  class="list-item-container"
   {element}
+  {...$$restProps}
   ref={listItemContainerRef}
   eventComponent={current_component}
-  {...$$restProps}
+  class="list-item-container"
   style="--list-item-text-color: {makeThemeColor(textColor)}"
 >
   <li

@@ -3,7 +3,7 @@ import type { ThemeColors } from '../shared/theme/default-colors/colors.types';
 
 export type TextFieldVariant = 'outlined' | 'filled';
 
-export interface TextFieldProps<T extends EventTarget> extends BoxProps<T> {
+export interface TextFieldProps extends BoxProps<HTMLInputElement> {
   variant?: TextFieldVariant;
   label: string;
   value?: string;
@@ -11,6 +11,7 @@ export interface TextFieldProps<T extends EventTarget> extends BoxProps<T> {
   color?: ThemeColors;
   error?: boolean;
   characterCounter?: boolean;
+  getInputRef?: (ref: HTMLInputElement) => void;
 }
 
 export type TextFieldIconProps<T extends EventTarget> = BoxProps<T>;

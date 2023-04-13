@@ -8,8 +8,7 @@
   import Box from '../Box/box.svelte';
 
   //Props
-  type T = $$Generic<EventTarget>;
-  type $$Props = TextFieldProps<T>;
+  type $$Props = TextFieldProps;
   export let variant: TextFieldVariant = 'outlined';
   export let label: string;
   export let color: ThemeColors = 'inherit';
@@ -17,6 +16,8 @@
   export let characterCounter = false;
   export let error = false;
   export let value = '';
+  export let ref: Node | undefined = undefined;
+  export let getInputRef: ((iRef: HTMLInputElement) => void) | undefined = undefined;
 
   // locals
   let inputRef: HTMLInputElement;
@@ -39,6 +40,7 @@
     minlength: inputProps.minlength,
     maxlength: inputProps.maxlengh,
     pattern: inputProps.pattern,
+    readonly: inputProps.readonly,
     ...containerProps
   } = $$restProps);
 
@@ -81,16 +83,21 @@
         invalid = true;
       };
     }
+
     if (value) {
       notched = true;
       floating = true;
     }
+
     if ($$restProps.autofocus) {
       setFocusStates();
     }
+
     if (error) {
       invalid = true;
     }
+
+    getInputRef && getInputRef(inputRef);
   });
 
   $: if (inputRef && characterCounter) {
@@ -119,7 +126,7 @@
 
 <svelte:window on:click={clickAway} on:keydown={clickAway} />
 
-<Box {...containerProps}>
+<Box {...containerProps} bind:ref>
   <div
     class={`text-field mdc-text-field mdc-text-field--${variant} ${getIconClass()}`}
     class:mdc-text-field--disabled={$$restProps.disabled}
@@ -146,7 +153,7 @@
         error
       </span>
     {:else}
-      <slot name="trailing" {inputRef} />
+      <slot name="trailing" />
     {/if}
     {#if variant === 'outlined'}
       <span
@@ -162,7 +169,8 @@
             class:mdc-floating-label--required={$$restProps.required}
             for={`text-field-${variant}`}
             id="textfield-label"
-            >{label}
+          >
+            {label}
           </label>
         </span>
         <span class="mdc-notched-outline__trailing" />
@@ -176,7 +184,8 @@
         class:mdc-floating-label--required={$$restProps.required}
         for={`text-field-${variant}`}
         id="textfield-label"
-        >{label}
+      >
+        {label}
       </label>
       <div class={`mdc-line-ripple mdc-line-ripple--${active}`} />
     {/if}

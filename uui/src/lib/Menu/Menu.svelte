@@ -5,12 +5,12 @@
   import { computePosition, autoUpdate } from '@floating-ui/dom';
 
   // Props
-  type T = $$Generic<HTMLMenuElement>;
-  type $$Props = MenuProps<T>;
+  type $$Props = MenuProps;
 
   export let open = false;
   export let anchorOrigin: AnchorOrigin = 'bottom-start';
   export let anchorRef: Element | undefined = undefined;
+  export let hugContent = false;
   export let onClose: (() => void) | undefined = undefined;
 
   // Local Vars
@@ -72,7 +72,7 @@
   {elevation}
   {...$$restProps}
   class="menu {stateClasses} {anchorOrigin} {$$restProps.class || ''}"
-  style="--elevation: {elevation}"
+  style="--elevation: {elevation}; --width: {hugContent ? 'fit-content' : '14rem'}"
 >
   <slot />
 </Paper>
@@ -80,7 +80,7 @@
 <style lang="scss" global>
   .menu {
     display: none;
-    width: 20rem;
+    min-width: var(--width);
     position: absolute;
     box-sizing: border-box;
     opacity: 0;
