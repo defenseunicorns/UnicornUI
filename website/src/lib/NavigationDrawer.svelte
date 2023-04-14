@@ -23,6 +23,7 @@
     'list',
     'list-group',
     'list-item',
+    'menu',
     'drawer'
   ];
 

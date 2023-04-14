@@ -84,7 +84,7 @@
 
 <style lang="scss" global>
   .demo-list {
-    width: 300px;
+    width: fit-content;
     border: 1px solid gray;
     background-color: var(--surface);
   }
