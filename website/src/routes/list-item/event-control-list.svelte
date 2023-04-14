@@ -16,7 +16,7 @@
     on:click={() => exampleOnclick(0)}
     {selected}
   >
-    <ListItemAdornment slot="trailing-adornment">
+    <ListItemAdornment slot="trailing">
       <ListItemCheckbox checked={selected} />
     </ListItemAdornment>
   </ListItem>
@@ -26,7 +26,7 @@
     on:click={() => exampleOnclick()}
   >
     <ListItemAdornment
-      slot="trailing-adornment"
+      slot="trailing"
       on:click={(e) => {
         e.stopPropagation();
       }}

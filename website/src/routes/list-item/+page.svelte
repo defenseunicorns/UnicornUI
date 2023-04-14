@@ -101,8 +101,8 @@
   <Typography variant="body1">
     <InlineCode>ListItem</InlineCode> has three named slots:
     <ul>
-      <li>leading-adornment</li>
-      <li>trailing-adornment</li>
+      <li>leading</li>
+      <li>trailing</li>
       <li>nested-content</li>
     </ul>
   </Typography>
@@ -126,9 +126,9 @@
   <VariantExample
     code={` 
   <li ...>
-  <slot name="leading-adornment" />
+  <slot name="leading" />
     ....
-  <slot name="trailing-adornment" />
+  <slot name="trailing" />
 </li>
 {#if selected && $$slots["nested-content"]}
     <div ...>

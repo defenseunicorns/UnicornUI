@@ -5,10 +5,8 @@
 <List class="demo-list">
   <ListSubHeader>Settings</ListSubHeader>
   <ListItem text="Wi-Fi">
-    <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined">
-      wifi
-    </ListItemAdornment>
-    <ListItemAdornment slot="trailing-adornment">
+    <ListItemAdornment slot="leading" class="material-symbols-outlined">wifi</ListItemAdornment>
+    <ListItemAdornment slot="trailing">
       <IconButton
         toggleable
         iconContent="toggle_off"
@@ -20,10 +18,10 @@
     </ListItemAdornment>
   </ListItem>
   <ListItem text="Bluetooth">
-    <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined">
+    <ListItemAdornment slot="leading" class="material-symbols-outlined">
       bluetooth
     </ListItemAdornment>
-    <ListItemAdornment slot="trailing-adornment">
+    <ListItemAdornment slot="trailing">
       <IconButton
         toggleable
         iconContent="toggle_off"

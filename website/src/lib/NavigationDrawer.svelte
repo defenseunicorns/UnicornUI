@@ -72,7 +72,7 @@
         selected={themingListOpen}
         on:click={() => updateDrawerStates('theming')}
       >
-        <ListItemAdornment slot="trailing-adornment" class="material-symbols-outlined">
+        <ListItemAdornment slot="trailing" class="material-symbols-outlined">
           {themingListOpen ? 'expand_less' : 'expand_more'}
         </ListItemAdornment>
         <svelte:fragment slot="nested-content">
@@ -97,7 +97,7 @@
         selected={componentListOpen}
         on:click={() => updateDrawerStates('components')}
       >
-        <ListItemAdornment slot="trailing-adornment" class="material-symbols-outlined">
+        <ListItemAdornment slot="trailing" class="material-symbols-outlined">
           {componentListOpen ? 'expand_less' : 'expand_more'}
         </ListItemAdornment>
         <svelte:fragment slot="nested-content">

@@ -6,17 +6,13 @@
   <ListSubHeader>List 1</ListSubHeader>
   <List>
     <ListItem text="List Item" divider>
-      <ListItemAdornment class="material-symbols-outlined" slot="leading-adornment">
-        star
-      </ListItemAdornment>
+      <ListItemAdornment class="material-symbols-outlined" slot="leading">star</ListItemAdornment>
     </ListItem>
   </List>
   <ListSubHeader>List 2</ListSubHeader>
   <List>
     <ListItem text="List Item">
-      <ListItemAdornment class="material-symbols-outlined" slot="leading-adornment">
-        star
-      </ListItemAdornment>
+      <ListItemAdornment class="material-symbols-outlined" slot="leading">star</ListItemAdornment>
     </ListItem>
   </List>
 </ListGroup>

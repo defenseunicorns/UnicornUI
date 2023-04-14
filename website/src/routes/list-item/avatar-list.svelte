@@ -16,7 +16,7 @@
     selected={selectedIndex === 0}
     on:click={() => setSelected(0)}
   >
-    <ListItemAdornment slot="leading-adornment">
+    <ListItemAdornment slot="leading">
       <ListAvatar element="i" class="material-symbols-outlined">image</ListAvatar>
     </ListItemAdornment>
   </ListItem>
@@ -27,7 +27,7 @@
     selected={selectedIndex === 1}
     on:click={() => setSelected(1)}
   >
-    <ListItemAdornment slot="leading-adornment">
+    <ListItemAdornment slot="leading">
       <ListAvatar element="i" class="material-symbols-outlined">work</ListAvatar>
     </ListItemAdornment>
   </ListItem>
@@ -38,7 +38,7 @@
     selected={selectedIndex === 2}
     on:click={() => setSelected(2)}
   >
-    <ListItemAdornment slot="leading-adornment">
+    <ListItemAdornment slot="leading">
       <ListAvatar element="i" class="material-symbols-outlined">beach_access</ListAvatar>
     </ListItemAdornment>
   </ListItem>

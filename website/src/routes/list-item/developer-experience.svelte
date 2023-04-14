@@ -137,14 +137,14 @@
       selected={example1SelectedIndex === index}
       on:click={() => !item.disabled && example1Click(index)}
     >
-      <svelte:fragment slot="leading-adornment">
+      <svelte:fragment slot="leading">
         {#if item.leadingAdornment}
-          <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined">
+          <ListItemAdornment slot="leading" class="material-symbols-outlined">
             send
           </ListItemAdornment>
         {/if}
       </svelte:fragment>
-      <svelte:fragment slot="trailing-adornment">
+      <svelte:fragment slot="trailing">
         {#if item.trailingAdornment}
           <ListItemAdornment>
             <IconButton
@@ -209,14 +209,14 @@ const listItemsIteration1: ExtendedListItems1[] = [
       selected={example1SelectedIndex === index}
       on:click={() => !item.disabled && example1Click(index)}
     >
-      <svelte:fragment slot="leading-adornment">
+      <svelte:fragment slot="leading">
         {#if item.leadingAdornment}
-          <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined">
+          <ListItemAdornment slot="leading" class="material-symbols-outlined">
             send
           </ListItemAdornment>
         {/if}
       </svelte:fragment>
-      <svelte:fragment slot="trailing-adornment">
+      <svelte:fragment slot="trailing">
         {#if item.trailingAdornment}
           <ListItemAdornment>
             <IconButton
@@ -249,10 +249,10 @@ const listItemsIteration1: ExtendedListItems1[] = [
       selected={example2SelectedIndex === index}
       on:click={() => !item.disabled && example2Click(index)}
     >
-      <svelte:fragment slot="leading-adornment">
+      <svelte:fragment slot="leading">
         {#if item.leadingAdornment}
           <ListItemAdornment
-            slot="leading-adornment"
+            slot="leading"
             class="material-symbols-outlined"
             disabled={item.disabled}
           >
@@ -260,9 +260,9 @@ const listItemsIteration1: ExtendedListItems1[] = [
           </ListItemAdornment>
         {/if}
       </svelte:fragment>
-      <svelte:fragment slot="trailing-adornment">
+      <svelte:fragment slot="trailing">
         {#if item.trailingAdornment}
-          <ListItemAdornment slot="trailing-adornment">
+          <ListItemAdornment slot="trailing">
             <svelte:component
               this={item.trailingAdornment.component}
               checked={example2SelectedIndex === index}
@@ -345,16 +345,16 @@ const listItemsIteration2: ExtendedListItems2[] = [
       selected={example2SelectedIndex === index}
       on:click={() => !item.disabled && example2Click(index)}
     >
-      <svelte:fragment slot="leading-adornment">
+      <svelte:fragment slot="leading">
         {#if item.leadingAdornment}
-          <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined" {disabled}>
+          <ListItemAdornment slot="leading" class="material-symbols-outlined" {disabled}>
             {item.leadingAdornment.content}
           </ListItemAdornment>
         {/if}
       </svelte:fragment>
-      <svelte:fragment slot="trailing-adornment">
+      <svelte:fragment slot="trailing">
         {#if item.trailingAdornment}
-          <ListItemAdornment slot="trailing-adornment">
+          <ListItemAdornment slot="trailing">
             <svelte:component
               this={item.trailingAdornment.component}
               checked={selected}
