@@ -16,12 +16,21 @@
   // Local Vars
   let tfContainerRef: HTMLElement;
   let inputRef: HTMLInputElement;
+  let helperTextOffset = -18;
 
   // Functions
+
+  // Passed as Slot Prop for trailing icon to use on:click
   function setOpen() {
     open = !open;
+
+    if (open && document.activeElement != inputRef) {
+      inputRef.focus();
+    }
   }
 
+  // Passed as Slot Prop in default slot of Menu,
+  // which means "menu" items can access this on:click
   function setValue(e: MouseEvent) {
     const target = e.target as HTMLElement;
     value = target.textContent?.trim() || '';
@@ -32,32 +41,39 @@
 <Box class="select {$$restProps.class || ''}">
   <TextField
     bind:ref={tfContainerRef}
-    on:focus={() => (open = true)}
+    bind:inputRef
+    on:focus={() => {
+      open = true;
+    }}
     {value}
     readonly
     variant={$$restProps.variant || 'outlined'}
     label={$$restProps.label}
     helperText={$$restProps.helperText || ''}
-    getInputRef={(iRef) => {
-      inputRef = iRef;
-    }}
   >
     <slot name="trailing" slot="trailing" {setOpen} />
   </TextField>
 
   <Menu
-    {open}
+    bind:open
     bind:anchorRef={tfContainerRef}
     anchorOrigin={$$restProps.anchorOrigin || 'bottom-start'}
-    onClose={setOpen}
+    offsetNum={helperTextOffset}
   >
     <slot {setValue} />
   </Menu>
 </Box>
 
 <style lang="scss" global>
+  .select {
+    width: fit-content;
+  }
   .select .text-field .mdc-text-field__input {
     cursor: default;
     caret-color: transparent;
+  }
+
+  .select .menu {
+    border-radius: 0px 0px 4px;
   }
 </style>

@@ -16,11 +16,11 @@
   export let characterCounter = false;
   export let error = false;
   export let value = '';
+  export let clickaway = true;
   export let ref: Node | undefined = undefined;
-  export let getInputRef: ((iRef: HTMLInputElement) => void) | undefined = undefined;
+  export let inputRef: HTMLInputElement | undefined = undefined;
 
   // locals
-  let inputRef: HTMLInputElement;
   let labelRef: HTMLLabelElement;
   let focused = false;
   let notched = false;
@@ -54,10 +54,16 @@
 
   // Remove some or all focus states when user clicks away
   function clickAway(evt: MouseEvent | KeyboardEvent) {
-    if (evt.target !== inputRef && !$$restProps.placeholder) {
+    if (
+      clickaway &&
+      evt.target !== inputRef &&
+      !$$restProps.placeholder &&
+      ref &&
+      !ref.contains(evt.target as Node)
+    ) {
       focused = false;
       active = '';
-      if (inputRef.value === '') {
+      if (inputRef && inputRef.value === '') {
         notched = false;
         floating = false;
       }
@@ -96,8 +102,6 @@
     if (error) {
       invalid = true;
     }
-
-    getInputRef && getInputRef(inputRef);
   });
 
   $: if (inputRef && characterCounter) {
