@@ -75,7 +75,7 @@
         <ListItemAdornment slot="trailing" class="material-symbols-outlined">
           {themingListOpen ? 'expand_less' : 'expand_more'}
         </ListItemAdornment>
-        <svelte:fragment slot="nested-content">
+        <svelte:fragment slot="sublist">
           {#each themeRoutestList as route}
             <ListItem
               selected={selectedRoute === route}
@@ -100,7 +100,7 @@
         <ListItemAdornment slot="trailing" class="material-symbols-outlined">
           {componentListOpen ? 'expand_less' : 'expand_more'}
         </ListItemAdornment>
-        <svelte:fragment slot="nested-content">
+        <svelte:fragment slot="sublist">
           {#each componentRoutesList as route}
             <ListItem
               selected={selectedRoute === route}

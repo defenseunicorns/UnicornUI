@@ -67,9 +67,9 @@
 
     <slot name="trailing" />
   </li>
-  {#if selected && $$slots['nested-content']}
-    <div class="nested-content">
-      <slot name="nested-content" />
+  {#if selected && $$slots.sublist}
+    <div class="sublist">
+      <slot name="sublist" />
     </div>
   {/if}
 </Paper>
@@ -141,7 +141,7 @@
     }
 
     // Nested Content
-    .nested-content {
+    .sublist {
       padding-left: 1rem;
     }
   }

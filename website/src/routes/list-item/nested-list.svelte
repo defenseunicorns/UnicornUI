@@ -40,7 +40,7 @@
         </ListItemAdornment>
       {/if}
     </svelte:fragment>
-    <ListItem text="Starred" slot="nested-content">
+    <ListItem text="Starred" slot="sublist">
       <ListItemAdornment slot="leading" class="material-symbols-outlined">star</ListItemAdornment>
     </ListItem>
   </ListItem>

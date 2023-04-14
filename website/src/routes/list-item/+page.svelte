@@ -103,7 +103,7 @@
     <ul>
       <li>leading</li>
       <li>trailing</li>
-      <li>nested-content</li>
+      <li>sublist</li>
     </ul>
   </Typography>
   <Typography variant="body1">
@@ -130,9 +130,9 @@
     ....
   <slot name="trailing" />
 </li>
-{#if selected && $$slots["nested-content"]}
+{#if selected && $$slots["sublist"]}
     <div ...>
-      <slot name="nested-content" />
+      <slot name="sublist" />
     </div>
 {/if}
   
