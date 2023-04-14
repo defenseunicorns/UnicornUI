@@ -30,7 +30,7 @@
   }
 
   // Passed as Slot Prop in default slot of Menu,
-  // which means "menu" items can access this on:click
+  // which means "menu" items can use this on:click
   function setValue(e: MouseEvent) {
     const target = e.target as HTMLElement;
     value = target.textContent?.trim() || '';
