@@ -9,18 +9,14 @@
   <Button variant="text" on:click={() => (open = !open)} bind:ref={anchorRef}>bottom-start</Button>
   <Menu bind:open bind:anchorRef anchorOrigin="bottom-start">
     <ListItem text="List Item">
-      <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined">
-        send
-      </ListItemAdornment>
-      <ListItemAdornment slot="trailing-adornment" class="material-symbols-outlined">
+      <ListItemAdornment slot="leading" class="material-symbols-outlined">send</ListItemAdornment>
+      <ListItemAdornment slot="trailing" class="material-symbols-outlined">
         expand_more
       </ListItemAdornment>
     </ListItem>
     <ListItem text="List Item">
-      <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined">
-        mail
-      </ListItemAdornment>
-      <ListItemAdornment slot="trailing-adornment" class="material-symbols-outlined">
+      <ListItemAdornment slot="leading" class="material-symbols-outlined">mail</ListItemAdornment>
+      <ListItemAdornment slot="trailing" class="material-symbols-outlined">
         expand_more
       </ListItemAdornment>
     </ListItem>

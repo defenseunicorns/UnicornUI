@@ -2,6 +2,12 @@
 
 ## Updates
 
+### List
+
+### List Group
+
+### List Item
+
 ### Menu
 
 - Added `clickaway` prop to Menu to turn clickaway behavior on or off. Defaults to true.
@@ -73,7 +79,7 @@ i.e.
 
 ```ts
 <ListItem selected={...logic} let:selected disabled={...logic} let:disabled>
-  <ListItemAdornment slot="trailing-content">
+  <ListItemAdornment slot="trailing-adornment">
     <ListItemCheckbox checked={selected} {disabled}>
   </ListItemAdornment>
 </ListITem>
@@ -83,7 +89,7 @@ now becomes:
 
 ```ts
 <ListItem selected={...logic} disabled={...logic}>
-  <ListItemAdornment slot="trailing-content">
+  <ListItemAdornment slot="trailing-adornment">
     <ListItemCheckbox checked={...logic} disabled={...logic}>
   </ListItemAdornment>
 </ListITem>
