@@ -1,3 +1,17 @@
+# v0.0.48
+
+## Updates
+
+### Menu
+
+- Added `clickaway` prop to Menu to turn clickaway behavior on or off. Defaults to true.
+
+## Breaking Changes
+
+### Menu
+
+- `onClose` is now `onClickaway` and is used for custom clickaway behavior.
+
 # v0.0.47
 
 ## Updates

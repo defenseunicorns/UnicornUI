@@ -2,7 +2,7 @@
   import { afterUpdate, onDestroy, onMount } from 'svelte';
   import Paper from '../Paper/Paper.svelte';
   import type { AnchorOrigin, MenuProps } from './Menu.types';
-  import { computePosition, autoUpdate } from '@floating-ui/dom';
+  import { computePosition, autoUpdate, flip } from '@floating-ui/dom';
 
   // Props
   type T = $$Generic<HTMLMenuElement>;
@@ -11,7 +11,10 @@
   export let open = false;
   export let anchorOrigin: AnchorOrigin = 'bottom-start';
   export let anchorRef: Element | undefined = undefined;
-  export let onClose: (() => void) | undefined = undefined;
+  export let clickaway = true;
+  export let onClickaway = () => {
+    open = false;
+  };
 
   // Local Vars
   let menuRef: HTMLElement;
@@ -24,7 +27,8 @@
   function updateMenuPos() {
     if (anchorRef && menuRef) {
       computePosition(anchorRef, menuRef, {
-        placement: anchorOrigin
+        placement: anchorOrigin,
+        middleware: [flip()]
       }).then(({ x, y }) => {
         Object.assign(menuRef.style, {
           left: `${x}px`,
@@ -37,12 +41,13 @@
   // Close menu when user clicks away
   function clickAway(evt: MouseEvent | KeyboardEvent) {
     if (
+      clickaway &&
       open &&
       evt.target !== menuRef &&
       !menuRef.contains(evt.target as Node) &&
       !anchorRef?.contains(evt.target as Node)
     ) {
-      onClose && onClose();
+      onClickaway();
     }
   }
 
