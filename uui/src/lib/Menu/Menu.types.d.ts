@@ -7,5 +7,6 @@ export interface MenuProps extends PaperProps<HTMLMenuElement> {
   anchorRef?: Element;
   anchorOrigin?: AnchorOrigin;
   hugContent?: boolean;
-  onClose?: () => void;
+  clickaway?: boolean;
+  onClickaway?: () => void;
 }
