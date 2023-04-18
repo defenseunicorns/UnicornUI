@@ -9,7 +9,7 @@
   } from '@uui';
 </script>
 
-<List class="demo-list">
+<List class="list-exp">
   <ListSubHeader>Settings</ListSubHeader>
   <ListItem>
     <ListItemTypography>Wi-Fi</ListItemTypography>
