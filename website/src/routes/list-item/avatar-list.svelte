@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { List, ListItem, ListItemAdornment } from '@uui';
+  import { List, ListItem, ListItemAdornment, ListItemTypography } from '@uui';
   import ListAvatar from './list-avatar.svelte';
 
   let selectedIndex = 0;
@@ -10,34 +10,23 @@
 </script>
 
 <List class="demo-list">
-  <ListItem
-    text="Photos"
-    secondaryText="Jan 9, 2014"
-    selected={selectedIndex === 0}
-    on:click={() => setSelected(0)}
-  >
+  <ListItem selected={selectedIndex === 0} on:click={() => setSelected(0)}>
+    <ListItemTypography>Photos</ListItemTypography>
+    <ListItemTypography secondary>Jan 9, 2014</ListItemTypography>
     <ListItemAdornment slot="leading">
       <ListAvatar element="i" class="material-symbols-outlined">image</ListAvatar>
     </ListItemAdornment>
   </ListItem>
-  <ListItem
-    text="Work"
-    secondaryText="Jan 20, 2014"
-    divider
-    selected={selectedIndex === 1}
-    on:click={() => setSelected(1)}
-  >
+  <ListItem divider selected={selectedIndex === 1} on:click={() => setSelected(1)}>
+    <ListItemTypography>Work</ListItemTypography>
+    <ListItemTypography secondary>Jan 20, 2014</ListItemTypography>
     <ListItemAdornment slot="leading">
       <ListAvatar element="i" class="material-symbols-outlined">work</ListAvatar>
     </ListItemAdornment>
   </ListItem>
-  <ListItem
-    text="Vacation"
-    secondaryText="July 4, 2014"
-    disableGutters
-    selected={selectedIndex === 2}
-    on:click={() => setSelected(2)}
-  >
+  <ListItem disableGutters selected={selectedIndex === 2} on:click={() => setSelected(2)}>
+    <ListItemTypography>Vacation</ListItemTypography>
+    <ListItemTypography secondary>July 4, 2014</ListItemTypography>
     <ListItemAdornment slot="leading">
       <ListAvatar element="i" class="material-symbols-outlined">beach_access</ListAvatar>
     </ListItemAdornment>

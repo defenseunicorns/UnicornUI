@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button, Drawer, List, ListItem, ListSubHeader, Typography } from '@uui';
+  import { Button, Drawer, ListItem, ListItemTypography, ListSubHeader, Typography } from '@uui';
 
   const drawerPosControls: Record<string, boolean> = {
     left: false,
@@ -19,14 +19,12 @@
   <Button on:click={() => setDrawerOpen('right')}>Right</Button>
 </div>
 <Drawer anchor="left" modal open={drawerPosControls.left} onClose={() => setDrawerOpen('left')}>
-  <List slot="content">
-    <ListSubHeader>Modal Drawer</ListSubHeader>
-    <ListItem text="List Item" />
-  </List>
+  <ListSubHeader>Modal Drawer</ListSubHeader>
+  <ListItem>
+    <ListItemTypography>List Item</ListItemTypography>
+  </ListItem>
 </Drawer>
 <Drawer anchor="right" modal open={drawerPosControls.right} onClose={() => setDrawerOpen('right')}>
-  <List slot="content">
-    <ListSubHeader>Modal Drawer</ListSubHeader>
-    <ListItem text="List Item" />
-  </List>
+  <ListSubHeader>Modal Drawer</ListSubHeader>
+  <ListItem><ListItemTypography>List Item</ListItemTypography></ListItem>
 </Drawer>

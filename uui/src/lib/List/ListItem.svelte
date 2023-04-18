@@ -1,16 +1,14 @@
 <script lang="ts">
   import { onMount } from 'svelte/internal';
   import { MDCRipple } from '@material/ripple';
-  import type { ListItemProps } from './ListItem.types';
   import { current_component } from 'svelte/internal';
   import { makeThemeColor } from '../shared/utils/makeThemeColor';
-  import Paper from '../Paper/Paper.svelte';
+  import type { ListItemProps } from './ListItem.types';
+  import Box from '../Box/box.svelte';
 
   // Props
   type T = $$Generic<EventTarget>;
   type $$Props = ListItemProps<T>;
-  export let text = '';
-  export let secondaryText: string | undefined = undefined;
   export let textColor = 'on-background';
   export let selected = false;
   export let disabled = false;
@@ -32,7 +30,7 @@
   });
 </script>
 
-<Paper
+<Box
   {element}
   {...$$restProps}
   ref={listItemContainerRef}
@@ -47,21 +45,15 @@
     class:mdc-ripple-upgraded--background-focused={selected}
     class:mdc-deprecated-list-item--disabled={disabled}
     class:disabled-gutters={disableGutters}
-    class:two-line={secondaryText}
     class:divider
   >
     <slot name="leading" />
 
     <span class="mdc-deprecated-list-item__ripple" />
 
-    {#if secondaryText}
-      <span class="mdc-deprecated-list-item__text">
-        <span class="mdc-deprecated-list-item__primary-text">{text}</span>
-        <span class="mdc-deprecated-list-item__secondary-text">{secondaryText} </span>
-      </span>
-    {:else}
-      <span class="mdc-deprecated-list-item__text">{text}</span>
-    {/if}
+    <div class="mdc-deprecated-list-item__text">
+      <slot />
+    </div>
 
     <slot name="trailing" />
   </li>
@@ -70,7 +62,7 @@
       <slot name="sublist" />
     </div>
   {/if}
-</Paper>
+</Box>
 
 <style lang="scss" global>
   @use '@material/list';
@@ -115,21 +107,24 @@
 
     // With Secondary Text
 
-    .two-line {
+    $two_line: '.list-item:has(.mdc-deprecated-list-item__text):has(.list-item-secondary-text)';
+    #{$two_line} {
       height: 4.5rem;
+    }
 
-      .mdc-deprecated-list-item__text {
-        align-self: flex-start;
-      }
+    .mdc-deprecated-list-item__text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     // Item Height
-    .mdc-deprecated-list-item:not(.two-line) {
+    .mdc-deprecated-list-item:not(#{$two_line}) {
       @include list.deprecated-single-line-height(48px);
     }
 
-    .mdc-deprecated-list-item:not(.two-line):has(.mdc-deprecated-list-item__graphic),
-    .mdc-deprecated-list-item:not(.two-line):has(.mdc-deprecated-list-item__meta) {
+    .mdc-deprecated-list-item:not(#{$two_line}):has(.mdc-deprecated-list-item__graphic),
+    .mdc-deprecated-list-item:not(#{$two_line}):has(.mdc-deprecated-list-item__meta) {
       @include list.deprecated-single-line-height(56px);
     }
 

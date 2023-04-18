@@ -1,10 +1,18 @@
 <script lang="ts">
-  import { List, ListItem, ListSubHeader, ListItemAdornment, IconButton } from '@uui';
+  import {
+    List,
+    ListItem,
+    ListSubHeader,
+    ListItemAdornment,
+    IconButton,
+    ListItemTypography
+  } from '@uui';
 </script>
 
 <List class="demo-list">
   <ListSubHeader>Settings</ListSubHeader>
-  <ListItem text="Wi-Fi">
+  <ListItem>
+    <ListItemTypography>Wi-Fi</ListItemTypography>
     <ListItemAdornment slot="leading" class="material-symbols-outlined">wifi</ListItemAdornment>
     <ListItemAdornment slot="trailing">
       <IconButton
@@ -17,7 +25,8 @@
       />
     </ListItemAdornment>
   </ListItem>
-  <ListItem text="Bluetooth">
+  <ListItem>
+    <ListItemTypography>Bluetooth</ListItemTypography>
     <ListItemAdornment slot="leading" class="material-symbols-outlined">
       bluetooth
     </ListItemAdornment>

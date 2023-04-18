@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Typography, List, ListItem, Accordion, Box } from '@uui';
+  import { Typography, List, ListItem, Accordion, Box, ListItemTypography } from '@uui';
   import DocPage from '../../lib/doc-page.svelte';
   import VariantExample from '../../lib/VariantExample.svelte';
   import InlineCode from '../../lib/inline-code.svelte';
@@ -63,15 +63,15 @@
   </Typography>
 
   <List class="demo-list">
-    <ListItem text="List Item" divider />
-    <ListItem text="List Item" />
+    <ListItem divider><ListItemTypography>List Item</ListItemTypography></ListItem>
+    <ListItem><ListItemTypography>List Item</ListItemTypography></ListItem>
   </List>
 
   <VariantExample
     code={`
-   <List class="demo-list">
-    <ListItem text="List Item" divider />
-    <ListItem text="List Item" />
+    <List class="demo-list">
+    <ListItem divider><ListItemTypography>List Item</ListItemTypography></ListItem>
+    <ListItem><ListItemTypography>List Item</ListItemTypography></ListItem>
 </List>
   `}
   />
@@ -84,15 +84,15 @@
   </Typography>
 
   <List class="demo-list">
-    <ListItem text="List Item" divider />
-    <ListItem text="List Item" disableGutters />
+    <ListItem divider><ListItemTypography>List Item</ListItemTypography></ListItem>
+    <ListItem disableGutters><ListItemTypography>List Item</ListItemTypography></ListItem>
   </List>
 
   <VariantExample
     code={`
   <List class="demo-list">
-    <ListItem text="List Item" divider/>
-    <ListItem text="List Item" disableGutters />
+    <ListItem divider><ListItemTypography>List Item</ListItemTypography></ListItem>
+    <ListItem disableGutters><ListItemTypography>List Item</ListItemTypography></ListItem>
 </List>
   `}
   />
@@ -194,7 +194,7 @@
 
 <style lang="scss" global>
   .demo-list {
-    width: fit-content;
+    width: 308px;
     border: 1px solid gray;
     background-color: var(--surface);
   }

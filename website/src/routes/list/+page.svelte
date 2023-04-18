@@ -1,6 +1,6 @@
 <script lang="ts">
   import InlineCode from '../../lib/inline-code.svelte';
-  import { List, ListItem, Typography } from '@uui';
+  import { List, ListItem, ListItemTypography, Typography } from '@uui';
   import LIST_TYPES from '@uui/List/List.types.d.ts?raw';
   import LIST_SUBHEADER_EXAMPLE from './list-subheader.svelte?raw';
   import VariantExample from '../../lib/VariantExample.svelte';
@@ -29,13 +29,13 @@
     <div>
       <Typography variant="h5">No Padding</Typography>
       <List class="demo-list" disablePadding>
-        <ListItem text="List Item" />
+        <ListItem><ListItemTypography>List Item</ListItemTypography></ListItem>
       </List>
     </div>
     <div>
       <Typography variant="h5">Padding</Typography>
       <List class="demo-list">
-        <ListItem text="List Item" selected />
+        <ListItem selected><ListItemTypography>List Item</ListItemTypography></ListItem>
       </List>
     </div>
   </div>
@@ -84,7 +84,7 @@
 
 <style lang="scss" global>
   .demo-list {
-    width: fit-content;
+    width: 308px;
     border: 1px solid gray;
     background-color: var(--surface);
   }

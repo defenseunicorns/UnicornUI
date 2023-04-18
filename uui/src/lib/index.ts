@@ -26,6 +26,7 @@ import TextFieldIcon from './TextField/TextFieldIcon.svelte';
 import AccordionGroup from './Accordion/accordion-group.svelte';
 import ListItemCheckbox from './List/ListItemCheckbox.svelte';
 import ListItemAdornment from './List/ListItemAdornment.svelte';
+import ListItemTypography from './List/ListItemTypography.svelte';
 
 export {
   Box,
@@ -54,7 +55,8 @@ export {
   DialogActions,
   AccordionGroup,
   ListItemCheckbox,
-  ListItemAdornment
+  ListItemAdornment,
+  ListItemTypography
 };
 
 // Export Utility Functions here
@@ -122,11 +124,8 @@ export type { ComponentAsProp } from './shared/types/ComponentAsProp';
 export type { ListGroupProps } from './List/ListGroup.types';
 export type { ListSubHeaderProps } from './List/ListSubHeader.types';
 export type { ListProps } from './List/List.types';
-export type {
-  ListItemProps,
-  ListItemSlotProps,
-  ListItemAdornmentProps
-} from './List/ListItem.types';
+export type { ListItemProps, ListItemAdornmentProps } from './List/ListItem.types';
+export type { ListItemTypographyProps } from './List/ListItemTypography.types';
 export type {
   Breakpoints,
   BreakpointKey,

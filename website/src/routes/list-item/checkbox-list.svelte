@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { List, ListItem, ListItemAdornment, ListItemCheckbox } from '@uui';
+  import { List, ListItem, ListItemAdornment, ListItemCheckbox, ListItemTypography } from '@uui';
 
   let selectedIndex = 0;
 
@@ -9,12 +9,14 @@
 </script>
 
 <List class="demo-list">
-  <ListItem text="List Item 1" selected={selectedIndex === 0} on:click={() => setSelected(0)}>
+  <ListItem selected={selectedIndex === 0} on:click={() => setSelected(0)}>
+    <ListItemTypography>List Item 1</ListItemTypography>
     <ListItemAdornment slot="leading">
       <ListItemCheckbox checked={selectedIndex === 0} />
     </ListItemAdornment>
   </ListItem>
-  <ListItem text="List Item 2" selected={selectedIndex === 1} on:click={() => setSelected(1)}>
+  <ListItem selected={selectedIndex === 1} on:click={() => setSelected(1)}>
+    <ListItemTypography>List Item 2</ListItemTypography>
     <ListItemAdornment slot="leading">
       <ListItemCheckbox checked={selectedIndex === 1} />
     </ListItemAdornment>
@@ -22,12 +24,14 @@
 </List>
 
 <List class="demo-list">
-  <ListItem text="List Item 1" selected={selectedIndex === 2} on:click={() => setSelected(2)}>
+  <ListItem selected={selectedIndex === 2} on:click={() => setSelected(2)}>
+    <ListItemTypography>List Item 1</ListItemTypography>
     <ListItemAdornment slot="trailing">
       <ListItemCheckbox checked={selectedIndex === 2} />
     </ListItemAdornment>
   </ListItem>
-  <ListItem text="List Item 2" selected={selectedIndex === 3} on:click={() => setSelected(3)}>
+  <ListItem selected={selectedIndex === 3} on:click={() => setSelected(3)}>
+    <ListItemTypography>List Item 1</ListItemTypography>
     <ListItemAdornment slot="trailing">
       <ListItemCheckbox checked={selectedIndex === 3} />
     </ListItemAdornment>

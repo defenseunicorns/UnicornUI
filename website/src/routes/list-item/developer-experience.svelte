@@ -12,12 +12,15 @@
     ListItemAdornment,
     Typography,
     Accordion,
-    Box
+    Box,
+    ListItemTypography
   } from '@uui';
   import type { ListItemCheckboxProps } from '@defense-unicorns/unicorn-ui/src/lib/List/ListItemCheckbox.types';
 
   type ExtendedListItems1 = svelte.JSX.IntrinsicAttributes &
     ListItemProps<EventTarget> & {
+      text: string;
+      secondaryText?: string;
       leadingAdornment?: boolean;
       trailingAdornment?: boolean;
     };
@@ -51,6 +54,8 @@
 
   type ExtendedListItems2 = svelte.JSX.IntrinsicAttributes &
     ListItemProps<EventTarget> & {
+      text: string;
+      secondaryText?: string;
       leadingAdornment?: Record<string, any>;
       trailingAdornment?: Record<string, any>;
     };
@@ -144,6 +149,11 @@
           </ListItemAdornment>
         {/if}
       </svelte:fragment>
+      <ListItemTypography>{item.text}</ListItemTypography>
+      {#if item.secondaryText}
+        <ListItemTypography secondary>{item.secondaryText}</ListItemTypography>
+      {/if}
+      <ListItemTypography>{item.text}</ListItemTypography>
       <svelte:fragment slot="trailing">
         {#if item.trailingAdornment}
           <ListItemAdornment>
@@ -166,10 +176,13 @@
     <VariantExample
       code={`
 
-type ExtendedListItems1 = ListItemProps & {
-  leadingAdornment?: boolean;
-  trailingAdornment?: boolean;
-};
+type ExtendedListItems1 = svelte.JSX.IntrinsicAttributes &
+    ListItemProps<EventTarget> & {
+      text: string;
+      secondaryText?: string;
+      leadingAdornment?: boolean;
+      trailingAdornment?: boolean;
+    };
 
 const listItemsIteration1: ExtendedListItems1[] = [
     { text: 'List Item', selected: true },
@@ -260,6 +273,10 @@ const listItemsIteration1: ExtendedListItems1[] = [
           </ListItemAdornment>
         {/if}
       </svelte:fragment>
+      <ListItemTypography>{item.text}</ListItemTypography>
+      {#if item.secondaryText}
+        <ListItemTypography secondary>{item.secondaryText}</ListItemTypography>
+      {/if}
       <svelte:fragment slot="trailing">
         {#if item.trailingAdornment}
           <ListItemAdornment slot="trailing">
@@ -282,10 +299,13 @@ const listItemsIteration1: ExtendedListItems1[] = [
     <VariantExample
       code={`
 
-type ExtendedListItems2 = ListItemProps & {
-  leadingAdornment?: Record<string, string>;
-  trailingAdornment?: ComponentAsProp<IconButtonProps | ListItemCheckboxProps>;
-};
+type ExtendedListItems2 = svelte.JSX.IntrinsicAttributes &
+    ListItemProps<EventTarget> & {
+      text: string;
+      secondaryText?: string;
+      leadingAdornment?: Record<string, any>;
+      trailingAdornment?: Record<string, any>;
+    };
 
 const listItemsIteration2: ExtendedListItems2[] = [
     { text: 'List Item', secondaryText: 'Secondary Text' },
