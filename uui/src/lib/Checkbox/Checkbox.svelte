@@ -4,12 +4,13 @@
   import type { CheckboxProps } from './Checkbox.types';
   import Box from '../Box/box.svelte';
   import { makeThemeColor } from '../shared/utils/makeThemeColor';
+  import type { ThemeColors } from '../shared/theme/default-colors/colors.types';
 
   // Props
   type $$Props = CheckboxProps<HTMLInputElement>;
   export let indeterminate: boolean | undefined = undefined;
-  export let color = 'on-surface';
-  export let backgroundColor = 'secondary';
+  export let color: ThemeColors = 'on-surface';
+  export let backgroundColor: ThemeColors = 'secondary';
   export let checked = false;
   export let value: string | undefined = undefined;
 
