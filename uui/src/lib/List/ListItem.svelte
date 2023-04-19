@@ -51,7 +51,7 @@
 
     <span class="mdc-deprecated-list-item__ripple" />
 
-    <div class="mdc-deprecated-list-item__text">
+    <div class="list-item-text">
       <slot />
     </div>
 
@@ -77,6 +77,18 @@
     .mdc-deprecated-list-item {
       @include list.deprecated-item-primary-text-ink-color(var(--list-item-text-color));
       @include list.deprecated-item-secondary-text-ink-color(var(--list-item-text-color));
+      height: auto;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    .list-item-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
     }
 
     .mdc-deprecated-list-item__graphic,
@@ -105,30 +117,7 @@
       border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     }
 
-    // With Secondary Text
-
-    $two_line: '.list-item:has(.mdc-deprecated-list-item__text):has(.list-item-secondary-text)';
-    #{$two_line} {
-      height: 4.5rem;
-    }
-
-    .mdc-deprecated-list-item__text {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    // Item Height
-    .mdc-deprecated-list-item:not(#{$two_line}) {
-      @include list.deprecated-single-line-height(48px);
-    }
-
-    .mdc-deprecated-list-item:not(#{$two_line}):has(.mdc-deprecated-list-item__graphic),
-    .mdc-deprecated-list-item:not(#{$two_line}):has(.mdc-deprecated-list-item__meta) {
-      @include list.deprecated-single-line-height(56px);
-    }
-
-    // Variants: Graphic Size
+    // Graphic Size
     .mdc-deprecated-list-item .mdc-deprecated-list-item__graphic:has(.avatar) {
       @include list.deprecated-graphic-size(0, 56px, 40px, 40px);
       display: inline-block;

@@ -1,6 +1,5 @@
 <script lang="ts">
-  import ListItemTypography from '@defense-unicorns/unicorn-ui/src/lib/List/ListItemTypography.svelte';
-  import { List, ListItem } from '@uui';
+  import { List, ListItem, Typography } from '@uui';
 
   let selectedIndex = 0;
 
@@ -11,16 +10,16 @@
 
 <List class="demo-list">
   <ListItem selected={selectedIndex === 0} on:click={() => setSelected(0)}>
-    <ListItemTypography>Inbox</ListItemTypography>
-    <ListItemTypography secondary>Secondary</ListItemTypography>
+    <Typography>Inbox</Typography>
+    <Typography>Secondary</Typography>
   </ListItem>
   <ListItem selected={selectedIndex === 1} on:click={() => setSelected(1)}>
-    <ListItemTypography single>Drafts</ListItemTypography>
+    <Typography>Drafts</Typography>
   </ListItem>
   <ListItem selected={selectedIndex === 2} on:click={() => setSelected(2)}>
-    <ListItemTypography>Trash</ListItemTypography>
+    <Typography>Trash</Typography>
   </ListItem>
   <ListItem selected={selectedIndex === 3} on:click={() => setSelected(3)}>
-    <ListItemTypography>Spam</ListItemTypography>
+    <Typography>Spam</Typography>
   </ListItem>
 </List>

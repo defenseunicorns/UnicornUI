@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Menu, Button, ListItem, ListItemAdornment, Box, ListItemTypography } from '@uui';
+  import { Menu, Button, ListItem, ListItemAdornment, Box, Typography } from '@uui';
 
   let open = false;
   let anchorRef: HTMLElement;
@@ -9,14 +9,14 @@
   <Button variant="text" on:click={() => (open = !open)} bind:ref={anchorRef}>bottom-end</Button>
   <Menu bind:open bind:anchorRef anchorOrigin="bottom-end">
     <ListItem>
-      <ListItemTypography>List Item</ListItemTypography>
+      <Typography>List Item</Typography>
       <ListItemAdornment slot="leading" class="material-symbols-outlined">send</ListItemAdornment>
       <ListItemAdornment slot="trailing" class="material-symbols-outlined">
         expand_more
       </ListItemAdornment>
     </ListItem>
     <ListItem>
-      <ListItemTypography>List Item</ListItemTypography>
+      <Typography>List Item</Typography>
       <ListItemAdornment slot="leading" class="material-symbols-outlined">mail</ListItemAdornment>
       <ListItemAdornment slot="trailing" class="material-symbols-outlined">
         expand_more

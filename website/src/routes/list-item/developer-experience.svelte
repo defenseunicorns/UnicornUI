@@ -12,8 +12,7 @@
     ListItemAdornment,
     Typography,
     Accordion,
-    Box,
-    ListItemTypography
+    Box
   } from '@uui';
   import type { ListItemCheckboxProps } from '@defense-unicorns/unicorn-ui/src/lib/List/ListItemCheckbox.types';
 
@@ -149,11 +148,10 @@
           </ListItemAdornment>
         {/if}
       </svelte:fragment>
-      <ListItemTypography>{item.text}</ListItemTypography>
+      <Typography>{item.text}</Typography>
       {#if item.secondaryText}
-        <ListItemTypography secondary>{item.secondaryText}</ListItemTypography>
+        <Typography>{item.secondaryText}</Typography>
       {/if}
-      <ListItemTypography>{item.text}</ListItemTypography>
       <svelte:fragment slot="trailing">
         {#if item.trailingAdornment}
           <ListItemAdornment>
@@ -273,9 +271,9 @@ const listItemsIteration1: ExtendedListItems1[] = [
           </ListItemAdornment>
         {/if}
       </svelte:fragment>
-      <ListItemTypography>{item.text}</ListItemTypography>
+      <Typography>{item.text}</Typography>
       {#if item.secondaryText}
-        <ListItemTypography secondary>{item.secondaryText}</ListItemTypography>
+        <Typography>{item.secondaryText}</Typography>
       {/if}
       <svelte:fragment slot="trailing">
         {#if item.trailingAdornment}

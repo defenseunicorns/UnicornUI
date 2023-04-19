@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Typography, List, ListItem, Accordion, Box, ListItemTypography } from '@uui';
+  import { Typography, List, ListItem, Accordion, Box } from '@uui';
   import DocPage from '../../lib/doc-page.svelte';
   import VariantExample from '../../lib/VariantExample.svelte';
   import InlineCode from '../../lib/inline-code.svelte';
@@ -63,15 +63,15 @@
   </Typography>
 
   <List class="demo-list">
-    <ListItem divider><ListItemTypography>List Item</ListItemTypography></ListItem>
-    <ListItem><ListItemTypography>List Item</ListItemTypography></ListItem>
+    <ListItem divider><Typography>List Item</Typography></ListItem>
+    <ListItem><Typography>List Item</Typography></ListItem>
   </List>
 
   <VariantExample
     code={`
     <List class="demo-list">
-    <ListItem divider><ListItemTypography>List Item</ListItemTypography></ListItem>
-    <ListItem><ListItemTypography>List Item</ListItemTypography></ListItem>
+    <ListItem divider><Typography>List Item</Typography></ListItem>
+    <ListItem><Typography>List Item</Typography></ListItem>
 </List>
   `}
   />
@@ -84,28 +84,30 @@
   </Typography>
 
   <List class="demo-list">
-    <ListItem divider><ListItemTypography>List Item</ListItemTypography></ListItem>
-    <ListItem disableGutters><ListItemTypography>List Item</ListItemTypography></ListItem>
+    <ListItem divider><Typography>List Item</Typography></ListItem>
+    <ListItem disableGutters><Typography>List Item</Typography></ListItem>
   </List>
 
   <VariantExample
     code={`
   <List class="demo-list">
-    <ListItem divider><ListItemTypography>List Item</ListItemTypography></ListItem>
-    <ListItem disableGutters><ListItemTypography>List Item</ListItemTypography></ListItem>
+    <ListItem divider><Typography>List Item</Typography></ListItem>
+    <ListItem disableGutters><Typography>List Item</Typography></ListItem>
 </List>
   `}
   />
 
   <Typography variant="h3">Slots</Typography>
   <Typography variant="body1">
-    <InlineCode>ListItem</InlineCode> has three named slots:
-    <ul>
-      <li>leading</li>
-      <li>trailing</li>
-      <li>sublist</li>
-    </ul>
+    <InlineCode>ListItem</InlineCode>
+    has three named slots and one default:
   </Typography>
+  <ul>
+    <li>leading</li>
+    <li>default</li>
+    <li>trailing</li>
+    <li>sublist</li>
+  </ul>
   <Typography variant="body1">
     The leading and trailing adornments can be icons or avatars, or actions like checkboxes, radio
     buttons, and icon buttons. What is passed to these slots, relates directly to the
@@ -127,13 +129,13 @@
     code={` 
   <li ...>
   <slot name="leading" />
-    ....
+
+  <slot />
+
   <slot name="trailing" />
 </li>
 {#if selected && $$slots["sublist"]}
-    <div ...>
       <slot name="sublist" />
-    </div>
 {/if}
   
   `}

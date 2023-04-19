@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { List, ListItem, ListItemAdornment, ListItemCheckbox, ListItemTypography } from '@uui';
+  import { List, ListItem, ListItemAdornment, ListItemCheckbox, Typography } from '@uui';
 
   let selected = false;
   let exampleOnclick = (index?: number) => {
@@ -11,16 +11,16 @@
 
 <List class="demo-list">
   <ListItem on:click={() => exampleOnclick(0)} {selected}>
-    <ListItemTypography>Click Me 1</ListItemTypography>
-    <ListItemTypography secondary>Checkbox with same click.</ListItemTypography>
+    <Typography>Click Me 1</Typography>
+    <Typography>Checkbox with same click.</Typography>
 
     <ListItemAdornment slot="trailing">
       <ListItemCheckbox checked={selected} />
     </ListItemAdornment>
   </ListItem>
   <ListItem on:click={() => exampleOnclick()}>
-    <ListItemTypography>Click Me 2</ListItemTypography>
-    <ListItemTypography secondary>Checkbox with separate click.</ListItemTypography>
+    <Typography>Click Me 2</Typography>
+    <Typography>Checkbox with separate click.</Typography>
     <ListItemAdornment
       slot="trailing"
       on:click={(e) => {

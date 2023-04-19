@@ -1,14 +1,6 @@
 <script lang="ts">
   import DocPage from '../../lib/doc-page.svelte';
-  import {
-    Paper,
-    IconButton,
-    ListItem,
-    ListItemAdornment,
-    Typography,
-    Drawer,
-    ListItemTypography
-  } from '@uui';
+  import { Paper, IconButton, ListItem, ListItemAdornment, Drawer, Typography } from '@uui';
 
   let open = false;
   function setOpen() {
@@ -26,13 +18,13 @@
     />
     {#if open}
       <ListItem>
-        <ListItemTypography>Data</ListItemTypography>
+        <Typography>Data</Typography>
         <ListItemAdornment slot="leading">
           <IconButton iconClass="material-symbols-outlined" iconContent="folder" />
         </ListItemAdornment>
       </ListItem>
       <ListItem>
-        <ListItemTypography>Data</ListItemTypography>
+        <Typography>Data</Typography>
         <ListItemAdornment slot="leading">
           <IconButton iconClass="material-symbols-outlined" iconContent="schedule" />
         </ListItemAdornment>

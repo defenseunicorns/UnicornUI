@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Box, Drawer, ListItem, ListItemAdornment, ListItemTypography } from '@uui';
+  import { Box, Drawer, ListItem, ListItemAdornment, Typography } from '@uui';
   import { onMount } from 'svelte';
   import { appStatesStore, updateAppStates } from './stores/nav-drawer-state-store';
 
@@ -68,7 +68,7 @@
 <Drawer elevation={2} open={isDrawerOpen} ssx={{ $self: { height: 'calc(100vh - 56px)' } }}>
   <Box>
     <ListItem selected={themingListOpen} on:click={() => updateDrawerStates('theming')}>
-      <ListItemTypography>Theming</ListItemTypography>
+      <Typography>Theming</Typography>
       <ListItemAdornment slot="trailing" class="material-symbols-outlined">
         {themingListOpen ? 'expand_less' : 'expand_more'}
       </ListItemAdornment>
@@ -83,16 +83,16 @@
               setSelectedRoute(route);
             }}
           >
-            <ListItemTypography>
+            <Typography>
               {transformRoute(route)}
-            </ListItemTypography>
+            </Typography>
           </ListItem>
         {/each}
       </svelte:fragment>
     </ListItem>
 
     <ListItem selected={componentListOpen} on:click={() => updateDrawerStates('components')}>
-      <ListItemTypography>Components</ListItemTypography>
+      <Typography>Components</Typography>
       <ListItemAdornment slot="trailing" class="material-symbols-outlined">
         {componentListOpen ? 'expand_less' : 'expand_more'}
       </ListItemAdornment>
@@ -107,9 +107,9 @@
               setSelectedRoute(route);
             }}
           >
-            <ListItemTypography>
+            <Typography>
               {transformRoute(route)}
-            </ListItemTypography>
+            </Typography>
           </ListItem>
         {/each}
       </svelte:fragment>

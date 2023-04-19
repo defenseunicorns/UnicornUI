@@ -14,16 +14,6 @@
 
 - Now extends Box.
 
-### ListItemTypography
-
-- Create ListItemTypography as wrapper for Typography to be used in new default slot of ListItem.
-
-```ts
-export interface ListItemTypographyProps<T extends EventTarget> extends Typography<T> {
-  secondary?: boolean;
-}
-```
-
 ### Menu
 
 - Added `clickaway` prop to Menu to turn clickaway behavior on or off. Defaults to true.

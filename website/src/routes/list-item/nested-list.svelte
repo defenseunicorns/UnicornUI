@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { List, ListItem, ListItemAdornment, ListItemTypography } from '@uui';
+  import { List, ListItem, ListItemAdornment, Typography } from '@uui';
 
   let selectedIndex: number | undefined = 2;
 
@@ -10,16 +10,16 @@
 
 <List class="demo-list">
   <ListItem selected={selectedIndex === 0} on:click={() => setSelected(0)}>
-    <ListItemTypography>Sent Mail</ListItemTypography>
+    <Typography>Sent Mail</Typography>
     <ListItemAdornment slot="leading" class="material-symbols-outlined">send</ListItemAdornment>
   </ListItem>
   <ListItem selected={selectedIndex === 1} on:click={() => setSelected(1)}>
-    <ListItemTypography>Drafts</ListItemTypography>
+    <Typography>Drafts</Typography>
 
     <ListItemAdornment slot="leading" class="material-symbols-outlined">drafts</ListItemAdornment>
   </ListItem>
   <ListItem selected={selectedIndex === 2} on:click={() => setSelected(2)}>
-    <ListItemTypography>Inbox</ListItemTypography>
+    <Typography>Inbox</Typography>
 
     <ListItemAdornment slot="leading" class="material-symbols-outlined">inbox</ListItemAdornment>
     <svelte:fragment slot="trailing">
@@ -46,7 +46,7 @@
       {/if}
     </svelte:fragment>
     <ListItem slot="sublist">
-      <ListItemTypography>Starred</ListItemTypography>
+      <Typography>Starred</Typography>
       <ListItemAdornment slot="leading" class="material-symbols-outlined">star</ListItemAdornment>
     </ListItem>
   </ListItem>
