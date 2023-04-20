@@ -7,7 +7,7 @@
   type $$Props = ListItemAdornmentProps<T>;
 
   let listIconClass =
-    $$restProps.slot === 'leading-adornment'
+    $$restProps.slot === 'leading'
       ? 'mdc-deprecated-list-item__graphic'
       : 'mdc-deprecated-list-item__meta material-icons';
 </script>

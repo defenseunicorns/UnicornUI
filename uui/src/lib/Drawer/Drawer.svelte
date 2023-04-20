@@ -32,7 +32,7 @@
     </div>
   {/if}
   <div class="mdc-drawer__content">
-    <slot name="content" />
+    <slot />
   </div>
 </Paper>
 

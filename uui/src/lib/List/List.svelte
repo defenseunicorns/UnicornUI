@@ -1,22 +1,22 @@
 <script lang="ts">
   import type { ListProps } from './List.types';
-  import Box from '../Box/box.svelte';
   import { current_component } from 'svelte/internal';
+  import Paper from '../Paper/Paper.svelte';
 
   // Props
   type T = $$Generic<EventTarget>;
   type $$Props = ListProps<T>;
-  export let disablePadding: boolean | undefined = undefined;
+  export let disablePadding = false;
 </script>
 
-<Box
+<Paper
   element="ul"
   eventComponent={current_component}
   {...$$restProps}
   class="list mdc-deprecated-list {$$restProps.class || ''} {disablePadding && 'disabled-padding'}"
 >
   <slot />
-</Box>
+</Paper>
 
 <style lang="scss" global>
   @use '@material/list';
@@ -24,13 +24,11 @@
   .list {
     @include list.deprecated-core-styles;
     padding: 32px 16px;
-    min-width: 308px;
   }
 
   .list-group .list.disabled-padding,
   .list.disabled-padding {
     @include list.deprecated-core-styles;
     padding: 0px;
-    min-width: 308px;
   }
 </style>
