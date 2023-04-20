@@ -61,16 +61,13 @@
 
   function handleKeyEvt(e: KeyboardEvent) {
     if (e.key === 'Enter') {
-      const forms = document.getElementsByTagName('form');
-
-      for (const form of forms) {
-        if (form.contains(inputRef)) {
-          const btns = form.getElementsByTagName('button');
-          for (const btn of btns)
-            if (btn.getAttribute('type') === 'submit') {
-              btn.focus();
-            }
-        }
+      const form = (e.target as HTMLElement).closest('form');
+      if (form) {
+        const btns = form.getElementsByTagName('button');
+        for (const btn of btns)
+          if (btn.getAttribute('type') === 'submit') {
+            btn.focus();
+          }
       }
     }
   }
@@ -113,6 +110,7 @@
     }
 
     inputRef.addEventListener('keydown', handleKeyEvt);
+    // document.addEventListener('keydown', handleKeyEvt);
   });
 
   // Reactive States
