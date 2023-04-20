@@ -1,14 +1,13 @@
 <script lang="ts">
-  import { List, ListItem, ListSubHeader, ListItemAdornment, IconButton } from '@uui';
+  import { List, ListItem, ListSubHeader, ListItemAdornment, IconButton, Typography } from '@uui';
 </script>
 
-<List class="demo-list">
+<List class="list-exp">
   <ListSubHeader>Settings</ListSubHeader>
-  <ListItem text="Wi-Fi">
-    <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined">
-      wifi
-    </ListItemAdornment>
-    <ListItemAdornment slot="trailing-adornment">
+  <ListItem>
+    <Typography>Wi-Fi</Typography>
+    <ListItemAdornment slot="leading" class="material-symbols-outlined">wifi</ListItemAdornment>
+    <ListItemAdornment slot="trailing">
       <IconButton
         toggleable
         iconContent="toggle_off"
@@ -19,11 +18,12 @@
       />
     </ListItemAdornment>
   </ListItem>
-  <ListItem text="Bluetooth">
-    <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined">
+  <ListItem>
+    <Typography>Bluetooth</Typography>
+    <ListItemAdornment slot="leading" class="material-symbols-outlined">
       bluetooth
     </ListItemAdornment>
-    <ListItemAdornment slot="trailing-adornment">
+    <ListItemAdornment slot="trailing">
       <IconButton
         toggleable
         iconContent="toggle_off"

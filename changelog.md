@@ -1,4 +1,4 @@
-# v0.0.48
+# v0.0.49
 
 ## Updates
 
@@ -26,6 +26,32 @@ export interface CheckboxProps<T extends EventTarget> extends BoxProps<T> {
 - With the creating of Checkbox, there is no longer a need for ListItemCheckbox.
 - Checkbox does what ListItemCheckbox did but with some added benefits of default form-field label alignment and color customizing.
 - If you want to see examples of using Checkbox with ListItem, please look at the List Item page on Unicorn UI, specifically at the Checkbox examples.
+
+# v0.0.48
+
+## Updates
+
+### List
+
+- Now extends Paper.
+
+### List Group
+
+- Now extends Paper.
+
+### List Item
+
+- Now extends Box.
+
+### Menu
+
+- Added `clickaway` prop to Menu to turn clickaway behavior on or off. Defaults to true.
+
+## Breaking Changes
+
+### Menu
+
+- `onClose` is now `onClickaway` and is used for custom clickaway behavior.
 
 # v0.0.47
 
@@ -88,7 +114,7 @@ i.e.
 
 ```ts
 <ListItem selected={...logic} let:selected disabled={...logic} let:disabled>
-  <ListItemAdornment slot="trailing-content">
+  <ListItemAdornment slot="trailing-adornment">
     <ListItemCheckbox checked={selected} {disabled}>
   </ListItemAdornment>
 </ListITem>
@@ -98,7 +124,7 @@ now becomes:
 
 ```ts
 <ListItem selected={...logic} disabled={...logic}>
-  <ListItemAdornment slot="trailing-content">
+  <ListItemAdornment slot="trailing-adornment">
     <ListItemCheckbox checked={...logic} disabled={...logic}>
   </ListItemAdornment>
 </ListITem>

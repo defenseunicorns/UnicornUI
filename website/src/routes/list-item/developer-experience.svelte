@@ -18,6 +18,8 @@
 
   type ExtendedListItems1 = svelte.JSX.IntrinsicAttributes &
     ListItemProps<EventTarget> & {
+      text: string;
+      secondaryText?: string;
       leadingAdornment?: boolean;
       trailingAdornment?: boolean;
     };
@@ -51,6 +53,8 @@
 
   type ExtendedListItems2 = svelte.JSX.IntrinsicAttributes &
     ListItemProps<EventTarget> & {
+      text: string;
+      secondaryText?: string;
       leadingAdornment?: Record<string, any>;
       trailingAdornment?: Record<string, any>;
     };
@@ -137,14 +141,18 @@
       selected={example1SelectedIndex === index}
       on:click={() => !item.disabled && example1Click(index)}
     >
-      <svelte:fragment slot="leading-adornment">
+      <svelte:fragment slot="leading">
         {#if item.leadingAdornment}
-          <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined">
+          <ListItemAdornment slot="leading" class="material-symbols-outlined">
             send
           </ListItemAdornment>
         {/if}
       </svelte:fragment>
-      <svelte:fragment slot="trailing-adornment">
+      <Typography>{item.text}</Typography>
+      {#if item.secondaryText}
+        <Typography>{item.secondaryText}</Typography>
+      {/if}
+      <svelte:fragment slot="trailing">
         {#if item.trailingAdornment}
           <ListItemAdornment>
             <IconButton
@@ -166,10 +174,13 @@
     <VariantExample
       code={`
 
-type ExtendedListItems1 = ListItemProps & {
-  leadingAdornment?: boolean;
-  trailingAdornment?: boolean;
-};
+type ExtendedListItems1 = svelte.JSX.IntrinsicAttributes &
+    ListItemProps<EventTarget> & {
+      text: string;
+      secondaryText?: string;
+      leadingAdornment?: boolean;
+      trailingAdornment?: boolean;
+    };
 
 const listItemsIteration1: ExtendedListItems1[] = [
     { text: 'List Item', selected: true },
@@ -209,14 +220,14 @@ const listItemsIteration1: ExtendedListItems1[] = [
       selected={example1SelectedIndex === index}
       on:click={() => !item.disabled && example1Click(index)}
     >
-      <svelte:fragment slot="leading-adornment">
+      <svelte:fragment slot="leading">
         {#if item.leadingAdornment}
-          <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined">
+          <ListItemAdornment slot="leading" class="material-symbols-outlined">
             send
           </ListItemAdornment>
         {/if}
       </svelte:fragment>
-      <svelte:fragment slot="trailing-adornment">
+      <svelte:fragment slot="trailing">
         {#if item.trailingAdornment}
           <ListItemAdornment>
             <IconButton
@@ -249,10 +260,10 @@ const listItemsIteration1: ExtendedListItems1[] = [
       selected={example2SelectedIndex === index}
       on:click={() => !item.disabled && example2Click(index)}
     >
-      <svelte:fragment slot="leading-adornment">
+      <svelte:fragment slot="leading">
         {#if item.leadingAdornment}
           <ListItemAdornment
-            slot="leading-adornment"
+            slot="leading"
             class="material-symbols-outlined"
             disabled={item.disabled}
           >
@@ -260,9 +271,13 @@ const listItemsIteration1: ExtendedListItems1[] = [
           </ListItemAdornment>
         {/if}
       </svelte:fragment>
-      <svelte:fragment slot="trailing-adornment">
+      <Typography>{item.text}</Typography>
+      {#if item.secondaryText}
+        <Typography>{item.secondaryText}</Typography>
+      {/if}
+      <svelte:fragment slot="trailing">
         {#if item.trailingAdornment}
-          <ListItemAdornment slot="trailing-adornment">
+          <ListItemAdornment slot="trailing">
             <svelte:component
               this={item.trailingAdornment.component}
               checked={example2SelectedIndex === index}
@@ -284,6 +299,8 @@ const listItemsIteration1: ExtendedListItems1[] = [
 
 type ExtendedListItems2 = svelte.JSX.IntrinsicAttributes &
     ListItemProps<EventTarget> & {
+      text: string;
+      secondaryText?: string;
       leadingAdornment?: Record<string, any>;
       trailingAdornment?: Record<string, any>;
     };
@@ -346,16 +363,16 @@ const listItemsIteration2: ExtendedListItems2[] = [
       selected={example2SelectedIndex === index}
       on:click={() => !item.disabled && example2Click(index)}
     >
-      <svelte:fragment slot="leading-adornment">
+      <svelte:fragment slot="leading">
         {#if item.leadingAdornment}
-          <ListItemAdornment slot="leading-adornment" class="material-symbols-outlined" {disabled}>
+          <ListItemAdornment slot="leading" class="material-symbols-outlined" {disabled}>
             {item.leadingAdornment.content}
           </ListItemAdornment>
         {/if}
       </svelte:fragment>
-      <svelte:fragment slot="trailing-adornment">
+      <svelte:fragment slot="trailing">
         {#if item.trailingAdornment}
-          <ListItemAdornment slot="trailing-adornment">
+          <ListItemAdornment slot="trailing">
             <svelte:component
               this={item.trailingAdornment.component}
               checked={selected}

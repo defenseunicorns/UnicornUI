@@ -63,15 +63,15 @@
   </Typography>
 
   <List class="demo-list">
-    <ListItem text="List Item" divider />
-    <ListItem text="List Item" />
+    <ListItem divider><Typography>List Item</Typography></ListItem>
+    <ListItem><Typography>List Item</Typography></ListItem>
   </List>
 
   <VariantExample
     code={`
-   <List class="demo-list">
-    <ListItem text="List Item" divider />
-    <ListItem text="List Item" />
+    <List class="demo-list">
+    <ListItem divider><Typography>List Item</Typography></ListItem>
+    <ListItem><Typography>List Item</Typography></ListItem>
 </List>
   `}
   />
@@ -84,28 +84,30 @@
   </Typography>
 
   <List class="demo-list">
-    <ListItem text="List Item" divider />
-    <ListItem text="List Item" disableGutters />
+    <ListItem divider><Typography>List Item</Typography></ListItem>
+    <ListItem disableGutters><Typography>List Item</Typography></ListItem>
   </List>
 
   <VariantExample
     code={`
   <List class="demo-list">
-    <ListItem text="List Item" divider/>
-    <ListItem text="List Item" disableGutters />
+    <ListItem divider><Typography>List Item</Typography></ListItem>
+    <ListItem disableGutters><Typography>List Item</Typography></ListItem>
 </List>
   `}
   />
 
   <Typography variant="h3">Slots</Typography>
   <Typography variant="body1">
-    <InlineCode>ListItem</InlineCode> has three named slots:
-    <ul>
-      <li>leading-adornment</li>
-      <li>trailing-adornment</li>
-      <li>nested-content</li>
-    </ul>
+    <InlineCode>ListItem</InlineCode>
+    has three named slots and one default:
   </Typography>
+  <ul>
+    <li>leading</li>
+    <li>default</li>
+    <li>trailing</li>
+    <li>sublist</li>
+  </ul>
   <Typography variant="body1">
     The leading and trailing adornments can be icons or avatars, or actions like checkboxes, radio
     buttons, and icon buttons. What is passed to these slots, relates directly to the
@@ -120,20 +122,20 @@
   <Typography>
     Also of note, the showing of nested content is controlled by the selected state of
     <InlineCode>ListItem</InlineCode> as well as the presence of an element designated with
-    <InlineCode>slot="nested"</InlineCode>.
+    <InlineCode>slot="sublist"</InlineCode>.
   </Typography>
 
   <VariantExample
     code={` 
   <li ...>
-  <slot name="leading-adornment" />
-    ....
-  <slot name="trailing-adornment" />
+  <slot name="leading" />
+
+  <slot />
+
+  <slot name="trailing" />
 </li>
-{#if selected && $$slots["nested-content"]}
-    <div ...>
-      <slot name="nested-content" />
-    </div>
+{#if selected && $$slots["sublist"]}
+      <slot name="sublist" />
 {/if}
   
   `}
@@ -194,7 +196,7 @@
 
 <style lang="scss" global>
   .demo-list {
-    width: fit-content;
+    width: 308px;
     border: 1px solid gray;
     background-color: var(--surface);
   }
