@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Select, SelectIcon, ListItem } from '@uui';
+  import { Select, SelectIcon, ListItem, Typography } from '@uui';
 
   let open = false;
   let value = '';
@@ -10,8 +10,16 @@
   <SelectIcon slot="trailing" class="material-symbols-outlined" on:click={setOpen}>
     {trailing_icon}
   </SelectIcon>
-  <ListItem text="Option 1" on:click={setValue} selected={value === 'Option 1'} />
-  <ListItem text="Option 2" on:click={setValue} selected={value === 'Option 2'} />
-  <ListItem text="Option 3" on:click={setValue} selected={value === 'Option 3'} />
-  <ListItem text="Option 4" on:click={setValue} selected={value === 'Option 4'} />
+  <ListItem on:click={setValue} selected={value === 'Option 1'}>
+    <Typography>Option 1</Typography>
+  </ListItem>
+  <ListItem on:click={setValue} selected={value === 'Option 2'}>
+    <Typography>Option 2</Typography>
+  </ListItem>
+  <ListItem on:click={setValue} selected={value === 'Option 3'}>
+    <Typography>Option 3</Typography>
+  </ListItem>
+  <ListItem on:click={setValue} selected={value === 'Option 4'}>
+    <Typography>Option 4</Typography>
+  </ListItem>
 </Select>

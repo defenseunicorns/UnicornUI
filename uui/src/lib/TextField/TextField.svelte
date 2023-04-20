@@ -56,9 +56,11 @@
   function clickAway(evt: MouseEvent | KeyboardEvent) {
     if (
       clickaway &&
-      evt.target !== inputRef &&
-      !$$restProps.placeholder &&
+      inputRef &&
       ref &&
+      evt.target !== inputRef &&
+      !inputRef.contains(evt.target as Node) &&
+      !$$restProps.placeholder &&
       !ref.contains(evt.target as Node)
     ) {
       focused = false;
@@ -81,6 +83,21 @@
     return classes.join(' ');
   }
 
+  function handleKeyEvt(e: KeyboardEvent) {
+    if (e.key === 'Enter') {
+      const form = (e.target as HTMLElement).closest('form');
+      if (form) {
+        const btns = form.getElementsByTagName('button');
+        for (const btn of btns)
+          if (btn.getAttribute('type') === 'submit') {
+            btn.focus();
+          }
+      }
+    }
+  }
+
+  // Lifecycle Hooks
+
   // Handle initial states based on props
   onMount(() => {
     if (inputRef) {
@@ -102,8 +119,13 @@
     if (error) {
       invalid = true;
     }
+
+    inputRef.addEventListener('keydown', handleKeyEvt);
   });
 
+  // Reactive States
+
+  // Character Count
   $: if (inputRef && characterCounter) {
     if ($$restProps.maxlength) {
       charCount = `${inputRef.value.length} / ${$$restProps.maxlength}`;
@@ -119,7 +141,6 @@
     }
   }
 
-  // Reactive Variables
   $: eventComponents = [current_component];
   $: computedColor = makeThemeColor(color);
 

@@ -28,14 +28,14 @@
   <div class="inline-examples">
     <div>
       <Typography variant="h5">No Padding</Typography>
-      <List class="demo-list" disablePadding>
-        <ListItem text="List Item" />
+      <List class="list-exp" disablePadding>
+        <ListItem><Typography>List Item</Typography></ListItem>
       </List>
     </div>
     <div>
       <Typography variant="h5">Padding</Typography>
-      <List class="demo-list">
-        <ListItem text="List Item" selected />
+      <List class="list-exp">
+        <ListItem selected><Typography>List Item</Typography></ListItem>
       </List>
     </div>
   </div>
@@ -45,14 +45,14 @@
     Other than the default padding, <InlineCode>List</InlineCode> comes as a blank canvas. You can control
     the style by passing it a custom class.
   </Typography>
-  <List class="demo-list" />
+  <List class="list-exp" />
 
   <VariantExample
     code={`
     <List class="demo-list" />
 
 .demo-list {
-    width: 300px;
+    width: 308px;
     border: 1px solid gray;
     background-color: var(--surface);
 }
@@ -83,8 +83,8 @@
 </DocPage>
 
 <style lang="scss" global>
-  .demo-list {
-    width: fit-content;
+  .list-exp {
+    width: 308px;
     border: 1px solid gray;
     background-color: var(--surface);
   }

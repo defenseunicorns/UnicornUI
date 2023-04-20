@@ -1,21 +1,19 @@
 <script lang="ts">
   import { onMount } from 'svelte/internal';
   import { MDCRipple } from '@material/ripple';
-  import type { ListItemProps } from './ListItem.types';
   import { current_component } from 'svelte/internal';
-  import Box from '../Box/box.svelte';
   import { makeThemeColor } from '../shared/utils/makeThemeColor';
+  import type { ListItemProps } from './ListItem.types';
+  import Box from '../Box/box.svelte';
 
   // Props
   type T = $$Generic<EventTarget>;
   type $$Props = ListItemProps<T>;
-  export let text = '';
-  export let secondaryText: string | undefined = undefined;
   export let textColor = 'on-background';
-  export let selected: boolean | undefined = undefined;
-  export let disabled: boolean | undefined = undefined;
-  export let disableGutters: boolean | undefined = undefined;
-  export let divider: boolean | undefined = undefined;
+  export let selected = false;
+  export let disabled = false;
+  export let disableGutters = false;
+  export let divider = false;
 
   // Local Variables
   let listItemContainerRef: HTMLDivElement;
@@ -47,27 +45,21 @@
     class:mdc-ripple-upgraded--background-focused={selected}
     class:mdc-deprecated-list-item--disabled={disabled}
     class:disabled-gutters={disableGutters}
-    class:two-line={secondaryText}
     class:divider
   >
-    <slot name="leading-adornment" />
+    <slot name="leading" />
 
     <span class="mdc-deprecated-list-item__ripple" />
 
-    {#if secondaryText}
-      <span class="mdc-deprecated-list-item__text">
-        <span class="mdc-deprecated-list-item__primary-text">{text}</span>
-        <span class="mdc-deprecated-list-item__secondary-text">{secondaryText} </span>
-      </span>
-    {:else}
-      <span class="mdc-deprecated-list-item__text">{text}</span>
-    {/if}
+    <div class="list-item-text">
+      <slot />
+    </div>
 
-    <slot name="trailing-adornment" />
+    <slot name="trailing" />
   </li>
-  {#if selected && $$slots['nested-content']}
-    <div class="nested-content">
-      <slot name="nested-content" />
+  {#if selected && $$slots.sublist}
+    <div class="sublist">
+      <slot name="sublist" />
     </div>
   {/if}
 </Box>
@@ -85,6 +77,18 @@
     .mdc-deprecated-list-item {
       @include list.deprecated-item-primary-text-ink-color(var(--list-item-text-color));
       @include list.deprecated-item-secondary-text-ink-color(var(--list-item-text-color));
+      height: auto;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    .list-item-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
     }
 
     .mdc-deprecated-list-item__graphic,
@@ -113,27 +117,7 @@
       border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     }
 
-    // With Secondary Text
-
-    .two-line {
-      height: 4.5rem;
-
-      .mdc-deprecated-list-item__text {
-        align-self: flex-start;
-      }
-    }
-
-    // Item Height
-    .mdc-deprecated-list-item:not(.two-line) {
-      @include list.deprecated-single-line-height(48px);
-    }
-
-    .mdc-deprecated-list-item:not(.two-line):has(.mdc-deprecated-list-item__graphic),
-    .mdc-deprecated-list-item:not(.two-line):has(.mdc-deprecated-list-item__meta) {
-      @include list.deprecated-single-line-height(56px);
-    }
-
-    // Variants: Graphic Size
+    // Graphic Size
     .mdc-deprecated-list-item .mdc-deprecated-list-item__graphic:has(.avatar) {
       @include list.deprecated-graphic-size(0, 56px, 40px, 40px);
       display: inline-block;
@@ -148,7 +132,7 @@
     }
 
     // Nested Content
-    .nested-content {
+    .sublist {
       padding-left: 1rem;
     }
   }

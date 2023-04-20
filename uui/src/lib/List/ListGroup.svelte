@@ -1,20 +1,21 @@
 <script lang="ts">
+  import Paper from '../Paper/Paper.svelte';
   import { current_component } from 'svelte/internal';
-  import Box from '../Box/box.svelte';
   import type { ListGroupProps } from './ListGroup.types';
 
   // Props
-  type $$Props = ListGroupProps;
+  type T = $$Generic<EventTarget>;
+  type $$Props = ListGroupProps<T>;
 </script>
 
-<Box
+<Paper
   element="div"
   eventComponent={current_component}
   {...$$restProps}
   class="list-group mdc-deprecated-list-group {$$restProps.class || ''}"
 >
   <slot />
-</Box>
+</Paper>
 
 <style lang="scss" global>
   @use '@material/list';

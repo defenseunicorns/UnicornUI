@@ -1,4 +1,4 @@
-# v0.0.48
+# v0.0.49
 
 ## Updates
 
@@ -35,10 +35,29 @@ export type SelectIconProps<T extends EventTarget> = TextFieldIconProps<T>;
 
 ### Menu
 
-- Added `clickaway` prop to Menu to turn clickaway behavior on or off. Defaults to true.
 - Added `offsetNum` prop to Menu to turn control gap between Menu and its anchor element.
 - Added `flip()` middleware to Menu floating-ui/dom `computePosition` as default behavior.
 - Updated MenuProps from generic `PaperProps<T>` to `extends PaperProps<HTMLMenuElement>`. Should not affect current usage.
+
+# v0.0.48
+
+## Updates
+
+### List
+
+- Now extends Paper.
+
+### List Group
+
+- Now extends Paper.
+
+### List Item
+
+- Now extends Box.
+
+### Menu
+
+- Added `clickaway` prop to Menu to turn clickaway behavior on or off. Defaults to true.
 
 ## Breaking Changes
 
@@ -107,7 +126,7 @@ i.e.
 
 ```ts
 <ListItem selected={...logic} let:selected disabled={...logic} let:disabled>
-  <ListItemAdornment slot="trailing-content">
+  <ListItemAdornment slot="trailing-adornment">
     <ListItemCheckbox checked={selected} {disabled}>
   </ListItemAdornment>
 </ListITem>
@@ -117,7 +136,7 @@ now becomes:
 
 ```ts
 <ListItem selected={...logic} disabled={...logic}>
-  <ListItemAdornment slot="trailing-content">
+  <ListItemAdornment slot="trailing-adornment">
     <ListItemCheckbox checked={...logic} disabled={...logic}>
   </ListItemAdornment>
 </ListITem>

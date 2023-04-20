@@ -30,8 +30,8 @@
 </DocPage>
 
 <style lang="scss" global>
-  .demo-list {
-    width: 300px;
+  .demo-list-group {
+    width: 308px;
     border: 1px solid gray;
     background-color: var(--surface);
   }
