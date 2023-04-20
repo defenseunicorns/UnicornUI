@@ -110,7 +110,6 @@
     }
 
     inputRef.addEventListener('keydown', handleKeyEvt);
-    // document.addEventListener('keydown', handleKeyEvt);
   });
 
   // Reactive States
