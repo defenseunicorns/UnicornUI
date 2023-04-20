@@ -120,7 +120,7 @@
       invalid = true;
     }
 
-    inputRef.addEventListener('keydown', handleKeyEvt);
+    inputRef && inputRef.addEventListener('keydown', handleKeyEvt);
   });
 
   // Reactive States
