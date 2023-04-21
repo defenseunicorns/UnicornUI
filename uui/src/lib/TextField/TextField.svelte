@@ -239,14 +239,14 @@
   // Disabled State Classes
   .mdc-text-field--disabled {
     @include mdc-text-field-disabled-outline-color(var(--disabled));
-    @include mdc-text-field-disabled-ink-color(var(--disabled));
-    @include mdc-text-field-disabled-label-color(var(--disabled));
+    @include mdc-text-field-disabled-ink-color(var(--on-disabled));
+    @include mdc-text-field-disabled-label-color(var(--on-disabled));
 
     &:not(.mdc-text-field--outlined) {
-      @include mdc-text-field-disabled-fill-color(var(--disabled));
-      @include mdc-text-field-disabled-bottom-line-color(var(--disabled));
-      @include mdc-text-field-disabled-ink-color(var(--on-disabled));
-      @include mdc-text-field-disabled-label-color(var(--on-disabled));
+      @include mdc-text-field-disabled-fill-color(var(--on-disabled));
+      @include mdc-text-field-disabled-bottom-line-color(var(--on-disabled));
+      @include mdc-text-field-disabled-ink-color(var(--disabled));
+      @include mdc-text-field-disabled-label-color(var(--disabled));
     }
   }
 
