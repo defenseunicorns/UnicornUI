@@ -28,12 +28,21 @@
 
   <Typography variant="h2">Slots</Typography>
   <Typography variant="body1">
-    <InlineCode>Drawer</InlineCode> has two named slots:
-    <ul>
-      <li>header</li>
-      <li>content</li>
-    </ul>
+    <InlineCode>Drawer</InlineCode> has two slots:
   </Typography>
+  <ul>
+    <li>header</li>
+    <li>default</li>
+  </ul>
+
+  <VariantExample
+    code={`
+  <Paper ...>
+  <slot name="header" />
+  <slot />
+</Paper>
+  `}
+  />
 
   <Typography variant="h3">Examples</Typography>
   <Typography variant="h4">Default</Typography>
