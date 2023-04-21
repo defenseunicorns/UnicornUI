@@ -25,6 +25,10 @@
 
 - `onClose` is now `onClickaway` and is used for custom clickaway behavior.
 
+### Drawer
+
+- The named content slot (`<slot named="content">`) is no longer named but is the default `<slot />` of Drawer.
+
 ### ListItem
 
 - Removed `text` and `secondaryText` props. Now ListItem uses the default `<slot />` for content like text.
