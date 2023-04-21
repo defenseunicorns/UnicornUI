@@ -13,6 +13,7 @@
 ### List Item
 
 - Now extends Box.
+- Contains default `<slot />` for content.
 
 ### Menu
 
@@ -23,6 +24,11 @@
 ### Menu
 
 - `onClose` is now `onClickaway` and is used for custom clickaway behavior.
+
+### ListItem
+
+- Removed `text` and `secondaryText` props. Now ListItem uses the default `<slot />` for content like text.
+- Changed slot names: `leading-adornment` => `leading`; `trailing-adornment` => `trailing`; `nested-content` => `sublist`.
 
 # v0.0.47
 
