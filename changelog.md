@@ -1,3 +1,39 @@
+# v0.0.48
+
+## Updates
+
+### List
+
+- Now extends Paper.
+
+### List Group
+
+- Now extends Paper.
+
+### List Item
+
+- Now extends Box.
+- Contains default `<slot />` for content.
+
+### Menu
+
+- Added `clickaway` prop to Menu to turn clickaway behavior on or off. Defaults to true.
+
+## Breaking Changes
+
+### Menu
+
+- `onClose` is now `onClickaway` and is used for custom clickaway behavior.
+
+### Drawer
+
+- The named content slot (`<slot named="content">`) is no longer named but is the default `<slot />` of Drawer.
+
+### ListItem
+
+- Removed `text` and `secondaryText` props. Now ListItem uses the default `<slot />` for content like text.
+- Changed slot names: `leading-adornment` => `leading`; `trailing-adornment` => `trailing`; `nested-content` => `sublist`.
+
 # v0.0.47
 
 ## Updates
@@ -59,7 +95,7 @@ i.e.
 
 ```ts
 <ListItem selected={...logic} let:selected disabled={...logic} let:disabled>
-  <ListItemAdornment slot="trailing-content">
+  <ListItemAdornment slot="trailing-adornment">
     <ListItemCheckbox checked={selected} {disabled}>
   </ListItemAdornment>
 </ListITem>
@@ -69,7 +105,7 @@ now becomes:
 
 ```ts
 <ListItem selected={...logic} disabled={...logic}>
-  <ListItemAdornment slot="trailing-content">
+  <ListItemAdornment slot="trailing-adornment">
     <ListItemCheckbox checked={...logic} disabled={...logic}>
   </ListItemAdornment>
 </ListITem>

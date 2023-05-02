@@ -1,6 +1,6 @@
 <script lang="ts">
   import DocPage from '../../lib/doc-page.svelte';
-  import { Paper, IconButton, List, ListItem, ListItemAdornment, Typography, Drawer } from '@uui';
+  import { Paper, IconButton, ListItem, ListItemAdornment, Drawer, Typography } from '@uui';
 
   let open = false;
   function setOpen() {
@@ -16,27 +16,23 @@
       slot="header"
       on:click={setOpen}
     />
-    <svelte:fragment slot="content">
-      {#if open}
-        <List>
-          <ListItem text="Data">
-            <ListItemAdornment slot="leading-adornment">
-              <IconButton iconClass="material-symbols-outlined" iconContent="folder" />
-            </ListItemAdornment>
-          </ListItem>
-          <ListItem text="Data">
-            <ListItemAdornment slot="leading-adornment">
-              <IconButton iconClass="material-symbols-outlined" iconContent="schedule" />
-            </ListItemAdornment>
-          </ListItem>
-        </List>
-      {:else}
-        <List disablePadding>
+    {#if open}
+      <ListItem>
+        <Typography>Data</Typography>
+        <ListItemAdornment slot="leading">
           <IconButton iconClass="material-symbols-outlined" iconContent="folder" />
+        </ListItemAdornment>
+      </ListItem>
+      <ListItem>
+        <Typography>Data</Typography>
+        <ListItemAdornment slot="leading">
           <IconButton iconClass="material-symbols-outlined" iconContent="schedule" />
-        </List>
-      {/if}
-    </svelte:fragment>
+        </ListItemAdornment>
+      </ListItem>
+    {:else}
+      <IconButton iconClass="material-symbols-outlined" iconContent="folder" />
+      <IconButton iconClass="material-symbols-outlined" iconContent="schedule" />
+    {/if}
   </Drawer>
   <DocPage>
     <Typography variant="bod1"

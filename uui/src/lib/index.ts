@@ -122,11 +122,7 @@ export type { ComponentAsProp } from './shared/types/ComponentAsProp';
 export type { ListGroupProps } from './List/ListGroup.types';
 export type { ListSubHeaderProps } from './List/ListSubHeader.types';
 export type { ListProps } from './List/List.types';
-export type {
-  ListItemProps,
-  ListItemSlotProps,
-  ListItemAdornmentProps
-} from './List/ListItem.types';
+export type { ListItemProps, ListItemAdornmentProps } from './List/ListItem.types';
 export type {
   Breakpoints,
   BreakpointKey,

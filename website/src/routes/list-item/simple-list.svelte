@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { List, ListItem } from '@uui';
+  import { List, ListItem, Typography } from '@uui';
 
-  let selectedIndex: number | undefined = 0;
+  let selectedIndex = 0;
 
   function setSelected(index: number) {
     selectedIndex = index;
@@ -9,8 +9,17 @@
 </script>
 
 <List class="demo-list">
-  <ListItem text="Inbox" selected={selectedIndex === 0} on:click={() => setSelected(0)} />
-  <ListItem text="Drafts" selected={selectedIndex === 1} on:click={() => setSelected(1)} />
-  <ListItem text="Trash" selected={selectedIndex === 2} on:click={() => setSelected(2)} />
-  <ListItem text="Spam" selected={selectedIndex === 3} on:click={() => setSelected(3)} />
+  <ListItem selected={selectedIndex === 0} on:click={() => setSelected(0)}>
+    <Typography>Inbox</Typography>
+    <Typography>Secondary</Typography>
+  </ListItem>
+  <ListItem selected={selectedIndex === 1} on:click={() => setSelected(1)}>
+    <Typography>Drafts</Typography>
+  </ListItem>
+  <ListItem selected={selectedIndex === 2} on:click={() => setSelected(2)}>
+    <Typography>Trash</Typography>
+  </ListItem>
+  <ListItem selected={selectedIndex === 3} on:click={() => setSelected(3)}>
+    <Typography>Spam</Typography>
+  </ListItem>
 </List>

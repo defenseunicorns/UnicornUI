@@ -1,14 +1,12 @@
 <script lang="ts">
   import DocPage from '../../lib/doc-page.svelte';
-  import { Paper, List, IconButton, Typography, Drawer } from '@uui';
+  import { Paper, IconButton, Typography, Drawer } from '@uui';
 </script>
 
 <Paper elevation={2} class="rail-demo-container">
   <Drawer rail open={false}>
-    <List slot="content" disablePadding>
-      <IconButton iconClass="material-symbols-outlined" iconContent="folder" />
-      <IconButton iconClass="material-symbols-outlined" iconContent="schedule" />
-    </List>
+    <IconButton iconClass="material-symbols-outlined" iconContent="folder" />
+    <IconButton iconClass="material-symbols-outlined" iconContent="schedule" />
   </Drawer>
   <DocPage>
     <Typography variant="body1"

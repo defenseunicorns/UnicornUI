@@ -48,18 +48,6 @@
     active = 'active';
   }
 
-  // Remove some or all focus states when user clicks away
-  function clickAway(evt: MouseEvent | KeyboardEvent) {
-    if (evt.target !== inputRef && !$$restProps.placeholder) {
-      focused = false;
-      active = '';
-      if (inputRef.value === '') {
-        notched = false;
-        floating = false;
-      }
-    }
-  }
-
   function getIconClass(): string {
     let classes: string[] = [];
     if ($$slots.leadingIcon) {
@@ -70,6 +58,37 @@
     }
     return classes.join(' ');
   }
+
+  function handleKeyEvt(e: KeyboardEvent) {
+    if (e.key === 'Enter') {
+      const form = (e.target as HTMLElement).closest('form');
+      if (form) {
+        const btns = form.getElementsByTagName('button');
+        for (const btn of btns)
+          if (btn.getAttribute('type') === 'submit') {
+            btn.focus();
+          }
+      }
+    }
+  }
+
+  // Remove some or all focus states when user clicks away
+  function clickAway(evt: MouseEvent | KeyboardEvent) {
+    if (
+      evt.target != inputRef &&
+      !inputRef.contains(evt.target as Node) &&
+      !$$restProps.placeholder
+    ) {
+      focused = false;
+      active = '';
+      if (inputRef.value === '') {
+        notched = false;
+        floating = false;
+      }
+    }
+  }
+
+  // Lifecycle Hooks
 
   // Handle initial states based on props
   onMount(() => {
@@ -89,8 +108,13 @@
     if (error) {
       invalid = true;
     }
+
+    inputRef.addEventListener('keydown', handleKeyEvt);
   });
 
+  // Reactive States
+
+  // Character Count
   $: if (inputRef && characterCounter) {
     if ($$restProps.maxlength) {
       charCount = `${inputRef.value.length} / ${$$restProps.maxlength}`;
@@ -106,7 +130,6 @@
     }
   }
 
-  // Reactive Variables
   $: eventComponents = [current_component];
   $: computedColor = makeThemeColor(color);
 
@@ -216,14 +239,14 @@
   // Disabled State Classes
   .mdc-text-field--disabled {
     @include mdc-text-field-disabled-outline-color(var(--disabled));
-    @include mdc-text-field-disabled-ink-color(var(--disabled));
-    @include mdc-text-field-disabled-label-color(var(--disabled));
+    @include mdc-text-field-disabled-ink-color(var(--on-disabled));
+    @include mdc-text-field-disabled-label-color(var(--on-disabled));
 
     &:not(.mdc-text-field--outlined) {
-      @include mdc-text-field-disabled-fill-color(var(--disabled));
-      @include mdc-text-field-disabled-bottom-line-color(var(--disabled));
-      @include mdc-text-field-disabled-ink-color(var(--on-disabled));
-      @include mdc-text-field-disabled-label-color(var(--on-disabled));
+      @include mdc-text-field-disabled-fill-color(var(--on-disabled));
+      @include mdc-text-field-disabled-bottom-line-color(var(--on-disabled));
+      @include mdc-text-field-disabled-ink-color(var(--disabled));
+      @include mdc-text-field-disabled-label-color(var(--disabled));
     }
   }
 

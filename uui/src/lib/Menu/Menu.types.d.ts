@@ -6,5 +6,6 @@ export interface MenuProps<T extends EventTarget> extends PaperProps<T> {
   open: boolean;
   anchorRef?: Element;
   anchorOrigin?: AnchorOrigin;
-  onClose?: () => void;
+  clickaway?: boolean;
+  onClickaway?: () => void;
 }

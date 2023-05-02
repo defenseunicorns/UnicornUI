@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Box, Drawer, List, ListItem, ListItemAdornment } from '@uui';
+  import { Box, Drawer, ListItem, ListItemAdornment, Typography } from '@uui';
   import { onMount } from 'svelte';
   import { appStatesStore, updateAppStates } from './stores/nav-drawer-state-store';
 
@@ -66,56 +66,53 @@
 </script>
 
 <Drawer elevation={2} open={isDrawerOpen} ssx={{ $self: { height: 'calc(100vh - 56px)' } }}>
-  <Box slot="content">
-    <List>
-      <ListItem
-        text="Theming"
-        selected={themingListOpen}
-        on:click={() => updateDrawerStates('theming')}
-      >
-        <ListItemAdornment slot="trailing-adornment" class="material-symbols-outlined">
-          {themingListOpen ? 'expand_less' : 'expand_more'}
-        </ListItemAdornment>
-        <svelte:fragment slot="nested-content">
-          {#each themeRoutestList as route}
-            <ListItem
-              selected={selectedRoute === route}
-              element="a"
-              href="/{route}"
-              text={transformRoute(route)}
-              on:click={(e) => {
-                e.stopPropagation();
-                setSelectedRoute(route);
-              }}
-            />
-          {/each}
-        </svelte:fragment>
-      </ListItem>
-    </List>
-    <List>
-      <ListItem
-        text="Components"
-        selected={componentListOpen}
-        on:click={() => updateDrawerStates('components')}
-      >
-        <ListItemAdornment slot="trailing-adornment" class="material-symbols-outlined">
-          {componentListOpen ? 'expand_less' : 'expand_more'}
-        </ListItemAdornment>
-        <svelte:fragment slot="nested-content">
-          {#each componentRoutesList as route}
-            <ListItem
-              selected={selectedRoute === route}
-              element="a"
-              href="/{route}"
-              text={transformRoute(route)}
-              on:click={(e) => {
-                e.stopPropagation();
-                setSelectedRoute(route);
-              }}
-            />
-          {/each}
-        </svelte:fragment>
-      </ListItem>
-    </List>
+  <Box>
+    <ListItem selected={themingListOpen} on:click={() => updateDrawerStates('theming')}>
+      <Typography>Theming</Typography>
+      <ListItemAdornment slot="trailing" class="material-symbols-outlined">
+        {themingListOpen ? 'expand_less' : 'expand_more'}
+      </ListItemAdornment>
+      <svelte:fragment slot="sublist">
+        {#each themeRoutestList as route}
+          <ListItem
+            selected={selectedRoute === route}
+            element="a"
+            href="/{route}"
+            on:click={(e) => {
+              e.stopPropagation();
+              setSelectedRoute(route);
+            }}
+          >
+            <Typography>
+              {transformRoute(route)}
+            </Typography>
+          </ListItem>
+        {/each}
+      </svelte:fragment>
+    </ListItem>
+
+    <ListItem selected={componentListOpen} on:click={() => updateDrawerStates('components')}>
+      <Typography>Components</Typography>
+      <ListItemAdornment slot="trailing" class="material-symbols-outlined">
+        {componentListOpen ? 'expand_less' : 'expand_more'}
+      </ListItemAdornment>
+      <svelte:fragment slot="sublist">
+        {#each componentRoutesList as route}
+          <ListItem
+            selected={selectedRoute === route}
+            element="a"
+            href="/{route}"
+            on:click={(e) => {
+              e.stopPropagation();
+              setSelectedRoute(route);
+            }}
+          >
+            <Typography>
+              {transformRoute(route)}
+            </Typography>
+          </ListItem>
+        {/each}
+      </svelte:fragment>
+    </ListItem>
   </Box>
 </Drawer>
