@@ -1,15 +1,17 @@
 <script lang="ts">
+  import type { ThemeColors } from '$lib/shared/theme/default-colors/colors.types';
+  import type { ListItemProps } from './ListItem.types';
+
   import { onMount } from 'svelte/internal';
   import { MDCRipple } from '@material/ripple';
   import { current_component } from 'svelte/internal';
   import { makeThemeColor } from '../shared/utils/makeThemeColor';
-  import type { ListItemProps } from './ListItem.types';
   import Box from '../Box/box.svelte';
 
   // Props
   type T = $$Generic<EventTarget>;
   type $$Props = ListItemProps<T>;
-  export let textColor = 'on-background';
+  export let textColor: ThemeColors = 'on-background';
   export let selected = false;
   export let disabled = false;
   export let disableGutters = false;
@@ -35,7 +37,7 @@
   {...$$restProps}
   ref={listItemContainerRef}
   eventComponent={current_component}
-  class="list-item-container"
+  class="list-item-container {$$restProps.class || ''}"
   style="--list-item-text-color: {makeThemeColor(textColor)}"
 >
   <li

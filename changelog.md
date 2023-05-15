@@ -42,6 +42,7 @@ export interface CheckboxProps<T extends EventTarget> extends BoxProps<T> {
 ### List Item
 
 - Now extends Box.
+- Contains default `<slot />` for content.
 
 ### Menu
 
@@ -52,6 +53,15 @@ export interface CheckboxProps<T extends EventTarget> extends BoxProps<T> {
 ### Menu
 
 - `onClose` is now `onClickaway` and is used for custom clickaway behavior.
+
+### Drawer
+
+- The named content slot (`<slot named="content">`) is no longer named but is the default `<slot />` of Drawer.
+
+### ListItem
+
+- Removed `text` and `secondaryText` props. Now ListItem uses the default `<slot />` for content like text.
+- Changed slot names: `leading-adornment` => `leading`; `trailing-adornment` => `trailing`; `nested-content` => `sublist`.
 
 # v0.0.47
 
