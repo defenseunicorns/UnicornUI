@@ -15,6 +15,7 @@
   const componentRoutesList = [
     'button',
     'icon-button',
+    'checkbox',
     'accordion',
     'stepper',
     'dialog',
