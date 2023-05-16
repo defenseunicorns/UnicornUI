@@ -2,6 +2,10 @@
 
 ## Updates
 
+### Menu
+
+- Changed `.menu` class  `position: absolute` to `position: fixed`
+
 ### Checkbox
 
 - Created generic Checkbox.
