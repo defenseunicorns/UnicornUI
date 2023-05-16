@@ -2,6 +2,10 @@
 
 ## Updates
 
+### Dialog
+
+- Updated the dialog scrim to execute `onClose` prop when the `Escape` key is pressed in order to improve accessibility
+
 ### Menu
 
 - Changed `.menu` class  `position: absolute` to `position: fixed`

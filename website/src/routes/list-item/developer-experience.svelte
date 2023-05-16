@@ -55,7 +55,9 @@
     ListItemProps<EventTarget> & {
       text: string;
       secondaryText?: string;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       leadingAdornment?: Record<string, any>;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       trailingAdornment?: Record<string, any>;
     };
 

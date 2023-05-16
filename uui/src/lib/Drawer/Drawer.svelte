@@ -14,6 +14,11 @@
   // Local Vars
   let elevation = $$restProps.elevation || 16;
 
+  // Close Drawer on Escape
+  function escapeListener(evt: KeyboardEvent) {
+    if (evt.key === 'Escape') onClose && onClose();
+  }
+
   // Reactive Vars
   $: variantClasses = `${modal ? `modal-drawer ${anchor} ${open && 'mdc-drawer--open'}` : ``} ${
     rail && 'rail'
@@ -37,7 +42,7 @@
 </Paper>
 
 {#if modal}
-  <div class="mdc-drawer-scrim" on:click={onClose} />
+  <div class="mdc-drawer-scrim" on:click={onClose} on:keypress={escapeListener} />
 {/if}
 
 <style lang="scss" global>
