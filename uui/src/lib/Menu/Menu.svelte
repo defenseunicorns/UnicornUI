@@ -86,7 +86,7 @@
   .menu {
     display: none;
     width: 20rem;
-    position: absolute;
+    position: fixed;
     box-sizing: border-box;
     opacity: 0;
     overflow: auto;
