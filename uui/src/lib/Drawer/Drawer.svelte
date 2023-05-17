@@ -16,7 +16,7 @@
 
   // Close Drawer on Escape
   function escapeListener(evt: KeyboardEvent) {
-    if (evt.key === 'Escape') onClose && onClose();
+    if (evt.key === 'Escape' && open) onClose && onClose();
   }
 
   // Reactive Vars
@@ -25,6 +25,7 @@
   } ${open ? 'open' : 'closed'}`;
 </script>
 
+<svelte:window on:keydown={escapeListener} />
 <Paper
   {elevation}
   variant="elevation"
@@ -42,7 +43,7 @@
 </Paper>
 
 {#if modal}
-  <div class="mdc-drawer-scrim" on:click={onClose} on:keypress={escapeListener} />
+  <div class="mdc-drawer-scrim" on:click={onClose} on:keydown={escapeListener} />
 {/if}
 
 <style lang="scss" global>
