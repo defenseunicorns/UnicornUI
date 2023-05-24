@@ -21,7 +21,7 @@
   // Functions
 
   // Passed as Slot Prop for trailing icon to use on:click
-  function setOpen() {
+  function setOpenANDFocus() {
     open = !open;
 
     if (open && document.activeElement != inputRef) {
@@ -31,9 +31,8 @@
 
   // Passed as Slot Prop in default slot of Menu,
   // which means "menu" items can use this on:click
-  function setValue(e: MouseEvent) {
-    const target = e.target as HTMLElement;
-    value = target.textContent?.trim() || '';
+  function handleClicked(e: MouseEvent) {
+    value = (e.target as HTMLElement).textContent?.trim() || '';
     open = false;
   }
 </script>
@@ -51,7 +50,7 @@
     label={$$restProps.label}
     helperText={$$restProps.helperText || ''}
   >
-    <slot name="trailing" slot="trailing" {setOpen} />
+    <slot name="trailing" slot="trailing" setOpen={setOpenANDFocus} />
   </TextField>
 
   <Menu
@@ -60,7 +59,7 @@
     anchorOrigin={$$restProps.anchorOrigin || 'bottom-start'}
     offsetNum={helperTextOffset}
   >
-    <slot {setValue} />
+    <slot {handleClicked} />
   </Menu>
 </Box>
 

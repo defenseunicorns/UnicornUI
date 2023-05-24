@@ -6,7 +6,15 @@
   $: trailing_icon = open ? 'expand_less' : 'expand_more';
 </script>
 
-<Select label="Select" bind:open bind:value let:setValue let:setOpen helperText="Select an Option">
+<Select
+  label="Select"
+  bind:open
+  bind:value
+  let:handleClicked={setValue}
+  let:setOpen
+  helperText="Select an Option"
+  variant="filled"
+>
   <SelectIcon slot="trailing" class="material-symbols-outlined" on:click={setOpen}>
     {trailing_icon}
   </SelectIcon>

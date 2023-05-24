@@ -2,9 +2,10 @@
   import VariantExample from '../../lib/VariantExample.svelte';
   import { Accordion, Box, Typography } from '@uui';
   import DocPage from '../../lib/doc-page.svelte';
-  import SelectExample from './select-example.svelte';
+  import SelectOutlinedExample from './select-outlined-example.svelte';
   import SELECT_PROPS from '@uui/Select/Select.types.d.ts?raw';
-  import SELECT_EXP from './select-example.svelte?raw';
+  import SELECT_OUTLINED_EXP from './select-outlined-example.svelte?raw';
+  import SelectFilledExample from './select-filled-example.svelte';
 </script>
 
 <DocPage>
@@ -16,18 +17,17 @@
 
   <Box
     ssx={{
-      $self: { display: 'flex', 'justify-content': 'center' }
+      $self: { display: 'flex', 'justify-content': 'center', gap: '1rem' }
     }}
   >
-    <SelectExample />
+    <SelectOutlinedExample />
+    <SelectFilledExample />
   </Box>
-
-  <!-- <Typography variant="h3">Examples</Typography> -->
 
   <Accordion>
     <Typography variant="h6" slot="headerContent">Menu Code</Typography>
     <Box slot="content">
-      <VariantExample code={SELECT_EXP} />
+      <VariantExample code={SELECT_OUTLINED_EXP} />
     </Box>
   </Accordion>
 </DocPage>
