@@ -1,7 +1,7 @@
 import type { BoxProps } from '../Box/box.types';
 
 export interface ListItemProps<T extends EventTarget> extends BoxProps<T> {
-  textColor?: string;
+  textColor?: ThemeColors;
   selected?: boolean;
   divider?: boolean;
   disabled?: boolean;

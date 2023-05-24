@@ -5,16 +5,16 @@
     type ListItemProps,
     type IconButtonProps,
     type ComponentAsProp,
+    type CheckboxProps,
     IconButton,
-    ListItemCheckbox,
     List,
     ListItem,
     ListItemAdornment,
     Typography,
     Accordion,
-    Box
+    Box,
+    Checkbox
   } from '@uui';
-  import type { ListItemCheckboxProps } from '@defense-unicorns/unicorn-ui/src/lib/List/ListItemCheckbox.types';
 
   type ExtendedListItems1 = svelte.JSX.IntrinsicAttributes &
     ListItemProps<EventTarget> & {
@@ -55,7 +55,9 @@
     ListItemProps<EventTarget> & {
       text: string;
       secondaryText?: string;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       leadingAdornment?: Record<string, any>;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       trailingAdornment?: Record<string, any>;
     };
 
@@ -89,18 +91,18 @@
       text: 'List Item',
       secondaryText: 'Secondary',
       trailingAdornment: {
-        component: ListItemCheckbox,
+        component: Checkbox,
         props: {}
-      } as ComponentAsProp<IconButtonProps>
+      } as ComponentAsProp<CheckboxProps<HTMLInputElement>>
     },
     {
       text: 'List Item',
       secondaryText: 'Secondary',
       disabled: true,
       trailingAdornment: {
-        component: ListItemCheckbox,
+        component: Checkbox,
         props: {}
-      } as ComponentAsProp<ListItemCheckboxProps>
+      } as ComponentAsProp<CheckboxProps<HTMLInputElement>>
     }
   ];
 
@@ -335,18 +337,18 @@ const listItemsIteration2: ExtendedListItems2[] = [
       text: 'List Item',
       secondaryText: 'Secondary',
       trailingAdornment: {
-        component: ListItemCheckbox,
+        component: Checkbox,
         props: {}
-      } as ComponentAsProp<IconButtonProps>
+      } as ComponentAsProp<CheckboxProps<HTMLInputElement>>
     },
     {
       text: 'List Item',
       secondaryText: 'Secondary',
       disabled: true,
       trailingAdornment: {
-        component: ListItemCheckbox,
+        component: Checkbox,
         props: {}
-      } as ComponentAsProp<IconButtonProps>
+      } as ComponentAsProp<CheckboxProps<HTMLInputElement>>
     }
   ];
 `}

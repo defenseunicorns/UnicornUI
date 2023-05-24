@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Typography, List, ListItem, ListItemAdornment, ListItemCheckbox } from '@uui';
+  import { Typography, List, ListItem, ListItemAdornment, Checkbox } from '@uui';
   import ListAvatar from './list-avatar.svelte';
 
   let selectedIndex = 0;
@@ -17,7 +17,7 @@
       <ListAvatar element="i" class="material-symbols-outlined">person</ListAvatar>
     </ListItemAdornment>
     <ListItemAdornment slot="trailing">
-      <ListItemCheckbox checked={selectedIndex === 0} />
+      <Checkbox checked={selectedIndex === 0} />
     </ListItemAdornment>
   </ListItem>
   <ListItem selected={selectedIndex === 1} on:click={() => setSelected(1)}>
@@ -26,7 +26,7 @@
       <ListAvatar element="i" class="material-symbols-outlined">person</ListAvatar>
     </ListItemAdornment>
     <ListItemAdornment slot="trailing">
-      <ListItemCheckbox checked={selectedIndex === 1} />
+      <Checkbox checked={selectedIndex === 1} />
     </ListItemAdornment>
   </ListItem>
 </List>
@@ -36,14 +36,14 @@
   <ListItem selected={selectedIndex === 2} on:click={() => setSelected(2)}>
     <Typography>List Item 1</Typography>
     <ListItemAdornment slot="leading">
-      <ListItemCheckbox checked={selectedIndex === 2} />
+      <Checkbox checked={selectedIndex === 2} />
     </ListItemAdornment>
     <ListItemAdornment slot="trailing" class="material-symbols-outlined">star</ListItemAdornment>
   </ListItem>
   <ListItem selected={selectedIndex === 3} on:click={() => setSelected(3)}>
     <Typography>List Item 1</Typography>
     <ListItemAdornment slot="leading">
-      <ListItemCheckbox checked={selectedIndex === 3} />
+      <Checkbox checked={selectedIndex === 3} />
     </ListItemAdornment>
     <ListItemAdornment slot="trailing" class="material-symbols-outlined">star</ListItemAdornment>
   </ListItem>

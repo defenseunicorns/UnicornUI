@@ -86,8 +86,8 @@
 <style lang="scss" global>
   .menu {
     display: none;
-    min-width: var(--width);
-    position: absolute;
+    width: 20rem;
+    position: fixed;
     box-sizing: border-box;
     opacity: 0;
     overflow: auto;

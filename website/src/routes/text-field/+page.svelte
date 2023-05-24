@@ -54,7 +54,7 @@
           </div>
           <div class="labeled-example">
             <Typography variant="subtitle1">Disabled:</Typography>
-            <TextField label="Label" variant="outlined" color="primary" value="Value" />
+            <TextField label="Label" variant="outlined" color="primary" value="Value" disabled />
           </div>
           <div class="labeled-example">
             <Typography variant="subtitle1">Error:</Typography>

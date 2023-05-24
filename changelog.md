@@ -1,4 +1,4 @@
-# v0.0.49
+# v0.0.50
 
 ## Updates
 
@@ -39,6 +39,43 @@ export type SelectIconProps<T extends EventTarget> = TextFieldIconProps<T>;
 - Added `flip()` middleware to Menu floating-ui/dom `computePosition` as default behavior.
 - Updated MenuProps from generic `PaperProps<T>` to `extends PaperProps<HTMLMenuElement>`. Should not affect current usage.
 
+# v0.0.49
+
+## Updates
+
+### Dialog
+
+- Updated the dialog scrim to execute `onClose` prop when the `Escape` key is pressed in order to improve accessibility
+
+### Menu
+
+- Changed `.menu` class `position: absolute` to `position: fixed`
+
+### Checkbox
+
+- Created generic Checkbox.
+- Uses Box as its foundation and extends BoxProps of type HTMLInputElement.
+- Is wrapped by a container that applies the `mdc-form-field` class.
+- Both the stroke and background colors can be modified.
+- Disabled state uses the `--disabled` theme var.
+
+```ts
+export interface CheckboxProps<T extends EventTarget> extends BoxProps<T> {
+  checked?: boolean;
+  indeterminate?: boolean;
+  color?: string;
+  backgroundColor?: string;
+}
+```
+
+## Breaking Changes
+
+### ListItemCheckbox (Deprecated: Will Be Removed)
+
+- With the creating of Checkbox, there is no longer a need for ListItemCheckbox.
+- Checkbox does what ListItemCheckbox did but with some added benefits of default form-field label alignment and color customizing.
+- If you want to see examples of using Checkbox with ListItem, please look at the List Item page on Unicorn UI, specifically at the Checkbox examples.
+
 # v0.0.48
 
 ## Updates
@@ -54,6 +91,7 @@ export type SelectIconProps<T extends EventTarget> = TextFieldIconProps<T>;
 ### List Item
 
 - Now extends Box.
+- Contains default `<slot />` for content.
 
 ### Menu
 
@@ -64,6 +102,15 @@ export type SelectIconProps<T extends EventTarget> = TextFieldIconProps<T>;
 ### Menu
 
 - `onClose` is now `onClickaway` and is used for custom clickaway behavior.
+
+### Drawer
+
+- The named content slot (`<slot named="content">`) is no longer named but is the default `<slot />` of Drawer.
+
+### ListItem
+
+- Removed `text` and `secondaryText` props. Now ListItem uses the default `<slot />` for content like text.
+- Changed slot names: `leading-adornment` => `leading`; `trailing-adornment` => `trailing`; `nested-content` => `sublist`.
 
 # v0.0.47
 
@@ -95,13 +142,12 @@ export interface MenuProps<T extends EventTarget> extends PaperProps<T> {
 ### Dialog
 
 - removed mdc classes and replaced with more friendly classnames:
+
   - `.dialog-container`
   - `.dialog-surface`
   - `.dialog-content`
   - `.dialog-actions`
   - `.dialog-title`
-
-## Updates
 
 ### Dialog
 
@@ -110,6 +156,7 @@ export interface MenuProps<T extends EventTarget> extends PaperProps<T> {
   - Default elevation is set to `16`
 - Added `containerSSX` prop that applies ssx to the `.dialog-container` which is the top level component in `Dialog`
 - `Dialog` can now be closed by pressing the `Escape` key when the `Dialog` is `open` and `clickAway` is set to `true`
+
   - event listener calls the `toggleDialog` bindable method.
 
 # v0.0.45
