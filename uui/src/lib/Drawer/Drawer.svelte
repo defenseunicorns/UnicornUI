@@ -100,4 +100,9 @@
   .drawer.mdc-drawer .mdc-deprecated-list-group__subheader {
     color: var(--on-background);
   }
+
+  // Target ListItem if used in Drawer
+  .drawer.mdc-drawer .mdc-deprecated-list-item {
+    margin: 0;
+  }
 </style>

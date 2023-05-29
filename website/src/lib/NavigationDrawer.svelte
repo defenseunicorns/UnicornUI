@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Box, Drawer, ListItem, ListSubHeader, Typography } from '@uui';
+  import { Drawer, ListItem, ListSubHeader, Typography } from '@uui';
   import { onMount } from 'svelte';
   import { appStatesStore, updateAppStates } from './stores/nav-drawer-state-store';
 
@@ -39,7 +39,7 @@
     });
   }
 
-  function transformRoute(route: string) {
+  function makeLinkText(route: string) {
     let words = route.split('-');
     words = words.map((word) => word.charAt(0).toUpperCase() + word.slice(1));
     return words.join(' ');
@@ -47,38 +47,36 @@
 </script>
 
 <Drawer elevation={2} open={isDrawerOpen} ssx={{ $self: { height: 'calc(100vh - 56px)' } }}>
-  <Box>
-    <ListSubHeader>Theming</ListSubHeader>
-    {#each themeRoutestList as route}
-      <ListItem
-        selected={selectedRoute === route}
-        element="a"
-        href="/{route}"
-        on:click={(e) => {
-          e.stopPropagation();
-          setSelectedRoute(route);
-        }}
-      >
-        <Typography>
-          {transformRoute(route)}
-        </Typography>
-      </ListItem>
-    {/each}
-    <ListSubHeader>Components</ListSubHeader>
-    {#each componentRoutesList as route}
-      <ListItem
-        selected={selectedRoute === route}
-        element="a"
-        href="/{route}"
-        on:click={(e) => {
-          e.stopPropagation();
-          setSelectedRoute(route);
-        }}
-      >
-        <Typography>
-          {transformRoute(route)}
-        </Typography>
-      </ListItem>
-    {/each}
-  </Box>
+  <ListSubHeader>Theming</ListSubHeader>
+  {#each themeRoutestList as route}
+    <ListItem
+      selected={selectedRoute === route}
+      element="a"
+      href="/{route}"
+      on:click={(e) => {
+        e.stopPropagation();
+        setSelectedRoute(route);
+      }}
+    >
+      <Typography>
+        {makeLinkText(route)}
+      </Typography>
+    </ListItem>
+  {/each}
+  <ListSubHeader>Components</ListSubHeader>
+  {#each componentRoutesList as route}
+    <ListItem
+      selected={selectedRoute === route}
+      element="a"
+      href="/{route}"
+      on:click={(e) => {
+        e.stopPropagation();
+        setSelectedRoute(route);
+      }}
+    >
+      <Typography>
+        {makeLinkText(route)}
+      </Typography>
+    </ListItem>
+  {/each}
 </Drawer>
