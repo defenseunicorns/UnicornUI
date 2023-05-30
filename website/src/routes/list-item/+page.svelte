@@ -122,7 +122,7 @@
   <Typography>
     Also of note, the showing of nested content is controlled by the selected state of
     <InlineCode>ListItem</InlineCode> as well as the presence of an element designated with
-    <InlineCode>slot="nested"</InlineCode>.
+    <InlineCode>slot="sublist"</InlineCode>.
   </Typography>
 
   <VariantExample
