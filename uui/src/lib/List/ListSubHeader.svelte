@@ -14,10 +14,3 @@
 >
   <slot />
 </Box>
-
-<style lang="scss" global>
-  @use '@material/list';
-  .list-subheader.mdc-deprecated-list-group__subheader {
-    @include list.deprecated-core-styles;
-  }
-</style>

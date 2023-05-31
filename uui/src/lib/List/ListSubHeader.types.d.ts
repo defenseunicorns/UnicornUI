@@ -1,1 +1,3 @@
-export type ListSubHeaderProps = svelte.JSX.HTMLAttributes<HTMLHeadingElement>;
+import type { BoxProps } from '$lib/Box/box.types';
+
+export type ListSubHeaderProps = BoxProps<HTMLHeadingElement>;

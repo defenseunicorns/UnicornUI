@@ -96,12 +96,12 @@
     padding-right: 1rem;
   }
 
-  // Target ListSubheader if nested in Drawer
+  // Override MDC targeting and target ListSubheader
   .drawer.mdc-drawer .mdc-deprecated-list-group__subheader {
-    color: var(--on-background);
+    color: rgba(255, 255, 255, 0.7);
   }
 
-  // Target ListItem if used in Drawer
+  // Override MDC targeting and target ListItem
   .drawer.mdc-drawer .mdc-deprecated-list-item {
     margin: 0;
   }
