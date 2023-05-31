@@ -99,10 +99,14 @@
   // Override MDC targeting and target ListSubheader
   .drawer.mdc-drawer .mdc-deprecated-list-group__subheader {
     color: rgba(255, 255, 255, 0.7);
+    height: 48px;
+    display: flex;
+    align-items: center;
   }
 
   // Override MDC targeting and target ListItem
   .drawer.mdc-drawer .mdc-deprecated-list-item {
     margin: 0;
+    height: 39px;
   }
 </style>
