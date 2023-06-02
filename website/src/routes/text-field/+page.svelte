@@ -16,7 +16,12 @@
   </div>
   <div class="labeled-example">
     <Typography variant="subtitle1">Filled:</Typography>
-    <TextField label="Label" variant="filled" color="primary" />
+    <TextField
+      label="Label"
+      variant="filled"
+      color="primary"
+      ssx={{ width: '100rem', backgroundColor: 'red' }}
+    />
   </div>
   <AccordionGroup>
     <Accordion isOpen={true}>
@@ -48,7 +53,8 @@
               label="Label"
               variant="outlined"
               color="primary"
-              characterCounter={true}
+              characterCounter
+              inputProps={{ maxlength: 60 }}
               maxlength={60}
             />
           </div>
@@ -218,19 +224,21 @@
           unctrolled input and the value will be captured by the form.
         </Typography>
         <Box class="text-field-example">
-          <form on:submit={() => alert(`you submitted ${formValue}`)}>
+          <form
+            on:submit={() => {
+              alert(`you submitted ${formValue}`);
+              formValue = '';
+            }}
+          >
             <div class="labeled-example">
               <Typography variant="subtitle1">Validate:</Typography>
               <TextField
-                required
                 bind:value={formValue}
+                inputProps={{ required: true, pattern: '.+@.+.com', maxlength: 20, minlength: 8 }}
                 variant="outlined"
                 label="Email"
-                pattern=".+@.+\.com"
                 helperText="Email format"
-                characterCounter={true}
-                maxlength={20}
-                minlength={8}
+                characterCounter
               />
             </div>
             <Button style={'margin-top: 2px;'} type="submit" variant="text">Submit</Button>
