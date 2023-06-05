@@ -14,7 +14,8 @@
       <Typography variant="subtitle1">Validate:</Typography>
       <TextField
         bind:value={formValue}
-        inputProps={{ required: true, pattern: '.+@.+.com', maxlength: 20, minlength: 8 }}
+        required
+        inputProps={{ pattern: '.+@.+.com', maxlength: 20, minlength: 8 }}
         variant="outlined"
         label="Email"
         helperText="Email format"

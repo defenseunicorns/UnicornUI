@@ -40,18 +40,7 @@
     active = 'active';
   }
 
-  function getIconClass(): string {
-    let classes: string[] = [];
-    if ($$slots.leadingIcon) {
-      classes.push('mdc-text-field--with-leading-icon');
-    }
-    if ($$slots.trailingIcon) {
-      classes.push('mdc-text-field--with-trailing-icon');
-    }
-    return classes.join(' ');
-  }
-
-  function handleKeyEvt(e: KeyboardEvent) {
+  function handleSubmitKeyEvt(e: KeyboardEvent) {
     if (e.key === 'Enter') {
       const form = (e.target as HTMLElement).closest('form');
       if (form) {
@@ -101,7 +90,7 @@
       invalid = true;
     }
 
-    inputRef.addEventListener('keydown', handleKeyEvt);
+    inputRef.addEventListener('keydown', handleSubmitKeyEvt);
   });
 
   // Reactive States
@@ -134,10 +123,12 @@
   style="--color: {computedColor}; {$$restProps.style}"
 >
   <div
-    class={`text-field mdc-text-field mdc-text-field--${variant} ${getIconClass()}`}
+    class={`text-field mdc-text-field mdc-text-field--${variant}`}
     class:mdc-text-field--disabled={disabled}
     class:mdc-text-field--invalid={invalid}
     class:mdc-text-field--focused={focused}
+    class:mdc-text-field--with-leading-icon={$$slots.leadingIcon}
+    class:mdc-text-field--with-trailing-icon={$$slots.trailingIcon}
     class:mdc-ripple-upgraded--background-focused={variant === 'filled' && focused}
   >
     <slot name="leadingIcon" />
