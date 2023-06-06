@@ -7,7 +7,7 @@ export interface TextFieldProps extends BoxProps<HTMLElement> {
   variant: TextFieldVariant;
   required?: boolean;
   disabled?: boolean;
-  inputProps?: Record<HTMLInputElement>;
+  inputProps?: Partial<Record<keyof svelte.JSX.HTMLAttributes<HTMLInputElement>, any>>;
   label: string;
   value?: string;
   helperText?: string;

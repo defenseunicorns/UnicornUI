@@ -1,3 +1,29 @@
+# v0.0.50
+
+## Updates
+
+### Textfield
+
+- Textfield wrapper is now a Box.
+- Textfield props extend `BoxProps<HTMLElement>`.
+- Textfield props now explitictly contain `required`, `disabled`, and `inputProps`.
+- `inputProps` is for all properties, other than `required` and `disabled`, you'd like to pass to the `<input />` of Textfield.
+
+```ts
+export interface TextFieldProps extends BoxProps<HTMLElement> {
+  variant: TextFieldVariant;
+  required?: boolean;
+  disabled?: boolean;
+  inputProps?: Partial<Record<keyof svelte.JSX.HTMLAttributes<HTMLInputElement>, any>>;
+  label: string;
+  value?: string;
+  helperText?: string;
+  color?: ThemeColors;
+  error?: boolean;
+  characterCounter?: boolean;
+}
+```
+
 # v0.0.49
 
 ## Updates
@@ -8,7 +34,7 @@
 
 ### Menu
 
-- Changed `.menu` class  `position: absolute` to `position: fixed`
+- Changed `.menu` class `position: absolute` to `position: fixed`
 
 ### Checkbox
 
