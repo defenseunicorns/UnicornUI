@@ -46,7 +46,11 @@
   }
 </script>
 
-<Drawer elevation={2} open={isDrawerOpen} ssx={{ $self: { height: 'calc(100vh - 56px)' } }}>
+<Drawer
+  elevation={1}
+  open={isDrawerOpen}
+  ssx={{ $self: { width: '320px', height: 'calc(100vh - 56px)' } }}
+>
   <ListSubHeader>Theming</ListSubHeader>
   {#each themeRoutestList as route}
     <ListItem

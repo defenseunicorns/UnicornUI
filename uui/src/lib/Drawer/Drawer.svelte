@@ -56,7 +56,6 @@
   .drawer.mdc-drawer {
     min-height: 100%;
     transition: width 0.5s;
-    width: 320px;
   }
 
   // Header
