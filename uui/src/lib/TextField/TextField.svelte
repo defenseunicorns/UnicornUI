@@ -3,23 +3,22 @@
   import { current_component } from 'svelte/internal';
   import { makeThemeColor } from '../shared/utils/makeThemeColor';
   import type { ThemeColors } from '../shared/theme/default-colors/colors.types';
-  import type { TextFieldProps, TextFieldVariant } from './TextField.types';
+  import type { TextFieldInputProps, TextFieldProps, TextFieldVariant } from './TextField.types';
   import { eventRedirection } from '../shared/utils/eventRedirection';
   import Box from '../Box/box.svelte';
 
   //Props
   type $$Props = TextFieldProps;
   export let variant: TextFieldVariant = 'outlined';
+  export let inputProps: TextFieldInputProps = {};
+  export let color: ThemeColors = 'inherit';
+  export let label: string;
+  export let characterCounter = false;
   export let required = false;
   export let disabled = false;
-  export let label: string;
-  export let color: ThemeColors = 'inherit';
-  export let helperText = '';
-  export let characterCounter = false;
   export let error = false;
   export let value = '';
-  export let inputProps: Partial<Record<keyof svelte.JSX.HTMLAttributes<HTMLInputElement>, any>> =
-    {};
+  export let helperText = '';
 
   // locals
   let inputRef: HTMLInputElement;
