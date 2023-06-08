@@ -10,11 +10,16 @@
 - `inputProps` is for all properties, other than `required` and `disabled`, you'd like to pass to the `<input />` of Textfield.
 
 ```ts
+export type TextFieldVariant = 'outlined' | 'filled';
+export type TextFieldInputProps = Partial<
+  Record<keyof svelte.JSX.HTMLAttributes<HTMLInputElement>, any>
+>;
+
 export interface TextFieldProps extends BoxProps<HTMLElement> {
   variant: TextFieldVariant;
   required?: boolean;
   disabled?: boolean;
-  inputProps?: Partial<Record<keyof svelte.JSX.HTMLAttributes<HTMLInputElement>, any>>;
+  inputProps?: TextFieldInputProps;
   label: string;
   value?: string;
   helperText?: string;
