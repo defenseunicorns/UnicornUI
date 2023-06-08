@@ -1,7 +1,6 @@
 <script lang="ts">
   import { TextField } from '@uui';
-  import Variant from '$lib/Variant.svelte';
-  import { AccordionGroup, Accordion, Typography, Box } from '@uui';
+  import { Accordion, Typography, Box } from '@uui';
   import VALIDATION_EXP from './validation-example.svelte?raw';
   import VariantExample from '$lib/VariantExample.svelte';
   import ValidationExample from './validation-example.svelte';
@@ -11,80 +10,86 @@
   import SLOTS_EXP from './slots-example.svelte?raw';
   import PropsExample from './props-example.svelte';
   import PROPS_EXP from './props-example.svelte?raw';
+  import DocPage from '$lib/doc-page.svelte';
+  import PROPS from '@uui/TextField/TextField.types.d.ts?raw';
+  import InlineCode from '$lib/inline-code.svelte';
 </script>
 
-<Variant
-  title="Text Field"
-  code="The basic Text Field is a wrapper around a native input element with the type set to 'text'. It can be configured a number of ways, but has two main variants -- outlined and filled."
->
-  <div class="labeled-example">
-    <Typography variant="subtitle1">Outlined:</Typography>
-    <TextField label="Label" variant="outlined" color="primary" />
-  </div>
-  <div class="labeled-example">
-    <Typography variant="subtitle1">Filled:</Typography>
-    <TextField label="Label" variant="filled" color="primary" />
-  </div>
-  <AccordionGroup>
-    <Accordion isOpen={true}>
-      <Typography slot="headerContent" variant="h6">Props</Typography>
-      <Box slot="content">
-        <Typography variant="body1">
-          The Text Field component accepts native HTMLInput props as well as several Unicorn UI
-          defined ones implemented by the TextFieldProps interface.
-        </Typography>
+<DocPage>
+  <Typography variant="h2">Textfield</Typography>
+  <Typography variant="body1">Element for capturing text.</Typography>
+  <Box class="text-field-example">
+    <div class="labeled-example">
+      <Typography variant="subtitle1">Outlined:</Typography>
+      <TextField label="Label" variant="outlined" color="primary" />
+    </div>
 
-        <PropsExample />
-        <VariantExample code={PROPS_EXP} />
-      </Box>
-    </Accordion>
-    <Accordion isOpen={true}>
-      <Typography slot="headerContent" variant="h6">Slots</Typography>
-      <Box slot="content">
-        <Typography variant="body1">
-          Text Field accepts two slots: leadingIcon and trailingIcon. If you're unfamiliar with the
-          concept of slots, think of them like children. To pass a Text Field an icon, use the
-          TextFieldIcon component. Make sure to declare the variant ('leading' or 'trailing') as
-          well as the slot name ('leadingIcon' or 'trailingIcon')
-        </Typography>
+    <div class="labeled-example">
+      <Typography variant="subtitle1">Filled:</Typography>
+      <TextField label="Label" variant="filled" color="primary" />
+    </div>
+  </Box>
 
-        <SlotsExample />
-        <VariantExample code={SLOTS_EXP} />
-      </Box>
-    </Accordion>
+  <Typography variant="h3">Props</Typography>
+  <Typography variant="body1">
+    The Text Field component is a basic HTMLElement that wraps a native HTMLInputElement. There are
+    two input properties, <InlineCode>required</InlineCode> and <InlineCode>disabled</InlineCode>,
+    you can pass directly to <InlineCode>TextField</InlineCode>, whereas all other input properties
+    can be passed to the <InlineCode>inputProps</InlineCode> object that will be applied to the input.
+  </Typography>
+  <VariantExample code={PROPS} />
 
-    <Accordion isOpen={true}>
-      <Typography slot="headerContent" variant="h6">Validation</Typography>
-      <Box slot="content">
-        <Typography variant="body1">
-          Try interacting with this Text Field to see how validation occurs. Notice we're binding
-          the value, making this a controlled input. You can still use the Text Field as an
-          unctrolled input and the value will be captured by the form.
-        </Typography>
+  <Typography variant="h4">Using Props Examples</Typography>
+  <PropsExample />
+  <Accordion>
+    <Typography variant="h6" slot="headerContent">Props Example Code</Typography>
+    <VariantExample slot="content" code={PROPS_EXP} />
+  </Accordion>
 
-        <ValidationExample />
-        <VariantExample code={VALIDATION_EXP} />
-      </Box>
-    </Accordion>
+  <Typography variant="h3">Slots</Typography>
+  <Typography variant="body1">TextField provides two slots for icons:</Typography>
+  <ul>
+    <li>leadingIcon</li>
+    <li>trailingIcon</li>
+  </ul>
+  <Typography variant="body1">
+    These slots need to be used with the <InlineCode>TextFieldIcon</InlineCode> component.
+  </Typography>
 
-    <Accordion isOpen={true}>
-      <Typography slot="headerContent" variant="h6">Theming</Typography>
-      <Box slot="content">
-        <Typography variant="body1">
-          Certain aspects of the Text Field theme can be directly overridden by a mix of props
-          (color) and a textField palette. To override the focused state colors use the prop. If you
-          want to override other states (inactive, hover, background, background hover, bottom line
-          hover) you'll need to add a custom text field palette to your theme. Text Field icons, by
-          default, use --on-background for their color. You can override that color by adding a
-          style tag to your TextFieldIcon with a "!important".
-        </Typography>
+  <SlotsExample />
+  <Accordion>
+    <Typography slot="headerContent" variant="h6">Slots Code</Typography>
+    <VariantExample slot="content" code={SLOTS_EXP} />
+  </Accordion>
 
-        <ThemingExample />
-        <VariantExample code={THEMING_EXP} />
-      </Box>
-    </Accordion>
-  </AccordionGroup>
-</Variant>
+  <Typography variant="h3">Controlled TextField Example</Typography>
+  <Typography variant="body1">
+    TextField can be controlled or uncontrolled. The below example is a controlled TextField. Try
+    interacting with it to see how validation and submission work.
+  </Typography>
+
+  <ValidationExample />
+  <Accordion>
+    <Typography variant="h6" slot="headerContent">Controlled TextField Code</Typography>
+    <VariantExample slot="content" code={VALIDATION_EXP} />
+  </Accordion>
+
+  <Typography variant="h3">Theming</Typography>
+  <Typography variant="body1">
+    Certain aspects of the TextField theme can be directly overridden by a mix of props (color) and
+    a textField palette. To override the focused state colors use the prop. If you want to override
+    other states (inactive, hover, background, background hover, bottom line hover) you'll need to
+    add a custom text field palette to your theme. TextField icons, by default, use --on-background
+    for their color. You can override that color by adding a style tag to your TextFieldIcon with a
+    "!important".
+  </Typography>
+
+  <ThemingExample />
+  <Accordion>
+    <Typography slot="headerContent" variant="h6">Theming Code</Typography>
+    <VariantExample slot="content" code={THEMING_EXP} />
+  </Accordion>
+</DocPage>
 
 <style lang="scss">
   .labeled-example {
@@ -99,7 +104,6 @@
     display: flex;
     flex-wrap: wrap;
     align-content: center;
-    justify-content: center;
     padding: 1rem 0;
   }
 </style>

@@ -21,7 +21,6 @@
       color="primary"
       characterCounter
       inputProps={{ maxlength: 60 }}
-      maxlength={60}
     />
   </div>
   <div class="labeled-example">
