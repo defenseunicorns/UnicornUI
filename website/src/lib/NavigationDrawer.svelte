@@ -49,7 +49,7 @@
 <Drawer
   elevation={2}
   open={isDrawerOpen}
-  ssx={{ $self: { width: '320px', height: 'calc(100vh - 56px)' } }}
+  ssx={{ $self: { width: '320px', height: 'calc(100vh - 64px)' } }}
 >
   <ListSubHeader>Theming</ListSubHeader>
   {#each themeRoutestList as route}

@@ -3,7 +3,7 @@
   import 'material-symbols/';
   import { afterUpdate } from 'svelte';
   import customTypography from '$lib/theme/theme-typography';
-  import { Button, Typography, Theme, Box, IconButton } from '@uui';
+  import { Box, Button, Typography, Theme, IconButton } from '@uui';
   import type { ButtonColor, ButtonShape, ButtonVariant } from '@uui';
   import Navbar from '$lib/Navbar.svelte';
   import NavigationDrawer from '$lib/NavigationDrawer.svelte';
@@ -40,6 +40,14 @@
 
 <Theme typography={customTypography}>
   <Navbar>
+    <Box
+      element="img"
+      src="images/app-logo.png"
+      alt="unicorn horn logo"
+      width={200}
+      class="logo"
+      ssx={{ '@media (max-width: $md)': { $self: { display: 'none' } } }}
+    />
     <IconButton
       on:click={() => (isDrawerOpen = !isDrawerOpen)}
       iconContent="menu"
@@ -109,5 +117,9 @@
 
   a {
     text-decoration: none;
+  }
+
+  .logo {
+    margin-left: 1rem;
   }
 </style>
