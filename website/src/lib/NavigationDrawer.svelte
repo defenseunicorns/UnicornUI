@@ -47,7 +47,7 @@
 </script>
 
 <Drawer
-  elevation={1}
+  elevation={2}
   open={isDrawerOpen}
   ssx={{ $self: { width: '320px', height: 'calc(100vh - 56px)' } }}
 >
