@@ -32,11 +32,15 @@
 
   <Typography variant="h3">Props</Typography>
   <Typography variant="body1">
-    The Text Field component is a basic HTMLElement that wraps a native HTMLInputElement. There are
-    two input properties, <InlineCode>required</InlineCode> and <InlineCode>disabled</InlineCode>,
-    you can pass directly to <InlineCode>TextField</InlineCode>, whereas all other input properties
-    can be passed to the <InlineCode>inputProps</InlineCode> object that will be applied to the input.
-  </Typography>
+    The TextField component is a <InlineCode>Box</InlineCode> of type HTMLElement that wraps a native
+    HTMLInputElement of type text. It accepts all <InlineCode>BoxProps</InlineCode> along with several
+    custom properties. To set property values on the wrapped input, there is the <InlineCode
+      >inputProps</InlineCode
+    > object. Two HTMLInput properties, <InlineCode>required</InlineCode>
+    and <InlineCode>disabled</InlineCode>, however can be passed directly to <InlineCode
+      >TextField</InlineCode
+    >.</Typography
+  >
   <VariantExample code={PROPS} />
 
   <Typography variant="h4">Using Props Examples</Typography>
