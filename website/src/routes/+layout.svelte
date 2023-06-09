@@ -3,8 +3,7 @@
   import 'material-symbols/';
   import { afterUpdate } from 'svelte';
   import customTypography from '$lib/theme/theme-typography';
-  import { Box, Button, Typography, Theme, IconButton } from '@uui';
-  import type { ButtonColor, ButtonShape, ButtonVariant } from '@uui';
+  import { Box, Theme, IconButton, currentTheme, type SupportedThemes } from '@uui';
   import Navbar from '$lib/Navbar.svelte';
   import NavigationDrawer from '$lib/NavigationDrawer.svelte';
   import { appStatesStore, updateAppStates } from '$lib/stores/nav-drawer-state-store';
@@ -12,21 +11,15 @@
   // Local Vars
   let path = '';
   let windowWidth: number;
+  let currTheme: SupportedThemes;
+
+  currentTheme.subscribe((value) => (currTheme = value));
 
   afterUpdate(() => {
     path = window.location.pathname;
   });
 
   // Functions
-  function getVariant(
-    pathname: string,
-    currentPath: string
-  ): { variant: ButtonVariant; color: ButtonColor; shape: ButtonShape } {
-    return pathname === currentPath
-      ? { variant: 'raised', color: 'secondary', shape: 'squared' }
-      : { variant: 'flat', color: 'primary', shape: 'squared' };
-  }
-
   function setCurrRouteState() {
     appStatesStore.update((states) => {
       return updateAppStates({ ...states, currentRoute: '/' });
@@ -43,7 +36,7 @@
     <a href="/" on:click={setCurrRouteState}>
       <Box
         element="img"
-        src="images/app-logo.png"
+        src={`images/app-logo-${currTheme}.png`}
         alt="unicorn horn logo"
         width={200}
         class="logo"
