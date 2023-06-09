@@ -40,14 +40,16 @@
 
 <Theme typography={customTypography}>
   <Navbar>
-    <Box
-      element="img"
-      src="images/app-logo.png"
-      alt="unicorn horn logo"
-      width={200}
-      class="logo"
-      ssx={{ '@media (max-width: $md)': { $self: { display: 'none' } } }}
-    />
+    <a href="/" on:click={setCurrRouteState}>
+      <Box
+        element="img"
+        src="images/app-logo.png"
+        alt="unicorn horn logo"
+        width={200}
+        class="logo"
+        ssx={{ '@media (max-width: $md)': { $self: { display: 'none' } } }}
+      />
+    </a>
     <IconButton
       on:click={() => (isDrawerOpen = !isDrawerOpen)}
       iconContent="menu"
@@ -78,12 +80,7 @@
             }
           }
         }}
-      >
-        <Typography variant="h1" style="margin-bottom: unset;margin-top: 2rem;">
-          Unicorn UI
-        </Typography>
-        <Button href="/" {...getVariant(path, '/')} on:click={setCurrRouteState}>Home</Button>
-      </Box>
+      />
       <main>
         <slot />
       </main>
