@@ -98,10 +98,13 @@
 
   // Override MDC targeting and target ListSubheader
   .drawer.mdc-drawer .mdc-deprecated-list-group__subheader {
-    color: rgba(255, 255, 255, 0.7);
     height: 48px;
     display: flex;
     align-items: center;
+  }
+
+  html[data-theme='dark'] .drawer.mdc-drawer .mdc-deprecated-list-group__subheader {
+    color: var(--text-primary-on-background);
   }
 
   // Override MDC targeting and target ListItem

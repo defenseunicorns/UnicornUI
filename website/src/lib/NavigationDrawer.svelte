@@ -1,5 +1,12 @@
 <script lang="ts">
-  import { Drawer, ListItem, ListSubHeader, Typography } from '@uui';
+  import {
+    Drawer,
+    ListItem,
+    ListSubHeader,
+    Typography,
+    type SupportedThemes,
+    currentTheme
+  } from '@uui';
   import { onMount } from 'svelte';
   import { appStatesStore, updateAppStates } from './stores/nav-drawer-state-store';
 
@@ -8,6 +15,7 @@
 
   // Local vars
   let selectedRoute = '';
+  let currTheme: SupportedThemes;
 
   const themeRoutestList = ['theme', 'breakpoints', 'scoped-styles', 'typography', 'box', 'paper'];
   const componentRoutesList = [
@@ -31,6 +39,8 @@
     appStatesStore.subscribe((states) => {
       selectedRoute = states.currentRoute;
     });
+
+    currentTheme.subscribe((value) => (currTheme = value));
   });
 
   function setSelectedRoute(route: string) {
@@ -44,6 +54,8 @@
     words = words.map((word) => word.charAt(0).toUpperCase() + word.slice(1));
     return words.join(' ');
   }
+
+  $: linkColor = currTheme === 'dark' ? 'on-background' : 'text-primary-on-light';
 </script>
 
 <Drawer
@@ -61,6 +73,7 @@
         e.stopPropagation();
         setSelectedRoute(route);
       }}
+      textColor={linkColor}
     >
       <Typography>
         {makeLinkText(route)}
@@ -77,6 +90,7 @@
         e.stopPropagation();
         setSelectedRoute(route);
       }}
+      textColor={linkColor}
     >
       <Typography>
         {makeLinkText(route)}
