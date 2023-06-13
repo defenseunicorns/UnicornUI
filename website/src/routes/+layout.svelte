@@ -6,7 +6,7 @@
   import { Box, Theme, IconButton, currentTheme, type SupportedThemes } from '@uui';
   import Navbar from '$lib/Navbar.svelte';
   import NavigationDrawer from '$lib/NavigationDrawer.svelte';
-  import { appStatesStore, updateAppStates } from '$lib/stores/nav-drawer-state-store';
+  import { goto } from '$app/navigation';
 
   // Local Vars
   let path = '';
@@ -19,13 +19,6 @@
     path = window.location.pathname;
   });
 
-  // Functions
-  function setCurrRouteState() {
-    appStatesStore.update((states) => {
-      return updateAppStates({ ...states, currentRoute: '/' });
-    });
-  }
-
   $: isDrawerOpen = windowWidth && windowWidth > 900 ? true : false;
 </script>
 
@@ -33,16 +26,17 @@
 
 <Theme typography={customTypography}>
   <Navbar>
-    <a href="/" on:click={setCurrRouteState}>
-      <Box
-        element="img"
-        src={`images/app-logo-${currTheme}.png`}
-        alt="unicorn horn logo"
-        width={200}
-        class="logo"
-        ssx={{ '@media (max-width: $md)': { $self: { display: 'none' } } }}
-      />
-    </a>
+    <Box
+      on:click={() => goto('/')}
+      on:keydown={() => goto('/')}
+      element="img"
+      src={`images/app-logo-${currTheme}.png`}
+      alt="unicorn horn logo"
+      width={200}
+      class="logo"
+      ssx={{ '@media (max-width: $md)': { $self: { display: 'none' } } }}
+    />
+
     <IconButton
       on:click={() => (isDrawerOpen = !isDrawerOpen)}
       iconContent="menu"

@@ -1,7 +1,5 @@
 <script lang="ts">
   import { Drawer, ListItem, ListSubHeader, Typography } from '@uui';
-  import { onMount } from 'svelte';
-  import { appStatesStore, updateAppStates } from './stores/nav-drawer-state-store';
   import { goto } from '$app/navigation';
 
   type $$Props = { isDrawerOpen: boolean };
@@ -28,18 +26,6 @@
   ];
 
   // Functions
-  onMount(() => {
-    appStatesStore.subscribe((states) => {
-      selectedRoute = states.currentRoute;
-    });
-  });
-
-  function setSelectedRoute(route: string) {
-    appStatesStore.update((states) => {
-      return updateAppStates({ ...states, currentRoute: route });
-    });
-  }
-
   function makeLinkText(route: string) {
     let words = route.split('-');
     words = words.map((word) => word.charAt(0).toUpperCase() + word.slice(1));
@@ -58,7 +44,6 @@
       selected={selectedRoute === route}
       on:click={(e) => {
         e.stopPropagation();
-        setSelectedRoute(route);
         goto(`/${route}`);
       }}
     >
@@ -73,7 +58,6 @@
       selected={selectedRoute === route}
       on:click={(e) => {
         e.stopPropagation();
-        setSelectedRoute(route);
         goto(`/${route}`);
       }}
     >
