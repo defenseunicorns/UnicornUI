@@ -44,6 +44,7 @@
       selected={selectedRoute === route}
       on:click={(e) => {
         e.stopPropagation();
+        selectedRoute = route;
         goto(`/${route}`);
       }}
     >
@@ -58,6 +59,7 @@
       selected={selectedRoute === route}
       on:click={(e) => {
         e.stopPropagation();
+        selectedRoute = route;
         goto(`/${route}`);
       }}
     >
