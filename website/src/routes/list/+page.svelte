@@ -1,12 +1,13 @@
 <script lang="ts">
   import InlineCode from '../../lib/inline-code.svelte';
-  import { List, ListItem, Typography } from '@uui';
+  import { List, ListSubHeader, Paper, Typography } from '@uui';
   import LIST_TYPES from '@uui/List/List.types.d.ts?raw';
-  import LIST_SUBHEADER_EXAMPLE from './list-subheader.svelte?raw';
   import VariantExample from '../../lib/VariantExample.svelte';
-  import ListSubheader from './list-subheader.svelte';
   import DocPage from '../../lib/doc-page.svelte';
-  import AccordionCodeWrapper from '$lib/accordion-code-wrapper.svelte';
+  import ListExpItems from './list-exp-items.svelte';
+  import Accordion from '@defense-unicorns/unicorn-ui/src/lib/Accordion/accordion.svelte';
+  import ListPaddingExp from './list-padding-exp.svelte';
+  import LIST_PADDING_EXPS from './list-padding-exp.svelte?raw';
 </script>
 
 <DocPage>
@@ -19,78 +20,113 @@
 
   <Typography variant="h3">Types</Typography>
   <Typography variant="body1">
-    <InlineCode>List</InlineCode> extends BoxProps and has one custom prop, disablePadding, which removes
-    the default horizontal and vertical padding.
+    <InlineCode>List</InlineCode> extends PapersProps and has one custom prop, disablePadding, which
+    removes the default horizontal and vertical padding.
   </Typography>
 
   <VariantExample code={LIST_TYPES} />
 
-  <div class="inline-examples">
-    <div>
-      <Typography variant="h5">No Padding</Typography>
-      <List class="list-exp" disablePadding>
-        <ListItem><Typography>List Item</Typography></ListItem>
-      </List>
-    </div>
-    <div>
-      <Typography variant="h5">Padding</Typography>
-      <List class="list-exp">
-        <ListItem selected><Typography>List Item</Typography></ListItem>
-      </List>
-    </div>
-  </div>
+  <ListPaddingExp />
+  <Accordion>
+    <Typography variant="h6" slot="headerContent">Padding Code</Typography>
+    <VariantExample slot="content" code={LIST_PADDING_EXPS} />
+  </Accordion>
 
-  <Typography variant="h3">Styles</Typography>
-  <Typography variant="body1">
-    Other than the default padding, <InlineCode>List</InlineCode> comes as a blank canvas. You can control
-    the style by passing it a custom class.
-  </Typography>
-  <List class="list-exp" />
-
-  <VariantExample
-    code={`
-    <List class="demo-list" />
-
-.demo-list {
-    width: 308px;
-    border: 1px solid gray;
-    background-color: var(--surface);
-}
-    `}
-  />
   <Typography variant="h3">Slots</Typography>
 
   <Typography variant="body1">
-    <InlineCode>List</InlineCode> utilizes an unnamed slot in which any number of list items are rendered
-    as "children".
+    <InlineCode>List</InlineCode> utilizes a default slot for any number of child components.
   </Typography>
 
   <VariantExample
     code={`
-<Box ...> 
+<Paper ...> 
   <slot />
-</Box>
+</Paper>
 `}
   />
+
+  <Typography variant="h3">Styles</Typography>
+  <Typography variant="body1">
+    Other than the default padding, <InlineCode>List</InlineCode> comes as a blank canvas that makes
+    use of whatever surface it's placed on as well as any custom classes provided to it.
+  </Typography>
+
+  <List class="list-exp">
+    <ListExpItems />
+  </List>
+
+  <Paper
+    elevation={10}
+    ssx={{
+      $self: {
+        height: '15rem',
+        width: '20rem',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }
+    }}
+  >
+    <List class="list-exp">
+      <ListExpItems />
+    </List>
+  </Paper>
+
+  <Accordion>
+    <Typography variant="h6" slot="headerContent">Styling Code</Typography>
+    <VariantExample
+      slot="content"
+      code={`
+  <List class="list-exp">
+  <ListExpItems />
+</List>
+
+<Paper
+  elevation={10}
+  ssx={{
+    $self: {
+      height: '15rem',
+      width: '20rem',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center'
+    }
+  }}  >
+  <List class="list-exp">
+    <ListExpItems />
+  </List>
+</Paper>`}
+    />
+  </Accordion>
 
   <Typography variant="h4">Subheader</Typography>
   <Typography variant="body1">
     The <InlineCode>ListSubhHeader</InlineCode> can be used with single lists or in list groups.
   </Typography>
 
-  <ListSubheader />
-  <AccordionCodeWrapper rawCodeExample={LIST_SUBHEADER_EXAMPLE} header="List with Subheader Code" />
+  <List class="list-exp">
+    <ListSubHeader>Settings</ListSubHeader>
+    <ListExpItems />
+  </List>
+
+  <Accordion>
+    <Typography variant="h6" slot="headerContent">Subheader Code</Typography>
+    <VariantExample
+      slot="content"
+      code={`
+      <List class="list-exp">
+  <ListSubHeader>Settings</ListSubHeader>
+  <ListExpItems />
+</List>
+      `}
+    />
+  </Accordion>
 </DocPage>
 
 <style lang="scss" global>
   .list-exp {
     width: 308px;
     border: 1px solid gray;
-    background-color: var(--surface);
-  }
-
-  .inline-examples {
-    display: flex;
-    justify-content: space-around;
   }
 </style>
