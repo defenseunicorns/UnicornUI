@@ -29,8 +29,6 @@
 
   .list-group .list.disabled-padding,
   .list.disabled-padding {
-    @include list.deprecated-core-styles;
     padding: 0px;
-    background-color: unset;
   }
 </style>
