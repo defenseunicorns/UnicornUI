@@ -11,7 +11,15 @@
   let themingListOpen = false;
   let componentListOpen = false;
 
-  const themeRoutestList = ['theme', 'breakpoints', 'scoped-styles', 'typography', 'box', 'paper'];
+  const themeRoutestList = [
+    'test',
+    'theme',
+    'breakpoints',
+    'scoped-styles',
+    'typography',
+    'box',
+    'paper'
+  ];
   const componentRoutesList = [
     'button',
     'icon-button',
