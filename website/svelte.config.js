@@ -46,8 +46,8 @@ export default config;
 
 function writeToScript(content, transition) {
   const end_script_tag = content.search(/<\/script>/);
-  const transFunc = `\n onMount(() => {
-  const trans = boxRef && create_bidirectional_transition(boxRef, ${
+  const transFunc = `\n internal.onMount(() => {
+  const trans = boxRef && internal.create_bidirectional_transition(boxRef, ${
     transition.split(':')[1]
   }, {}, true);
   trans.run(1);
