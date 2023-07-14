@@ -25,24 +25,25 @@ export class TransitionPreprocessor {
       const transPos = this.getTransPos(compOpeningTag);
       if (transPos > -1) {
         const transition = this.getTransition(compOpeningTag, transPos);
-        if (transition) result = this.removeTransFromCompTag(options.content, transition);
+        result = this.removeTransFromCompTag(options.content, transition);
+        result = this.writeTransFnToScript(result, transition);
       }
     }
 
     return { code: result };
   }
 
-  getInlineCompOpenTag(content: string): string {
+  getInlineCompOpenTag(content: string) {
     const tagOpenPos = content.search(/<[A-Z]/);
     const tagClosePos = content.substring(tagOpenPos).search(/>/);
     return content.substring(tagOpenPos, tagOpenPos + tagClosePos + 1);
   }
 
-  getTransPos(content: string): number {
+  getTransPos(content: string) {
     return content.search(/transition:/);
   }
 
-  getTransParams(content: string, startSearchInd: number): string {
+  getTransParams(content: string, startSearchInd: number) {
     const hasParamsPos = content.substring(startSearchInd).search(/={{/);
 
     return hasParamsPos > -1
@@ -53,14 +54,14 @@ export class TransitionPreprocessor {
       : '';
   }
 
-  getTransNoParams(content: string, startSearchInd: number): string | undefined {
+  getTransNoParams(content: string, startSearchInd: number) {
     return content.substring(
       startSearchInd,
       startSearchInd + content.substring(startSearchInd).search(/\s|>/)
     );
   }
 
-  getTransition(content: string, transPos: number): string | undefined {
+  getTransition(content: string, transPos: number) {
     const transParams = this.getTransParams(content, transPos);
     const transNoParams = this.getTransNoParams(content, transPos);
     return transParams ? transParams : transNoParams;
@@ -68,30 +69,38 @@ export class TransitionPreprocessor {
 
   addImports(content: string) {
     const openScriptPos = content.search(/<script>/);
+    const endOfOpenTag = content.substring(openScriptPos).search(/>/);
     return (
-      content.slice(0, openScriptPos + 8) +
+      content.slice(0, endOfOpenTag + 1) +
       "\n import * as internal from 'svelte/internal'" +
-      content.slice(openScriptPos + 8)
+      content.slice(endOfOpenTag + 1)
     );
   }
 
-  // checkForOnMount(content: string) {
-  //   const onMountPos = content.search(/onMount\(/)
-  //   if(onMountPos > -1) {
-  //     content.substring(onMountPos).search(/};/);
-  //   }
+  getOnMountPos(content: string) {
+    return content.search(/onMount\(/);
+  }
 
-  //   return
-  // }
-
-  writeToScript(content: string, transition: string) {
-    content = this.addImports(content);
-    const end_script_tag = content.search(/<\/script>/);
-    const transFunc = `\n internal.onMount(() => {\n    const trans = boxRef && internal.create_bidirectional_transition(boxRef, ${
+  writeToOnMount(content: string, startingInd: number, transition: string) {
+    const transFunc = `\n   const trans = boxRef && internal.create_bidirectional_transition(boxRef, ${
       transition.split(':')[1]
-    }, {}, true);\n   trans.run(1);\n });\n`;
-    const newContent = content.slice(0, end_script_tag) + transFunc + content.slice(end_script_tag);
-    return newContent;
+    }, {}, true);\n   trans.run(1);\n`;
+    return content.slice(0, startingInd) + transFunc + content.slice(startingInd);
+  }
+
+  writeTransFnToScript(content: string, transition: string) {
+    content = this.addImports(content);
+    const onMountPos = this.getOnMountPos(content);
+    if (onMountPos > -1) {
+      const startStache = onMountPos + content.substring(onMountPos).search(/{/);
+      return this.writeToOnMount(content, startStache + 1, transition);
+    } else {
+      const end_script_tag = content.search(/<\/script>/);
+      const onMount = `\n internal.onMount(() => {\n   const trans = boxRef && internal.create_bidirectional_transition(boxRef, ${
+        transition.split(':')[1]
+      }, {}, true);\n   trans.run(1);\n });\n`;
+      return content.slice(0, end_script_tag) + onMount + content.slice(end_script_tag);
+    }
   }
 
   removeTransFromCompTag(content: string, transition: string) {

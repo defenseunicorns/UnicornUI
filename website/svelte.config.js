@@ -12,7 +12,7 @@ const transitionPreprocessor = {
       if (transPos > -1) {
         const transition = getTransition(compOpeningTag, transPos);
         if (transition) result = removeTransFromCompTag(content, transition);
-        result = writeToScript(result, transition);
+        result = writeTransFnToScript(result, transition);
         console.log('***** FILE: ', filename, '\n', transition, '\n', result);
       }
     }
@@ -44,17 +44,40 @@ const config = {
 
 export default config;
 
-function writeToScript(content, transition) {
-  const end_script_tag = content.search(/<\/script>/);
-  const transFunc = `\n internal.onMount(() => {
-  const trans = boxRef && internal.create_bidirectional_transition(boxRef, ${
+function addImports(content) {
+  const openScriptPos = content.search(/<script>/);
+  const endOfOpenTag = content.substring(openScriptPos).search(/>/);
+  return (
+    content.slice(0, endOfOpenTag + 1) +
+    "\n import * as internal from 'svelte/internal'" +
+    content.slice(endOfOpenTag + 1)
+  );
+}
+
+function getOnMountPos(content) {
+  return content.search(/onMount\(/);
+}
+
+function writeToOnMount(content, startingInd, transition) {
+  const transFn = `\n   const trans = boxRef && internal.create_bidirectional_transition(boxRef, ${
     transition.split(':')[1]
-  }, {}, true);
-  trans.run(1);
-}); \n`;
-  const newContent =
-    content.slice(0, end_script_tag - 1) + transFunc + content.slice(end_script_tag);
-  return newContent;
+  }, {}, true);\n   trans.run(1);\n`;
+  return content.slice(0, startingInd) + transFn + content.slice(startingInd);
+}
+
+function writeTransFnToScript(content, transition) {
+  content = addImports(content);
+  const onMountPos = getOnMountPos(content);
+  if (onMountPos > -1) {
+    const startStache = onMountPos + content.substring(onMountPos).search(/{/);
+    return writeToOnMount(content, startStache + 1, transition);
+  } else {
+    const end_script_tag = content.search(/<\/script/);
+    const onMount = `\n internal.onMount(() => {\n    const trans = boxRef && internal.create_bidirectional_transition(boxRef, ${
+      transition.split(':')[1]
+    }, {}, true);\n   trans.run(1);\n });\n`;
+    return content.slice(0, end_script_tag) + onMount + content.slice(end_script_tag);
+  }
 }
 
 function getInlineCompOpenTag(content) {

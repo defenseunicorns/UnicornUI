@@ -81,48 +81,53 @@ describe('preprocessing transition directives passed to custom components (i.e. 
         '<script>' +
         "\n import * as internal from 'svelte/internal'" +
         '\n internal.onMount(() => {' +
-        '\n const trans = boxRef && internal.create_bidirectional_transition(boxRef, fade, {}, true);' +
-        '\n trans.run(1);' +
+        '\n   const trans = boxRef && internal.create_bidirectional_transition(boxRef, fade, {}, true);' +
+        '\n   trans.run(1);' +
         '\n });' +
         '\n</script>' +
         '<div>Element</div>' +
         '<Button transition:fade style="width: 1rem;">InlineComponent</Button>' +
         '<style></style>';
-      const result = tPreproc.writeToScript(content, 'transition:fade');
+      const result = tPreproc.writeTransFnToScript(content, 'transition:fade');
       expect(result).toEqual(finalContent);
     });
 
-    // it('adds to already existing onMount()', () => {
-    //   const content =
-    //     '<script>' +
-    //     "\n import {onMount} from 'svelte/internal'" +
-    //     '\n onMount(() => {' +
-    //     "\n   console.log('mounting'); " +
-    //     '\n   const trans = boxRef && internal.create_bidirectional_transition(boxRef, fade, {}, true);' +
-    //     '\n   trans.run(1);' +
-    //     '\n });' +
-    //     '</script>' +
-    //     '<div>Element</div>' +
-    //     '<Button transition:fade style="width: 1rem;">InlineComponent</Button>' +
-    //     '<style></style>';
+    it('adds to already existing onMount()', () => {
+      const content =
+        '<script>' +
+        "\n import {onMount} from 'svelte/internal'" +
+        '\n onMount(() => {' +
+        "\n   console.log('mounting');" +
+        '\n });' +
+        '\n</script>' +
+        '<div>Element</div>' +
+        '<Button transition:fade style="width: 1rem;">InlineComponent</Button>' +
+        '<style></style>';
 
-    //   const finalContent =
-    //     '<script>' +
-    //     "\n import * as internal from 'svelte/internal'" +
-    //     "\n import {onMount} from 'svelte/internal'" +
-    //     '\n onMount(() => {' +
-    //     "\n   console.log('mounting'); " +
-    //     '\n   const trans = boxRef && internal.create_bidirectional_transition(boxRef, fade, {}, true);' +
-    //     '\n   trans.run(1);' +
-    //     '\n });' +
-    //     '\n</script>' +
-    //     '<div>Element</div>' +
-    //     '<Button transition:fade style="width: 1rem;">InlineComponent</Button>' +
-    //     '<style></style>';
+      const finalContent =
+        '<script>' +
+        "\n import * as internal from 'svelte/internal'" +
+        "\n import {onMount} from 'svelte/internal'" +
+        '\n onMount(() => {' +
+        '\n   const trans = boxRef && internal.create_bidirectional_transition(boxRef, fade, {}, true);' +
+        '\n   trans.run(1);\n' +
+        "\n   console.log('mounting');" +
+        '\n });' +
+        '\n</script>' +
+        '<div>Element</div>' +
+        '<Button transition:fade style="width: 1rem;">InlineComponent</Button>' +
+        '<style></style>';
 
-    //   const result = tPreproc.writeToScript(content, 'transition:fade');
-    //   expect(result).toEqual(finalContent);
-    // });
+      const result = tPreproc.writeTransFnToScript(content, 'transition:fade');
+      expect(result).toEqual(finalContent);
+    });
+
+    // it('finds ref already bounded to component', () => {
+
+    // })
+    // it('creates new ref and binds to component', () => {
+
+    // })
   });
 
   // describe('markup tests', () => {
