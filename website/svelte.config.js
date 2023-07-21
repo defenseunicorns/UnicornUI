@@ -65,15 +65,50 @@ function writeToOnMount(content, startingInd, transition) {
   return content.slice(0, startingInd) + transFn + content.slice(startingInd);
 }
 
+function createRef(content) {
+  const end_script_tag = content.search(/<\/script>/);
+  // TODO: check if lang=ts before adding typing
+  let newContent =
+    content.slice(0, end_script_tag) +
+    ' let transRef: HTMLElement;\n' +
+    content.slice(end_script_tag);
+
+  const compTag = newContent.search(getInlineCompOpenTag(newContent));
+  const tagClosePos = newContent.substring(compTag).search(/>/);
+
+  newContent =
+    newContent.slice(0, compTag + tagClosePos) +
+    ' bind:ref={transRef}' +
+    newContent.slice(compTag + tagClosePos);
+
+  return newContent;
+}
+
+function getRef(content) {
+  const refPos = content.search(/bind:ref/);
+  if (refPos > -1) {
+    const openStache = content.substring(refPos).search(/{/);
+    const closeStache = content.substring(refPos).search(/}/);
+    return content.substring(refPos + openStache + 1, refPos + closeStache);
+  }
+}
+
+
 function writeTransFnToScript(content, transition) {
   content = addImports(content);
+  let ref = getRef(getInlineCompOpenTag(content));
+  if (!ref) {
+    // TODO: when potentially handling multiple custom components with transition directives we'll need unique ref names for each
+    ref = 'transRef';
+    content = createRef(content);
+  }
   const onMountPos = getOnMountPos(content);
   if (onMountPos > -1) {
     const startStache = onMountPos + content.substring(onMountPos).search(/{/);
-    return writeToOnMount(content, startStache + 1, transition);
+    return writeToOnMount(content, startStache + 1, transition, ref);
   } else {
-    const end_script_tag = content.search(/<\/script/);
-    const onMount = `\n internal.onMount(() => {\n    const trans = boxRef && internal.create_bidirectional_transition(boxRef, ${
+    const end_script_tag = content.search(/<\/script>/);
+    const onMount = `\n internal.onMount(() => {\n   const trans = ${ref} && internal.create_bidirectional_transition(${ref}, ${
       transition.split(':')[1]
     }, {}, true);\n   trans.run(1);\n });\n`;
     return content.slice(0, end_script_tag) + onMount + content.slice(end_script_tag);

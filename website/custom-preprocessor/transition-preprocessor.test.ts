@@ -1,4 +1,4 @@
-import { TransitionPreprocessor } from './transition-preprocessor';
+import TransitionPreprocessor from './transition-preprocessor';
 
 describe('preprocessing transition directives passed to custom components (i.e. <Box>)', () => {
   describe('helper functions', () => {
@@ -75,18 +75,18 @@ describe('preprocessing transition directives passed to custom components (i.e. 
       const content =
         '<script></script>' +
         '<div>Element</div>' +
-        '<Button transition:fade style="width: 1rem;">InlineComponent</Button>' +
+        '<Button transition:fade bind:ref={btnRef} style="width: 1rem;">InlineComponent</Button>' +
         '<style></style>';
       const finalContent =
         '<script>' +
         "\n import * as internal from 'svelte/internal'" +
         '\n internal.onMount(() => {' +
-        '\n   const trans = boxRef && internal.create_bidirectional_transition(boxRef, fade, {}, true);' +
+        '\n   const trans = btnRef && internal.create_bidirectional_transition(btnRef, fade, {}, true);' +
         '\n   trans.run(1);' +
         '\n });' +
         '\n</script>' +
         '<div>Element</div>' +
-        '<Button transition:fade style="width: 1rem;">InlineComponent</Button>' +
+        '<Button transition:fade bind:ref={btnRef} style="width: 1rem;">InlineComponent</Button>' +
         '<style></style>';
       const result = tPreproc.writeTransFnToScript(content, 'transition:fade');
       expect(result).toEqual(finalContent);
@@ -109,8 +109,30 @@ describe('preprocessing transition directives passed to custom components (i.e. 
         "\n import * as internal from 'svelte/internal'" +
         "\n import {onMount} from 'svelte/internal'" +
         '\n onMount(() => {' +
-        '\n   const trans = boxRef && internal.create_bidirectional_transition(boxRef, fade, {}, true);' +
+        '\n   const trans = transRef && internal.create_bidirectional_transition(transRef, fade, {}, true);' +
         '\n   trans.run(1);\n' +
+        "\n   console.log('mounting');" +
+        '\n });' +
+        '\n let transRef: HTMLElement;' +
+        '\n</script>' +
+        '<div>Element</div>' +
+        '<Button transition:fade style="width: 1rem;" bind:ref={transRef}>InlineComponent</Button>' +
+        '<style></style>';
+
+      const result = tPreproc.writeTransFnToScript(content, 'transition:fade');
+      expect(result).toEqual(finalContent);
+    });
+
+    it('finds ref already bounded to component', () => {
+      const content = '<Button transition:fade bind:ref={refName}>InlineComponent</Button>';
+      expect(tPreproc.getRef(content)).toEqual('refName');
+    });
+
+    it('creates new ref and binds to component', () => {
+      const content =
+        '<script>' +
+        "\n import {onMount} from 'svelte/internal'" +
+        '\n onMount(() => {' +
         "\n   console.log('mounting');" +
         '\n });' +
         '\n</script>' +
@@ -118,16 +140,20 @@ describe('preprocessing transition directives passed to custom components (i.e. 
         '<Button transition:fade style="width: 1rem;">InlineComponent</Button>' +
         '<style></style>';
 
-      const result = tPreproc.writeTransFnToScript(content, 'transition:fade');
+      const finalContent =
+        '<script>' +
+        "\n import {onMount} from 'svelte/internal'" +
+        '\n onMount(() => {' +
+        "\n   console.log('mounting');" +
+        '\n });' +
+        '\n let transRef: HTMLElement;' +
+        '\n</script>' +
+        '<div>Element</div>' +
+        '<Button transition:fade style="width: 1rem;" bind:ref={transRef}>InlineComponent</Button>' +
+        '<style></style>';
+      const result = tPreproc.createRef(content);
       expect(result).toEqual(finalContent);
     });
-
-    // it('finds ref already bounded to component', () => {
-
-    // })
-    // it('creates new ref and binds to component', () => {
-
-    // })
   });
 
   // describe('markup tests', () => {
