@@ -11,33 +11,82 @@ export interface Processed {
  */
 
 export default class TransitionPreprocessor {
-  // TODO: handle multiple Inlined Components with transition directives
   // TODO: look for in: and out: as well
+  // TODO: handle custom functions instead of using Svelte Internal Transition functions
+
+  private scriptContent = '';
+  private styleContent = '';
+  private transitionRefs: string[] = [];
 
   markup(options: {
     content: string;
     filename?: string;
   }): void | Processed | Promise<void | Processed> {
-    // this.content = options.content;
-    let result = options.content;
-    const compOpeningTag = this.getInlineCompOpenTag(options.content);
+    const { content } = options;
+    this.scriptContent = content.slice(0, content.search(/<\/script>/) + '</script>'.length);
+    this.styleContent = content.slice(content.search(/<style>/));
+    const markup = content.slice(
+      content.search(/<\/script>/) + '</script>'.length,
+      content.search(/<style>/)
+    );
 
-    if (compOpeningTag) {
-      const transPos = this.getTransPos(compOpeningTag);
-      if (transPos > -1) {
-        const transition = this.getTransition(compOpeningTag, transPos);
-        result = this.removeTransFromCompTag(options.content, transition);
-        result = this.writeTransFnToScript(result, transition);
-      }
-    }
+    const html = this.process(markup);
+    const code = this.scriptContent + html + this.styleContent;
 
-    return { code: result };
+    return { code: code };
   }
 
-  getInlineCompOpenTag(content: string) {
-    const tagOpenPos = content.search(/<[A-Z]/);
-    const tagClosePos = content.substring(tagOpenPos).search(/>/);
-    return content.substring(tagOpenPos, tagOpenPos + tagClosePos + 1);
+  process(markup: string) {
+    const inlineCompTagPos = markup.search(/<[A-Z]/);
+    let result = '';
+
+    if (inlineCompTagPos > -1) {
+      result = markup.slice(0, inlineCompTagPos);
+      let component = this.getComponent(markup.slice(inlineCompTagPos));
+      let origComp = component;
+      const transPos = this.getTransPos(component);
+
+      if (transPos > -1) {
+        const transition = this.getTransition(component, transPos);
+        component = this.removeTransFromCompTag(component, transition);
+
+        let ref = this.getRef(component);
+        if (!ref) {
+          ref = this.createRef();
+          this.scriptContent = this.addRefToScript(this.scriptContent, ref);
+          component = this.addRefToCompTag(component, ref);
+        }
+
+        this.scriptContent = this.addImports(this.scriptContent);
+        this.scriptContent = this.writeTransFnToScript(this.scriptContent, transition, ref);
+
+        result += component;
+        result += this.process(
+          markup.slice(inlineCompTagPos + this.getComponentCloseTagEnd(origComp) + 1)
+        );
+      } else {
+        result += component;
+        result += this.process(
+          markup.slice(inlineCompTagPos + this.getComponentCloseTagEnd(component) + 1)
+        );
+      }
+    } else {
+      result = markup;
+    }
+
+    return result;
+  }
+
+  getComponent(content: string) {
+    const endPos = this.getComponentCloseTagEnd(content);
+    return content.substring(0, endPos + 1);
+  }
+
+  getComponentCloseTagEnd(content: string) {
+    const closeTagStartPos = content.search(/<\//);
+    const closeTagEndPos = content.substring(closeTagStartPos).search(/>/);
+
+    return closeTagStartPos + closeTagEndPos;
   }
 
   getTransPos(content: string) {
@@ -68,37 +117,43 @@ export default class TransitionPreprocessor {
     return transParams ? transParams : transNoParams;
   }
 
-  addImports(content: string) {
-    const openScriptPos = content.search(/<script>/);
-    const endOfOpenTag = content.substring(openScriptPos).search(/>/);
-    return (
-      content.slice(0, endOfOpenTag + 1) +
-      "\n import * as internal from 'svelte/internal'" +
-      content.slice(endOfOpenTag + 1)
-    );
+  checkForInternalImport(scriptContent: string) {
+    const t = scriptContent.search(/'svelte\/internal'/);
+    return t === -1 ? false : true;
   }
 
-  getOnMountPos(content: string) {
-    return content.search(/onMount\(/);
+  addImports(scriptContent: string) {
+    if (!this.checkForInternalImport(scriptContent)) {
+      const endOfScriptOpenTag = scriptContent.search(/>/);
+      return (
+        scriptContent.slice(0, endOfScriptOpenTag + 1) +
+        "\n import * as internal from 'svelte/internal'" +
+        scriptContent.slice(endOfScriptOpenTag + 1)
+      );
+    } else {
+      return scriptContent;
+    }
   }
 
-  createRef(content: string) {
-    const end_script_tag = content.search(/<\/script>/);
-    // TODO: check if lang=ts before adding typing
+  createRef() {
+    this.transitionRefs.push(`transRef${this.transitionRefs.length + 1}`);
+    return this.transitionRefs[this.transitionRefs.length - 1];
+  }
+
+  addRefToScript(scriptContent: string, ref: string) {
+    //TODO: check for typescript before adding typing to ref
+    const end_script_tag = scriptContent.search(/<\/script>/);
     let newContent =
-      content.slice(0, end_script_tag) +
-      ' let transRef: HTMLElement;\n' +
-      content.slice(end_script_tag);
-
-    const compTag = newContent.search(this.getInlineCompOpenTag(newContent));
-    const tagClosePos = newContent.substring(compTag).search(/>/);
-
-    newContent =
-      newContent.slice(0, compTag + tagClosePos) +
-      ' bind:ref={transRef}' +
-      newContent.slice(compTag + tagClosePos);
+      scriptContent.slice(0, end_script_tag) +
+      `\n let ${ref}: HTMLElement;\n` +
+      scriptContent.slice(end_script_tag);
 
     return newContent;
+  }
+
+  addRefToCompTag(tag: string, ref: string) {
+    const tagClose = tag.search(/>/);
+    return tag.slice(0, tagClose) + ` bind:ref={${ref}}` + tag.slice(tagClose);
   }
 
   getRef(content: string) {
@@ -117,28 +172,29 @@ export default class TransitionPreprocessor {
     return content.slice(0, startingInd) + transFunc + content.slice(startingInd);
   }
 
-  writeTransFnToScript(content: string, transition: string) {
-    content = this.addImports(content);
-    let ref = this.getRef(this.getInlineCompOpenTag(content));
-    if (!ref) {
-      // TODO: when potentially handling multiple custom components with transition directives we'll need unique ref names for each
-      ref = 'transRef';
-      content = this.createRef(content);
-    }
-    const onMountPos = this.getOnMountPos(content);
+  createOnMount(scriptContent: string, transition: string, ref: string) {
+    const end_script_tag = scriptContent.search(/<\/script>/);
+    const onMount = `\n internal.onMount(() => {\n   const trans = ${ref} && internal.create_bidirectional_transition(${ref}, ${
+      transition.split(':')[1]
+    }, {}, true);\n   trans.run(1);\n });\n`;
+    return scriptContent.slice(0, end_script_tag) + onMount + scriptContent.slice(end_script_tag);
+  }
+
+  getOnMountPos(content: string) {
+    return content.search(/onMount\(/);
+  }
+
+  writeTransFnToScript(scriptContent: string, transition: string, ref: string) {
+    const onMountPos = this.getOnMountPos(scriptContent);
     if (onMountPos > -1) {
-      const startStache = onMountPos + content.substring(onMountPos).search(/{/);
-      return this.writeToOnMount(content, startStache + 1, transition, ref);
+      const startStache = onMountPos + scriptContent.substring(onMountPos).search(/{/);
+      return this.writeToOnMount(scriptContent, startStache + 1, transition, ref);
     } else {
-      const end_script_tag = content.search(/<\/script>/);
-      const onMount = `\n internal.onMount(() => {\n   const trans = ${ref} && internal.create_bidirectional_transition(${ref}, ${
-        transition.split(':')[1]
-      }, {}, true);\n   trans.run(1);\n });\n`;
-      return content.slice(0, end_script_tag) + onMount + content.slice(end_script_tag);
+      return this.createOnMount(scriptContent, transition, ref);
     }
   }
 
-  removeTransFromCompTag(content: string, transition: string) {
-    return content.replace(transition, '');
+  removeTransFromCompTag(tag: string, transition: string) {
+    return tag.replace(transition, '');
   }
 }
