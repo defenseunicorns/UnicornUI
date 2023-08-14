@@ -166,17 +166,17 @@ export default class TransitionPreprocessor {
   }
 
   writeToOnMount(content: string, startingInd: number, transition: string, ref: string) {
-    const transFunc = `\n   const trans = ${ref} && internal.create_bidirectional_transition(${ref}, ${
+    const transFunc = `\n   const transFor${ref} = ${ref} && internal.create_bidirectional_transition(${ref}, ${
       transition.split(':')[1]
-    }, {}, true);\n   trans.run(1);\n`;
+    }, {}, true);\n   transFor${ref}.run(1);\n`;
     return content.slice(0, startingInd) + transFunc + content.slice(startingInd);
   }
 
   createOnMount(scriptContent: string, transition: string, ref: string) {
     const end_script_tag = scriptContent.search(/<\/script>/);
-    const onMount = `\n internal.onMount(() => {\n   const trans = ${ref} && internal.create_bidirectional_transition(${ref}, ${
+    const onMount = `\n internal.onMount(() => {\n   const transFor${ref} = ${ref} && internal.create_bidirectional_transition(${ref}, ${
       transition.split(':')[1]
-    }, {}, true);\n   trans.run(1);\n });\n`;
+    }, {}, true);\n   transFor${ref}.run(1);\n });\n`;
     return scriptContent.slice(0, end_script_tag) + onMount + scriptContent.slice(end_script_tag);
   }
 

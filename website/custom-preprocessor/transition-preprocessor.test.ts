@@ -65,11 +65,11 @@ describe('preprocessing transition directives passed to custom components (i.e. 
       const finalContent =
         '<script>' +
         '\n internal.onMount(() => {' +
-        '\n   const trans = transRef && internal.create_bidirectional_transition(transRef, fade, {}, true);' +
-        '\n   trans.run(1);' +
+        '\n   const transFortransRef1 = transRef1 && internal.create_bidirectional_transition(transRef1, fade, {}, true);' +
+        '\n   transFortransRef1.run(1);' +
         '\n });' +
         '\n</script>';
-      const result = tPreproc.writeTransFnToScript(content, 'transition:fade', 'transRef');
+      const result = tPreproc.writeTransFnToScript(content, 'transition:fade', 'transRef1');
       expect(result).toEqual(finalContent);
     });
 
@@ -86,13 +86,13 @@ describe('preprocessing transition directives passed to custom components (i.e. 
         '<script>' +
         "\n import {onMount} from 'svelte/internal'" +
         '\n onMount(() => {' +
-        '\n   const trans = transRef && internal.create_bidirectional_transition(transRef, fade, {}, true);' +
-        '\n   trans.run(1);\n' +
+        '\n   const transFortransRef1 = transRef1 && internal.create_bidirectional_transition(transRef1, fade, {}, true);' +
+        '\n   transFortransRef1.run(1);\n' +
         "\n   console.log('mounting');" +
         '\n });' +
         '\n</script>';
 
-      const result = tPreproc.writeTransFnToScript(content, 'transition:fade', 'transRef');
+      const result = tPreproc.writeTransFnToScript(content, 'transition:fade', 'transRef1');
       expect(result).toEqual(finalContent);
     });
 
@@ -153,11 +153,11 @@ describe('preprocessing transition directives passed to custom components (i.e. 
           '\n let transRef1: HTMLElement;' +
           '\n' +
           '\n internal.onMount(() => {' +
-          '\n   const trans = transRef2 && internal.create_bidirectional_transition(transRef2, fade, {}, true);' +
-          '\n   trans.run(1);' +
+          '\n   const transFortransRef2 = transRef2 && internal.create_bidirectional_transition(transRef2, fade, {}, true);' +
+          '\n   transFortransRef2.run(1);' +
           '\n' +
-          '\n   const trans = transRef1 && internal.create_bidirectional_transition(transRef1, fade, {}, true);' +
-          '\n   trans.run(1);' +
+          '\n   const transFortransRef1 = transRef1 && internal.create_bidirectional_transition(transRef1, fade, {}, true);' +
+          '\n   transFortransRef1.run(1);' +
           '\n });' +
           '\n' +
           '\n let transRef2: HTMLElement;' +
