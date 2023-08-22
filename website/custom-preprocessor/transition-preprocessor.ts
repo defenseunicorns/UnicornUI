@@ -30,13 +30,15 @@ export default class TransitionPreprocessor {
       content.search(/<style>/)
     );
 
-    const html = this.process(markup);
+    //TODO: Fix this ambiguous temporal coupling; probably should pass script and style to process()
+    const html = this.processRecursively(markup);
     const code = this.scriptContent + html + this.styleContent;
 
+    //TODO: add source map?
     return { code: code };
   }
 
-  process(markup: string) {
+  processRecursively(markup: string) {
     const inlineCompTagPos = markup.search(/<[A-Z]/);
     let result = '';
 
@@ -61,12 +63,12 @@ export default class TransitionPreprocessor {
         this.scriptContent = this.writeTransFnToScript(this.scriptContent, transition, ref);
 
         result += component;
-        result += this.process(
+        result += this.processRecursively(
           markup.slice(inlineCompTagPos + this.getComponentCloseTagEnd(origComp) + 1)
         );
       } else {
         result += component;
-        result += this.process(
+        result += this.processRecursively(
           markup.slice(inlineCompTagPos + this.getComponentCloseTagEnd(component) + 1)
         );
       }
