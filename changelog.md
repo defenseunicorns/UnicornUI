@@ -1,3 +1,11 @@
+# v0.0.50
+
+## Updates
+
+### List
+
+- `background-color` of List is now unset by default so that it relates the background that it currently sits on.
+
 # v0.0.49
 
 ## Updates
@@ -8,7 +16,7 @@
 
 ### Menu
 
-- Changed `.menu` class  `position: absolute` to `position: fixed`
+- Changed `.menu` class `position: absolute` to `position: fixed`
 
 ### Checkbox
 

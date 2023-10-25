@@ -24,11 +24,11 @@
   .list {
     @include list.deprecated-core-styles;
     padding: 32px 16px;
+    background-color: unset;
   }
 
   .list-group .list.disabled-padding,
   .list.disabled-padding {
-    @include list.deprecated-core-styles;
     padding: 0px;
   }
 </style>
