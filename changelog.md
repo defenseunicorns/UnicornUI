@@ -1,3 +1,44 @@
+# v0.0.50
+
+## Updates
+
+### Select
+
+- Created Select component that combines TextField and Menu with a few tweaks.
+
+```ts
+export interface SelectProps extends TextFieldProps, MenuProps {
+  open?: boolean;
+  value?: any;
+  multiple?: boolean;
+  chip?: boolean;
+  labelId?: string;
+}
+```
+
+### SelectIcon
+
+- Created SelectIcon component that acts as the wrapper for icons used in the trailing slot of a Select-TextField.
+- It applies a the mdc icon classes of TextField but with some style changes to allow for accepting pointer-events.
+
+```ts
+export type SelectIconProps<T extends EventTarget> = TextFieldIconProps<T>;
+```
+
+### TextField
+
+- Added `clickaway` prop to turn clickaway behavior on or off. Defaults to true.
+- Updated clickaway behavior to check if event target resides in TextField container not just the TextField input.
+- Added `inputRef` prop to expose the inner input element.
+- Turned TextField container element into a Box and bound the default ref prop to it.
+- Updated TextFieldProps interface to `extends BoxProps<HTMLInputElement>, svelte.JSX.HTMLAttributes<HTMLInputElement>`. This opens up TextField to consume all the default BoxProps.
+
+### Menu
+
+- Added `offsetNum` prop to Menu to turn control gap between Menu and its anchor element.
+- Added `flip()` middleware to Menu floating-ui/dom `computePosition` as default behavior.
+- Updated MenuProps from generic `PaperProps<T>` to `extends PaperProps<HTMLMenuElement>`. Should not affect current usage.
+
 # v0.0.49
 
 ## Updates
@@ -8,7 +49,7 @@
 
 ### Menu
 
-- Changed `.menu` class  `position: absolute` to `position: fixed`
+- Changed `.menu` class `position: absolute` to `position: fixed`
 
 ### Checkbox
 

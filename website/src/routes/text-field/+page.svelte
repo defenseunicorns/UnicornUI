@@ -114,46 +114,30 @@
     <Accordion isOpen={true}>
       <Typography slot="headerContent" variant="h6">Slots</Typography>
       <Box slot="content">
-        <Typography variant="body1"
-          >Text Field accepts two slots: leadingIcon and trailingIcon. If you're unfamiliar with the
-          concept of slots, think of them like children. To pass a Text Field an icon, use the
-          TextFieldIcon component. Make sure to declare the variant ('leading' or 'trailing') as
-          well as the slot name ('leadingIcon' or 'trailingIcon')</Typography
-        >
+        <Typography variant="body1">
+          Text Field accepts two slots: leading and trailing. If you're unfamiliar with the concept
+          of slots, think of them like children. To pass a Text Field an icon, use the TextFieldIcon
+          component. Make sure to declare the variant ('leading' or 'trailing') as well as the slot
+          name ('leading' or 'trailing')
+        </Typography>
         <Box class="text-field-example">
           <div class="labeled-example">
             <Typography variant="subtitle1">Leading Icon:</Typography>
             <TextField label="Label" variant="outlined" color="primary">
-              <TextFieldIcon variant="leading" slot="leadingIcon" class="material-symbols-outlined">
-                search
-              </TextFieldIcon>
+              <TextFieldIcon slot="leading" class="material-symbols-outlined">search</TextFieldIcon>
             </TextField>
           </div>
           <div class="labeled-example">
             <Typography variant="subtitle1">Trailing Icon:</Typography>
             <TextField label="Label" variant="outlined" color="primary">
-              <TextFieldIcon
-                variant="trailing"
-                slot="trailingIcon"
-                class="material-symbols-outlined"
-              >
-                close
-              </TextFieldIcon>
+              <TextFieldIcon slot="trailing" class="material-symbols-outlined">close</TextFieldIcon>
             </TextField>
           </div>
           <div class="labeled-example">
             <Typography variant="subtitle1">Both Icons:</Typography>
             <TextField label="Label" variant="outlined" color="primary">
-              <TextFieldIcon variant="leading" slot="leadingIcon" class="material-symbols-outlined">
-                search
-              </TextFieldIcon>
-              <TextFieldIcon
-                variant="trailing"
-                slot="trailingIcon"
-                class="material-symbols-outlined"
-              >
-                close
-              </TextFieldIcon>
+              <TextFieldIcon slot="leading" class="material-symbols-outlined">search</TextFieldIcon>
+              <TextFieldIcon slot="trailing" class="material-symbols-outlined">close</TextFieldIcon>
             </TextField>
           </div>
         </Box>
@@ -164,9 +148,8 @@
             variant="filled"
             color="primary"
           >
-            <TextFieldIcon 
-              variant="leading" 
-              slot="leadingIcon" 
+            <TextFieldIcon  
+              slot="leading" 
               class="material-symbols-outlined"
             >
               search
@@ -178,8 +161,7 @@
             color="primary"
           >
             <TextFieldIcon 
-              variant="trailing" 
-              slot="trailingIcon" 
+              slot="trailing" 
               class="material-symbols-outlined"
             >
               close
@@ -190,16 +172,14 @@
             variant="filled"
             color="primary"
           >
-            <TextFieldIcon 
-              variant="leading" 
-              slot="leadingIcon" 
+            <TextFieldIcon  
+              slot="leading" 
               class="material-symbols-outlined"
             >
               search
             </TextFieldIcon>
             <TextFieldIcon 
-              variant="trailing" 
-              slot="trailingIcon" 
+              slot="trailing" 
               class="material-symbols-outlined"
             >
               close
@@ -287,8 +267,7 @@
               helperText="icon color is overridden by custom style prop"
             >
               <TextFieldIcon
-                variant="leading"
-                slot="leadingIcon"
+                slot="leading"
                 class="material-symbols-outlined"
                 style="color: pink !important;"
               >
@@ -330,8 +309,7 @@
             helperText="icon color is overridden by custom style prop"
           >
             <TextFieldIcon
-              variant="leading"
-              slot="leadingIcon"
+              slot="leading"
               class="material-symbols-outlined"
               style="color: pink !important;"
             >

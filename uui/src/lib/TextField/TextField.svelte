@@ -5,6 +5,7 @@
   import type { ThemeColors } from '../shared/theme/default-colors/colors.types';
   import type { TextFieldProps, TextFieldVariant } from './TextField.types';
   import { eventRedirection } from '../shared/utils/eventRedirection';
+  import Box from '../Box/box.svelte';
 
   //Props
   type $$Props = TextFieldProps;
@@ -15,9 +16,11 @@
   export let characterCounter = false;
   export let error = false;
   export let value = '';
+  export let clickaway = true;
+  export let ref: Node | undefined = undefined;
+  export let inputRef: HTMLInputElement | undefined = undefined;
 
   // locals
-  let inputRef: HTMLInputElement;
   let labelRef: HTMLLabelElement;
   let focused = false;
   let notched = false;
@@ -37,6 +40,7 @@
     minlength: inputProps.minlength,
     maxlength: inputProps.maxlengh,
     pattern: inputProps.pattern,
+    readonly: inputProps.readonly,
     ...containerProps
   } = $$restProps);
 
@@ -48,12 +52,32 @@
     active = 'active';
   }
 
+  // Remove some or all focus states when user clicks away
+  function clickAway(evt: MouseEvent | KeyboardEvent) {
+    if (
+      clickaway &&
+      inputRef &&
+      ref &&
+      evt.target !== inputRef &&
+      !inputRef.contains(evt.target as Node) &&
+      !$$restProps.placeholder &&
+      !ref.contains(evt.target as Node)
+    ) {
+      focused = false;
+      active = '';
+      if (inputRef && inputRef.value === '') {
+        notched = false;
+        floating = false;
+      }
+    }
+  }
+
   function getIconClass(): string {
     let classes: string[] = [];
-    if ($$slots.leadingIcon) {
+    if ($$slots.leading) {
       classes.push('mdc-text-field--with-leading-icon');
     }
-    if ($$slots.trailingIcon) {
+    if ($$slots.trailing) {
       classes.push('mdc-text-field--with-trailing-icon');
     }
     return classes.join(' ');
@@ -72,22 +96,6 @@
     }
   }
 
-  // Remove some or all focus states when user clicks away
-  function clickAway(evt: MouseEvent | KeyboardEvent) {
-    if (
-      evt.target != inputRef &&
-      !inputRef.contains(evt.target as Node) &&
-      !$$restProps.placeholder
-    ) {
-      focused = false;
-      active = '';
-      if (inputRef.value === '') {
-        notched = false;
-        floating = false;
-      }
-    }
-  }
-
   // Lifecycle Hooks
 
   // Handle initial states based on props
@@ -98,18 +106,21 @@
         invalid = true;
       };
     }
+
     if (value) {
       notched = true;
       floating = true;
     }
+
     if ($$restProps.autofocus) {
       setFocusStates();
     }
+
     if (error) {
       invalid = true;
     }
 
-    inputRef.addEventListener('keydown', handleKeyEvt);
+    inputRef && inputRef.addEventListener('keydown', handleKeyEvt);
   });
 
   // Reactive States
@@ -140,15 +151,15 @@
 
 <svelte:window on:click={clickAway} on:keydown={clickAway} />
 
-<div {...containerProps}>
+<Box {...containerProps} bind:ref>
   <div
-    class={`mdc-text-field text-field mdc-text-field--${variant} ${getIconClass()}`}
+    class={`text-field mdc-text-field mdc-text-field--${variant} ${getIconClass()}`}
     class:mdc-text-field--disabled={$$restProps.disabled}
     class:mdc-text-field--invalid={invalid}
     class:mdc-text-field--focused={focused}
     class:mdc-ripple-upgraded--background-focused={variant === 'filled' && focused}
   >
-    <slot name="leadingIcon" />
+    <slot name="leading" />
     <input
       use:eventRedirection={eventComponents}
       bind:this={inputRef}
@@ -167,7 +178,7 @@
         error
       </span>
     {:else}
-      <slot name="trailingIcon" />
+      <slot name="trailing" />
     {/if}
     {#if variant === 'outlined'}
       <span
@@ -183,7 +194,8 @@
             class:mdc-floating-label--required={$$restProps.required}
             for={`text-field-${variant}`}
             id="textfield-label"
-            >{label}
+          >
+            {label}
           </label>
         </span>
         <span class="mdc-notched-outline__trailing" />
@@ -197,7 +209,8 @@
         class:mdc-floating-label--required={$$restProps.required}
         for={`text-field-${variant}`}
         id="textfield-label"
-        >{label}
+      >
+        {label}
       </label>
       <div class={`mdc-line-ripple mdc-line-ripple--${active}`} />
     {/if}
@@ -210,7 +223,7 @@
     </p>
     <div class="mdc-text-field-character-counter">{charCount}</div>
   </div>
-</div>
+</Box>
 
 <style lang="scss" global>
   @import '@material/textfield/mdc-text-field';

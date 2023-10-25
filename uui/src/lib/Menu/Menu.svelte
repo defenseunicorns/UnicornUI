@@ -2,15 +2,16 @@
   import { afterUpdate, onDestroy, onMount } from 'svelte';
   import Paper from '../Paper/Paper.svelte';
   import type { AnchorOrigin, MenuProps } from './Menu.types';
-  import { computePosition, autoUpdate, flip } from '@floating-ui/dom';
+  import { computePosition, autoUpdate, flip, offset } from '@floating-ui/dom';
 
   // Props
-  type T = $$Generic<HTMLMenuElement>;
-  type $$Props = MenuProps<T>;
+  type $$Props = MenuProps;
 
   export let open = false;
   export let anchorOrigin: AnchorOrigin = 'bottom-start';
   export let anchorRef: Element | undefined = undefined;
+  export let hugContent = false;
+  export let offsetNum = 0;
   export let clickaway = true;
   export let onClickaway = () => {
     open = false;
@@ -28,7 +29,7 @@
     if (anchorRef && menuRef) {
       computePosition(anchorRef, menuRef, {
         placement: anchorOrigin,
-        middleware: [flip()]
+        middleware: [flip(), offset(offsetNum)]
       }).then(({ x, y }) => {
         Object.assign(menuRef.style, {
           left: `${x}px`,
@@ -77,7 +78,7 @@
   {elevation}
   {...$$restProps}
   class="menu {stateClasses} {anchorOrigin} {$$restProps.class || ''}"
-  style="--elevation: {elevation}"
+  style="--elevation: {elevation}; --width: {hugContent ? 'fit-content' : '14rem'}"
 >
   <slot />
 </Paper>

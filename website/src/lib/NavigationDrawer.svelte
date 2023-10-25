@@ -21,6 +21,7 @@
     'dialog',
     'chip',
     'text-field',
+    'select',
     'list',
     'list-group',
     'list-item',
