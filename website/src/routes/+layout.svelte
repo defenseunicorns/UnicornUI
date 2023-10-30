@@ -3,35 +3,21 @@
   import 'material-symbols/';
   import { afterUpdate } from 'svelte';
   import customTypography from '$lib/theme/theme-typography';
-  import { Button, Typography, Theme, Box, IconButton } from '@uui';
-  import type { ButtonColor, ButtonShape, ButtonVariant } from '@uui';
+  import { Box, Theme, IconButton, currentTheme, type SupportedThemes } from '@uui';
   import Navbar from '$lib/Navbar.svelte';
   import NavigationDrawer from '$lib/NavigationDrawer.svelte';
-  import { appStatesStore, updateAppStates } from '$lib/stores/nav-drawer-state-store';
+  import { goto } from '$app/navigation';
 
   // Local Vars
   let path = '';
   let windowWidth: number;
+  let currTheme: SupportedThemes;
+
+  currentTheme.subscribe((value) => (currTheme = value));
 
   afterUpdate(() => {
     path = window.location.pathname;
   });
-
-  // Functions
-  function getVariant(
-    pathname: string,
-    currentPath: string
-  ): { variant: ButtonVariant; color: ButtonColor; shape: ButtonShape } {
-    return pathname === currentPath
-      ? { variant: 'raised', color: 'secondary', shape: 'squared' }
-      : { variant: 'flat', color: 'primary', shape: 'squared' };
-  }
-
-  function setCurrRouteState() {
-    appStatesStore.update((states) => {
-      return updateAppStates({ ...states, currentRoute: '/' });
-    });
-  }
 
   $: isDrawerOpen = windowWidth && windowWidth > 900 ? true : false;
 </script>
@@ -40,6 +26,17 @@
 
 <Theme typography={customTypography}>
   <Navbar>
+    <Box
+      on:click={() => goto('/')}
+      on:keydown={() => goto('/')}
+      element="img"
+      src={`images/app-logo-${currTheme}.png`}
+      alt="unicorn horn logo"
+      width={200}
+      class="logo"
+      ssx={{ '@media (max-width: $md)': { $self: { display: 'none' } } }}
+    />
+
     <IconButton
       on:click={() => (isDrawerOpen = !isDrawerOpen)}
       iconContent="menu"
@@ -70,12 +67,7 @@
             }
           }
         }}
-      >
-        <Typography variant="h1" style="margin-bottom: unset;margin-top: 2rem;">
-          Unicorn UI
-        </Typography>
-        <Button href="/" {...getVariant(path, '/')} on:click={setCurrRouteState}>Home</Button>
-      </Box>
+      />
       <main>
         <slot />
       </main>
@@ -109,5 +101,9 @@
 
   a {
     text-decoration: none;
+  }
+
+  .logo {
+    margin-left: 1rem;
   }
 </style>

@@ -8,7 +8,7 @@
   }
 </script>
 
-<Paper elevation={2} square class="navbar">
+<Paper elevation={4} square class="navbar">
   <slot />
   <Box ssx={{ $self: { width: '100%', display: 'flex', 'justify-content': 'end' } }}>
     <IconButton
@@ -29,7 +29,8 @@
     align-items: center;
     justify-content: space-between;
     padding: 0.5rem;
-    height: 3.5rem;
+    height: 4rem;
     width: 100%;
+    z-index: 10;
   }
 </style>

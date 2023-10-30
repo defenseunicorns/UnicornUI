@@ -96,8 +96,20 @@
     padding-right: 1rem;
   }
 
-  // Target ListSubheader if nested in Drawer
+  // Override MDC targeting and target ListSubheader
   .drawer.mdc-drawer .mdc-deprecated-list-group__subheader {
-    color: var(--on-background);
+    height: 48px;
+    display: flex;
+    align-items: center;
+  }
+
+  html[data-theme='dark'] .drawer.mdc-drawer .mdc-deprecated-list-group__subheader {
+    color: var(--text-primary-on-background);
+  }
+
+  // Override MDC targeting and target ListItem
+  .drawer.mdc-drawer .mdc-deprecated-list-item {
+    margin: 0;
+    height: 39px;
   }
 </style>
