@@ -2,9 +2,15 @@ import type { BoxProps } from '../Box/box.types';
 import type { ThemeColors } from '../shared/theme/default-colors/colors.types';
 
 export type TextFieldVariant = 'outlined' | 'filled';
+export type TextFieldInputProps = Partial<
+  Record<keyof svelte.JSX.HTMLAttributes<HTMLInputElement>, any>
+>;
 
-export interface TextFieldProps extends svelte.JSX.HTMLAttributes<HTMLInputElement> {
-  variant: TextFieldVariant;
+export interface TextFieldProps extends BoxProps<HTMLElement> {
+  variant?: TextFieldVariant;
+  required?: boolean;
+  disabled?: boolean;
+  inputProps?: TextFieldInputProps;
   label: string;
   value?: string;
   helperText?: string;

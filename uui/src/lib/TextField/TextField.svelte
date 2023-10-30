@@ -3,18 +3,22 @@
   import { current_component } from 'svelte/internal';
   import { makeThemeColor } from '../shared/utils/makeThemeColor';
   import type { ThemeColors } from '../shared/theme/default-colors/colors.types';
-  import type { TextFieldProps, TextFieldVariant } from './TextField.types';
+  import type { TextFieldInputProps, TextFieldProps, TextFieldVariant } from './TextField.types';
   import { eventRedirection } from '../shared/utils/eventRedirection';
+  import Box from '../Box/box.svelte';
 
   //Props
   type $$Props = TextFieldProps;
   export let variant: TextFieldVariant = 'outlined';
-  export let label: string;
+  export let inputProps: TextFieldInputProps = {};
   export let color: ThemeColors = 'inherit';
-  export let helperText = '';
+  export let label: string;
   export let characterCounter = false;
+  export let required = false;
+  export let disabled = false;
   export let error = false;
   export let value = '';
+  export let helperText = '';
 
   // locals
   let inputRef: HTMLInputElement;
@@ -27,19 +31,6 @@
   let notchWidth = '';
   let active = '';
 
-  // Separate Container Props from Input Props
-  let inputProps: Record<string, string | boolean | number> = {};
-  let containerProps: Record<string, string | boolean | number> = {};
-  ({
-    autofocus: inputProps.autofocus,
-    required: inputProps.required,
-    disabled: inputProps.disabled,
-    minlength: inputProps.minlength,
-    maxlength: inputProps.maxlengh,
-    pattern: inputProps.pattern,
-    ...containerProps
-  } = $$restProps);
-
   // functions
   function setFocusStates() {
     focused = true;
@@ -48,18 +39,7 @@
     active = 'active';
   }
 
-  function getIconClass(): string {
-    let classes: string[] = [];
-    if ($$slots.leadingIcon) {
-      classes.push('mdc-text-field--with-leading-icon');
-    }
-    if ($$slots.trailingIcon) {
-      classes.push('mdc-text-field--with-trailing-icon');
-    }
-    return classes.join(' ');
-  }
-
-  function handleKeyEvt(e: KeyboardEvent) {
+  function handleSubmitKeyEvt(e: KeyboardEvent) {
     if (e.key === 'Enter') {
       const form = (e.target as HTMLElement).closest('form');
       if (form) {
@@ -102,22 +82,22 @@
       notched = true;
       floating = true;
     }
-    if ($$restProps.autofocus) {
+    if (inputProps.autofocus) {
       setFocusStates();
     }
     if (error) {
       invalid = true;
     }
 
-    inputRef.addEventListener('keydown', handleKeyEvt);
+    inputRef.addEventListener('keydown', handleSubmitKeyEvt);
   });
 
   // Reactive States
 
   // Character Count
   $: if (inputRef && characterCounter) {
-    if ($$restProps.maxlength) {
-      charCount = `${inputRef.value.length} / ${$$restProps.maxlength}`;
+    if (inputProps.maxlength) {
+      charCount = `${value.length} / ${inputProps.maxlength}`;
     }
   }
 
@@ -132,24 +112,27 @@
 
   $: eventComponents = [current_component];
   $: computedColor = makeThemeColor(color);
-
-  // Merge default styles / classes with any styles or classes passed to TextField by user
-  $: containerProps.style = containerProps.style + `;--color: ${computedColor};`;
-  $: containerProps.class = containerProps.class + ' text-field-container';
 </script>
 
 <svelte:window on:click={clickAway} on:keydown={clickAway} />
 
-<div {...containerProps}>
+<Box
+  {...$$restProps}
+  class="textfield-container {$$restProps.class || ''}"
+  style="--color: {computedColor}; {$$restProps.style}"
+>
   <div
-    class={`mdc-text-field text-field mdc-text-field--${variant} ${getIconClass()}`}
-    class:mdc-text-field--disabled={$$restProps.disabled}
+    class={`text-field mdc-text-field mdc-text-field--${variant}`}
+    class:mdc-text-field--disabled={disabled}
     class:mdc-text-field--invalid={invalid}
     class:mdc-text-field--focused={focused}
+    class:mdc-text-field--with-leading-icon={$$slots.leadingIcon}
+    class:mdc-text-field--with-trailing-icon={$$slots.trailingIcon}
     class:mdc-ripple-upgraded--background-focused={variant === 'filled' && focused}
   >
     <slot name="leadingIcon" />
     <input
+      {...inputProps}
       use:eventRedirection={eventComponents}
       bind:this={inputRef}
       bind:value
@@ -157,10 +140,11 @@
       on:input={() => {
         invalid = false;
       }}
+      {required}
+      {disabled}
       type="text"
-      class="mdc-text-field__input"
       aria-labelledby="textfield-label"
-      {...inputProps}
+      class="mdc-text-field__input {inputProps.class || ''}"
     />
     {#if invalid}
       <span class:errorIcon={invalid} class="material-symbols-outlined mdc-text-field__icon">
@@ -180,10 +164,11 @@
             bind:this={labelRef}
             class={`mdc-floating-label`}
             class:mdc-floating-label--float-above={floating}
-            class:mdc-floating-label--required={$$restProps.required}
+            class:mdc-floating-label--required={required}
             for={`text-field-${variant}`}
             id="textfield-label"
-            >{label}
+          >
+            {label}
           </label>
         </span>
         <span class="mdc-notched-outline__trailing" />
@@ -197,7 +182,8 @@
         class:mdc-floating-label--required={$$restProps.required}
         for={`text-field-${variant}`}
         id="textfield-label"
-        >{label}
+      >
+        {label}
       </label>
       <div class={`mdc-line-ripple mdc-line-ripple--${active}`} />
     {/if}
@@ -210,7 +196,7 @@
     </p>
     <div class="mdc-text-field-character-counter">{charCount}</div>
   </div>
-</div>
+</Box>
 
 <style lang="scss" global>
   @import '@material/textfield/mdc-text-field';
